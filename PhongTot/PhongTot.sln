@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Entities", "PhongTot.Entities\PhongTot.Entities.csproj", "{6EB62CC6-5388-4F4D-96BA-5B052BF73286}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Repository", "PhongTot.Repository\PhongTot.Repository.csproj", "{85177309-731D-4578-A686-95564780BA78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Service", "PhongTot.Service\PhongTot.Service.csproj", "{93A1374C-2A72-42B4-B5DC-228035CBF2A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Common", "PhongTot.Common\PhongTot.Common.csproj", "{27ACF4D4-B7FA-462A-BFF8-D05045E7BDB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Web", "PhongTot.Web\PhongTot.Web.csproj", "{B8CDFF36-993B-4FF5-A8CE-61F04D1AFCF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Api", "PhongTot.Api\PhongTot.Api.csproj", "{FE99820D-3F61-493D-976B-1D45E71FB4F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Tests", "PhongTot.Tests\PhongTot.Tests.csproj", "{D7301970-A115-41FA-9BE7-277FE95265D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EB62CC6-5388-4F4D-96BA-5B052BF73286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EB62CC6-5388-4F4D-96BA-5B052BF73286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EB62CC6-5388-4F4D-96BA-5B052BF73286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EB62CC6-5388-4F4D-96BA-5B052BF73286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85177309-731D-4578-A686-95564780BA78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85177309-731D-4578-A686-95564780BA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85177309-731D-4578-A686-95564780BA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85177309-731D-4578-A686-95564780BA78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93A1374C-2A72-42B4-B5DC-228035CBF2A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93A1374C-2A72-42B4-B5DC-228035CBF2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93A1374C-2A72-42B4-B5DC-228035CBF2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93A1374C-2A72-42B4-B5DC-228035CBF2A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27ACF4D4-B7FA-462A-BFF8-D05045E7BDB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27ACF4D4-B7FA-462A-BFF8-D05045E7BDB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27ACF4D4-B7FA-462A-BFF8-D05045E7BDB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27ACF4D4-B7FA-462A-BFF8-D05045E7BDB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8CDFF36-993B-4FF5-A8CE-61F04D1AFCF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8CDFF36-993B-4FF5-A8CE-61F04D1AFCF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8CDFF36-993B-4FF5-A8CE-61F04D1AFCF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8CDFF36-993B-4FF5-A8CE-61F04D1AFCF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE99820D-3F61-493D-976B-1D45E71FB4F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE99820D-3F61-493D-976B-1D45E71FB4F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE99820D-3F61-493D-976B-1D45E71FB4F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE99820D-3F61-493D-976B-1D45E71FB4F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7301970-A115-41FA-9BE7-277FE95265D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7301970-A115-41FA-9BE7-277FE95265D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7301970-A115-41FA-9BE7-277FE95265D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7301970-A115-41FA-9BE7-277FE95265D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
