@@ -16,21 +16,21 @@
                             <img class="img-responsive" src="http://phongtot.vn/themes/client/img/xavatar.png.pagespeed.ic.Hl7NHK7TGA.png">
                         </div>
                         @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                        {
-                            @Html.AntiForgeryToken()
+                            {
+                                @Html.AntiForgeryToken()
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                                </li>
-                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                            </ul>
-                        }*@
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                    </li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                </ul>
+                            }*@
                     }
                     else
                     {
                         <div class="header-top-user">
-                            <div class="user-login"><a class="load_modal_login" href="#" data-toggle="modal" data-target="#modal_auth">Đăng nhập</a></div>
+                            <div class="user-login"><a class="load_modal_login" href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a></div>
                             <div class="user-register load_modal_register">
                                 <a href="javascript: void(0);" data-toggle="modal" data-target="#modal_auth">Tạo tài khoản</a>
                             </div>
@@ -50,3 +50,40 @@
         </div>
     </div>
 </header>
+<!--Form Login-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                <h4 class="modal-title" id="myModalLabel">Đăng Nhập</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="sto-login-title">
+                        <div class="sto-login-title-name col-lg-6">
+                            <span>Đăng Nhập</span>
+                        </div>
+                        <div class="sto-login-social social-buttons col-lg-6">
+                            <a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
+                                <span class="fa fa-facebook"></span> Đăng Nhập Với Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="sto-register-now col-lg-12">
+                        <span>Bạn Chưa Có Tài Khoản Hãy ?</span><a href="#">Đăng ký Ngay</a>
+                    </div>
+                </div>
+                <div class="row">
+                    @{Html.RenderAction("Login", "Account");}
+                </div>
+            </div>
+            <div class="line_orn"></div>
+            <div class="modal-footer">
+                <strong>Study Online</strong> Cộng đồng học Online<strong>MIỄN PHÍ</strong>
+            </div>
+        </div>
+    </div>
+</div>
