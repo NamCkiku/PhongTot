@@ -51,24 +51,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201609201326043_InitalDB.cs" />
-    <Compile Include="Migrations\201609201326043_InitalDB.Designer.cs">
-      <DependentUpon>201609201326043_InitalDB.cs</DependentUpon>
+    <Compile Include="Migrations\201609210123176_InitalDB.cs" />
+    <Compile Include="Migrations\201609210123176_InitalDB.Designer.cs">
+      <DependentUpon>201609210123176_InitalDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609210627193_addTableError.cs" />
+    <Compile Include="Migrations\201609210627193_addTableError.Designer.cs">
+      <DependentUpon>201609210627193_addTableError.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\DanhMuc.cs" />
-    <Compile Include="Models\DanhMucThongTinThem.cs" />
-    <Compile Include="Models\HuongNha.cs" />
-    <Compile Include="Models\PhongTot.cs" />
-    <Compile Include="Models\Phuongxa.cs" />
-    <Compile Include="Models\Quanhuyen.cs" />
-    <Compile Include="Models\SoPhongNgu.cs" />
-    <Compile Include="Models\SoPhongVeSinh.cs" />
-    <Compile Include="Models\SoTang.cs" />
-    <Compile Include="Models\ThongTin.cs" />
-    <Compile Include="Models\ThongTinThem.cs" />
-    <Compile Include="Models\TienNghi.cs" />
-    <Compile Include="Models\Tinhthanh.cs" />
+    <Compile Include="Models\CategoryInfo.cs" />
+    <Compile Include="Models\CategoryOtherInfo.cs" />
+    <Compile Include="Models\Districtid.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\Info.cs" />
+    <Compile Include="Models\OtherInfo.cs" />
+    <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\RoomsEntity.cs" />
+    <Compile Include="Models\Wardid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,8 +82,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609201326043_InitalDB.resx">
-      <DependentUpon>201609201326043_InitalDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609210123176_InitalDB.resx">
+      <DependentUpon>201609210123176_InitalDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609210627193_addTableError.resx">
+      <DependentUpon>201609210627193_addTableError.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

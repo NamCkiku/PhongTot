@@ -49,6 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryInfoService.cs" />
+    <Compile Include="CategoryOtherInfoService.cs" />
+    <Compile Include="ErrorService.cs" />
+    <Compile Include="InfoService.cs" />
+    <Compile Include="OtherInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
