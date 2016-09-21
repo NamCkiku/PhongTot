@@ -208,6 +208,22 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Client\css\Style.css" />
+    <Content Include="Content\Client\img\tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+    <Content Include="Content\Client\js\jquery-1.10.2.min.js" />
+    <Content Include="Content\Client\js\jquery-1.8.3.min.js" />
+    <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Client\Plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Client\Plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Client\Plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Client\Plugins\bootstrap\js\npm.js" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\css\font-awesome.css" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\css\font-awesome.min.css" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\HELP-US-OUT.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -223,7 +239,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -250,7 +265,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +275,50 @@
       <Project>{27acf4d4-b7fa-462a-bff8-d05045e7bdb3}</Project>
       <Name>PhongTot.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\Client\Plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Client\Plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Client\Plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Client\Plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\animated.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\bordered-pulled.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\core.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\fixed-width.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\font-awesome.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\icons.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\larger.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\list.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\mixins.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\path.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\rotated-flipped.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\stacked.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\less\variables.less" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\font-awesome.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_animated.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_core.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_fixed-width.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_icons.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_larger.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_list.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_mixins.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_path.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_stacked.scss" />
+    <Content Include="Content\Client\Plugins\font-awesome-4.5.0\scss\_variables.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
