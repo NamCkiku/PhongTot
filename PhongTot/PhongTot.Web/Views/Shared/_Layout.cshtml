@@ -24,39 +24,7 @@
     <div>
         @RenderBody()
     </div>
-    <header id="header" class="header-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pull-left">
-                        <a class="logo" href="http://phongtot.vn">
-                            <img class="img-responsive" src="http://phongtot.vn/themes/client/img/xphongtot_logo.png.pagespeed.ic.UejSBOLzW8.png">
-                        </a>
-                    </div>
-                    <div class="pull-right">
-                        <div class="header-top-avatar">
-                            <img class="img-responsive" src="http://phongtot.vn/themes/client/img/xavatar.png.pagespeed.ic.Hl7NHK7TGA.png">
-                        </div>
-                        <div class="header-top-user">
-                            <div class="user-login"><a class="load_modal_login" href="#" data-toggle="modal" data-target="#modal_auth">Đăng nhập</a></div>
-                            <div class="user-register load_modal_register">
-                                <a href="javascript: void(0);" data-toggle="modal" data-target="#modal_auth">Tạo tài khoản</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pull-right">
-                        <a class="btn btn-submit-room load_modal_login" data-toggle="modal" data-target="#modal_auth" href="javascript: void(0);">Đăng tin miễn phí</a>
-                    </div>
-                    <div class="modal fade" id="modal_auth" tabindex="-1" role="dialog" aria-labelledby="login_modal_label" aria-hidden="true">
-                        <div class="modal-dialog modal-md">
-                            <div class="modal-content">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    @Html.Partial("_Header")
     <!-- End header top -->
     <div class="clearfix"></div>
     <div id="header_nav" class="header-nav">

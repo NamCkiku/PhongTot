@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PhongTot.Web.Models
@@ -79,6 +80,18 @@ namespace PhongTot.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [MaxLength(256, ErrorMessage = "Họ tên không được vượt quá 256 ký tự")]
+        [Display(Name = "Họ tên")]
+        public string FullName { get; set; }
+
+        [MaxLength(256, ErrorMessage = "Họ tên không được vượt quá 256 ký tự")]
+        [Display(Name = "Địa chỉ")]
+        public string Address { get; set; }
+
+        public string Avater { get; set; }
+        public DateTime? BirthDay { set; get; }
     }
 
     public class ResetPasswordViewModel
