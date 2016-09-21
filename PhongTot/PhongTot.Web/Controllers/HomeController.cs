@@ -12,5 +12,9 @@ namespace PhongTot.Web.Controllers
         {
             return View();
         }
+        public PartialViewResult _Header()
+        {
+            return PartialView();
+        }
     }
 }

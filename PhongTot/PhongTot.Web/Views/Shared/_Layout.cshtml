@@ -4,11 +4,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/Content/Client/Plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/Client/Plugins/font-awesome-4.5.0/css/font-awesome.css" rel="stylesheet" />
-    <link href="~/Content/Client/css/Style.css" rel="stylesheet" />
-    <script src="~/Content/Client/js/jquery-1.10.2.min.js"></script>
-    <script src="~/Content/Client/Plugins/bootstrap/js/bootstrap.js"></script>
+    <link href="~/Content/Client/Plugins/bootstrap-social-gh-pages/bootstrap-social.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Content/js")
     <script>
         $(document).ready(function () { $(".btn-select").each(function (e) { var value = $(this).find("ul li.selected").html(); if (value != undefined) { $(this).find(".btn-select-input").val(value); $(this).find(".btn-select-value").html(value); } }); }); $(document).on('click', '.btn-select', function (e) {
             e.preventDefault(); var ul = $(this).find("ul"); if ($(this).hasClass("active")) {
@@ -24,8 +22,9 @@
     <div>
         @RenderBody()
     </div>
-    @Html.Partial("_Header")
+    @{Html.RenderPartial("_Header", "Home");}
     <!-- End header top -->
+    
     <div class="clearfix"></div>
     <div id="header_nav" class="header-nav">
         <nav class="navbar">
