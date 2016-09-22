@@ -13,26 +13,34 @@
                     @if (Request.IsAuthenticated)
                     {
                         <div class="header-top-avatar">
-                            <img class="img-responsive" src="http://phongtot.vn/themes/client/img/xavatar.png.pagespeed.ic.Hl7NHK7TGA.png">
+                            <img class="img-responsive" src="">
                         </div>
-                        @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                            {
-                                @Html.AntiForgeryToken()
-
-                                <ul class="nav navbar-nav navbar-right">
+                        <div class="header-top-user">
+                            <div class="user-name">
+                                <a href="#">@User.Identity.GetUserName()</a>
+                            </div>
+                            <div class="dropdown user-info">
+                                <a href="javascript: void(0);" class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thông tin tài khoản <b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-menu-right menu-user-info" aria-labelledby="dropdownMenu1">
+                                    <li><a href="http://phongtot.vn/trang-ca-nhan">Trang cá nhân</a></li>
+                                    <li><a href="http://phongtot.vn/trang-ca-nhan/tin-dang">Tin đã đăng</a></li>
+                                    <li><a href="http://phongtot.vn/trang-ca-nhan/tin-da-luu">Tin đã lưu</a></li>
                                     <li>
-                                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
+                                        {
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                        }
                                     </li>
-                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                                 </ul>
-                            }*@
+                            </div>
+                        </div>
                     }
                     else
                     {
                         <div class="header-top-user">
                             <div class="user-login"><a class="load_modal_login" href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a></div>
                             <div class="user-register load_modal_register">
-                                <a href="javascript: void(0);" data-toggle="modal" data-target="#modal_auth">Tạo tài khoản</a>
+                                <a href="javascript: void(0);" data-toggle="modal" data-target="#myModal">Tạo tài khoản</a>
                             </div>
                         </div>
                     }
@@ -55,29 +63,30 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title" id="myModalLabel">Đăng Nhập</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="sto-login-title">
-                        <div class="sto-login-title-name col-lg-6">
-                            <span>Đăng Nhập</span>
+                <ul class="nav nav-tabs no-margin">
+                    <li id="li_login" class=""><a href="#tab_auth_login" data-toggle="tab" aria-expanded="true">ĐĂNG NHẬP</a></li>
+                    <li id="li_register" class=""><a href="#tab_auth_register" data-toggle="tab" aria-expanded="false">ĐĂNG KÝ</a></li>
+                </ul>
+                <div class="tab-content" style="padding-top: 50px;">
+                    <div class="tab-pane fade in" id="tab_auth_login">
+                        <div class="row">
+                            @{Html.RenderAction("Login", "Account");}
                         </div>
-                        <div class="sto-login-social social-buttons col-lg-6">
-                            <a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
-                                <span class="fa fa-facebook"></span> Đăng Nhập Với Facebook
-                            </a>
+                        @*<div class="sto-login-social social-buttons col-lg-6">
+                                <a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
+                                    <span class="fa fa-facebook"></span> Đăng Nhập Với Facebook
+                                </a>
+                            </div>*@
+                    </div>
+                    <div class="tab-pane fade in" id="tab_auth_register">
+                        <div class="row">
+                            @{Html.RenderAction("Register", "Account");}
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="sto-register-now col-lg-12">
-                        <span>Bạn Chưa Có Tài Khoản Hãy ?</span><a href="#">Đăng ký Ngay</a>
-                    </div>
-                </div>
-                <div class="row">
-                    @{Html.RenderAction("Login", "Account");}
                 </div>
             </div>
             <div class="line_orn"></div>
@@ -87,3 +96,17 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('body').on('click', '.load_modal_login',
+        function (e) {
+            $('#li_register').removeClass('active');
+            $('#li_login').addClass('active');
+            $('#tab_auth_register').removeClass('in active');
+            $('#tab_auth_login').addClass('in active');
+        });
+    $('body').on('click', '.load_modal_register', function (e) {
+        $('#li_login').removeClass('active'); $('#li_register').addClass('active');
+        $('#tab_auth_login').removeClass('in active');
+        $('#tab_auth_register').addClass('in active');
+    });
+</script>

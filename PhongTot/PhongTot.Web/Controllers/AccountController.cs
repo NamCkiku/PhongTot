@@ -70,21 +70,21 @@ namespace PhongTot.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return PartialView(model);
             }
             RoomsEntities _db = new RoomsEntities();
             var user = _db.AspNetUsers.SingleOrDefault(m => m.Email == model.Email);
             if (user == null)
             {
                 ModelState.AddModelError("CustomError", "Email Khong Ton Tai");
-                return View(model);
+                return PartialView(model);
             }
             else
             {
                 if (user.EmailConfirmed == false)
                 {
                     ModelState.AddModelError("CustomError", "TaI Khoan chua duoc xac thuc");
-                    return View(model);
+                    return PartialView(model);
                 }
             }
             // This doesn't count login failures towards account lockout
@@ -101,7 +101,7 @@ namespace PhongTot.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return PartialView(model);
             }
         }
 
@@ -153,7 +153,7 @@ namespace PhongTot.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return PartialView();
         }
 
         //
@@ -183,7 +183,7 @@ namespace PhongTot.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return PartialView(model);
         }
 
         //
@@ -402,7 +402,6 @@ namespace PhongTot.Web.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

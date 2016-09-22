@@ -54,9 +54,9 @@ namespace PhongTot.Web
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "532354340305431",
+               appSecret: "b80a1a8f70034f97efe5b5e1808ae494");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
