@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PhongTot.Api.Controllers
 {
@@ -18,6 +19,7 @@ namespace PhongTot.Api.Controllers
         {
             this._infoService = infoService;
         }
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
