@@ -12,10 +12,14 @@ namespace PhongTot.Web
                        "~/Content/Client/js/jquery-1.10.2.min.js",
                        "~/Content/Client/Plugins/bootstrap/js/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/Content/angular").Include(
+                       "~/bower_components/angular/angular.js",
+                       "~/app/app.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Client/Plugins/bootstrap/css/bootstrap.css",
                       "~/Content/Client/Plugins/font-awesome-4.5.0/css/font-awesome.css",
+                      "~/ Content/Client/Plugins/bootstrap-social-gh-pages/bootstrap-social.css",
                       "~/Content/Client/css/Style.css"));
         }
     }

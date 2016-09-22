@@ -1,0 +1,10 @@
+{
+  "name": "asp.net",
+  "directory": "Content/Client/Plugins",
+  "private": true,
+  "dependencies": {
+    "angular": "1.5.8",
+    "tinymce": "~4.4.3",
+    "toastr": "~2.1.3"
+  }
+}
