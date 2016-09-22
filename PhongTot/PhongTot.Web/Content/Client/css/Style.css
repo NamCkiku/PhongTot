@@ -1,5 +1,5 @@
 ﻿body {
-    font-family: ''Open Sans',Tahoma,Arial,sans-serif';
+    font-family: 'Open Sans', 'Droid Sans', Tahoma, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
@@ -162,11 +162,11 @@ a {
 
 .navbar-nav > li > a {
     text-shadow: none;
-    font-size: 16px;
-    font-family: 'open sans';
+    font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     color: #FFF;
+    font-family: 'Open Sans', 'Droid Sans', Tahoma, Arial, sans-serif;
 }
 
 .nav > li > i {
@@ -1106,16 +1106,12 @@ input[type="radio"] .styled:checked + label::after {
 
 .card {
     background: #f1f1f1 none repeat scroll 0% 0%;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Droid Sans', Tahoma, Arial, sans-serif;
     box-shadow: none;
     margin-bottom: 0px;
     font-size: 14px;
 }
 
-.tab-content {
-    font-family: 'Open Sans';
-    font-weight: 600;
-}
 
     .tab-content .table .table-title {
         font-size: 13px;
@@ -1163,6 +1159,7 @@ input[type="radio"] .styled:checked + label::after {
     .room-item-price a {
         color: #ffF;
         text-decoration: none;
+        font-family: 'Open Sans', 'Droid Sans', Tahoma, Arial, sans-serif;
     }
 
     .room-item-price:hover {
@@ -1210,7 +1207,7 @@ input[type="radio"] .styled:checked + label::after {
             }
 
                 .thumbnail-list .thumbnail .caption .title h2 {
-                    font-size: 14px;
+                    font-size: 13px;
                     font-weight: 600;
                     margin-top: 5px;
                     margin-bottom: 0px;
@@ -1220,6 +1217,7 @@ input[type="radio"] .styled:checked + label::after {
                     .thumbnail-list .thumbnail .caption .title h2 a {
                         text-decoration: none;
                         color: #FFF;
+                        font-family: 'Open Sans', 'Droid Sans', Tahoma, Arial, sans-serif;
                     }
 
                         .thumbnail-list .thumbnail .caption .title h2 a:hover {
@@ -1227,7 +1225,7 @@ input[type="radio"] .styled:checked + label::after {
                         }
 
             .thumbnail-list .thumbnail .caption .desc {
-                font-size: 12px;
+                font-size: 11px;
                 font-weight: 600;
                 margin-bottom: 2px;
                 height: 18px;
@@ -1237,9 +1235,9 @@ input[type="radio"] .styled:checked + label::after {
             .thumbnail-list .thumbnail .caption .extra {
                 display: block;
                 overflow: auto;
-                font-size: 12px;
+                font-size: 11px;
                 color: #FFF;
-                padding: 2px 0px;
+                padding: 3px 3px;
                 border-top: 1px solid #484C51;
             }
 
@@ -1250,6 +1248,7 @@ input[type="radio"] .styled:checked + label::after {
                 .thumbnail-list .thumbnail .caption .extra a {
                     color: #33cc66;
                     text-decoration: none;
+                    font-family: 'Open Sans', 'Droid Sans', Tahoma, Arial, sans-serif;
                 }
 
                     .thumbnail-list .thumbnail .caption .extra a:hover {
@@ -1317,10 +1316,6 @@ input[type="radio"] .styled:checked + label::after {
     margin-top: 30px;
 }
 
-.tab-content {
-    font-family: 'Open Sans';
-    font-weight: 600;
-}
 
 .sidebar {
     margin-top: 30px;
@@ -1527,9 +1522,11 @@ input[type="radio"] .styled:checked + label::after {
 }
 
     .modal-header .close {
-        background: url(../Img/ic_close.png) no-repeat;
         height: 15px;
         width: 15px;
+        font-size: 28px;
+        color: #ff0046;
+        opacity: 1;
     }
 
     .modal-header .modal-title {
@@ -1545,34 +1542,6 @@ input[type="radio"] .styled:checked + label::after {
     border-radius: 0px 0px 4px 4px;
 }
 
-.sto-login-title {
-    height: 50px;
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
-}
-
-    .sto-login-title .sto-login-title-name {
-        padding-top: 8px;
-    }
-
-        .sto-login-title .sto-login-title-name span {
-            text-transform: uppercase;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-.sto-register-now {
-    padding: 20px;
-}
-
-    .sto-register-now span {
-        font-size: 14px;
-    }
-
-    .sto-register-now a {
-        font-size: 14px;
-        color: #8CCD35;
-        font-weight: bold;
-    }
 
 .line_orn {
     height: 4px;
@@ -1637,3 +1606,9 @@ input[type="radio"] .styled:checked + label::after {
             text-decoration: underline;
         }
 /* END Model -Login*/
+.help-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #737373;
+}
