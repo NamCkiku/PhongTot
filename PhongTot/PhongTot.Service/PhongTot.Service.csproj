@@ -51,10 +51,13 @@
   <ItemGroup>
     <Compile Include="CategoryInfoService.cs" />
     <Compile Include="CategoryOtherInfoService.cs" />
+    <Compile Include="DistrictidService.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="InfoService.cs" />
     <Compile Include="OtherInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceService.cs" />
+    <Compile Include="WardidService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

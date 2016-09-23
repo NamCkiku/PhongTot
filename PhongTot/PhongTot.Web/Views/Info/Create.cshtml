@@ -89,7 +89,7 @@
                 <div class="form-group">
                     <div class="control-label">Tiêu đề</div>
                     <div>
-                        <input type="text" id="title" name="Name" ng-maxlength="256" required ng-model="infoAdd.Name" class="form-control" value="">
+                        <input type="text" id="title" name="Name" ng-change="GetSeoTitle()" ng-maxlength="256" required ng-model="infoAdd.Name" class="form-control" value="">
                         <span class="help-block"></span>
                         @*<span ng-show="frmAddInfo.Name.$invalid">Phải nhập Ten Tin</span>
                         <span ng-show="frmAddInfo.Name.$error.maxlength">Tên danh mục chỉ được 256 ký tự</span>*@
@@ -133,13 +133,13 @@
                         <div class="form-group">
                             <div class="control-label">Tỉnh/Thành phố</div>
                             <div>
-                                <select name="province_id" class="form-control address_input" size="1">
+                                <select name="province_id" ng-change="getAlDistrictByProvince(option.provinceid)" ng-model="option.provinceid" ng-options="option.provinceid as option.name for option in province" class="form-control address_input">
                                     <option value="">Chọn</option>
-                                    <option value="1">Hà Nội</option>
+                                    @*<option value="1">Hà Nội</option>
                                     <option value="31">Hải Phòng</option>
                                     <option value="48">Đà Nẵng</option>
                                     <option value="79">Hồ Chí Minh</option>
-                                    <option value="92">Cần Thơ</option>
+                                    <option value="92">Cần Thơ</option>*@
                                 </select>
                                 <span class="help-block"></span>
                             </div>
@@ -149,7 +149,7 @@
                         <div class="form-group">
                             <div class="control-label">Quận/Huyện</div>
                             <div>
-                                <select name="district_id" class="form-control address_input" size="1">
+                                <select name="district_id" ng-change="getAlWardByDistrict(option.districtid1)" ng-model="option.districtid1" ng-options="option.districtid1 as option.name for option in district" class="form-control address_input">
                                     <option value="">Chọn Tỉnh/Thành trước</option>
                                 </select>
                                 <span class="help-block"></span>
@@ -163,7 +163,7 @@
                         <div class="form-group">
                             <div class="control-label">Xã/Phường</div>
                             <div>
-                                <select id="street_id" name="ward_id" class="form-control address_input" size="1">
+                                <select id="street_id" name="ward_id" ng-model="option.wardid1" ng-options="option.wardid1 as option.name for option in ward" class="form-control address_input" size="1">
                                     <option value="">Chọn Quận/huyện trước</option>
                                 </select>
                                 <span class="help-block"></span>
