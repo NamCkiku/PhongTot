@@ -10,6 +10,8 @@ namespace PhongTot.Entities.Models
         public RoomsEntity()
             : base("name=RoomsEntity")
         {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<CategoryInfo> CategoryInfoes { get; set; }

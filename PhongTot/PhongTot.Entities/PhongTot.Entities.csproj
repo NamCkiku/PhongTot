@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201609210857482_updatedatabase.Designer.cs">
       <DependentUpon>201609210857482_updatedatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609230145551_addPhoneInTableInfo.cs" />
+    <Compile Include="Migrations\201609230145551_addPhoneInTableInfo.Designer.cs">
+      <DependentUpon>201609230145551_addPhoneInTableInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryOtherInfo.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609210857482_updatedatabase.resx">
       <DependentUpon>201609210857482_updatedatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609230145551_addPhoneInTableInfo.resx">
+      <DependentUpon>201609230145551_addPhoneInTableInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

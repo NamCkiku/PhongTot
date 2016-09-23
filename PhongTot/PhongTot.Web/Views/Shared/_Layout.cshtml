@@ -13,6 +13,7 @@
     <script src="~/bower_components/toastr/toastr.js"></script>
     <script src="~/app/services/apiService.js"></script>
     <script src="~/app/commonService/notificationService.js"></script>
+    <script src="~/app/commonService/commonService.js"></script>
     <script src="~/app/controllers/InfoController/infoController.js"></script>
     <script>
         $(document).ready(function () { $(".btn-select").each(function (e) { var value = $(this).find("ul li.selected").html(); if (value != undefined) { $(this).find(".btn-select-input").val(value); $(this).find(".btn-select-value").html(value); } }); }); $(document).on('click', '.btn-select', function (e) {
@@ -31,7 +32,7 @@
     <div class="clearfix"></div>
     @RenderPage("_Menu.cshtml")
     <!-- End menu -->
-    @*@RenderPage("_Search.cshtml")*@
+    @RenderPage("_Search.cshtml")
     <!-- End slider -->
     <div class="container">
         <div class="row">
