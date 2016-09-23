@@ -18,6 +18,9 @@ namespace PhongTot.Entities.Models
         [Required]
         [StringLength(256)]
         public string Alias { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string Phone { get; set; }
 
         public int CategoryID { get; set; }
 

@@ -7,24 +7,23 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
 
 namespace PhongTot.Api.Controllers
 {
-    [RoutePrefix("api/info")]
-    public class InfoController : ApiControllerBase
+    [RoutePrefix("api/categoryinfo")]
+    public class CategoryInfoController : ApiControllerBase
     {
-        IInfoService _infoService;
-        public InfoController(IErrorService errorService, IInfoService infoService) : base(errorService)
+        private readonly ICategoryInfoService _categoryInfoService;
+        public CategoryInfoController(IErrorService errorService, ICategoryInfoService categoryInfoService) : base(errorService)
         {
-            this._infoService = infoService;
+            this._categoryInfoService = categoryInfoService;
         }
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
-                var listInfo = _infoService.GetAll();
+                var listInfo = _categoryInfoService.GetAll();
 
                 //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
 
@@ -35,7 +34,7 @@ namespace PhongTot.Api.Controllers
         }
 
         [Route("add")]
-        public HttpResponseMessage Post(HttpRequestMessage request, Info info)
+        public HttpResponseMessage Post(HttpRequestMessage request, CategoryInfo categoryinfo)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -46,19 +45,20 @@ namespace PhongTot.Api.Controllers
                 }
                 else
                 {
-                    var newCourse = _infoService.Add(info);
-                    _infoService.SaveChanges();
+                    var newCategoryInfo = _categoryInfoService.Add(categoryinfo);
+                    _categoryInfoService.SaveChanges();
 
-                    response = request.CreateResponse(HttpStatusCode.Created, newCourse);
+                    response = request.CreateResponse(HttpStatusCode.Created, newCategoryInfo);
                 }
                 return response;
             });
         }
 
         [Route("update")]
-        public HttpResponseMessage Put(HttpRequestMessage request, Info info)
+        public HttpResponseMessage Put(HttpRequestMessage request, CategoryInfo categoryinfo)
         {
-            return CreateHttpResponse(request, () => {
+            return CreateHttpResponse(request, () =>
+            {
                 HttpResponseMessage response = null;
                 if (ModelState.IsValid)
                 {
@@ -66,8 +66,8 @@ namespace PhongTot.Api.Controllers
                 }
                 else
                 {
-                    _infoService.Update(info);
-                    _infoService.SaveChanges();
+                    _categoryInfoService.Update(categoryinfo);
+                    _categoryInfoService.SaveChanges();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
 
@@ -88,8 +88,8 @@ namespace PhongTot.Api.Controllers
                 }
                 else
                 {
-                    _infoService.Delete(id);
-                    _infoService.SaveChanges();
+                    _categoryInfoService.Delete(id);
+                    _categoryInfoService.SaveChanges();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
 

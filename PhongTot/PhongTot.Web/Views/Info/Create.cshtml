@@ -3,16 +3,16 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div ng-controller="infoController" >
-    <div class="">
-        <table border="1">
-            <tr ng-repeat="items in Info">
-                <td>{{items.Name}}</td>
-                <td>{{items.Description}}</td>
-            </tr>
-        </table>
-    </div>
-</div>
+@*<div ng-controller="infoController" >
+        <div class="">
+            <table border="1">
+                <tr ng-repeat="items in Info">
+                    <td>{{items.Name}}</td>
+                    <td>{{items.Description}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>*@
 <div class="col-md-12 submit-room-breadcrumb">
     <div class="pt-breadcrumb">
         <ol class="breadcrumb">
@@ -21,19 +21,21 @@
         </ol>
     </div>
 </div>
-<div class="col-md-2 no-padding-vertical submit-room-main-content">
+<div ng-controller="infoController" class="col-md-2 no-padding-vertical submit-room-main-content">
     <div class="submit-list-type">
         <div class="list-type-title">
-            <ul><li class="li-label">Chọn Nhu Cầu</li></ul>
+            <ul>
+                <li class="li-label">Chọn Nhu Cầu</li>
+            </ul>
         </div>
         <div class="checkbox checkbox-success">
             <ul>
                 <li>
-                    <input type="radio" name="needed" id="radio_needed_lease" value="Cho thuê">
-                    <label for="radio_needed_lease"> Cho Thuê</label>
+                    <input type="radio" name="aaa" id="radio_needed_lease" value="Ở Trọ">
+                    <label for="radio_needed_lease">Ở Trọ</label>
                 </li>
                 <li>
-                    <input type="radio" name="needed" id="radio_needed_share" value="Ở ghép">
+                    <input type="radio" name="aaa" id="radio_needed_share" value="Ở ghép">
                     <label for="radio_needed_share"> Ở ghép</label>
                 </li>
             </ul>
@@ -45,299 +47,308 @@
         </div>
         <div class="checkbox checkbox-success">
             <ul>
-                <li>
-                    <input type="radio" name="type_id" id="radio_type[1]" value="1">
-                    <label for="radio_type[1]">Phòng trọ, nhà trọ</label>
+                <li ng-repeat="items in categoryinfo">
+                    <input type="radio" ng-model="items.ID" name="needed" id="{{items.ID}}" value="{{items.Name}}">
+                    <label for="{{items.ID}}">{{items.Name}}</label>
                 </li>
-                <li>
-                    <input type="radio" name="type_id" id="radio_type[2]" value="2">
-                    <label for="radio_type[2]">Nhà nguyên căn</label>
-                </li>
-                <li>
-                    <input type="radio" name="type_id" id="radio_type[3]" value="3">
-                    <label for="radio_type[3]">Nhà mặt phố</label>
-                </li>
-                <li>
-                    <input type="radio" name="type_id" id="radio_type[4]" value="4">
-                    <label for="radio_type[4]">Văn phòng</label>
-                </li>
-                <li>
-                    <input type="radio" name="type_id" id="radio_type[6]" value="6">
-                    <label for="radio_type[6]">Chung cư, căn hộ</label>
-                </li>
-                <li>
-                    <input type="radio" name="type_id" id="radio_type[7]" value="7">
-                    <label for="radio_type[7]">Mặt bằng, cửa hàng</label>
-                </li>
+                @*<li>
+                        <input type="radio" name="type_id" id="radio_type[1]" value="1">
+                        <label for="radio_type[1]">Phòng trọ, nhà trọ</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="type_id" id="radio_type[2]" value="2">
+                        <label for="radio_type[2]">Nhà nguyên căn</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="type_id" id="radio_type[3]" value="3">
+                        <label for="radio_type[3]">Nhà mặt phố</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="type_id" id="radio_type[4]" value="4">
+                        <label for="radio_type[4]">Văn phòng</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="type_id" id="radio_type[6]" value="6">
+                        <label for="radio_type[6]">Chung cư, căn hộ</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="type_id" id="radio_type[7]" value="7">
+                        <label for="radio_type[7]">Mặt bằng, cửa hàng</label>
+                    </li>*@
             </ul>
         </div>
     </div>
 </div>
-<div id="step-3" class="col-md-10 no-padding-right submit-room-main-content" style="display: block;">
+<div id="step-3" ng-controller="infoController" class="col-md-10 no-padding-right submit-room-main-content" style="display: block;">
     <div class="list-type-title">
         <ul><li class="li-label">Bước 3 Nhập Thông Tin Chi Tiết</li></ul>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="control-label">Tiêu đề</div>
-                <div>
-                    <input type="text" id="title" name="title" class="form-control" value="">
-                    <span class="help-block"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="control-label">Số điện thoại</div>
-                <div>
-                    <input type="text" name="phone" class="form-control" value="">
-                    <span class="help-block"></span>
-                </div>
-            </div>
-            <div class="col-md-6 no-padding-left">
+    <form novalidate name="frmAddInfo" role="form" ng-submit="createInfo()">
+        <div class="row">
+            <div class="col-md-6">
                 <div class="form-group">
+                    <div class="control-label">Tiêu đề</div>
                     <div>
-                        <div class="control-label">Giá</div>
-                        <div class="input-group">
-                            <input type="text" name="price" class="form-control money-input" data-thousands="," data-decimal="." data-precision="0">
-                            <span class="input-group-addon">đ/tháng</span>
-                        </div>
+                        <input type="text" id="title" name="Name" ng-maxlength="256" required ng-model="infoAdd.Name" class="form-control" value="">
+                        <span class="help-block"></span>
+                        @*<span ng-show="frmAddInfo.Name.$invalid">Phải nhập Ten Tin</span>
+                        <span ng-show="frmAddInfo.Name.$error.maxlength">Tên danh mục chỉ được 256 ký tự</span>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label">Số điện thoại</div>
+                    <div>
+                        <input type="text" name="Phone" ng-model="infoAdd.Phone" class="form-control" value="">
                         <span class="help-block"></span>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 no-padding-right">
-                <div class="form-group">
-                    <div>
-                        <div class="control-label">Diện tích</div>
-                        <div class="input-group">
-                            <input type="text" name="acreage" value="" class="form-control" placeholder="nhập số, viết liền">
-                            <span class="input-group-addon">M<sup>2</sup></span>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 no-padding-left">
                     <div class="form-group">
-                        <div class="control-label">Tỉnh/Thành phố</div>
                         <div>
-                            <select name="province_id" class="form-control address_input" size="1">
-                                <option value="">Chọn</option>
-                                <option value="1">Hà Nội</option>
-                                <option value="31">Hải Phòng</option>
-                                <option value="48">Đà Nẵng</option>
-                                <option value="79">Hồ Chí Minh</option>
-                                <option value="92">Cần Thơ</option>
-                            </select>
+                            <div class="control-label">Giá</div>
+                            <div class="input-group">
+                                <input type="text" name="Price" class="form-control money-input" data-thousands="," data-decimal="." data-precision="0">
+                                <span class="input-group-addon">đ/tháng</span>
+                            </div>
                             <span class="help-block"></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 no-padding-right">
                     <div class="form-group">
-                        <div class="control-label">Quận/Huyện</div>
                         <div>
-                            <select name="district_id" class="form-control address_input" size="1">
-                                <option value="">Chọn Tỉnh/Thành trước</option>
-                            </select>
-                            <span class="help-block"></span>
+                            <div class="control-label">Diện tích</div>
+                            <div class="input-group">
+                                <input type="text" name="Acreage" value="" class="form-control" placeholder="nhập số, viết liền">
+                                <span class="input-group-addon">M<sup>2</sup></span>
+                                <span class="help-block"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <dv class="clearfix"></dv>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="control-label">Xã/Phường</div>
-                        <div>
-                            <select id="street_id" name="ward_id" class="form-control address_input" size="1">
-                                <option value="">Chọn Quận/huyện trước</option>
-                            </select>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="control-label">Đường/Phố</div>
-                        <div>
-                            <select id="street" name="street_id" class="form-control address_input" size="1">
-                                <option value="">Chọn Quận/huyện trước</option>
-                            </select>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="control-label">Địa chỉ cụ thể</div>
-                        <div>
-                            <input type="text" name="detail" class="form-control address_input" value="">
-                            <span class="help-block"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="additional-row">
-            <div class="col-md-12">
-                <div class="list-type-title">
-                    <ul><li class="li-label">Thông tin bổ sung <span> Căn hộ, Chung cư</span></li></ul>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <div class="tang">
-                                <div class="control-label">Tầng</div>
-                                <div>
-                                    <select name="floor" class="form-control" size="1">
-                                        <option value="Chưa xác định">Chọn..</option>
-                                        <option value="1">Tầng 1</option>
-                                        <option value="2">Tầng 2</option>
-                                        <option value="3">Tầng 3</option>
-                                        <option value="4">Tầng 4</option>
-                                        <option value="5">Tầng 5</option>
-                                        <option value="6">Tầng 6</option>
-                                        <option value="7">Tầng 7</option>
-                                        <option value="8">Tầng 8</option>
-                                        <option value="9">Tầng 9</option>
-                                        <option value="10">Tầng 10</option>
-                                        <option value="Chưa xác định">Chưa xác định</option>
-                                    </select>
-                                    <span class="help-block"></span>
-                                </div>
+                            <div class="control-label">Tỉnh/Thành phố</div>
+                            <div>
+                                <select name="province_id" class="form-control address_input" size="1">
+                                    <option value="">Chọn</option>
+                                    <option value="1">Hà Nội</option>
+                                    <option value="31">Hải Phòng</option>
+                                    <option value="48">Đà Nẵng</option>
+                                    <option value="79">Hồ Chí Minh</option>
+                                    <option value="92">Cần Thơ</option>
+                                </select>
+                                <span class="help-block"></span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <div class="vs">
-                                <div class="control-label">Vệ sinh</div>
-                                <div>
-                                    <select name="wc" class="form-control" size="1">
-                                        <option value="Chưa xác định">Chọn..</option>
-                                        <option value="Khép kín">Khép kín</option>
-                                        <option value="Chung">Chung</option>
-                                        <option value="Chưa xác định">Chưa xác định</option>
-                                    </select>
-                                    <span class="help-block"></span>
-                                </div>
+                            <div class="control-label">Quận/Huyện</div>
+                            <div>
+                                <select name="district_id" class="form-control address_input" size="1">
+                                    <option value="">Chọn Tỉnh/Thành trước</option>
+                                </select>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <dv class="clearfix"></dv>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="control-label">Xã/Phường</div>
+                            <div>
+                                <select id="street_id" name="ward_id" class="form-control address_input" size="1">
+                                    <option value="">Chọn Quận/huyện trước</option>
+                                </select>
+                                <span class="help-block"></span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <div class="tang">
-                                <div class="control-label">Tầng</div>
-                                <div>
-                                    <select name="floor" class="form-control" size="1">
-                                        <option value="Chưa xác định">Chọn..</option>
-                                        <option value="1">Tầng 1</option>
-                                        <option value="2">Tầng 2</option>
-                                        <option value="3">Tầng 3</option>
-                                        <option value="4">Tầng 4</option>
-                                        <option value="5">Tầng 5</option>
-                                        <option value="6">Tầng 6</option>
-                                        <option value="7">Tầng 7</option>
-                                        <option value="8">Tầng 8</option>
-                                        <option value="9">Tầng 9</option>
-                                        <option value="10">Tầng 10</option>
-                                        <option value="Chưa xác định">Chưa xác định</option>
-                                    </select>
-                                    <span class="help-block"></span>
-                                </div>
+                            <div class="control-label">Đường/Phố</div>
+                            <div>
+                                <select id="street" name="street_id" class="form-control address_input" size="1">
+                                    <option value="">Chọn Quận/huyện trước</option>
+                                </select>
+                                <span class="help-block"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="form-group">
-                            <div class="vs">
-                                <div class="control-label">Vệ sinh</div>
-                                <div>
-                                    <select name="wc" class="form-control" size="1">
-                                        <option value="Chưa xác định">Chọn..</option>
-                                        <option value="Khép kín">Khép kín</option>
-                                        <option value="Chung">Chung</option>
-                                        <option value="Chưa xác định">Chưa xác định</option>
-                                    </select>
-                                    <span class="help-block"></span>
-                                </div>
+                            <div class="control-label">Địa chỉ cụ thể</div>
+                            <div>
+                                <input type="text" name="detail" class="form-control address_input" value="">
+                                <span class="help-block"></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="submit-info-title">Tiện nghi sẵn có</div>
-                <div class="form-group room-option">
+            <div id="additional-row">
+                <div class="col-md-12">
+                    <div class="list-type-title">
+                        <ul><li class="li-label">Thông tin bổ sung <span> Căn hộ, Chung cư</span></li></ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="checkbox checkbox-success">
-                                <input type="checkbox" name="convenient[]" id="dexe" value="Chỗ để xe">
-                                <label for="dexe"> Chỗ để xe </label>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="tang">
+                                    <div class="control-label">Tầng</div>
+                                    <div>
+                                        <select name="floor" class="form-control" size="1">
+                                            <option value="Chưa xác định">Chọn..</option>
+                                            <option value="1">Tầng 1</option>
+                                            <option value="2">Tầng 2</option>
+                                            <option value="3">Tầng 3</option>
+                                            <option value="4">Tầng 4</option>
+                                            <option value="5">Tầng 5</option>
+                                            <option value="6">Tầng 6</option>
+                                            <option value="7">Tầng 7</option>
+                                            <option value="8">Tầng 8</option>
+                                            <option value="9">Tầng 9</option>
+                                            <option value="10">Tầng 10</option>
+                                            <option value="Chưa xác định">Chưa xác định</option>
+                                        </select>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="checkbox checkbox-success">
-                                <input type="checkbox" name="convenient[]" id="sanphoi" value="Sân phơi">
-                                <label for="sanphoi"> Sân phơi </label>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="vs">
+                                    <div class="control-label">Vệ sinh</div>
+                                    <div>
+                                        <select name="wc" class="form-control" size="1">
+                                            <option value="Chưa xác định">Chọn..</option>
+                                            <option value="Khép kín">Khép kín</option>
+                                            <option value="Chung">Chung</option>
+                                            <option value="Chưa xác định">Chưa xác định</option>
+                                        </select>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="checkbox checkbox-success">
-                                <input type="checkbox" name="convenient[]" id="bep" value="Thang máy">
-                                <label for="bep"> Thang máy </label>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="tang">
+                                    <div class="control-label">Tầng</div>
+                                    <div>
+                                        <select name="floor" class="form-control" size="1">
+                                            <option value="Chưa xác định">Chọn..</option>
+                                            <option value="1">Tầng 1</option>
+                                            <option value="2">Tầng 2</option>
+                                            <option value="3">Tầng 3</option>
+                                            <option value="4">Tầng 4</option>
+                                            <option value="5">Tầng 5</option>
+                                            <option value="6">Tầng 6</option>
+                                            <option value="7">Tầng 7</option>
+                                            <option value="8">Tầng 8</option>
+                                            <option value="9">Tầng 9</option>
+                                            <option value="10">Tầng 10</option>
+                                            <option value="Chưa xác định">Chưa xác định</option>
+                                        </select>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="checkbox checkbox-success">
-                                <input type="checkbox" name="convenient[]" id="internet" value="Internet">
-                                <label for="internet"> Internet </label>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="vs">
+                                    <div class="control-label">Vệ sinh</div>
+                                    <div>
+                                        <select name="wc" class="form-control" size="1">
+                                            <option value="Chưa xác định">Chọn..</option>
+                                            <option value="Khép kín">Khép kín</option>
+                                            <option value="Chung">Chung</option>
+                                            <option value="Chưa xác định">Chưa xác định</option>
+                                        </select>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="checkbox checkbox-success">
-                                <input type="checkbox" name="convenient[]" id="dieuhoa" value="Điều hòa">
-                                <label for="dieuhoa"> Điều hòa </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="submit-info-title">Tiện nghi sẵn có</div>
+                    <div class="form-group room-option">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="convenient[]" id="dexe" value="Chỗ để xe">
+                                    <label for="dexe"> Chỗ để xe </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="checkbox checkbox-success">
-                                <input type="checkbox" name="convenient[]" id="nonglanh" value="Bình nóng lạnh">
-                                <label for="nonglanh"> Bình nóng lạnh </label>
+                            <div class="col-md-4">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="convenient[]" id="sanphoi" value="Sân phơi">
+                                    <label for="sanphoi"> Sân phơi </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="checkbox checkbox-success">
-                                <input type="checkbox" name="convenient[]" id="maygiat" value="Máy giặt">
-                                <label for="maygiat"> Máy giặt </label>
+                            <div class="col-md-4">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="convenient[]" id="bep" value="Thang máy">
+                                    <label for="bep"> Thang máy </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="checkbox checkbox-success">
-                                <input type="checkbox" name="convenient[]" id="tulanh" value="Truyền hình cáp">
-                                <label for="tulanh"> TH cáp </label>
+                            <div class="col-md-4">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="convenient[]" id="internet" value="Internet">
+                                    <label for="internet"> Internet </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="checkbox checkbox-success">
-                                <input type="checkbox" name="convenient[]" id="tivi" value="Tivi">
-                                <label for="tivi"> Tivi </label>
+                            <div class="col-md-4">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="convenient[]" id="dieuhoa" value="Điều hòa">
+                                    <label for="dieuhoa"> Điều hòa </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="convenient[]" id="nonglanh" value="Bình nóng lạnh">
+                                    <label for="nonglanh"> Bình nóng lạnh </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="convenient[]" id="maygiat" value="Máy giặt">
+                                    <label for="maygiat"> Máy giặt </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="convenient[]" id="tulanh" value="Truyền hình cáp">
+                                    <label for="tulanh"> TH cáp </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="convenient[]" id="tivi" value="Tivi">
+                                    <label for="tivi"> Tivi </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="clearfix" style="height: 5px;"></div>
         </div>
-        <div class="clearfix" style="height: 5px;"></div>
-    </div>
+        <button type="submit" ng-disabled="frmAddInfo.$invalid" class="btn btn-success pull-right">Lưu</button>
+    </form>
 </div>
 

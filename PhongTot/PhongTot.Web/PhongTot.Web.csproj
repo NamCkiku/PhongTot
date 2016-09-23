@@ -248,6 +248,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\commonService\commonService.js" />
     <Content Include="app\commonService\notificationService.js" />
     <Content Include="app\controllers\InfoController\infoController.js" />
     <Content Include="app\services\apiService.js" />
