@@ -21,69 +21,47 @@
         </ol>
     </div>
 </div>
-<div ng-controller="infoController" class="col-md-2 no-padding-vertical submit-room-main-content">
-    <div class="submit-list-type">
+<form ng-controller="infoController" novalidate name="frmAddInfo" role="form" ng-submit="createInfo(infoAdd)">
+    <div class="col-md-2 no-padding-vertical submit-room-main-content">
+
+        <div class="submit-list-type">
+            <div class="list-type-title">
+                <ul>
+                    <li class="li-label">Chọn Nhu Cầu</li>
+                </ul>
+            </div>
+            <div class="checkbox checkbox-success">
+                <ul>
+                    <li>
+                        <input type="radio" name="aaa" id="radio_needed_lease" value="Ở Trọ">
+                        <label for="radio_needed_lease">Ở Trọ</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="aaa" id="radio_needed_share" value="Ở ghép">
+                        <label for="radio_needed_share"> Ở ghép</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="step-2" class="submit-list-type">
+            <div class="list-type-title">
+                <ul><li class="li-label">Chọn loại Phòng</li></ul>
+            </div>
+            <div class="checkbox checkbox-success">
+                <ul>
+                    <li ng-repeat="items in categoryinfo">
+                        <input type="radio" ng-model="infoAdd.CategoryID"   name="needed" id="{{items.ID}}" value="{{items.ID}}">
+                        <label for="{{items.ID}}">{{items.Name}}</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="step-3"  class="col-md-10 no-padding-right submit-room-main-content" style="display: block;">
         <div class="list-type-title">
-            <ul>
-                <li class="li-label">Chọn Nhu Cầu</li>
-            </ul>
+            <ul><li class="li-label">Bước 3 Nhập Thông Tin Chi Tiết</li></ul>
         </div>
-        <div class="checkbox checkbox-success">
-            <ul>
-                <li>
-                    <input type="radio" name="aaa" id="radio_needed_lease" value="Ở Trọ">
-                    <label for="radio_needed_lease">Ở Trọ</label>
-                </li>
-                <li>
-                    <input type="radio" name="aaa" id="radio_needed_share" value="Ở ghép">
-                    <label for="radio_needed_share"> Ở ghép</label>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div id="step-2" class="submit-list-type">
-        <div class="list-type-title">
-            <ul><li class="li-label">Chọn loại Phòng</li></ul>
-        </div>
-        <div class="checkbox checkbox-success">
-            <ul>
-                <li ng-repeat="items in categoryinfo">
-                    <input type="radio" ng-model="items.ID" name="needed" id="{{items.ID}}" value="{{items.Name}}">
-                    <label for="{{items.ID}}">{{items.Name}}</label>
-                </li>
-                @*<li>
-                        <input type="radio" name="type_id" id="radio_type[1]" value="1">
-                        <label for="radio_type[1]">Phòng trọ, nhà trọ</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="type_id" id="radio_type[2]" value="2">
-                        <label for="radio_type[2]">Nhà nguyên căn</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="type_id" id="radio_type[3]" value="3">
-                        <label for="radio_type[3]">Nhà mặt phố</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="type_id" id="radio_type[4]" value="4">
-                        <label for="radio_type[4]">Văn phòng</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="type_id" id="radio_type[6]" value="6">
-                        <label for="radio_type[6]">Chung cư, căn hộ</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="type_id" id="radio_type[7]" value="7">
-                        <label for="radio_type[7]">Mặt bằng, cửa hàng</label>
-                    </li>*@
-            </ul>
-        </div>
-    </div>
-</div>
-<div id="step-3" ng-controller="infoController" class="col-md-10 no-padding-right submit-room-main-content" style="display: block;">
-    <div class="list-type-title">
-        <ul><li class="li-label">Bước 3 Nhập Thông Tin Chi Tiết</li></ul>
-    </div>
-    <form novalidate name="frmAddInfo" role="form" ng-submit="createInfo()">
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -92,13 +70,13 @@
                         <input type="text" id="title" name="Name" ng-change="GetSeoTitle()" ng-maxlength="256" required ng-model="infoAdd.Name" class="form-control" value="">
                         <span class="help-block"></span>
                         @*<span ng-show="frmAddInfo.Name.$invalid">Phải nhập Ten Tin</span>
-                        <span ng-show="frmAddInfo.Name.$error.maxlength">Tên danh mục chỉ được 256 ký tự</span>*@
+                            <span ng-show="frmAddInfo.Name.$error.maxlength">Tên danh mục chỉ được 256 ký tự</span>*@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="control-label">Số điện thoại</div>
+                    <div class="control-label">Seo Title</div>
                     <div>
-                        <input type="text" name="Phone" ng-model="infoAdd.Phone" class="form-control" value="">
+                        <input type="text" name="Alias" ng-model="infoAdd.Alias" class="form-control" value="">
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -107,7 +85,7 @@
                         <div>
                             <div class="control-label">Giá</div>
                             <div class="input-group">
-                                <input type="text" name="Price" class="form-control money-input" data-thousands="," data-decimal="." data-precision="0">
+                                <input type="text" name="Price" ng-model="infoAdd.Price" class="form-control money-input" data-thousands="," data-decimal="." data-precision="0">
                                 <span class="input-group-addon">đ/tháng</span>
                             </div>
                             <span class="help-block"></span>
@@ -119,7 +97,7 @@
                         <div>
                             <div class="control-label">Diện tích</div>
                             <div class="input-group">
-                                <input type="text" name="Acreage" value="" class="form-control" placeholder="nhập số, viết liền">
+                                <input type="text" name="Acreage" ng-model="infoAdd.Acreage" class="form-control" placeholder="nhập số, viết liền">
                                 <span class="input-group-addon">M<sup>2</sup></span>
                                 <span class="help-block"></span>
                             </div>
@@ -135,11 +113,6 @@
                             <div>
                                 <select name="province_id" ng-change="getAlDistrictByProvince(option.provinceid)" ng-model="option.provinceid" ng-options="option.provinceid as option.name for option in province" class="form-control address_input">
                                     <option value="">Chọn</option>
-                                    @*<option value="1">Hà Nội</option>
-                                    <option value="31">Hải Phòng</option>
-                                    <option value="48">Đà Nẵng</option>
-                                    <option value="79">Hồ Chí Minh</option>
-                                    <option value="92">Cần Thơ</option>*@
                                 </select>
                                 <span class="help-block"></span>
                             </div>
@@ -172,32 +145,20 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <div class="control-label">Đường/Phố</div>
+                            <div class="control-label">Số Điện Thoại</div>
                             <div>
-                                <select id="street" name="street_id" class="form-control address_input" size="1">
-                                    <option value="">Chọn Quận/huyện trước</option>
-                                </select>
+                                <input type="text" name="Phone" ng-model="infoAdd.Phone" class="form-control address_input" value="">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="control-label">Địa chỉ cụ thể</div>
-                            <div>
-                                <input type="text" name="detail" class="form-control address_input" value="">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div id="additional-row">
                 <div class="col-md-12">
                     <div class="list-type-title">
-                        <ul><li class="li-label">Thông tin bổ sung <span> Căn hộ, Chung cư</span></li></ul>
+                        <ul><li class="li-label">Thông tin bổ sung <span></span></li></ul>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -205,20 +166,20 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="tang">
-                                    <div class="control-label">Tầng</div>
+                                    <div class="control-label">Phòng Ngủ</div>
                                     <div>
-                                        <select name="floor" class="form-control" size="1">
+                                        <select name="floor" ng-model="infoAdd.FloorNumber" class="form-control" size="1">
                                             <option value="Chưa xác định">Chọn..</option>
-                                            <option value="1">Tầng 1</option>
-                                            <option value="2">Tầng 2</option>
-                                            <option value="3">Tầng 3</option>
-                                            <option value="4">Tầng 4</option>
-                                            <option value="5">Tầng 5</option>
-                                            <option value="6">Tầng 6</option>
-                                            <option value="7">Tầng 7</option>
-                                            <option value="8">Tầng 8</option>
-                                            <option value="9">Tầng 9</option>
-                                            <option value="10">Tầng 10</option>
+                                            <option value="Tầng 1">Tầng 1</option>
+                                            <option value="Tầng 2">Tầng 2</option>
+                                            <option value="Tầng 3">Tầng 3</option>
+                                            <option value="Tầng 4">Tầng 4</option>
+                                            <option value="Tầng 5">Tầng 5</option>
+                                            <option value="Tầng 6">Tầng 6</option>
+                                            <option value="Tầng 7">Tầng 7</option>
+                                            <option value="Tầng 8">Tầng 8</option>
+                                            <option value="Tầng 9">Tầng 9</option>
+                                            <option value="Tầng 10">Tầng 10</option>
                                             <option value="Chưa xác định">Chưa xác định</option>
                                         </select>
                                         <span class="help-block"></span>
@@ -231,7 +192,7 @@
                                 <div class="vs">
                                     <div class="control-label">Vệ sinh</div>
                                     <div>
-                                        <select name="wc" class="form-control" size="1">
+                                        <select name="wc" ng-model="infoAdd.ToiletNumber" class="form-control" size="1">
                                             <option value="Chưa xác định">Chọn..</option>
                                             <option value="Khép kín">Khép kín</option>
                                             <option value="Chung">Chung</option>
@@ -245,20 +206,20 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="tang">
-                                    <div class="control-label">Tầng</div>
+                                    <div class="control-label">Chọn Phòng Ngủ</div>
                                     <div>
-                                        <select name="floor" class="form-control" size="1">
+                                        <select name="floor" ng-model="infoAdd.BedroomNumber" class="form-control" size="1">
                                             <option value="Chưa xác định">Chọn..</option>
-                                            <option value="1">Tầng 1</option>
-                                            <option value="2">Tầng 2</option>
-                                            <option value="3">Tầng 3</option>
-                                            <option value="4">Tầng 4</option>
-                                            <option value="5">Tầng 5</option>
-                                            <option value="6">Tầng 6</option>
-                                            <option value="7">Tầng 7</option>
-                                            <option value="8">Tầng 8</option>
-                                            <option value="9">Tầng 9</option>
-                                            <option value="10">Tầng 10</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
                                             <option value="Chưa xác định">Chưa xác định</option>
                                         </select>
                                         <span class="help-block"></span>
@@ -269,12 +230,18 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="vs">
-                                    <div class="control-label">Vệ sinh</div>
+                                    <div class="control-label">Hướng nhà</div>
                                     <div>
-                                        <select name="wc" class="form-control" size="1">
+                                        <select name="direction" ng-model="infoAdd.Compass" class="form-control valid">
                                             <option value="Chưa xác định">Chọn..</option>
-                                            <option value="Khép kín">Khép kín</option>
-                                            <option value="Chung">Chung</option>
+                                            <option value="Đông">Đông</option>
+                                            <option value="Đông bắc">Đông bắc</option>
+                                            <option value="Đông nam">Đông nam</option>
+                                            <option value="Bắc">Bắc</option>
+                                            <option value="Tây">Tây</option>
+                                            <option value="Tây bắc">Tây bắc</option>
+                                            <option value="Tây nam">Tây nam</option>
+                                            <option value="Nam">Nam</option>
                                             <option value="Chưa xác định">Chưa xác định</option>
                                         </select>
                                         <span class="help-block"></span>
@@ -290,55 +257,55 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="dexe" value="Chỗ để xe">
+                                    <input type="checkbox" ng-model="infoAdd.Convenient" name="convenient[]" id="dexe" value="Chỗ để xe">
                                     <label for="dexe"> Chỗ để xe </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="sanphoi" value="Sân phơi">
+                                    <input type="checkbox" name="convenient[]" ng-model="infoAdd.Convenient" id="sanphoi" value="Sân phơi">
                                     <label for="sanphoi"> Sân phơi </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="bep" value="Thang máy">
+                                    <input type="checkbox" name="convenient[]" ng-model="infoAdd.Convenient" id="bep" value="Thang máy">
                                     <label for="bep"> Thang máy </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="internet" value="Internet">
+                                    <input type="checkbox" name="convenient[]" ng-model="infoAdd.Convenient" id="internet" value="Internet">
                                     <label for="internet"> Internet </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="dieuhoa" value="Điều hòa">
+                                    <input type="checkbox" name="convenient[]" ng-model="infoAdd.Convenient" id="dieuhoa" value="Điều hòa">
                                     <label for="dieuhoa"> Điều hòa </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="nonglanh" value="Bình nóng lạnh">
+                                    <input type="checkbox" name="convenient[]" ng-model="infoAdd.Convenient" id="nonglanh" value="Bình nóng lạnh">
                                     <label for="nonglanh"> Bình nóng lạnh </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="maygiat" value="Máy giặt">
+                                    <input type="checkbox" name="convenient[]" ng-model="infoAdd.Convenient" id="maygiat" value="Máy giặt">
                                     <label for="maygiat"> Máy giặt </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="tulanh" value="Truyền hình cáp">
+                                    <input type="checkbox" name="convenient[]" ng-model="infoAdd.Convenient" id="tulanh" value="Truyền hình cáp">
                                     <label for="tulanh"> TH cáp </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="tivi" value="Tivi">
+                                    <input type="checkbox" name="convenient[]" ng-model="infoAdd.Convenient" id="tivi" value="Tivi">
                                     <label for="tivi"> Tivi </label>
                                 </div>
                             </div>
@@ -347,8 +314,196 @@
                 </div>
             </div>
             <div class="clearfix" style="height: 5px;"></div>
-        </div>
-        <button type="submit" ng-disabled="frmAddInfo.$invalid" class="btn btn-success pull-right">Lưu</button>
-    </form>
-</div>
 
+        </div>
+        <link href="~/bower_components/dropzone/dist/dropzone.css" rel="stylesheet" />
+        <script src="~/bower_components/dropzone/dist/dropzone.js"></script>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div>
+                        <div class="control-label">Hình Anh</div>
+                        <div class="dropzone dz-clickable" id="dropzoneForm">
+                            <div class="fallback">
+                                <input name="file" ng-model="infoAdd.Images" type="file" multiple />
+                                <input type="submit" value="Upload" />
+                            </div>
+                            <div class="dz-default dz-message">
+                                <span>Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</span>
+                            </div>
+                        </div>
+                        <script src="~/bower_components/tinymce/tinymce.js"></script>
+                        <script src="~/bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                Dropzone.autoDiscover = false;
+                                //Simple Dropzonejs
+                                $("#dropzoneForm").dropzone({
+                                    maxFilesize: 2, // MB
+                                    maxFiles: 8,
+                                    acceptedFiles: "image/*",
+                                    init: function () {
+                                        this.on("maxfilesexceeded", function (file) {
+                                            this.removeFile(file);
+                                            alert("Giới hạn số lượng hình ảnh là 8!");
+                                        });
+                                    },
+                                    url: "/Home/SaveUploadedFile",
+                                    addRemoveLinks: true,
+                                    success: function (file, response) {
+                                        var imgName = response;
+                                        file.previewElement.classList.add("dz-success");
+                                        console.log("Successfully uploaded :" + imgName);
+                                    },
+                                    error: function (file, response) {
+                                        file.previewElement.classList.add("dz-error");
+                                    },
+                                    removedfile: function (file) {
+                                        var name = file.name;
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '/Home/DeleteFile',
+                                            data: "id=" + name,
+                                            dataType: 'html',
+                                            success: function () {
+                                                //alert('11');
+                                            }
+                                        });
+                                        var _ref;
+                                        return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+
+                                    },
+
+                                });
+                            });
+                        </script>
+
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div>
+                        <div class="control-label">Mô Tả Chi Tiết</div>
+                        <div class="">
+                            <textarea ui-tinymce="tinymceOptions" ng-model="infoAdd.Decription"></textarea>
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div style="height:300px">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+        <button type="submit" ng-disabled="frmAddInfo.$invalid" class="btn btn-success pull-right">Lưu</button>
+
+
+
+    </div>
+    
+</form>
+@*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrrJftyVPxGsVrvtCB3QzO9SQO5RvkaU&libraries=places&callback=initAutocomplete"
+        async defer></script>*@
+@*<script>
+        function initAutocomplete() {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                //10.826058, 106.643504
+                center: { lat: 20.9873645, lng: 105.9753225 },
+                zoom: 13,
+                mapTypeId: 'roadmap'
+
+            });
+
+            //geocoder text address
+            var geocoder = new google.maps.Geocoder();
+            var address = document.getElementById('pac-input').value;
+            if (address == "") {
+                address = $("#city option:selected").text();
+            }
+            if (geocoder) {
+                geocoder.geocode({ 'address': address }, function (results, status) {
+                    if (status === 'OK') {
+                        map.setCenter(results[0].geometry.location);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+                        alert('Nhập vào địa chỉ liên hệ ');
+                    }
+                });
+            }
+
+
+
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('pac-input');
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function () {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            var markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function () {
+
+
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach(function (marker) {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function (place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+
+
+                    // Create a marker for each place.
+                    markers.push(new google.maps.Marker({
+                        map: map,
+                        //icon: icon,
+                        title: place.name,
+                        position: place.geometry.location
+                    }));
+
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+        }
+
+</script>*@

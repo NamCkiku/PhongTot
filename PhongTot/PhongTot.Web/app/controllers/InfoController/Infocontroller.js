@@ -8,16 +8,41 @@
         $scope.province = [];
         $scope.district = [];
         $scope.ward = [];
+        $scope.category = "";
+       
+        $scope.ChangeId=function(item)
+        {
+            $scope.infoAdd.CategoryID = item.ID;
+            //$scope.infoAdd.Alias = item.ID;
+          //  console.log($scope.infoAdd);
+        }
         $scope.infoAdd = {
             CreatedDate: new Date(),
-            Status: true,
-        }
+            Status: false,
+            OtherInfoID: [
+                {
+                    ID: "",
+                    FloorNumber: "",
+                    ToiletNumber: "",
+                    BedroomNumber: "",
+                    Compass: "",
+                    Convenient: "",
 
+                }
+            ]
+
+        }
+        //$scope.items = {
+        //    ID: ID
+        //}
+        $scope.option = {
+
+        }
         $scope.GetSeoTitle = GetSeoTitle;
         function GetSeoTitle() {
             $scope.infoAdd.Alias = commonService.getSeoTitle($scope.infoAdd.Name);
         }
-        
+
         function getAllCategoryInfo() {
             apiService.get('http://localhost:33029/api/categoryinfo/getall', null, function (result) {
                 $scope.categoryinfo = result.data;
@@ -36,10 +61,10 @@
 
         $scope.getAlDistrictByProvince = getAlDistrictByProvince;
         function getAlDistrictByProvince(id) {
-            
+
             var config = {
                 params: {
-                    id:id
+                    id: id
                 }
             }
             apiService.get('http://localhost:33029/api/district/getallbyprovince/' + config.params.id, null, function (result) {
@@ -49,7 +74,6 @@
                 notificationService.displayError('Lỗi');
             });
         }
-
 
         $scope.getAlWardByDistrict = getAlWardByDistrict;
         function getAlWardByDistrict(id) {
@@ -66,9 +90,6 @@
             });
         }
 
-
-
-
         function getAllInfo() {
             apiService.get('http://localhost:33029/api/info/getall', null, function (result) {
                 $scope.Info = result.data;
@@ -76,18 +97,37 @@
                 notificationService.displayError('Lỗi');
             });
         }
-
-
+        $scope.createInfo = createInfo;
         function createInfo() {
+            console.log($scope.infoAdd)
+            debugger;
             apiService.post('http://localhost:33029/api/info/add', $scope.infoAdd, function (result) {
                 notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
             }, function (error) {
                 notificationService.displayError('Thêm mới không thành công.');
             });
         }
+
+
+
+
+        $scope.tinymceOptions = {
+            height: 200,
+            // menubar: false,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table contextmenu paste code'
+            ],
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            inline: false,
+            skin: 'lightgray',
+            theme: 'modern',
+            menubar: false,
+        };
         getAllInfo();
         getAllProvinceInfo();
         getAllCategoryInfo();
-        
+
     }
 })(angular.module('myApp'));

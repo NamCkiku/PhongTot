@@ -17,15 +17,15 @@ namespace PhongTot.Entities.Models
 
         public int ID { get; set; }
 
-        public int? FloorNumber { get; set; }
+        public string FloorNumber { get; set; }
 
-        public int? ToiletNumber { get; set; }
+        public string ToiletNumber { get; set; }
 
-        public int? BedroomNumber { get; set; }
+        public string BedroomNumber { get; set; }
 
-        public int? Compass { get; set; }
+        public string Compass { get; set; }
 
-        public int? Convenient { get; set; }
+        public string Convenient { get; set; }
 
         public int? CategoryOtherInfoID { get; set; }
 
