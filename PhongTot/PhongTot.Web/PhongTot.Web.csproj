@@ -252,10 +252,20 @@
     <Content Include="app\commonService\notificationService.js" />
     <Content Include="app\controllers\InfoController\infoController.js" />
     <Content Include="app\services\apiService.js" />
+    <Content Include="bower_components\angular-ui-tinymce\dist\tinymce.min.js" />
+    <Content Include="bower_components\angular-ui-tinymce\src\tinymce.js" />
     <Content Include="bower_components\angular\angular-csp.css" />
     <Content Include="bower_components\angular\angular.js" />
     <Content Include="bower_components\angular\angular.min.js" />
     <Content Include="bower_components\angular\index.js" />
+    <Content Include="bower_components\dropzone\dist\basic.css" />
+    <Content Include="bower_components\dropzone\dist\dropzone-amd-module.js" />
+    <Content Include="bower_components\dropzone\dist\dropzone.css" />
+    <Content Include="bower_components\dropzone\dist\dropzone.js" />
+    <Content Include="bower_components\dropzone\dist\min\basic.min.css" />
+    <Content Include="bower_components\dropzone\dist\min\dropzone-amd-module.min.js" />
+    <Content Include="bower_components\dropzone\dist\min\dropzone.min.css" />
+    <Content Include="bower_components\dropzone\dist\min\dropzone.min.js" />
     <Content Include="bower_components\jquery\AUTHORS.txt" />
     <Content Include="bower_components\jquery\dist\jquery.js" />
     <Content Include="bower_components\jquery\dist\jquery.min.js" />
@@ -678,16 +688,6 @@
     <Content Include="bower_components\angular\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bower_components\tinymce\.bower.json" />
-    <Content Include="bower_components\tinymce\bower.json" />
-    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
-    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
-    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
-    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce.eot" />
-    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce.ttf" />
-    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce.woff" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="bower_components\jquery\.bower.json" />
     <Content Include="bower_components\jquery\bower.json" />
     <Content Include="bower_components\jquery\dist\jquery.min.map" />
@@ -703,6 +703,26 @@
     <Content Include="bower_components\toastr\toastr.js.map" />
     <Content Include="bower_components\toastr\toastr.less" />
     <Content Include="bower_components\toastr\toastr.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower_components\angular-ui-tinymce\.bower.json" />
+    <Content Include="bower_components\angular-ui-tinymce\bower.json" />
+    <Content Include="bower_components\angular-ui-tinymce\CONTRIBUTING.md" />
+    <Content Include="bower_components\angular-ui-tinymce\LICENSE" />
+    <Content Include="bower_components\angular-ui-tinymce\README.md" />
+    <Content Include="bower_components\tinymce\.bower.json" />
+    <Content Include="bower_components\tinymce\bower.json" />
+    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="bower_components\tinymce\skins\lightgray\fonts\tinymce.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower_components\dropzone\.bower.json" />
+    <Content Include="bower_components\dropzone\bower.json" />
+    <Content Include="bower_components\dropzone\dist\readme.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
