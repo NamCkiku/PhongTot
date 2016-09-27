@@ -9,32 +9,12 @@
         $scope.district = [];
         $scope.ward = [];
         $scope.category = "";
-       
-        $scope.ChangeId=function(item)
-        {
-            $scope.infoAdd.CategoryID = item.ID;
-            //$scope.infoAdd.Alias = item.ID;
-          //  console.log($scope.infoAdd);
-        }
         $scope.infoAdd = {
-            CreatedDate: new Date(),
+            CreateDate: new Date(),
             Status: false,
-            OtherInfoID: [
-                {
-                    ID: "",
-                    FloorNumber: "",
-                    ToiletNumber: "",
-                    BedroomNumber: "",
-                    Compass: "",
-                    Convenient: "",
-
-                }
-            ]
+            OtherInfo:{}
 
         }
-        //$scope.items = {
-        //    ID: ID
-        //}
         $scope.option = {
 
         }
