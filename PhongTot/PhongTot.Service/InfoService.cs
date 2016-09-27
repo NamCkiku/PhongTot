@@ -27,15 +27,41 @@ namespace PhongTot.Service
     {
         private readonly IInfoRepository _inforRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public InfoService(IInfoRepository infoRepository, IUnitOfWork unitOfWork)
+        private readonly IOtherInfoRepository _otherInfoRepository;
+        public InfoService(IInfoRepository infoRepository, IOtherInfoRepository otherInfoRepository, IUnitOfWork unitOfWork)
         {
             this._inforRepository = infoRepository;
+            this._otherInfoRepository = otherInfoRepository;
             this._unitOfWork = unitOfWork;
         }
 
         public Info Add(Info info)
         {
-            return _inforRepository.Add(info);
+            var infoDetail = new Info
+            {
+                Name = info.Name,
+                Alias = info.Alias,
+                Phone = info.Phone,
+                CategoryID = info.CategoryID,
+                Image = info.Image,
+                MoreImages = info.MoreImages,
+                Wardid = info.Wardid,
+                Districtid = info.Districtid,
+                Provinceid = info.Provinceid,
+                Acreage = info.Acreage,
+                Price = info.Price,
+                Description = info.Description,
+                Content = info.Content,
+                CreateDate = DateTime.Now,
+                Status = true,
+
+            };
+            var otherInfoDetail = new OtherInfo();
+            var otherInfo = _otherInfoRepository.Add(infoDetail.OtherInfo);
+            otherInfoDetail.ID = infoDetail.ID;
+            return _inforRepository.Add(infoDetail);
+
+
         }
 
         public Info Delete(int id)
