@@ -111,7 +111,7 @@
                         <div class="form-group">
                             <div class="control-label">Tỉnh/Thành phố</div>
                             <div>
-                                <select name="province_id" ng-change="getAlDistrictByProvince(option.provinceid)" ng-model="option.provinceid" ng-options="option.provinceid as option.name for option in province" class="form-control address_input">
+                                <select name="province_id" ng-change="getAlDistrictByProvince(infoAdd.Provinceid)" ng-model="infoAdd.Provinceid" ng-options="option.provinceid as option.name for option in province" class="form-control address_input">
                                     <option value="">Chọn</option>
                                 </select>
                                 <span class="help-block"></span>
@@ -122,7 +122,7 @@
                         <div class="form-group">
                             <div class="control-label">Quận/Huyện</div>
                             <div>
-                                <select name="district_id" ng-change="getAlWardByDistrict(option.districtid1)" ng-model="option.districtid1" ng-options="option.districtid1 as option.name for option in district" class="form-control address_input">
+                                <select name="district_id" ng-change="getAlWardByDistrict(infoAdd.Districtid)" ng-model="infoAdd.Districtid" ng-options="option.districtid1 as option.name for option in district" class="form-control address_input">
                                     <option value="">Chọn Tỉnh/Thành trước</option>
                                 </select>
                                 <span class="help-block"></span>
@@ -136,7 +136,7 @@
                         <div class="form-group">
                             <div class="control-label">Xã/Phường</div>
                             <div>
-                                <select id="street_id" name="ward_id" ng-model="option.wardid1" ng-options="option.wardid1 as option.name for option in ward" class="form-control address_input" size="1">
+                                <select id="street_id" name="ward_id" ng-model="infoAdd.Wardid" ng-options="option.wardid1 as option.name for option in ward" class="form-control address_input" size="1">
                                     <option value="">Chọn Quận/huyện trước</option>
                                 </select>
                                 <span class="help-block"></span>
