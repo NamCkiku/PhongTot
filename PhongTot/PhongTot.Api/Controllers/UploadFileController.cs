@@ -13,6 +13,6 @@ namespace PhongTot.Api.Controllers
     [RoutePrefix("api/upload")]
     public class UploadFileController : ApiController
     {
-        
+       
     }
 }

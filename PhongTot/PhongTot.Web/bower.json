@@ -7,6 +7,7 @@
     "angular-ui-tinymce": "~0.0.17",
     "toastr": "~2.1.3",
     "dropzone": "~4.3.0",
-    "ngdropzone": "~2.0.1"
+    "ngdropzone": "~2.0.1",
+    "angular-file-upload": "~2.3.4"
   }
 }

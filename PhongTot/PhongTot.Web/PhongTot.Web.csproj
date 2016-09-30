@@ -251,9 +251,9 @@
     <Content Include="app\commonService\commonService.js" />
     <Content Include="app\commonService\notificationService.js" />
     <Content Include="app\controllers\InfoController\infoController.js" />
-    <Content Include="app\directives\fileUploadDirectives.js" />
     <Content Include="app\services\apiService.js" />
-    <Content Include="app\services\UploadFileService.js" />
+    <Content Include="app\services\fileUploadService.js" />
+    <Content Include="bower_components\angular-file-upload\angular-file-upload.js" />
     <Content Include="bower_components\angular-ui-tinymce\dist\tinymce.min.js" />
     <Content Include="bower_components\angular-ui-tinymce\src\tinymce.js" />
     <Content Include="bower_components\angular\angular-csp.css" />
@@ -581,6 +581,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\directives\" />
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
