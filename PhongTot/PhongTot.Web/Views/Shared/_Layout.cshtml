@@ -9,9 +9,10 @@
     <link href="~/bower_components/toastr/toastr.css" rel="stylesheet" />
     @Scripts.Render("~/Content/js")
     @Scripts.Render("~/Content/angular")
-
+    <script src="~/bower_components/angular-file-upload/angular-file-upload.js"></script>
     <script src="~/bower_components/toastr/toastr.js"></script>
     <script src="~/app/services/apiService.js"></script>
+    <script src="~/app/services/fileUploadService.js"></script>
     <script src="~/app/commonService/notificationService.js"></script>
     <script src="~/app/commonService/commonService.js"></script>
     <script src="~/app/controllers/InfoController/infoController.js"></script>
@@ -20,6 +21,7 @@
     <link href="~/bower_components/dropzone/dist/dropzone.css" rel="stylesheet" />
     <script src="~/bower_components/dropzone/dist/dropzone.js"></script>
     <script src="~/bower_components/ngdropzone/dist/ng-dropzone.js"></script>
+    
     <script>
         $(document).ready(function () {
             $(".btn-select").each(function (e) {

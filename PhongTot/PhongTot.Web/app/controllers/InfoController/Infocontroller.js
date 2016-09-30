@@ -1,21 +1,23 @@
 ﻿/// <reference path="E:\_Study\_SourceCode\_SourseGithub\PhongTot\PhongTot\PhongTot.Web\bower_components/angular/angular.js" />
 (function (app) {
     app.controller('infoController', infoController);
-    infoController.$inject = ['apiService', '$scope', 'commonService', 'notificationService'];
-    function infoController(apiService, $scope, commonService, notificationService) {
+    infoController.$inject = ['apiService', '$scope', 'commonService', 'notificationService', 'fileUploadService'];
+    function infoController(apiService, $scope, commonService, notificationService, fileUploadService) {
         $scope.Info = [];
         $scope.categoryinfo = [];
         $scope.province = [];
         $scope.district = [];
         $scope.ward = [];
         $scope.category = "";
+
+        
         $scope.infoAdd = {
             CreateDate: new Date(),
             Status: false,
             OtherInfo: {
             },
             Image: "adsdsadsa",
-            MoreImages: $scope.dzCallbacks,
+            MoreImages: "adsdsadsa",
 
         };
         Dropzone.autoDiscover = false;
@@ -124,11 +126,23 @@
                 notificationService.displayError('Lỗi');
             });
         }
+
+
+        var infoImage = null;
+        $scope.prepareFiles = prepareFiles;
+        function prepareFiles($files) {
+            infoImage = $files;
+        }
+
         $scope.createInfo = createInfo;
         function createInfo() {
             console.log($scope.infoAdd)
             debugger;
             apiService.post('http://localhost:33029/api/info/add', $scope.infoAdd, function (result) {
+                $scope.infoAdd = result.data;
+                if (infoImage) {
+                    fileUploadService.uploadImage(infoImage, $scope.infoAdd.ID);
+                }
                 notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
             }, function (error) {
                 notificationService.displayError('Thêm mới không thành công.');

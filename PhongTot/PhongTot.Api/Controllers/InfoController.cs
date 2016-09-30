@@ -3,9 +3,11 @@ using PhongTot.Entities.Models;
 using PhongTot.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -94,6 +96,51 @@ namespace PhongTot.Api.Controllers
                     response = request.CreateResponse(HttpStatusCode.OK);
 
                 }
+                return response;
+            });
+        }
+
+
+
+        [MimeMultipart]
+        [Route("images/upload")]
+        public HttpResponseMessage Post(HttpRequestMessage request, int infoID)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                var infoOld = _infoService.GetById(infoID);
+                if (infoOld == null)
+                    response = request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid movie.");
+                else
+                {
+                    var uploadPath = HttpContext.Current.Server.MapPath("~/Content/images");
+
+                    var multipartFormDataStreamProvider = new UploadMultipartFormProvider(uploadPath);
+
+                    // Read the MIME multipart asynchronously 
+                    Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
+
+                    string _localFileName = multipartFormDataStreamProvider
+                        .FileData.Select(multiPartData => multiPartData.LocalFileName).FirstOrDefault();
+
+                    // Create response
+                    FileUploadResult fileUploadResult = new FileUploadResult();
+                    fileUploadResult.LocalFilePath = _localFileName;
+
+                    fileUploadResult.FileName = Path.GetFileName(_localFileName);
+
+                    //fileUploadResult.FileLength = new FileInfo(_localFileName).Length;
+
+                    // update database
+                    infoOld.Image = fileUploadResult.FileName;
+                    _infoService.Update(infoOld);
+                    _infoService.SaveChanges();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, fileUploadResult);
+                }
+
                 return response;
             });
         }
