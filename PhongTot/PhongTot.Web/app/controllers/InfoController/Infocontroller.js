@@ -12,12 +12,11 @@
         $scope.infoAdd = {
             CreateDate: new Date(),
             Status: false,
-            OtherInfo:{}
+            OtherInfo: {
+            },
+            Image: "adsdsadsa"
 
-        }
-        $scope.option = {
-
-        }
+        };
         $scope.GetSeoTitle = GetSeoTitle;
         function GetSeoTitle() {
             $scope.infoAdd.Alias = commonService.getSeoTitle($scope.infoAdd.Name);

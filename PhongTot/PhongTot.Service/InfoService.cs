@@ -57,10 +57,13 @@ namespace PhongTot.Service
 
             };
             var otherInfoDetail = new OtherInfo();
-            var otherInfo = _otherInfoRepository.Add(infoDetail.OtherInfo);
-            otherInfoDetail.ID = infoDetail.ID;
-            return _inforRepository.Add(infoDetail);
-
+            otherInfoDetail = info.OtherInfo;
+            var result = _otherInfoRepository.Add(otherInfoDetail);
+            _unitOfWork.Commit();
+            infoDetail.OtherInfoID = result.ID;
+            var resultInfo = _inforRepository.Add(infoDetail);
+            _unitOfWork.Commit();
+            return resultInfo;
 
         }
 
