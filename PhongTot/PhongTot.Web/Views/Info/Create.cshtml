@@ -316,64 +316,17 @@
             <div class="clearfix" style="height: 5px;"></div>
 
         </div>
+        {{infoAdd.MoreImages}}
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <div>
-                        <div class="control-label">Hình Anh</div>
-                        <div class="dropzone dz-clickable" id="dropzoneForm">
-                            <div class="fallback">
-                                <input name="file" ng-model="infoAdd.Image" type="file" multiple />
-                                <input type="submit" value="Upload" />
-                            </div>
+                        <div class="control-label">Hình Anh</div> 
+                        <ng-dropzone class="dropzone" options="dzOptions" ng-model="infoAdd.MoreImages" callbacks="dzCallbacks" methods="dzMethods">
                             <div class="dz-default dz-message">
                                 <span>Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</span>
                             </div>
-                        </div>                        
-                        <script type="text/javascript">
-                            $(document).ready(function () {
-                                Dropzone.autoDiscover = false;
-                                //Simple Dropzonejs
-                                $("#dropzoneForm").dropzone({
-                                    maxFilesize: 2, // MB
-                                    maxFiles: 8,
-                                    acceptedFiles: "image/*",
-                                    init: function () {
-                                        this.on("maxfilesexceeded", function (file) {
-                                            this.removeFile(file);
-                                            alert("Giới hạn số lượng hình ảnh là 8!");
-                                        });
-                                    },
-                                    url: "/Home/SaveUploadedFile",
-                                    addRemoveLinks: true,
-                                    success: function (file, response) {
-                                        var imgName = response;
-                                        file.previewElement.classList.add("dz-success");
-                                        console.log("Successfully uploaded :" + imgName);
-                                    },
-                                    error: function (file, response) {
-                                        file.previewElement.classList.add("dz-error");
-                                    },
-                                    removedfile: function (file) {
-                                        var name = file.name;
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: '/Home/DeleteFile',
-                                            data: "id=" + name,
-                                            dataType: 'html',
-                                            success: function () {
-                                                //alert('11');
-                                            }
-                                        });
-                                        var _ref;
-                                        return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
-
-                                    },
-
-                                });
-                            });
-                        </script>
-
+                        </ng-dropzone>                 
                         <span class="help-block"></span>
                     </div>
                 </div>

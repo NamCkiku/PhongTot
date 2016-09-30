@@ -74,7 +74,7 @@ namespace PhongTot.Service
 
         public IEnumerable<Info> GetAll()
         {
-            return _inforRepository.GetAll();
+            return _inforRepository.GetAll(new string[] { "CategoryInfo", "Province" });
         }
 
         public Info GetById(int id)
