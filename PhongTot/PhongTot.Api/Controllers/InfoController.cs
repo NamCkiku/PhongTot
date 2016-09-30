@@ -24,7 +24,7 @@ namespace PhongTot.Api.Controllers
         {
             return CreateHttpResponse(request, () =>
             {
-                var listInfo = _infoService.GetAll();
+                var listInfo = _infoService.GetAll().OrderByDescending(x => x.CreateDate).Take(9);
 
                 //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
 
@@ -57,9 +57,10 @@ namespace PhongTot.Api.Controllers
         [Route("update")]
         public HttpResponseMessage Put(HttpRequestMessage request, Info info)
         {
-            return CreateHttpResponse(request, () => {
+            return CreateHttpResponse(request, () =>
+            {
                 HttpResponseMessage response = null;
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
@@ -81,7 +82,7 @@ namespace PhongTot.Api.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }

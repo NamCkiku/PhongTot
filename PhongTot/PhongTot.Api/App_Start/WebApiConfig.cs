@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -15,6 +16,10 @@ namespace PhongTot.Api
             config.EnableCors(cors);
             // Web API routes
             config.MapHttpAttributeRoutes();
+            JsonSerializerSettings jSettings = new Newtonsoft.Json.JsonSerializerSettings();
+            jSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings = jSettings;
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

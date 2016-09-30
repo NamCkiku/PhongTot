@@ -251,7 +251,9 @@
     <Content Include="app\commonService\commonService.js" />
     <Content Include="app\commonService\notificationService.js" />
     <Content Include="app\controllers\InfoController\infoController.js" />
+    <Content Include="app\directives\fileUploadDirectives.js" />
     <Content Include="app\services\apiService.js" />
+    <Content Include="app\services\UploadFileService.js" />
     <Content Include="bower_components\angular-ui-tinymce\dist\tinymce.min.js" />
     <Content Include="bower_components\angular-ui-tinymce\src\tinymce.js" />
     <Content Include="bower_components\angular\angular-csp.css" />
@@ -369,6 +371,15 @@
     <Content Include="bower_components\jquery\src\var\support.js" />
     <Content Include="bower_components\jquery\src\var\toString.js" />
     <Content Include="bower_components\jquery\src\wrap.js" />
+    <Content Include="bower_components\ngdropzone\demo\component.html" />
+    <Content Include="bower_components\ngdropzone\demo\main.html" />
+    <Content Include="bower_components\ngdropzone\demo\server-mock.html" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.css" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.js" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.min.css" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.min.js" />
+    <Content Include="bower_components\ngdropzone\gulpfile.js" />
+    <Content Include="bower_components\ngdropzone\src\js\ng-dropzone.js" />
     <Content Include="bower_components\tinymce\jquery.tinymce.js" />
     <Content Include="bower_components\tinymce\jquery.tinymce.min.js" />
     <Content Include="bower_components\tinymce\license.txt" />
@@ -570,7 +581,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\directives\" />
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
@@ -726,6 +736,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower_components\ngdropzone\.bower.json" />
+    <Content Include="bower_components\ngdropzone\bower.json" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.min.css.gz" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.min.css.map" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.min.css.map.gz" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.min.js.gz" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.min.js.map" />
+    <Content Include="bower_components\ngdropzone\dist\ng-dropzone.min.js.map.gz" />
+    <Content Include="bower_components\ngdropzone\LICENSE" />
+    <Content Include="bower_components\ngdropzone\package.json" />
+    <Content Include="bower_components\ngdropzone\README.md" />
+    <Content Include="bower_components\ngdropzone\src\sass\ng-dz-beautify.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

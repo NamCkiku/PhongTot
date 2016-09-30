@@ -33,11 +33,11 @@
                     <div class="tab-content" ng-controller="infoController">
                         <div class="tab-pane active" id="tab_type_1">
                             <div class="thumbnail-list">
-                                <div class="row block-item" ng-repeat="items in Info">
-                                    <div class="col-sm-6 col-md-4 thumbnail-item">
+                                <div class="row block-item" >
+                                    <div class="col-sm-6 col-md-4 thumbnail-item" ng-repeat="items in Info">
                                         <div class="thumbnail">
                                             <a href="#" title="{{items.Name}}">
-                                                <img class="cover img-reponsive" src="img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+                                                <img class="cover img-reponsive" src="~/Content/Client/img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
                                             </a>
                                             <div class="room-item-price">
                                                 <a href="">{{items.Price}} Đ/tháng</a>
