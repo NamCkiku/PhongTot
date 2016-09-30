@@ -40,14 +40,13 @@ namespace PhongTot.Api.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
                 {
                     var newCourse = _infoService.Add(info);
-                    _infoService.SaveChanges();
 
                     response = request.CreateResponse(HttpStatusCode.Created, newCourse);
                 }

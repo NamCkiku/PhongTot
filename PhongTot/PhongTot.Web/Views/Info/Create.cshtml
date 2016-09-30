@@ -316,8 +316,6 @@
             <div class="clearfix" style="height: 5px;"></div>
 
         </div>
-        <link href="~/bower_components/dropzone/dist/dropzone.css" rel="stylesheet" />
-        <script src="~/bower_components/dropzone/dist/dropzone.js"></script>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
@@ -325,15 +323,13 @@
                         <div class="control-label">Hình Anh</div>
                         <div class="dropzone dz-clickable" id="dropzoneForm">
                             <div class="fallback">
-                                <input name="file" ng-model="infoAdd.Images" type="file" multiple />
+                                <input name="file" ng-model="infoAdd.Image" type="file" multiple />
                                 <input type="submit" value="Upload" />
                             </div>
                             <div class="dz-default dz-message">
                                 <span>Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</span>
                             </div>
-                        </div>
-                        <script src="~/bower_components/tinymce/tinymce.js"></script>
-                        <script src="~/bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+                        </div>                        
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 Dropzone.autoDiscover = false;
@@ -390,7 +386,7 @@
                     <div>
                         <div class="control-label">Mô Tả Chi Tiết</div>
                         <div class="">
-                            <textarea ui-tinymce="tinymceOptions" ng-model="infoAdd.Decription"></textarea>
+                            <textarea ui-tinymce="tinymceOptions" ng-model="infoAdd.Content"></textarea>
                         </div>
                         <span class="help-block"></span>
                     </div>
