@@ -17,21 +17,21 @@
             OtherInfo: {
             },
             Image: "adsdsadsa",
-            MoreImages: "adsdsadsa",
+            MoreImages: $scope.file,
 
         };
         Dropzone.autoDiscover = false;
         //Set options for dropzone
         //Visit http://www.dropzonejs.com/#configuration-options for more options
         $scope.dzOptions = {
-            url: '/Home/SaveUploadedFile',
+            url: 'http://localhost:33029/api/info/images/uploadFile',
             paramName: 'photo',
             maxFilesize: 2, // MB
             maxFiles: 8,
             init: function () {
                 this.on("maxfilesexceeded", function (file) {
                     this.removeFile(file);
-                    alert("Giới hạn số lượng hình ảnh là 8!");
+                    notificationService.displayError('Giới hạn số lượng hình ảnh là 8!');
                 });
             },
             acceptedFiles: 'image/jpeg, images/jpg, image/png',
@@ -41,13 +41,11 @@
         //Visit http://www.dropzonejs.com/#events for more events
         $scope.dzCallbacks = {
             'addedfile': function (file) {
-                console.log(file);
+                console.log(file.name);
                 $scope.newFile = file;
             },
             'thumbnail': function (file, dataUrl) {
                 // Display the image in your file.previewElement
-                console.log(dataUrl);
-                $scope.MoreImages = dataUrl;
             },
             'success': function (file, xhr) {
                 console.log(file, xhr);
@@ -58,9 +56,6 @@
         $scope.dzMethods = {};
         $scope.removeNewFile = function () {
             $scope.dzMethods.removeFile($scope.newFile); //We got $scope.newFile from 'addedfile' event callback
-        }
-        $scope.getAllFiles = function () {
-            $scope.dzMethods.getAllFiles($scope.newFile)
         }
 
 
