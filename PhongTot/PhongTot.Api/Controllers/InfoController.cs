@@ -38,6 +38,7 @@ namespace PhongTot.Api.Controllers
         }
 
         [Route("add")]
+        [HttpPost]
         public HttpResponseMessage Post(HttpRequestMessage request, Info info)
         {
             return CreateHttpResponse(request, () =>
@@ -58,6 +59,7 @@ namespace PhongTot.Api.Controllers
         }
 
         [Route("update")]
+        [HttpPut]
         public HttpResponseMessage Put(HttpRequestMessage request, Info info)
         {
             return CreateHttpResponse(request, () =>
@@ -80,6 +82,7 @@ namespace PhongTot.Api.Controllers
             });
         }
         [Route("delete")]
+        [HttpDelete]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

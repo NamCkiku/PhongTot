@@ -169,7 +169,6 @@
                                     <div class="control-label">Phòng Ngủ</div>
                                     <div>
                                         <select name="floor" ng-model="infoAdd.OtherInfo.FloorNumber" class="form-control" size="1">
-                                            <option value="Chưa xác định">Chọn..</option>
                                             <option value="Tầng 1">Tầng 1</option>
                                             <option value="Tầng 2">Tầng 2</option>
                                             <option value="Tầng 3">Tầng 3</option>
@@ -193,7 +192,6 @@
                                     <div class="control-label">Vệ sinh</div>
                                     <div>
                                         <select name="wc" ng-model="infoAdd.OtherInfo.ToiletNumber" class="form-control" size="1">
-                                            <option value="Chưa xác định">Chọn..</option>
                                             <option value="Khép kín">Khép kín</option>
                                             <option value="Chung">Chung</option>
                                             <option value="Chưa xác định">Chưa xác định</option>
@@ -209,7 +207,6 @@
                                     <div class="control-label">Chọn Phòng Ngủ</div>
                                     <div>
                                         <select name="floor" ng-model="infoAdd.OtherInfo.BedroomNumber" class="form-control" size="1">
-                                            <option value="Chưa xác định">Chọn..</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -232,8 +229,7 @@
                                 <div class="vs">
                                     <div class="control-label">Hướng nhà</div>
                                     <div>
-                                        <select name="direction" ng-model="infoAdd.OtherInfo.Compass" class="form-control valid">
-                                            <option value="Chưa xác định">Chọn..</option>
+                                        <select name="direction" ng-model="infoAdd.OtherInfo.Compass" class="form-control">
                                             <option value="Đông">Đông</option>
                                             <option value="Đông bắc">Đông bắc</option>
                                             <option value="Đông nam">Đông nam</option>
@@ -346,13 +342,12 @@
                 </div>
             </div>
         </div>
-        {{infoAdd.MoreImages}}
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <div>
                         <div class="control-label">Hình Anh</div>
-                        <ng-dropzone class="dropzone" options="dzOptions" ng-model="infoAdd.MoreImages" callbacks="dzCallbacks" methods="dzMethods">
+                        <ng-dropzone class="dropzone"  options="dzOptions" callbacks="dzCallbacks" methods="dzMethods">
                             <div class="dz-default dz-message">
                                 <span>Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</span>
                             </div>
@@ -386,7 +381,7 @@
                 </div>
             </div>*@
 
-        <button type="submit" ng-disabled="frmAddInfo.$invalid" class="btn btn-success pull-right">Lưu</button>
+        <button type="submit" @*ng-click="dzMethods.processQueue();"*@ ng-disabled="frmAddInfo.$invalid" class="btn btn-success pull-right">Lưu</button>
 
 
 

@@ -1,8 +1,8 @@
 ﻿/// <reference path="E:\_Study\_SourceCode\_SourseGithub\PhongTot\PhongTot\PhongTot.Web\bower_components/angular/angular.js" />
 (function (app) {
     app.controller('infoController', infoController);
-    infoController.$inject = ['apiService', '$scope', 'commonService', 'notificationService', 'fileUploadService'];
-    function infoController(apiService, $scope, commonService, notificationService, fileUploadService) {
+    infoController.$inject = ['apiService', '$scope', 'commonService', 'notificationService', 'fileUploadService', '$timeout'];
+    function infoController(apiService, $scope, commonService, notificationService, fileUploadService, $timeout) {
         $scope.Info = [];
         $scope.categoryinfo = [];
         $scope.province = [];
@@ -10,15 +10,20 @@
         $scope.ward = [];
         $scope.category = "";
 
-        
+
         $scope.infoAdd = {
             CreateDate: new Date(),
             Status: false,
             OtherInfo: {
             },
-            Image: "adsdsadsa",
-            MoreImages: $scope.file,
+            Image:"adadsadasd",
 
+        };
+        
+        
+        $scope.getFiles = function () {
+            console.log($scope.dzMethods.getAllFiles());
+            alert('Check console log.');
         };
         Dropzone.autoDiscover = false;
         //Set options for dropzone
@@ -28,6 +33,10 @@
             paramName: 'photo',
             maxFilesize: 2, // MB
             maxFiles: 8,
+            addRemoveLinks: true,
+            dictDefaultMessage: 'Nhấn vào đây để thêm hoặc thả các bức ảnh',
+            dictRemoveFile: 'Xóa Ảnh',
+            dictResponseError: 'Không thể tải ảnh này',
             init: function () {
                 this.on("maxfilesexceeded", function (file) {
                     this.removeFile(file);
@@ -36,16 +45,18 @@
             },
             acceptedFiles: 'image/jpeg, images/jpg, image/png',
             addRemoveLinks: true,
+            autoProcessQueue: false,
         };
         //Handle events for dropzone
         //Visit http://www.dropzonejs.com/#events for more events
         $scope.dzCallbacks = {
             'addedfile': function (file) {
-                console.log(file.name);
-                $scope.newFile = file;
+                $scope.infoAdd.MoreImages = [];
+                
             },
             'thumbnail': function (file, dataUrl) {
-                // Display the image in your file.previewElement
+                $scope.infoAdd.MoreImages.push(file.name);
+                console.log($scope.infoAdd.MoreImages);
             },
             'success': function (file, xhr) {
                 console.log(file, xhr);
@@ -53,13 +64,11 @@
         };
         //Apply methods for dropzone
         //Visit http://www.dropzonejs.com/#dropzone-methods for more methods
-        $scope.dzMethods = {};
-        $scope.removeNewFile = function () {
-            $scope.dzMethods.removeFile($scope.newFile); //We got $scope.newFile from 'addedfile' event callback
-        }
 
+        $scope.dzMethods = {
+        };
 
-
+        var morImage = $scope.newFile;
 
 
         $scope.GetSeoTitle = GetSeoTitle;
@@ -131,6 +140,7 @@
 
         $scope.createInfo = createInfo;
         function createInfo() {
+            $scope.infoAdd.MoreImages = JSON.stringify($scope.infoAdd.MoreImages)
             console.log($scope.infoAdd)
             debugger;
             apiService.post('http://localhost:33029/api/info/add', $scope.infoAdd, function (result) {
@@ -138,6 +148,7 @@
                 if (infoImage) {
                     fileUploadService.uploadImage(infoImage, $scope.infoAdd.ID);
                 }
+                $scope.dzMethods.processQueue();
                 notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
             }, function (error) {
                 notificationService.displayError('Thêm mới không thành công.');
@@ -164,6 +175,5 @@
         getAllInfo();
         getAllProvinceInfo();
         getAllCategoryInfo();
-
     }
 })(angular.module('myApp'));
