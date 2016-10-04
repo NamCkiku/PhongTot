@@ -50,14 +50,14 @@
             <div class="checkbox checkbox-success">
                 <ul>
                     <li ng-repeat="items in categoryinfo">
-                        <input type="radio" ng-model="infoAdd.CategoryID"   name="needed" id="{{items.ID}}" value="{{items.ID}}">
+                        <input type="radio" ng-model="infoAdd.CategoryID" name="needed" id="{{items.ID}}" value="{{items.ID}}">
                         <label for="{{items.ID}}">{{items.Name}}</label>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div id="step-3"  class="col-md-10 no-padding-right submit-room-main-content" style="display: block;">
+    <div id="step-3" class="col-md-10 no-padding-right submit-room-main-content" style="display: block;">
         <div class="list-type-title">
             <ul><li class="li-label">Bước 3 Nhập Thông Tin Chi Tiết</li></ul>
         </div>
@@ -257,37 +257,37 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox"  name="convenient[]" id="dexe" value="Chỗ để xe">
+                                    <input type="checkbox" name="convenient[]" id="dexe" value="Chỗ để xe">
                                     <label for="dexe"> Chỗ để xe </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]"  id="sanphoi" value="Sân phơi">
+                                    <input type="checkbox" name="convenient[]" id="sanphoi" value="Sân phơi">
                                     <label for="sanphoi"> Sân phơi </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]"  id="bep" value="Thang máy">
+                                    <input type="checkbox" name="convenient[]" id="bep" value="Thang máy">
                                     <label for="bep"> Thang máy </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]"  id="internet" value="Internet">
+                                    <input type="checkbox" name="convenient[]" id="internet" value="Internet">
                                     <label for="internet"> Internet </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]"  id="dieuhoa" value="Điều hòa">
+                                    <input type="checkbox" name="convenient[]" id="dieuhoa" value="Điều hòa">
                                     <label for="dieuhoa"> Điều hòa </label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]"  id="nonglanh" value="Bình nóng lạnh">
+                                    <input type="checkbox" name="convenient[]" id="nonglanh" value="Bình nóng lạnh">
                                     <label for="nonglanh"> Bình nóng lạnh </label>
                                 </div>
                             </div>
@@ -299,7 +299,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]"  id="tulanh" value="Truyền hình cáp">
+                                    <input type="checkbox" name="convenient[]" id="tulanh" value="Truyền hình cáp">
                                     <label for="tulanh"> TH cáp </label>
                                 </div>
                             </div>
@@ -316,28 +316,47 @@
             <div class="clearfix" style="height: 5px;"></div>
 
         </div>
+        <link href="~/bower_components/jasny-file-input/dist/fileinput.css" rel="stylesheet" />
+        <script src="~/bower_components/jasny-file-input/dist/fileinput.js"></script>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <div>
-                        <div class="control-label">Hình Anh</div>
-                        <input type="file" ng-file-select="prepareFiles($files)">
+                        <div class="control-label">Ảnh Đại Diện</div>
+                        <div class="col-sm-6 no-padding-left">
+                            <div class="fileinput fileinput-new" data-provides="fileinput" style="width: 100%;">
+                                <div class="fileinput-new thumbnail" style="width: 100%; height: 150px;">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="width: 100%; height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file">
+                                        <span class="fileinput-new">Chọn Ảnh</span>
+                                        <span class="fileinput-exists">Thay Đổi</span>
+                                        <input type="file" name="" ng-file-select="prepareFiles($files)">
+                                    </span>
+                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="alert alert-info">Ảnh đẹp sẽ giúp tăng truy cập vào bài đăng của bạn</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
         {{infoAdd.MoreImages}}
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <div>
-                        <div class="control-label">Hình Anh</div> 
+                        <div class="control-label">Hình Anh</div>
                         <ng-dropzone class="dropzone" options="dzOptions" ng-model="infoAdd.MoreImages" callbacks="dzCallbacks" methods="dzMethods">
                             <div class="dz-default dz-message">
                                 <span>Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</span>
                             </div>
-                        </ng-dropzone>                 
+                        </ng-dropzone>
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -372,98 +391,98 @@
 
 
     </div>
-    
+
 </form>
 @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrrJftyVPxGsVrvtCB3QzO9SQO5RvkaU&libraries=places&callback=initAutocomplete"
-        async defer></script>*@
+    async defer></script>*@
 @*<script>
-        function initAutocomplete() {
+            function initAutocomplete() {
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-                //10.826058, 106.643504
-                center: { lat: 20.9873645, lng: 105.9753225 },
-                zoom: 13,
-                mapTypeId: 'roadmap'
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    //10.826058, 106.643504
+                    center: { lat: 20.9873645, lng: 105.9753225 },
+                    zoom: 13,
+                    mapTypeId: 'roadmap'
 
-            });
-
-            //geocoder text address
-            var geocoder = new google.maps.Geocoder();
-            var address = document.getElementById('pac-input').value;
-            if (address == "") {
-                address = $("#city option:selected").text();
-            }
-            if (geocoder) {
-                geocoder.geocode({ 'address': address }, function (results, status) {
-                    if (status === 'OK') {
-                        map.setCenter(results[0].geometry.location);
-                        var marker = new google.maps.Marker({
-                            map: map,
-                            position: results[0].geometry.location
-                        });
-                    } else {
-                        alert('Nhập vào địa chỉ liên hệ ');
-                    }
                 });
-            }
 
-
-
-            // Create the search box and link it to the UI element.
-            var input = document.getElementById('pac-input');
-            var searchBox = new google.maps.places.SearchBox(input);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-            // Bias the SearchBox results towards current map's viewport.
-            map.addListener('bounds_changed', function () {
-                searchBox.setBounds(map.getBounds());
-            });
-
-            var markers = [];
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-            searchBox.addListener('places_changed', function () {
-
-
-                var places = searchBox.getPlaces();
-
-                if (places.length == 0) {
-                    return;
+                //geocoder text address
+                var geocoder = new google.maps.Geocoder();
+                var address = document.getElementById('pac-input').value;
+                if (address == "") {
+                    address = $("#city option:selected").text();
+                }
+                if (geocoder) {
+                    geocoder.geocode({ 'address': address }, function (results, status) {
+                        if (status === 'OK') {
+                            map.setCenter(results[0].geometry.location);
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
+                        } else {
+                            alert('Nhập vào địa chỉ liên hệ ');
+                        }
+                    });
                 }
 
-                // Clear out the old markers.
-                markers.forEach(function (marker) {
-                    marker.setMap(null);
+
+
+                // Create the search box and link it to the UI element.
+                var input = document.getElementById('pac-input');
+                var searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                // Bias the SearchBox results towards current map's viewport.
+                map.addListener('bounds_changed', function () {
+                    searchBox.setBounds(map.getBounds());
                 });
-                markers = [];
+
+                var markers = [];
+                // Listen for the event fired when the user selects a prediction and retrieve
+                // more details for that place.
+                searchBox.addListener('places_changed', function () {
 
 
-                // For each place, get the icon, name and location.
-                var bounds = new google.maps.LatLngBounds();
-                places.forEach(function (place) {
-                    if (!place.geometry) {
-                        console.log("Returned place contains no geometry");
+                    var places = searchBox.getPlaces();
+
+                    if (places.length == 0) {
                         return;
                     }
 
+                    // Clear out the old markers.
+                    markers.forEach(function (marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
 
-                    // Create a marker for each place.
-                    markers.push(new google.maps.Marker({
-                        map: map,
-                        //icon: icon,
-                        title: place.name,
-                        position: place.geometry.location
-                    }));
 
-                    if (place.geometry.viewport) {
-                        // Only geocodes have viewport.
-                        bounds.union(place.geometry.viewport);
-                    } else {
-                        bounds.extend(place.geometry.location);
-                    }
+                    // For each place, get the icon, name and location.
+                    var bounds = new google.maps.LatLngBounds();
+                    places.forEach(function (place) {
+                        if (!place.geometry) {
+                            console.log("Returned place contains no geometry");
+                            return;
+                        }
+
+
+                        // Create a marker for each place.
+                        markers.push(new google.maps.Marker({
+                            map: map,
+                            //icon: icon,
+                            title: place.name,
+                            position: place.geometry.location
+                        }));
+
+                        if (place.geometry.viewport) {
+                            // Only geocodes have viewport.
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+                    });
+                    map.fitBounds(bounds);
                 });
-                map.fitBounds(bounds);
-            });
-        }
+            }
 
-</script>*@
+    </script>*@
