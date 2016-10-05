@@ -1676,3 +1676,275 @@ input[type="radio"] .styled:checked + label::after {
     background-color: #ecf0f1;
     padding: 10px;
 }
+
+
+
+
+
+/*.....................................//DETAIL//.....................................*/
+.room-detail .title a {
+    text-decoration: none;
+    color: #2e3339;
+}
+.room-detail .title a h1 {
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.main-info {
+    background-color: #ecf0f1;
+    margin-top: 10px;
+}
+.main-info .left-info {
+    background-color: #fff;
+}
+.main-info .info-data {
+    border-radius: 0px;
+    border: none;
+    width: 180px;
+    height: 36px;
+    padding: 6px 0px;
+    text-align: left;
+    font-weight: 600;
+}
+.main-info .address {
+    border-bottom: 1px solid #ecf0f1;
+    border-top: 1px solid #ecf0f1;
+}
+.main-info .info-label {
+    border-radius: 0px;
+    border: none;
+    width: 100px;
+    height: 36px;
+    background-color: #ecf0f1;
+    padding: 6px 12px;
+    text-align: left;
+    font-weight: 600;
+}
+.main-info .left-info a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #2e3339;
+    margin-left: 5px;
+}
+.main-info .size {
+    border-bottom: 1px solid #ecf0f1;
+}
+.main-info .tang {
+    border-bottom: 1px solid #ecf0f1;
+}
+.main-info .vs {
+    border-bottom: 1px solid #ecf0f1;
+}
+.main-info .type {
+    border-bottom: 1px solid #ecf0f1;
+}
+.main-info .info-contact .contact-label a {
+    font-size: 18px;
+    padding-left: 12px;
+    color: #2e3339;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.main-info .info-contact .contact-label a span {
+    color: #3c6;
+    margin-right: 10px;
+    font-size: 20px;
+}
+.main-info .info-contact .chr {
+    padding: 0px 12px;
+}
+.main-info .info-contact .chr hr {
+    border-color: #3c6;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.main-info .info-contact .info-price {
+    margin-bottom: 10px;
+}
+.main-info .info-contact .info-price a {
+    font-size: 16px;
+    padding-left: 12px;
+    color: #ff0047;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.main-info .info-contact .info-price a span {
+    color: #2e3339;
+    margin-right: 10px;
+    font-size: 16px;
+}
+.main-info .info-contact .info-boss {
+    margin-bottom: 10px;
+}
+.main-info .info-contact .info-boss a {
+    font-size: 14px;
+    padding-left: 12px;
+    color: #2e3339;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: capitalize;
+}   
+.main-info .info-contact .info-boss a span {
+    color: #2e3339;
+    margin-right: 10px;
+    font-size: 16px;
+}
+.main-info .info-contact .info-phone {
+    margin-bottom: 20px;
+}
+.main-info .info-contact .info-phone a {
+    font-size: 14px;
+    padding-left: 14px;
+    color: #2e3339;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.main-info .info-contact .info-phone a span {
+    color: #2e3339;
+    margin-right: 13px;
+    font-size: 18px;
+}
+.room-detail-img {
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-top: 10px;
+}
+#sync1 .item {
+    padding: 0px 0px;
+    margin: 5px;
+    color: #fff;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    text-align: center;
+    background-color: #1d1f21;
+}
+#sync1 .item .img-responsive {
+    display: block!important;
+    width: auto!important;
+    height: 506.25px!important;
+    margin: auto;
+}
+.owl-theme .owl-controls {
+    margin-top: 10px;
+    text-align: center;
+}
+.owl-theme .owl-controls .owl-page {
+    display: inline-block;
+    zoom: 1;
+}
+.owl-controls .owl-page span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin: 5px 7px;
+    filter: Alpha(Opacity=50);
+    opacity: .5;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background: #869791;
+}
+.owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span {
+    opacity: 1;
+}
+#sync2 .item {
+    padding: 0px 0px;
+    padding-top: 10px;
+    margin: 5px;
+    color: #fff;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    text-align: center;
+    cursor: pointer;
+}
+#sync2 .synced .item {
+    border-bottom: 4px solid #3c6;
+}
+#sync2 .owl-wrapper-outer .owl-wrapper .owl-item {
+    width: 100px!important;
+}
+
+
+
+.room-detail-des {
+    margin-top: 20px;
+}
+.room-list-category .pull-left a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #2e3339;
+}
+.room-detail-des .des-label .pull-left a h3, .room-detail-map .map-label .pull-left a h3 {
+        font-size: 22px;
+    margin-bottom: 5px;
+}
+.room-list-category .pull-left a h3 span {
+    color: #3c6;
+}
+.room-list-category .pull-left a h3 i {
+    font-size: 24px;
+}
+.room-list-category hr {
+    margin-top: 0px;
+    border-color: #3c6;
+}
+.room-detail-des .dis-content {
+    font-family: 'Arial';
+    font-size: 15px;
+    text-align: justify;
+    background-color: #ecf0f1;
+    padding: 10px 5px;
+    margin-top: -10px;
+}
+
+
+
+
+.sidebar .sidebar-article-label {
+    margin-top: 30px;
+}
+.sidebar .sidebar-article-label a {
+    color: #2e3339;
+    text-decoration: none;
+}
+.sidebar .sidebar-article-label h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 400;
+}
+.sidebar .sidebar-article-label span {
+    color: #3c6;
+}
+.sidebar .sidebar-article-label hr {
+    margin-bottom: 0px;
+    margin-top: 2px;
+    border-top: 1px solid #3c6;
+}
+.sidebar .sidebar-article-new {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.sidebar .sidebar-article-new a {
+    text-decoration: none;
+}
+.sidebar .sidebar-article-new .sidebar-article-title h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    text-align: justify;
+    line-height: 1.42857143;
+    color: #2e3339;
+    font-weight: 600;
+    text-decoration: none;
+}
+.sidebar .sidebar-article-new .sidebar-article-title h2:hover {
+    color: #3c6;
+}

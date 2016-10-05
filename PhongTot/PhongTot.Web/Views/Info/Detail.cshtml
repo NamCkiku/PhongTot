@@ -1,0 +1,421 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var sync1 = $("#sync1");
+        var sync2 = $("#sync2");
+        sync1.owlCarousel({
+            singleItem: true,
+            slideSpeed: 1000,
+            navigation: false,
+            pagination: true,
+            afterAction: syncPosition,
+            responsiveRefreshRate: 200,
+            autoPlay: 10000,
+        });
+        sync2.owlCarousel({
+            items: 12,
+            itemsDesktop: [1199, 10],
+            itemsDesktopSmall: [979, 10],
+            itemsTablet: [768, 8],
+            itemsMobile: [479, 4],
+            pagination: false,
+            responsiveRefreshRate: 100,
+            afterInit: function (el) {
+                el.find(".owl-item").eq(0).addClass("synced");
+            }
+        });
+        function syncPosition(el) {
+            var current = this.currentItem;
+            $("#sync2").find(".owl-item").removeClass("synced").eq(current).addClass("synced")
+            if ($("#sync2").data("owlCarousel") !== undefined) { center(current) }
+        }
+        $("#sync2").on("click", ".owl-item", function (e) {
+            e.preventDefault();
+            var number = $(this).data("owlItem");
+            sync1.trigger("owl.goTo", number);
+        });
+        function center(number) {
+            var sync2visible = sync2.data("owlCarousel").owl.visibleItems;
+            var num = number;
+            var found = false;
+            for (var i in sync2visible) {
+                if (num === sync2visible[i]) {
+                    var found = true;
+                }
+            }
+            if (found === false) {
+                if (num > sync2visible[sync2visible.length - 1]) {
+                    sync2.trigger("owl.goTo", num - sync2visible.length + 2)
+                }
+                else {
+                    if (num - 1 === -1) {
+                        num = 0;
+                    }
+                    sync2.trigger("owl.goTo", num);
+                }
+            } else if (num === sync2visible[sync2visible.length - 1]) {
+                sync2.trigger("owl.goTo", sync2visible[1])
+            }
+            else if
+                (num === sync2visible[0]) {
+                sync2.trigger("owl.goTo", num - 1)
+            }
+        }
+    });</script>
+<div class="col-md-9" ng-controller="infoDetailController">
+    <div class="row">
+        <div class="col-md-12 room-main-content">
+            <div class="pt-breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="http://phongtot.vn">Trang chủ</a></li>
+                    <li><a href="http://phongtot.vn/phong-tro-nha-tro">{{infoDetail.CategoryInfo.Name}}</a></li>
+                    <li class="active">{{infoDetail.Name}}</li>
+                </ol>
+            </div><div class="room-detail">
+                <div class="title">
+                    <a href="javascript: void(0);"><h1>{{infoDetail.Name}}</h1></a>
+                </div>
+                <!-- Nhà trọ, Phòng trọ -->
+                <div class="main-info">
+                    <div class="row">
+                        <div class="col-md-8 left-info no-padding-right">
+                            <div class="address">
+                                <span class="btn info-label">Địa chỉ</span>
+                                <a class="" href="">{{infoDetail.Wardid1.name}}</a>, <a class="" href="">{{infoDetail.Districtid1.name}}</a>, <a class="" href="">{{infoDetail.Province.name}}</a>
+                            </div>
+                            <div class="size">
+                                <span class="btn info-label">Diện tích</span>
+                                <a href="" class="btn info-data">{{infoDetail.Acreage}}m<sup>2</sup></a>
+                                <span class="btn info-label">Loại phòng</span>
+                                <a href="">{{infoDetail.CategoryInfo.Name}}</a>
+                            </div>
+                            <div class="tang">
+                                <span class="btn info-label">Tầng</span>
+                                <a href="" class="btn info-data"> {{infoDetail.OtherInfo.FloorNumber}} </a>
+                                <span class="btn info-label">Hướng Nhà</span>
+                                <a href="">{{infoDetail.OtherInfo.Compass}}</a>
+                            </div>
+                            <div class="vs">
+                                <span class="btn info-label">Vệ sinh</span>
+                                <a href="" class="btn info-data">{{infoDetail.OtherInfo.ToiletNumber}}</a>
+                                <span class="btn info-label">Số người ở</span>
+                                <a href="">{{infoDetail.OtherInfo.BedroomNumber}}</a>
+                            </div>
+                            <div class="type">
+                                <span class="btn info-label">Giá điện</span>
+                                <a href="" class="btn info-data">Nhà nước quy định</a>
+                                <span class="btn info-label">Giá nước</span>
+                                <a href="">Nhà nước quy định</a>
+                            </div>
+                            <div class="type">
+                                <span class="btn info-label">Tiện ích</span>
+                                <a href="">Chỗ để xe,Sân phơi,Internet,Điều hòa,Bình nóng lạnh,Máy giặt</a>
+                                @*, <a href=""></a>
+                                , <a href=""></a>
+                                , <a href=""></a>
+                                , <a href=""></a>
+                                , <a href=""></a>*@
+                            </div>
+                        </div>
+                        <div class="col-md-4 info-contact no-padding-left">
+                            <div class="contact-label">
+                                <a href=""><span class="fa fa-mobile-phone"></span>Thông tin liên hệ</a>
+                            </div>
+                            <div class="chr"><hr></div>
+                            <div class="info-price">
+                                <a href=""><span class="fa fa-unlock-alt"></span>{{infoDetail.Price| number}} Đ/tháng</a>
+                            </div>
+                            <div class="info-boss">
+                                <a href=""><span class="fa fa-user"></span>Phòng Tốt Team</a>
+                            </div>
+                            <div class="info-phone">
+                                <a href=""><span class="fa fa-mobile-phone"></span>{{infoDetail.Phone}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-detail-img">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="sync1" class="owl-carousel">
+                                @*<div class="item" ng-repeat="img in moreImages">
+                                    <img class="img-responsive" src="http://localhost:33029/Content/images/{{img}}">
+                                </div>*@
+                                <div class="item">
+                                    <img class="img-responsive" src="~/Content/Client/img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+                                </div>
+                                <div class="item">
+                                    <img class="img-responsive" src="~/Content/Client/img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+                                </div>
+                                <div class="item">
+                                    <img class="img-responsive" src="~/Content/Client/img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+                                </div>
+                                <div class="item">
+                                    <img class="img-responsive" src="~/Content/Client/img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+                                </div>
+                            </div>
+                            <div id="sync2" class="owl-carousel">
+                                @*<div class="item" ng-repeat="img in moreImages">
+                                    <img class="img-responsive" src="http://localhost:33029/Content/images/{{img}}">
+                                </div>*@
+                                <div class="item">
+                                    <img class="img-responsive" src="~/Content/Client/img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+                                </div>
+                                <div class="item">
+                                    <img class="img-responsive" src="~/Content/Client/img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+                                </div>
+                                <div class="item">
+                                    <img class="img-responsive" src="~/Content/Client/img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+                                </div>
+                                <div class="item">
+                                    <img class="img-responsive" src="~/Content/Client/img/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-detail-des">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="des-label room-list-category">
+                                <div class="pull-left">
+                                    <a href="javascript: void(0);"><h3><span>Thông tin</span> chi tiết <i class="fa fa-angle-right"></i></h3></a>
+                                </div>
+                                <div class="clearfix"></div>
+                                <hr>
+                            </div>
+                            <div class="dis-content">
+                                {{infoDetail.Content}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-detail-map">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="map-label room-list-category">
+                                <div class="pull-left">
+                                    <a href=""><h3><span>Bản đồ</span> vị trí <i class="fa fa-angle-right"></i></h3></a>
+                                </div>
+                                <div class="clearfix"></div>
+                                <hr>
+                            </div>
+                            <div class="map-content">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29801.052157029844!2d105.97532248326952!3d20.987364474101955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135a5e665be9d8d%3A0x16f860d10de914aa!2zdHQuIE5oxrAgUXXhu7NuaCwgVsSDbiBMw6JtLCBIxrBuZyBZw6puLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1475633411509" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-3 sidebar">
+    @*<div class="row">
+            <div class="col-sm-6 col-md-12">
+                <div class="advance-search">
+                    <div class="title">
+                        <a id="submit_search" href="javascript:void(0);"><span class="fa fa-search"></span></a>Tìm kiếm nâng cao
+                    </div>
+                    <div class="shr"><hr></div>
+                    <form class="form" id="search_form" action="http://phongtot.vn/tim-kiem" method="GET">
+                        <div class="form-group tp">
+                            <a class="btn btn-select btn-select-light btn-tp">
+                                <input type="hidden" class="btn-select-input" id="province" name="province" value="">
+                                <span class="btn-select-value">Chọn tỉnh, thành phố</span>
+                                <span class="btn-select-arrow fa fa-angle-down"></span>
+                                <ul style="display: none;">
+                                    <li class="get_province" value="1"> Hà Nội</li>
+                                    <li class="get_province" value="31"> Hải Phòng</li>
+                                    <li class="get_province" value="48"> Đà Nẵng</li>
+                                    <li class="get_province" value="79"> Hồ Chí Minh</li>
+                                    <li class="get_province" value="92"> Cần Thơ</li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-select btn-select-light btn-tp">
+                                <input type="hidden" class="btn-select-input" id="district" name="district" value="">
+                                <span id="district-select" class="btn-select-value">Chọn quận, huyện</span>
+                                <span class="btn-select-arrow fa fa-angle-down"></span>
+                                <ul id="districtGroup" style="display: none;"></ul>
+                            </a>
+                        </div>
+                        <script>$("select").multipleSelect({ width: '100%', multiple: true, multipleWidth: 132, selectAll: false, placeholder: "Chọn Quận Huyện", });</script>
+                        <div class="form-group">
+                            <select id="wardGroup" name="ward[]" multiple="multiple" style="display: none;"></select><div class="ms-parent " style="width: 100%;"><button type="button" class="ms-choice"><span class="placeholder">Chọn Phường Xã</span><div class="fa fa-angle-down"></div></button><div class="ms-drop bottom" style="display: none;"><ul style="max-height: 250px;"><li class="ms-no-results" style="display: list-item;">No matches found</li></ul></div></div>
+                        </div>
+                        <script>$("select").multipleSelect({ width: '100%', multiple: true, multipleWidth: 132, selectAll: false, placeholder: "Chọn Phường Xã", });</script>
+                        <div class="form-group">
+                            <select multiple="multiple" name="street[]" style="display: none;"></select><div class="ms-parent " style="width: 100%;"><button type="button" class="ms-choice"><span class="placeholder">Chọn Đường</span><div class="fa fa-angle-down"></div></button><div class="ms-drop bottom" style="display: none;"><ul style="max-height: 250px;"><li class="ms-no-results" style="display: list-item;">No matches found</li></ul></div></div>
+                        </div>
+                        <script>$("select").multipleSelect({ width: '100%', multiple: true, multipleWidth: 132, selectAll: false, placeholder: "Chọn Đường", });</script>
+                        <div class="form-group">
+                            <select multiple="multiple" name="type[]" style="display: none;">
+                                <option value="1">Phòng trọ, nhà trọ</option>
+                                <option value="2">Nhà nguyên căn</option>
+                                <option value="3">Nhà mặt phố</option>
+                                <option value="4">Văn phòng</option>
+                                <option value="6">Chung cư, căn hộ</option>
+                                <option value="7">Mặt bằng, cửa hàng</option>
+                            </select><div class="ms-parent " style="width: 100%;"><button type="button" class="ms-choice"><span class="placeholder">Chọn Loại Phòng</span><div class="fa fa-angle-down"></div></button><div class="ms-drop bottom" style="display: none;"><ul style="max-height: 250px;"><li class="multiple" style="width: 132px;"><label class=""><input type="checkbox" data-name="selectItemtype[]" value="1"><span>Phòng trọ, nhà trọ</span></label></li><li class="multiple" style="width: 132px;"><label class=""><input type="checkbox" data-name="selectItemtype[]" value="2"><span>Nhà nguyên căn</span></label></li><li class="multiple" style="width: 132px;"><label class=""><input type="checkbox" data-name="selectItemtype[]" value="3"><span>Nhà mặt phố</span></label></li><li class="multiple" style="width: 132px;"><label class=""><input type="checkbox" data-name="selectItemtype[]" value="4"><span>Văn phòng</span></label></li><li class="multiple" style="width: 132px;"><label class=""><input type="checkbox" data-name="selectItemtype[]" value="6"><span>Chung cư, căn hộ</span></label></li><li class="multiple" style="width: 132px;"><label class=""><input type="checkbox" data-name="selectItemtype[]" value="7"><span>Mặt bằng, cửa hàng</span></label></li><li class="ms-no-results" style="display: none;">No matches found</li></ul></div></div>
+                        </div>
+                        <script>$("select").multipleSelect({ width: '100%', multiple: true, multipleWidth: 132, selectAll: false, placeholder: "Chọn Loại Phòng", });</script>
+                        <div class="form-group price">
+                            <div class="price-title">Chọn khoảng giá</div>
+                            <div class="range-slider">
+                                <span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="display: none;">0</span><span class="irs-max" style="display: none;">1</span><span class="irs-from" style="display: none; left: 0%;">0</span><span class="irs-to" style="display: none; left: 0%;">0</span><span class="irs-single" style="display: none; left: 0%;">0</span></span><span class="irs-grid"></span><span class="irs-bar" style="left: 4.38247%; width: 91.2351%;"></span><span class="irs-shadow shadow-from" style="display: none;"></span><span class="irs-shadow shadow-to" style="display: none;"></span><span class="irs-slider from" style="left: 0%;"></span><span class="irs-slider to" style="left: 91.2351%;"></span></span><input type="text" class="js-range-slider irs-hidden-input" value="" readonly="">
+                            </div>
+                            <div class="extra-controls">
+                                <div class="form-group input-price">
+                                    <div class="price-from">
+                                        <div class="input-group">
+                                            <input name="price_from" type="text" maxlength="4" value="0" class="inp js-from form-control">
+                                            <span class="input-group-addon">Triệu</span>
+                                        </div>
+                                    </div>
+                                    <span class="input-price-title">Đến</span>
+                                    <div class="price-to">
+                                        <div class="input-group">
+                                            <input name="price_to" type="text" maxlength="4" value="50" class="inp js-to form-control">
+                                            <span class="input-group-addon">Triệu</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group submit">
+                            <button type="submit" class="btn btn-slide-search"><span class="fa fa-search"></span>Tìm kiếm</button>
+                        </div>
+
+                        <script type="text/javascript">
+                            var $range = $(".js-range-slider"), $from = $(".js-from"), $to = $(".js-to"), range, min = 0, max = 50, from, to; var updateValues = function () { $from.prop("value", from); $to.prop("value", to); }; $range.ionRangeSlider({ type: "double", min: min, max: max, step: 0.5, prettify_enabled: false, from: $from.val(), to: $to.val(), grid: false, hide_min_max: true, hide_from_to: true, postfix: ' triệu đ', prefix: "$", keyboard: true, grid_num: 10, onChange: function (data) { from = data.from; to = data.to; updateValues(); } }); range = $range.data("ionRangeSlider"); var updateRange = function () { range.update({ from: from, to: to }); }; $from.on("change", function () {
+                                from = +$(this).prop("value"); if (from < min) { from = min; }
+                                if (from > to) { from = to; }
+                                updateValues(); updateRange();
+                            }); $to.on("change", function () {
+                                to = +$(this).prop("value"); if (to > max) { to = max; }
+                                if (to < from) { to = from; }
+                                updateValues(); updateRange();
+                            });</script>
+                    </form>
+                </div>
+            </div>
+        </div>*@
+    <div class="row">
+        <div class="col-sm-6 col-md-12 sidebar-ads">
+            <img class="img-responsive" src="http://ngoaingu.net/themes/client/img/ads1.png" alt="" pagespeed_url_hash="3823440975" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        </div>
+    </div>
+
+    <div class="row">
+        <div style="margin-bottom: 30px;" class="col-sm-6 col-md-12 sidebar-ads">
+            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ads-3-min.png" alt="" pagespeed_url_hash="2304746762" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-ads">
+            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ads-4-min.png" alt="" pagespeed_url_hash="2725309099" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 sidebar-article-label">
+            <div class="pull-left">
+                <a href="http://phongtot.vn/bai-viet"><h3><span>bài viết</span> mới</h3></a>
+            </div>
+            <div class="pull-right">
+                <a href="http://phongtot.vn/bai-viet"></a><h3>
+                    <a href="http://phongtot.vn/bai-viet">Xem thêm <i class="fa fa-angle-right"></i></a>
+                </h3>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo_cover-573eddf84424b.jpg" alt="" pagespeed_url_hash="1469250980" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Ngôi nhà 46m² tuyệt đẹp có chi phí hoàn thiện 480 triệu đồng chàng trai 8x xây tặng vợ</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu_cover-573dcbc3ac6e2.jpg" alt="" pagespeed_url_hash="2616505349" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Ý tưởng kinh doanh nhà trọ, ngồi không mỗi tháng kiếm trăm triệu?</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/nhung-dieu-can-biet-khi-tim-phong-tro_cover-5714ad734268d.jpg" alt="" pagespeed_url_hash="1795872361" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Những điều cần biết khi tìm phòng trọ</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/thiet-ke-can-ho-‪‬173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong_cover-57018c103e17a.jpg" alt="">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Thiết kế căn hộ ‪‬173m2 cực đẹp với chi phí chỉ 17 triệu đồng</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien_cover-57018a97e544c.jpg" alt="" pagespeed_url_hash="2806860473" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Phạm Hương mặc giản dị giao lưu cùng sinh viên</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/vi-sao-chon-nganh-hot-van-that-nghiep_cover-57017e8c0162e.jpg" alt="" pagespeed_url_hash="133360725" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Vì sao chọn ngành 'hot' vẫn thất nghiệp?</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

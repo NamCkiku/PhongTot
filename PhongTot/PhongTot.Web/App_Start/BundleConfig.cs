@@ -10,7 +10,8 @@ namespace PhongTot.Web
         {
             bundles.Add(new ScriptBundle("~/Content/js").Include(
                        "~/Content/Client/js/jquery-1.10.2.min.js",
-                       "~/Content/Client/Plugins/bootstrap/js/bootstrap.js"));
+                       "~/Content/Client/Plugins/bootstrap/js/bootstrap.js",
+                       "~/Content/Client/Plugins/owl-carousel/owl.carousel.min.js"));
 
             bundles.Add(new ScriptBundle("~/Content/angular").Include(
                        "~/bower_components/angular/angular.js",
@@ -20,6 +21,7 @@ namespace PhongTot.Web
                       "~/Content/Client/Plugins/bootstrap/css/bootstrap.css",
                       "~/Content/Client/Plugins/font-awesome-4.5.0/css/font-awesome.css",
                       "~/ Content/Client/Plugins/bootstrap-social-gh-pages/bootstrap-social.css",
+                      "~/Content/Client/Plugins/owl-carousel/owl.carousel.css",
                       "~/Content/Client/css/Style.css"));
         }
     }

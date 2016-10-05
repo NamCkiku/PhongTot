@@ -37,6 +37,20 @@ namespace PhongTot.Api.Controllers
             });
         }
 
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _infoService.GetById(id);
+                var response = request.CreateResponse(HttpStatusCode.OK, model);
+
+                return response;
+            });
+        }
+
+
         [Route("add")]
         [HttpPost]
         public HttpResponseMessage Post(HttpRequestMessage request, Info info)

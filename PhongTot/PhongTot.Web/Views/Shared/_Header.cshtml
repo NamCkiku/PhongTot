@@ -26,7 +26,7 @@
                                     <li><a href="http://phongtot.vn/trang-ca-nhan/tin-dang">Tin đã đăng</a></li>
                                     <li><a href="http://phongtot.vn/trang-ca-nhan/tin-da-luu">Tin đã lưu</a></li>
                                     <li>
-                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                         {
                                             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                                         }
@@ -45,9 +45,18 @@
                         </div>
                     }
                 </div>
-                <div class="pull-right">
-                    <a class="btn btn-submit-room load_modal_login" data-toggle="modal" data-target="#modal_auth" href="javascript: void(0);">Đăng tin miễn phí</a>
-                </div>
+                @if (Request.IsAuthenticated)
+                {
+                    <div class="pull-right">
+                        <a class="btn btn-submit-room" href="/Info/Create">Đăng tin miễn phí</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="pull-right">
+                        <a class="btn btn-submit-room load_modal_login" data-toggle="modal" data-target="#myModal" href="javascript: void(0);">Đăng tin miễn phí</a>
+                    </div>
+                }
                 <div class="modal fade" id="modal_auth" tabindex="-1" role="dialog" aria-labelledby="login_modal_label" aria-hidden="true">
                     <div class="modal-dialog modal-md">
                         <div class="modal-content">
