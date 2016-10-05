@@ -79,7 +79,7 @@ namespace PhongTot.Service
 
         public Info GetById(int id)
         {
-            return _inforRepository.GetSingleById(id);
+            return _inforRepository.GetSingleByCondition(x=>x.ID==id, new string[] { "CategoryInfo", "Province", "OtherInfo", "Districtid1", "Wardid1" });
         }
 
         public void SaveChanges()
