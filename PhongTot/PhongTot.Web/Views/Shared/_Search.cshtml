@@ -5,10 +5,10 @@
         <div class="slider-title">
             <h1>Chính chủ, Miễn phí, Tiện lợi</h1>
         </div>
-        <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 search-bar">
+        <div ng-controller="SearchInfoController" class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 search-bar">
             <div class="group-arena pull-left">
                 <div class="group-title">Chọn khu vực</div>
-                <input class="ip-room-where" type="text" name="k" placeholder="Bạn muốn tìm phòng ở đâu ?">
+                <input class="ip-room-where" type="text" ng-model="keyword" name="k" placeholder="Bạn muốn tìm phòng ở đâu ?">
                 <a class="btn btn-select btn-select-light btn-select-city">
                     <input type="hidden" class="btn-select-input" id="province" name="province" value="">
                     <span class="btn-select-value">Thành Phố</span>
@@ -28,7 +28,6 @@
                     <ul id="district" style="display: none;"></ul>
                 </a>
             </div>
-
             <div class="group-type pull-left">
                 <div class="group-title">Chọn loại phòng</div>
                 <div class="radio radio-danger">

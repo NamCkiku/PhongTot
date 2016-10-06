@@ -1948,3 +1948,129 @@ input[type="radio"] .styled:checked + label::after {
 .sidebar .sidebar-article-new .sidebar-article-title h2:hover {
     color: #3c6;
 }
+
+
+
+
+/*.....................//SEARCH//..................................*/
+
+.room-list-category .form-oder-category {
+    margin-bottom: 5px;
+    margin-top: -10px;
+}
+.room-list-category .pull-right .btn-oder-price {
+    min-width: 142px;
+    margin-right: 10px;
+    height: 32px;
+}
+.room-list-category .pull-right .btn-select-light {
+    background-color: #ecf0f1;
+    border-left: none;
+}
+.room-list-category .pull-right .btn-select-light .btn-select-value {
+    background-color: #ecf0f1;
+    font-size: 13px;
+    padding: 6px 12px;
+    text-transform: none;
+}
+.room-list-category .pull-right .btn-oder-time {
+    min-width: 182px;
+    height: 32px;
+}
+.room-list-category .pull-right .btn-select ul {
+    background-color: #ecf0f1;
+    left: 0px;
+}
+.room-list-category .pull-right .btn-select ul li {
+    padding: 8px 12px;
+}
+
+
+.room-list .room-item {
+    margin-bottom: 20px;
+}
+.room-item .block-room-item-title {
+    margin-bottom: 10px;
+}
+.room-item .block-room-item-title a {
+    font-size: 16px;
+}
+.room-list .room-item .thumbnail {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0px;
+    margin-bottom: 8px;
+    padding: 0px;
+}
+.room-list .room-item .room-item-i {
+    margin-left: -5px;
+    margin-top: -2px;
+}
+.room-item-i .block-room-item-address {
+    margin-bottom: 5px;
+}
+.room-item-i .block-room-item-address span, .room-item-i .block-room-item-info span, .room-item-i .block-room-item-price span {
+    color: #3c6;
+}
+.room-item-i a, .room-item-i span, .block-room-item-title a {
+    text-decoration: none;
+    color: #2e3339;
+    font-weight: 600;
+    font-size: 14px;
+}
+.room-item-i .block-room-item-info {
+    margin-bottom: 5px;
+}
+.room-item-i .block-room-item-info .item-info-vs {
+    text-align: center;
+}
+.room-item-i .block-room-item-price {
+    margin-bottom: 5px;
+}
+.room-item-i .block-room-item-price span {
+    font-size: 16px;
+}
+.room-item-i .block-room-item-price a {
+    font-size: 16px;
+    color: #ff0047;
+}
+.room-item-i .block-room-item-btn {
+    margin-top: 15px;
+}
+.room-item-i .block-room-item-btn .btn-room-detail {
+    background-color: #ecf0f1;
+    border-radius: 0px;
+    padding: 6px 16px;
+    box-shadow: none;
+    border: none;
+    margin-right: 15px;
+}
+.room-item-i .block-room-item-btn .btn-room-save {
+    background-color: #ecf0f1;
+    border-radius: 0px;
+    padding: 6px 16px;
+    box-shadow: none;
+    border: none;
+}
+
+
+
+
+
+/*......................//pagination//..........................*/
+.pagination {
+    margin: 0px 0px 30px 0px;
+    font-weight: 600;
+    float: right;
+}
+.pagination>li>a, .pagination>li>span {
+    border-radius: 50%!important;
+    margin: 0 5px;
+    color: #3c6;
+}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    background-color: #3c6;
+    border-color: #3c6;
+    color: #fff;
+}

@@ -18,6 +18,7 @@ namespace PhongTot.Service
         Info Delete(int id);
 
         IEnumerable<Info> GetAll();
+        IEnumerable<Info> Search(string keyword);
 
         Info GetById(int id);
 
@@ -26,12 +27,17 @@ namespace PhongTot.Service
     public class InfoService : IInfoService
     {
         private readonly IInfoRepository _inforRepository;
+        private readonly ICategoryInfoRepository _categoryInfoRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IOtherInfoRepository _otherInfoRepository;
-        public InfoService(IInfoRepository infoRepository, IOtherInfoRepository otherInfoRepository, IUnitOfWork unitOfWork)
+        private readonly IProvinceRepository _provinceRepository;
+
+        public InfoService(IInfoRepository infoRepository, ICategoryInfoRepository categoryInfoRepository, IOtherInfoRepository otherInfoRepository, IProvinceRepository provinceRepository, IUnitOfWork unitOfWork)
         {
             this._inforRepository = infoRepository;
+            this._categoryInfoRepository = categoryInfoRepository;
             this._otherInfoRepository = otherInfoRepository;
+            this._provinceRepository = provinceRepository;
             this._unitOfWork = unitOfWork;
         }
 
@@ -79,7 +85,7 @@ namespace PhongTot.Service
 
         public Info GetById(int id)
         {
-            return _inforRepository.GetSingleByCondition(x=>x.ID==id, new string[] { "CategoryInfo", "Province", "OtherInfo", "Districtid1", "Wardid1" });
+            return _inforRepository.GetSingleByCondition(x => x.ID == id, new string[] { "CategoryInfo", "Province", "OtherInfo", "Districtid1", "Wardid1" });
         }
 
         public void SaveChanges()
@@ -90,6 +96,38 @@ namespace PhongTot.Service
         public void Update(Info info)
         {
             _inforRepository.Update(info);
+        }
+
+        public IEnumerable<Info> Search(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                var query = _inforRepository.GetMulti(x => x.Status
+                || x.Province.name.Contains(keyword.ToLower().Trim())
+                || x.Districtid1.name.Contains(keyword.ToLower().Trim())
+                || x.Wardid1.name.Contains(keyword.ToLower().Trim())
+                || x.CategoryInfo.Name.Contains(keyword.ToLower().Trim())
+                || x.Name.Contains(keyword.ToLower().Trim()));
+                return query;
+                //switch (sort)
+                //{
+                //    case "time":
+                //        query = query.OrderByDescending(x => x.CreateDate);
+                //        break;
+                //    case "price":
+                //        query = query.OrderBy(x => x.Price);
+                //        break;
+                //    default:
+                //        query = query.OrderByDescending(x => x.CreateDate);
+                //        break;
+                //}
+
+                //totalRow = query.Count();
+
+                //return query.Skip((page - 1) * pageSize).Take(pageSize);
+            }
+            else
+                return _inforRepository.GetAll();
         }
     }
 }
