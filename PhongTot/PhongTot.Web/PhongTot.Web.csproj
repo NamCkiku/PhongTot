@@ -227,6 +227,7 @@
       <DependentUpon>RoomsIdentity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InfoModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoomsIdentity.Context.cs">
       <AutoGen>True</AutoGen>
@@ -252,6 +253,7 @@
     <Content Include="app\commonService\notificationService.js" />
     <Content Include="app\controllers\InfoController\infoController.js" />
     <Content Include="app\controllers\InfoController\infoDetailController.js" />
+    <Content Include="app\controllers\InfoController\SearchInfoController.js" />
     <Content Include="app\directives\owlCarouselDirective.js" />
     <Content Include="app\services\apiService.js" />
     <Content Include="app\services\fileUploadService.js" />
@@ -902,6 +904,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Info\Detail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Info\Search.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
