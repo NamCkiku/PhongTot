@@ -1,5 +1,6 @@
 ﻿using PhongTot.Api.Infrastructure.Core;
 using PhongTot.Entities.Models;
+using PhongTot.Entities.ModelView;
 using PhongTot.Service;
 using System;
 using System.Collections.Generic;
@@ -52,12 +53,12 @@ namespace PhongTot.Api.Controllers
 
         [Route("search")]
         [HttpGet]
-        public HttpResponseMessage Search(HttpRequestMessage request, string keyword)
+        public HttpResponseMessage Search(HttpRequestMessage request, [FromUri] string keywords)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _infoService.Search(keyword);
+                var model = _infoService.Search(keywords);
                 totalRow = model.Count();
                 //var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
                 //var paginationSet = new PaginationSet<Info>()
