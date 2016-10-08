@@ -1,4 +1,6 @@
-﻿using PhongTot.Entities.Models;
+﻿using PhongTot.Common;
+using PhongTot.Entities.Models;
+using PhongTot.Entities.ModelView;
 using PhongTot.Repository.Infrastructure;
 using PhongTot.Repository.Repositories;
 using System;
@@ -18,7 +20,7 @@ namespace PhongTot.Service
         Info Delete(int id);
 
         IEnumerable<Info> GetAll();
-        IEnumerable<Info> Search(string keyword);
+        IEnumerable<Info> Search(string keywords);
 
         Info GetById(int id);
 
@@ -97,34 +99,73 @@ namespace PhongTot.Service
         {
             _inforRepository.Update(info);
         }
-
-        public IEnumerable<Info> Search(string keyword)
+        //public IEnumerable<Info> Search(InfoSearchModel keywords)
+        //{
+        //    var query = _inforRepository.GetAll();
+        //    if(keywords!=null)
+        //    {
+        //        if(!string.IsNullOrEmpty(keywords.Name))
+        //        {
+        //            query = query.Where(x => x.Name == keywords.Name);
+        //        }
+        //        if (keywords.PriceFrom.HasValue)
+        //        {
+        //            query = query.Where(x => x.Price == keywords.PriceFrom);
+        //        }
+        //        if (keywords.PriceTo.HasValue)
+        //        {
+        //            query = query.Where(x => x.Price == keywords.PriceTo);
+        //        }
+        //        if(keywords.CategoryID.HasValue)
+        //        {
+        //            query = query.Where(x => x.CategoryID==keywords.CategoryID);
+        //        }
+        //        if (keywords.Provinceid.HasValue)
+        //        {
+        //            query = query.Where(x => x.Provinceid == keywords.Provinceid);
+        //        }
+        //        if (keywords.Districtid.HasValue)
+        //        {
+        //            query = query.Where(x => x.Districtid == keywords.Districtid);
+        //        }
+        //        if (keywords.Wardid.HasValue)
+        //        {
+        //            query = query.Where(x => x.Wardid == keywords.Wardid);
+        //        }
+        //    }
+        //    return query;
+        //}
+        public IEnumerable<Info> Search(string keywords)
         {
-            if (!string.IsNullOrEmpty(keyword))
+            if (!string.IsNullOrEmpty(keywords))
             {
-                var query = _inforRepository.GetMulti(x => x.Status
-                || x.Province.name.Contains(keyword.ToLower().Trim())
-                || x.Districtid1.name.Contains(keyword.ToLower().Trim())
-                || x.Wardid1.name.Contains(keyword.ToLower().Trim())
-                || x.CategoryInfo.Name.Contains(keyword.ToLower().Trim())
-                || x.Name.Contains(keyword.ToLower().Trim()));
-                return query;
-                //switch (sort)
-                //{
-                //    case "time":
-                //        query = query.OrderByDescending(x => x.CreateDate);
-                //        break;
-                //    case "price":
-                //        query = query.OrderBy(x => x.Price);
-                //        break;
-                //    default:
-                //        query = query.OrderByDescending(x => x.CreateDate);
-                //        break;
-                //}
-
-                //totalRow = query.Count();
-
-                //return query.Skip((page - 1) * pageSize).Take(pageSize);
+                string[] searchstring = keywords.Split(',');
+                List<Info> finalPosts = new List<Info>();
+                foreach (var itemsearch in searchstring)
+                {
+                    if (itemsearch == null)
+                    {
+                        return _inforRepository.GetAll();
+                    }
+                    else
+                    {
+                        var query = _inforRepository.GetMulti(x => x.Status
+                               && x.Province.name.Contains(itemsearch.ToLower().Trim())
+                               || x.Districtid1.name.Contains(itemsearch.ToLower().Trim())
+                               || x.Wardid1.name.Contains(itemsearch.ToLower().Trim())
+                               || x.CategoryInfo.Name.Contains(itemsearch.ToLower().Trim())
+                               || x.Name.Contains(itemsearch.ToLower().Trim())).FirstOrDefault();
+                        if (query != null)
+                        {
+                            finalPosts.Add(query);
+                        }
+                        else
+                        {
+                            return finalPosts;
+                        }
+                    }
+                }
+                return finalPosts;
             }
             else
                 return _inforRepository.GetAll();

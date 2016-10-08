@@ -89,6 +89,7 @@
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\RoomsEntity.cs" />
     <Compile Include="Models\Wardid.cs" />
+    <Compile Include="ModelView\InfoSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
