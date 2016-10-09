@@ -51,15 +51,29 @@ namespace PhongTot.Api.Controllers
             });
         }
 
+        //[Route("search")]
+        //[HttpGet]
+        //public IHttpActionResult Search([FromUri]InfoSearchModel filterParams)
+        //{
+        //    var searchResult = _infoService.Search(filterParams);
+        //    var totalRow = searchResult.Count(); // Actually, we don't need this one.
+
+        //    return Json(new
+        //    {
+        //        model = searchResult,
+        //        totalRow = totalRow
+        //    });
+        //}
+
         [Route("search")]
         [HttpGet]
-        public HttpResponseMessage Search(HttpRequestMessage request, [FromUri] string keywords)
+        public HttpResponseMessage Search(HttpRequestMessage request, [FromUri]InfoSearchModel filterParams)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _infoService.Search(keywords);
-                totalRow = model.Count();
+                var searchResult = _infoService.Search(filterParams);
+                totalRow = searchResult.Count();
                 //var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
                 //var paginationSet = new PaginationSet<Info>()
                 //{
@@ -68,7 +82,7 @@ namespace PhongTot.Api.Controllers
                 //    TotalCount = totalRow,
                 //    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
                 //};
-                var response = request.CreateResponse(HttpStatusCode.OK, model);
+                var response = request.CreateResponse(HttpStatusCode.OK, searchResult);
 
                 return response;
             });

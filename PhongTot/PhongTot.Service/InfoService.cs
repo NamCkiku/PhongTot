@@ -20,7 +20,7 @@ namespace PhongTot.Service
         Info Delete(int id);
 
         IEnumerable<Info> GetAll();
-        IEnumerable<Info> Search(string keywords);
+        IEnumerable<Info> Search(InfoSearchModel filterParams);
 
         Info GetById(int id);
 
@@ -99,76 +99,50 @@ namespace PhongTot.Service
         {
             _inforRepository.Update(info);
         }
-        //public IEnumerable<Info> Search(InfoSearchModel keywords)
-        //{
-        //    var query = _inforRepository.GetAll();
-        //    if(keywords!=null)
-        //    {
-        //        if(!string.IsNullOrEmpty(keywords.Name))
-        //        {
-        //            query = query.Where(x => x.Name == keywords.Name);
-        //        }
-        //        if (keywords.PriceFrom.HasValue)
-        //        {
-        //            query = query.Where(x => x.Price == keywords.PriceFrom);
-        //        }
-        //        if (keywords.PriceTo.HasValue)
-        //        {
-        //            query = query.Where(x => x.Price == keywords.PriceTo);
-        //        }
-        //        if(keywords.CategoryID.HasValue)
-        //        {
-        //            query = query.Where(x => x.CategoryID==keywords.CategoryID);
-        //        }
-        //        if (keywords.Provinceid.HasValue)
-        //        {
-        //            query = query.Where(x => x.Provinceid == keywords.Provinceid);
-        //        }
-        //        if (keywords.Districtid.HasValue)
-        //        {
-        //            query = query.Where(x => x.Districtid == keywords.Districtid);
-        //        }
-        //        if (keywords.Wardid.HasValue)
-        //        {
-        //            query = query.Where(x => x.Wardid == keywords.Wardid);
-        //        }
-        //    }
-        //    return query;
-        //}
-        public IEnumerable<Info> Search(string keywords)
+        public IEnumerable<Info> Search(InfoSearchModel filterParams)
         {
-            if (!string.IsNullOrEmpty(keywords))
+            var query = _inforRepository.GetAll();
+            if(filterParams == null)
             {
-                string[] searchstring = keywords.Split(',');
-                List<Info> finalPosts = new List<Info>();
-                foreach (var itemsearch in searchstring)
-                {
-                    if (itemsearch == null)
-                    {
-                        return _inforRepository.GetAll();
-                    }
-                    else
-                    {
-                        var query = _inforRepository.GetMulti(x => x.Status
-                               && x.Province.name.Contains(itemsearch.ToLower().Trim())
-                               || x.Districtid1.name.Contains(itemsearch.ToLower().Trim())
-                               || x.Wardid1.name.Contains(itemsearch.ToLower().Trim())
-                               || x.CategoryInfo.Name.Contains(itemsearch.ToLower().Trim())
-                               || x.Name.Contains(itemsearch.ToLower().Trim())).FirstOrDefault();
-                        if (query != null)
-                        {
-                            finalPosts.Add(query);
-                        }
-                        else
-                        {
-                            return finalPosts;
-                        }
-                    }
-                }
-                return finalPosts;
+                return query.ToList();
             }
-            else
-                return _inforRepository.GetAll();
+            if (filterParams.CategoryID != null)
+            {
+                query = query.Where(p => p.CategoryID >= filterParams.CategoryID);
+            }
+            if (filterParams.PriceFrom != null)
+            {
+                query = query.Where(p => p.Price >= filterParams.PriceFrom);
+            }
+
+            if (filterParams.PriceTo != null)
+            {
+                query = query.Where(p => p.Price <= filterParams.PriceTo);
+            }
+
+            if (filterParams.Provinceid != null)
+            {
+                query = query.Where(p => p.Provinceid == filterParams.Provinceid);
+            }
+
+            // APPLY FILTER FOR LOCATION
+            // Wardid is the lowest level of filter hierachy, 
+            // so if we apply this filter for wardid, we do not need to filter another one any more.
+
+            if (filterParams.Wardid != null)
+            {
+                query = query.Where(p => p.Wardid == filterParams.Wardid);
+            } else if (filterParams.Districtid != null)
+            {
+                query = query.Where(p => p.Districtid == filterParams.Districtid);
+            } else if (filterParams.Provinceid != null)
+            {
+                query = query.Where(p => p.Provinceid == filterParams.Provinceid);
+            }
+
+            var result = query.ToList();
+
+            return result;
         }
     }
 }
