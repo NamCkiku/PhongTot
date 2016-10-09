@@ -25,13 +25,13 @@ namespace PhongTot.Web.Controllers
         }
         public ActionResult Index()
         {
-            HttpResponseMessage response = client.GetAsync(url + "/info/getall").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                string responseString = response.Content.ReadAsStringAsync().Result;
-                var info = JsonConvert.DeserializeObject<List<InfoModel>>(responseString);
-                return View(info);
-            }
+            //HttpResponseMessage response = client.GetAsync(url + "/info/getall").Result;
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    string responseString = response.Content.ReadAsStringAsync().Result;
+            //    var info = JsonConvert.DeserializeObject<List<InfoModel>>(responseString);
+            //    return View(info);
+            //}
             return View();
         }
         public PartialViewResult _Header()

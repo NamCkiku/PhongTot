@@ -7,7 +7,6 @@
         <div ng-controller="SearchInfoController" class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 search-bar">
             <div class="group-arena pull-left">
                 <div class="group-title">Chọn khu vực</div>
-                {{keywords.Provinceid}}
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="btn btn-select btn-select-light btn-select-city">
@@ -40,13 +39,12 @@
                 <div class="radio radio-danger">
                     <ul class="type-list-item">
                         <li ng-repeat="items in categoryinfo">
-                            <input type="radio" ng-model="infoAdd.Name" name="type[]" id="{{items.ID}}" value="{{items.ID}}">
+                            <input type="radio" ng-model="keywords.CategoryID" name="SearchCategoryID" id="SearchCategoryID-{{items.ID}}" value="{{items.ID}}">
                             <label for="{{items.ID}}">{{items.Name}}</label>
                         </li>
                     </ul>
                 </div>
             </div>
-            {{keywords}}
             <link href="~/bower_components/angularjs-slider/dist/rzslider.css" rel="stylesheet" />
             <script src="~/bower_components/angularjs-slider/dist/rzslider.js"></script>
             <div class="group-price pull-left" style="width: 350px;">
@@ -74,7 +72,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="group-btn-submit">
-                <button type="submit" class="btn btn-slide-search"><span class="fa fa-search"></span>Tìm kiếm</button>
+                <button type="submit" ng-click="search()" class="btn btn-slide-search"><span class="fa fa-search"></span>Tìm kiếm</button>
                 <button type="submit" class="btn btn-advance-search">Tìm Nâng Cao</button>
             </div>
         </div>
@@ -82,7 +80,7 @@
 </div>
 <div class="slider slider-small hidden-md hidden-lg">
     <div class="pt_container">
-        <div class="col-xs-12 col-sm-12 search-bar">
+        <div ng-controller="SearchInfoController" class="col-xs-12 col-sm-12 search-bar">
             <form class="form" action="http://phongtot.vn/tim-kiem" method="GET">
                 <div class="group-arena">
                     <div class="group-title">Chọn khu vực</div>

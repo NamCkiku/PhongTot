@@ -8,7 +8,6 @@ namespace PhongTot.Entities.ModelView
 {
     public class InfoSearchModel
     {
-        public string Name { get; set; }
 
         public int? CategoryID { get; set; }
         public int? PriceFrom { get; set; }

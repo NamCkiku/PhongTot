@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PhongTot.Web.Models.InfoModel>
+﻿
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -72,9 +72,8 @@
                         <div class="tab-pane " id="tab_type_2">
                             <div class="thumbnail-list">
                                 <div class="row block-item">
-                                    @foreach (var item in Model)
-                                    {
-                                        <div class="col-sm-6 col-md-4 thumbnail-item">
+                                    
+                                        @*<div class="col-sm-6 col-md-4 thumbnail-item">
                                             <div class="thumbnail">
                                                 <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-nha-tro-quan-4-gia-32-trieu-thang" title="CHO THUÊ NHÀ TRỌ QUẬN 4 GIÁ 3.2 TRIỆU THÁNG">
                                                     <img src="http://localhost:33029/Content/images/@item.Image" alt="" class="cover img-reponsive" pagespeed_url_hash="2653604726" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
@@ -98,14 +97,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="overlay">
-                                                    <a href="#" title="">
-                                                        <img src="img/play.png">
-                                                    </a>
-                                                </div> -->
                                             </div>
-                                        </div>
-                                    }
+                                        </div>*@
                                         
                                 </div>
                             </div>

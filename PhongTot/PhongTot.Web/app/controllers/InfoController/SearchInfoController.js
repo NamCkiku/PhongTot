@@ -7,31 +7,30 @@
 
         $scope.slider = {
             minValue: 0,
-            maxValue: 50,
+            maxValue: 50000000,
             options: {
                 floor: 0,
-                ceil: 50,
-                step: 0.5,
+                ceil: 50000000,
+                step: 500000,
                 precision: 1,
                 hideLimitLabels: true,
                 hidePointerLabels: true,
             }
         };
 
-
-        $scope.keyword = [
-            $scope.slider.minValue,
-            $scope.slider.maxValue
-
-        ];
         $scope.keywords = [];
-        search();
         function search(keywords) {
             var config = {
                 params: {
-                    keywords: "Hà Nội,Ở ghép,Mê Linh",
+                    CategoryID: $scope.keywords.CategoryID,
+                    PriceFrom: $scope.slider.minValue,
+                    PriceTo: $scope.slider.maxValue,
+                    Wardid: $scope.keywords.Wardid,
+                    Districtid: $scope.keywords.Districtid,
+                    Provinceid: $scope.keywords.Provinceid
                 }
             }
+
             apiService.get('http://localhost:33029/api/info/search', config, function (result) {
                 $scope.Info = result.data;
                 console.log($scope.Info);
@@ -89,6 +88,8 @@
 
         getAllProvinceInfo();
         getAllCategoryInfo();
+
+        $scope.search = search;
     }
 
 })(angular.module('myApp'));
