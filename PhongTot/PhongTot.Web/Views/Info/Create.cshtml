@@ -1,18 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
 }
-@*<div ng-controller="infoController" >
-        <div class="">
-            <table border="1">
-                <tr ng-repeat="items in Info">
-                    <td>{{items.Name}}</td>
-                    <td>{{items.Description}}</td>
-                </tr>
-            </table>
-        </div>
-    </div>*@
 <div class="col-md-12 submit-room-breadcrumb">
     <div class="pt-breadcrumb">
         <ol class="breadcrumb">
@@ -21,28 +11,8 @@
         </ol>
     </div>
 </div>
-<form ng-controller="infoController" novalidate name="frmAddInfo" role="form" ng-submit="createInfo(infoAdd)">
+<form ng-controller="infoController" novalidate name="frmAddInfo" role="form" ng-submit="createInfo(infoAdd)" data-parsley-validate>
     <div class="col-md-2 no-padding-vertical submit-room-main-content">
-
-        <div class="submit-list-type">
-            <div class="list-type-title">
-                <ul>
-                    <li class="li-label">Chọn Nhu Cầu</li>
-                </ul>
-            </div>
-            <div class="checkbox checkbox-success">
-                <ul>
-                    <li>
-                        <input type="radio" name="aaa" id="radio_needed_lease" value="Ở Trọ">
-                        <label for="radio_needed_lease">Ở Trọ</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="aaa" id="radio_needed_share" value="Ở ghép">
-                        <label for="radio_needed_share"> Ở ghép</label>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div id="step-2" class="submit-list-type">
             <div class="list-type-title">
                 <ul><li class="li-label">Chọn loại Phòng</li></ul>
@@ -50,7 +20,7 @@
             <div class="checkbox checkbox-success">
                 <ul>
                     <li ng-repeat="items in categoryinfo">
-                        <input type="radio" ng-model="infoAdd.CategoryID" name="needed" id="{{items.ID}}" value="{{items.ID}}">
+                        <input type="radio" ng-model="infoAdd.CategoryID" name="needed" id="{{items.ID}}" required value="{{items.ID}}">
                         <label for="{{items.ID}}">{{items.Name}}</label>
                     </li>
                 </ul>
@@ -69,8 +39,8 @@
                     <div>
                         <input type="text" id="title" name="Name" ng-change="GetSeoTitle()" ng-maxlength="256" required ng-model="infoAdd.Name" class="form-control" value="">
                         <span class="help-block"></span>
-                        @*<span ng-show="frmAddInfo.Name.$invalid">Phải nhập Ten Tin</span>
-                            <span ng-show="frmAddInfo.Name.$error.maxlength">Tên danh mục chỉ được 256 ký tự</span>*@
+                        <span ng-show="frmAddInfo.Name.$invalid" class="has-error">Phải nhập tên Tiêu Đề</span>
+                        <span ng-show="frmAddInfo.Name.$error.maxlength" class="has-error">Tên Tiêu Đề chỉ được 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -85,7 +55,7 @@
                         <div>
                             <div class="control-label">Giá</div>
                             <div class="input-group">
-                                <input type="text" name="Price" ng-model="infoAdd.Price" class="form-control money-input" data-thousands="," data-decimal="." data-precision="0">
+                                <input type="number" name="Price" ng-model="infoAdd.Price" class="form-control money-input" data-thousands="," data-decimal="." data-precision="0">
                                 <span class="input-group-addon">đ/tháng</span>
                             </div>
                             <span class="help-block"></span>
@@ -97,7 +67,7 @@
                         <div>
                             <div class="control-label">Diện tích</div>
                             <div class="input-group">
-                                <input type="text" name="Acreage" ng-model="infoAdd.Acreage" class="form-control" placeholder="nhập số, viết liền">
+                                <input type="number"  name="Acreage" ng-model="infoAdd.Acreage" class="form-control" placeholder="nhập số, viết liền">
                                 <span class="input-group-addon">M<sup>2</sup></span>
                                 <span class="help-block"></span>
                             </div>
@@ -111,7 +81,7 @@
                         <div class="form-group">
                             <div class="control-label">Tỉnh/Thành phố</div>
                             <div>
-                                <select name="province_id" ng-change="getAlDistrictByProvince(infoAdd.Provinceid)" ng-model="infoAdd.Provinceid" ng-options="option.provinceid as option.name for option in province" class="form-control address_input">
+                                <select name="province_id" ng-change="getAlDistrictByProvince(infoAdd.Provinceid)" required ng-model="infoAdd.Provinceid" ng-options="option.provinceid as option.name for option in province" class="form-control address_input">
                                     <option value="">Chọn</option>
                                 </select>
                                 <span class="help-block"></span>
@@ -122,7 +92,7 @@
                         <div class="form-group">
                             <div class="control-label">Quận/Huyện</div>
                             <div>
-                                <select name="district_id" ng-change="getAlWardByDistrict(infoAdd.Districtid)" ng-model="infoAdd.Districtid" ng-options="option.districtid1 as option.name for option in district" class="form-control address_input">
+                                <select name="district_id" required ng-change="getAlWardByDistrict(infoAdd.Districtid)" ng-model="infoAdd.Districtid" ng-options="option.districtid1 as option.name for option in district" class="form-control address_input">
                                     <option value="">Chọn Tỉnh/Thành trước</option>
                                 </select>
                                 <span class="help-block"></span>
@@ -136,7 +106,7 @@
                         <div class="form-group">
                             <div class="control-label">Xã/Phường</div>
                             <div>
-                                <select id="street_id" name="ward_id" ng-model="infoAdd.Wardid" ng-options="option.wardid1 as option.name for option in ward" class="form-control address_input" size="1">
+                                <select id="street_id" required name="ward_id" ng-model="infoAdd.Wardid" ng-options="option.wardid1 as option.name for option in ward" class="form-control address_input" size="1">
                                     <option value="">Chọn Quận/huyện trước</option>
                                 </select>
                                 <span class="help-block"></span>
@@ -147,7 +117,7 @@
                         <div class="form-group">
                             <div class="control-label">Số Điện Thoại</div>
                             <div>
-                                <input type="text" name="Phone" ng-model="infoAdd.Phone" class="form-control address_input" value="">
+                                <input type="text" name="Phone" required ng-model="infoAdd.Phone" class="form-control address_input" value="">
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -328,13 +298,14 @@
                                     <span class="btn btn-primary btn-file">
                                         <span class="fileinput-new">Chọn Ảnh</span>
                                         <span class="fileinput-exists">Thay Đổi</span>
-                                        <input type="file" name="" ng-file-select="prepareFiles($files)">
+                                        <input type="file" required name="Image" ng-file-select="prepareFiles($files)">
+                                        <span ng-show="frmAddInfo.Image.$error.maxlength" class="has-error">Hình ảnh chỉ được 256 ký tự</span>
                                     </span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Xóa</a>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-sm-6">
                             <div class="alert alert-info">Ảnh đẹp sẽ giúp tăng truy cập vào bài đăng của bạn</div>
                         </div>
@@ -347,7 +318,7 @@
                 <div class="form-group">
                     <div>
                         <div class="control-label">Hình Anh</div>
-                        <ng-dropzone class="dropzone"  options="dzOptions" callbacks="dzCallbacks" methods="dzMethods">
+                        <ng-dropzone class="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods">
                             <div class="dz-default dz-message">
                                 <span>Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</span>
                             </div>
@@ -381,7 +352,7 @@
                 </div>
             </div>*@
 
-        <button type="submit" @*ng-click="dzMethods.processQueue();"*@ ng-disabled="frmAddInfo.$invalid" class="btn btn-success pull-right">Lưu</button>
+        <button type="submit" ng-disabled="frmAddInfo.$invalid" class="btn btn-success pull-right">Đăng Tin</button>
 
 
 

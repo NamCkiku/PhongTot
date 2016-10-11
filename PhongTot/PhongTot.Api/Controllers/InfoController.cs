@@ -38,6 +38,10 @@ namespace PhongTot.Api.Controllers
             });
         }
 
+
+
+
+
         [Route("getbyid/{id:int}")]
         [HttpGet]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
@@ -71,10 +75,10 @@ namespace PhongTot.Api.Controllers
         {
             return CreateHttpResponse(request, () =>
             {
-                int totalRow = 0;
+                //int totalRow = 0;
                 var searchResult = _infoService.Search(filterParams);
-                totalRow = searchResult.Count();
-                //var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
+                //totalRow = searchResult.Count();
+                //var query = searchResult.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
                 //var paginationSet = new PaginationSet<Info>()
                 //{
                 //    Items = query,
@@ -83,7 +87,6 @@ namespace PhongTot.Api.Controllers
                 //    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
                 //};
                 var response = request.CreateResponse(HttpStatusCode.OK, searchResult);
-
                 return response;
             });
         }
