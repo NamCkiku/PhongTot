@@ -215,64 +215,40 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div>
+                                    <div class="control-label">Giá Điện</div>
+                                    <div class="input-group">
+                                        <input type="number" name="Price" ng-model="infoAdd.OtherInfo.ElectricPrice" class="form-control money-input" data-thousands="," data-decimal="." data-precision="0">
+                                        <span class="input-group-addon">đ/tháng</span>
+                                    </div>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div>
+                                    <div class="control-label">Giá Nước</div>
+                                    <div class="input-group">
+                                        <input type="number" name="Price" ng-model="infoAdd.OtherInfo.WaterPrice" class="form-control money-input" data-thousands="," data-decimal="." data-precision="0">
+                                        <span class="input-group-addon">đ/tháng</span>
+                                    </div>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="submit-info-title">Tiện nghi sẵn có</div>
                     <div class="form-group room-option">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4" ng-repeat="items in Convenient">
                                 <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="dexe" value="Chỗ để xe">
-                                    <label for="dexe"> Chỗ để xe </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="sanphoi" value="Sân phơi">
-                                    <label for="sanphoi"> Sân phơi </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="bep" value="Thang máy">
-                                    <label for="bep"> Thang máy </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="internet" value="Internet">
-                                    <label for="internet"> Internet </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="dieuhoa" value="Điều hòa">
-                                    <label for="dieuhoa"> Điều hòa </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="nonglanh" value="Bình nóng lạnh">
-                                    <label for="nonglanh"> Bình nóng lạnh </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="maygiat" value="Máy giặt">
-                                    <label for="maygiat"> Máy giặt </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="tulanh" value="Truyền hình cáp">
-                                    <label for="tulanh"> TH cáp </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="checkbox checkbox-success">
-                                    <input type="checkbox" name="convenient[]" id="tivi" value="Tivi">
-                                    <label for="tivi"> Tivi </label>
+                                    <input type="checkbox" checklist-model="infoAdd.OtherInfo.Convenient" id="dexe" checklist-value="items">
+                                    <label for="dexe">{{items}}</label>
                                 </div>
                             </div>
                         </div>

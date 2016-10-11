@@ -9,6 +9,7 @@
     "dropzone": "~4.3.0",
     "ngdropzone": "~2.0.1",
     "angular-file-upload": "~2.3.4",
-    "angularjs-slider": "~5.5.1"
+    "angularjs-slider": "~5.5.1",
+    "checklist-model": "~0.10.0"
   }
 }

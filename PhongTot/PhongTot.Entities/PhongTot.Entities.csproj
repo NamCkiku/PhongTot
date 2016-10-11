@@ -79,6 +79,14 @@
     <Compile Include="Migrations\201609240220335_edittableInfoOther.Designer.cs">
       <DependentUpon>201609240220335_edittableInfoOther.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610110220246_updateOtherInfo.cs" />
+    <Compile Include="Migrations\201610110220246_updateOtherInfo.Designer.cs">
+      <DependentUpon>201610110220246_updateOtherInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610110223053_updateWaterPrice.cs" />
+    <Compile Include="Migrations\201610110223053_updateWaterPrice.Designer.cs">
+      <DependentUpon>201610110223053_updateWaterPrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryOtherInfo.cs" />
@@ -117,6 +125,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609240220335_edittableInfoOther.resx">
       <DependentUpon>201609240220335_edittableInfoOther.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610110220246_updateOtherInfo.resx">
+      <DependentUpon>201610110220246_updateOtherInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610110223053_updateWaterPrice.resx">
+      <DependentUpon>201610110223053_updateWaterPrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

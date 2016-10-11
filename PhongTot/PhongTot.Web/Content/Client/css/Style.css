@@ -1723,7 +1723,7 @@ input[type="radio"] .styled:checked + label::after {
 }
 .main-info .left-info a {
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     color: #2e3339;
     margin-left: 5px;
 }

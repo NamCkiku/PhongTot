@@ -23,6 +23,7 @@
             apiService.get('http://localhost:33029/api/info/getbyid/' + id, null, function (result) {
                 $scope.infoDetail = result.data;
                 $scope.moreImages = JSON.parse($scope.infoDetail.MoreImages);
+                $scope.Convenient = JSON.parse($scope.infoDetail.OtherInfo.Convenient);
                 console.log($scope.infoDetail);
                 console.log($scope.moreImages);
             }, function () {

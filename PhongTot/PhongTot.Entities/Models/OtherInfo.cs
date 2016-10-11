@@ -24,7 +24,10 @@ namespace PhongTot.Entities.Models
         public string BedroomNumber { get; set; }
 
         public string Compass { get; set; }
+        public int? ElectricPrice { get; set; }
+        public int? WaterPrice { get; set; }
 
+        [Column(TypeName = "xml")]
         public string Convenient { get; set; }
 
         public int? CategoryOtherInfoID { get; set; }
