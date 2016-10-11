@@ -10,17 +10,30 @@
         $scope.ward = [];
         $scope.category = "";
 
+        $scope.Convenient = [
+            'Chỗ để xe',
+            'Sân phơi',
+            'Thang máy',
+            'Internet',
+            'Điều hòa',
+            'Bình nóng lạnh',
+            'Máy giặt',
+            'Truyền hình cáp',
+            'Tivi'
+        ];
+
+
 
         $scope.infoAdd = {
             CreateDate: new Date(),
             Status: false,
             OtherInfo: {
+                Convenient:[]
             },
-            Image:"adadsadasd",
+            Image: "adadsadasd",
 
         };
-        
-        
+
         $scope.getFiles = function () {
             console.log($scope.dzMethods.getAllFiles());
             alert('Check console log.');
@@ -52,7 +65,7 @@
         $scope.dzCallbacks = {
             'addedfile': function (file) {
                 $scope.infoAdd.MoreImages = [];
-                
+
             },
             'thumbnail': function (file, dataUrl) {
                 $scope.infoAdd.MoreImages.push(file.name);
@@ -140,6 +153,7 @@
 
         $scope.createInfo = createInfo;
         function createInfo() {
+            $scope.infoAdd.OtherInfo.Convenient = JSON.stringify($scope.infoAdd.OtherInfo.Convenient)
             $scope.infoAdd.MoreImages = JSON.stringify($scope.infoAdd.MoreImages)
             console.log($scope.infoAdd)
             debugger;
