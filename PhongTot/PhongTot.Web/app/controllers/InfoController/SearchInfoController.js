@@ -7,11 +7,11 @@
 
         $scope.slider = {
             minValue: 0,
-            maxValue: 50000000,
+            maxValue: 50,
             options: {
                 floor: 0,
-                ceil: 50000000,
-                step: 500000,
+                ceil: 50,
+                step: 0.5,
                 precision: 1,
                 hideLimitLabels: true,
                 hidePointerLabels: true,
@@ -30,10 +30,12 @@
                     Provinceid: $scope.keywords.Provinceid
                 }
             }
-
+            //$window.location.href = '/Info/Search?CategoryID=' + $scope.keywords.CategoryID + '&PriceFrom=' + $scope.slider.minValue +
+            //    '&PriceTo=' + $scope.slider.maxValue + '&Wardid=' + $scope.keywords.Wardid + '&Districtid=' + $scope.keywords.Districtid + '&Provinceid=' + $scope.keywords.Provinceid;
             apiService.get('http://localhost:33029/api/info/search', config, function (result) {
                 $scope.Info = result.data;
                 console.log($scope.Info);
+                $window.location.href = '/Info/Search';
             }, function () {
                 notificationService.displayError('Lỗi');
             });
