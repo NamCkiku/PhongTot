@@ -228,6 +228,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InfoModel.cs" />
+    <Compile Include="Models\InfoSearchModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoomsIdentity.Context.cs">
       <AutoGen>True</AutoGen>
@@ -258,6 +259,9 @@
     <Content Include="app\services\apiService.js" />
     <Content Include="app\services\fileUploadService.js" />
     <Content Include="bower_components\angular-file-upload\angular-file-upload.js" />
+    <Content Include="bower_components\angular-sanitize\angular-sanitize.js" />
+    <Content Include="bower_components\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="bower_components\angular-sanitize\index.js" />
     <Content Include="bower_components\angular-ui-tinymce\dist\tinymce.min.js" />
     <Content Include="bower_components\angular-ui-tinymce\src\tinymce.js" />
     <Content Include="bower_components\angularjs-slider\demo\demo.css" />
@@ -945,6 +949,14 @@
     <Content Include="bower_components\checklist-model\.bower.json" />
     <Content Include="bower_components\checklist-model\bower.json" />
     <Content Include="bower_components\checklist-model\readme.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower_components\angular-sanitize\.bower.json" />
+    <Content Include="bower_components\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="bower_components\angular-sanitize\bower.json" />
+    <Content Include="bower_components\angular-sanitize\LICENSE.md" />
+    <Content Include="bower_components\angular-sanitize\package.json" />
+    <Content Include="bower_components\angular-sanitize\README.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
