@@ -101,7 +101,7 @@ namespace PhongTot.Service
         }
         public IEnumerable<Info> Search(InfoSearchModel filterParams)
         {
-            var query = _inforRepository.GetAll();
+            var query = _inforRepository.GetAll(new string[] { "CategoryInfo", "Province", "OtherInfo", "Districtid1", "Wardid1" });
             if(filterParams == null)
             {
                 return query.ToList();

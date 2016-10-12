@@ -2,1367 +2,310 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_LayoutDetail.cshtml";
 }
-<div class="col-md-9" ng-controller="SearchInfoController">
-    <div class="row">
-        <div class="col-md-12 room-main-content">
-            <div class="pt-breadcrumb">
-                <ol class="breadcrumb">
-                    <li><a href="http://phongtot.vn">Trang chủ</a></li>
-                    <li class="active">Tìm kiếm</li>
-                </ol>
+<div  ng-controller="SearchInfoController" class="">
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12 room-main-content">
+                <div class="pt-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="http://phongtot.vn">Trang chủ</a></li>
+                        <li class="active">Tìm kiếm</li>
+                    </ol>
+                </div>
+                <div class="room-list-category">
+                    <div class="pull-left">
+                        <a href="javascript:void(0);"><h3><span>Kết quả lọc và tìm kiếm </span><i class="fa fa-angle-right"></i></h3></a>
+                    </div>
+                    <div class="pull-right">
+                        <form id="order_form" class="form-inline form-oder-category" method="post" action="http://phongtot.vn/order">
+                            <input type="hidden">
+                            <div class="form-group">
+                                <a class="btn btn-select btn-select-light btn-oder-price">
+                                    <input type="hidden" class="btn-select-input" id="price" name="price" value="null">
+                                    <span class="btn-select-value">Sắp xếp giá</span>
+                                    <span class="btn-select-arrow fa fa-angle-down"></span>
+                                    <ul>
+                                        <li class="get_price">Giá tăng dần</li>
+                                        <li class="get_price">Giá giảm dần</li>
+                                    </ul>
+                                </a>
+                            </div>
+                            <div class="form-group">
+                                <a class="btn btn-select btn-select-light btn-oder-time">
+                                    <input type="hidden" class="btn-select-input" id="time" name="time" value="">
+                                    <span class="btn-select-value">Sắp xếp thời gian</span>
+                                    <span class="btn-select-arrow fa fa-angle-down"></span>
+                                    <ul>
+                                        <li class="get_time">Cũ nhất</li>
+                                        <li class="get_time">Mới nhất</li>
+                                    </ul>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </div>
+                <div class="room-list">
+                    <div class="room-item" ng-repeat="items in Info">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="block-room-item-title">
+                                    <a href="/Info/Detail/{{items.ID}}">{{items.Name}}</a>
+                                </div>
+                                <div class="col-md-3 room-item-thumbnail">
+                                    <div class="row">
+                                        <a class="col-md-12 thumbnail room-item-main-img" href="/Info/Detail/{{items.ID}}">
+                                            <img class="img-reponsive" src="http://localhost:33029/Content/images/{{items.Image}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 room-item-i">
+                                    <div class="block-room-item-address">
+                                        <span>Địa chỉ: </span>
+                                        <a>
+                                            {{items.Wardid1.name}} - {{items.Districtid1.name}} - {{items.Province.name}}
+                                        </a>
+                                    </div>
+                                    <div class="block-room-item-info">
+                                        <div class="pull-left">
+                                            <span>Diện tích: </span><a>{{items.Acreage}}m2</a>
+                                        </div>
+                                        <div class="pull-right item-info-date">
+                                            <a>
+                                                {{items.CreateDate|date:'dd/MM/yyyy hh:mm:ss'}}
+                                            </a>
+                                        </div>
+                                        <div class="item-info-vs">
+                                            <span>Vệ sinh: </span><a>{{items.OtherInfo.ToiletNumber}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="block-room-item-price">
+                                        <span>Giá cả: </span><a>{{items.Price| number}} Đ/tháng</a>
+                                    </div>
+                                    <div class="block-room-item-btn">
+                                        <a class="btn btn-room-detail" href="/Info/Detail/{{items.ID}}">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('.btn-room-save').on('click', function (e) {
+                            var i = $(this); var div = i.parent();
+                            $.ajax({
+                                url: i.attr('_url'),
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (result) {
+                                    i.remove(); div.append(result);
+                                    setTimeout(function () {
+                                        $('.flash-mesage').remove();
+                                    }, 1000);
+                                }
+                            });
+                        });
+                    });</script>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=1" rel="prev">«</a>
+                                </li>
+                                <li class="active">
+                                    <span>1</span>
+                                </li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">2</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">3</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=4">4</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=5">5</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=6">6</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=7">7</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=8">8</a></li>
+                                <li class="disabled"><span>...</span></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=28">28</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=29">29</a></li>
+                                <li>
+                                    <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3" rel="next">»</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="room-list-category">
+        </div>
+    </div>
+    <div class="col-md-3 sidebar">
+        <div class="row">
+            <div class="col-sm-6 col-md-12">
+                <div class="advance-search">
+                    <div class="title">
+                        <a id="submit_search" href="javascript:void(0);"><span class="fa fa-search"></span></a>Tìm kiếm nâng cao
+                    </div>
+                    <div class="shr"><hr></div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select class="form-control address_input" name="province_id" ng-change="getAlDistrictByProvince(keywords.Provinceid)" ng-model="keywords.Provinceid" ng-options="option.provinceid as option.name for option in province">
+                                <option value="">Chọn Tỉnh Thành</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select name="district_id" ng-change="getAlWardByDistrict(keywords.Districtid)" ng-model="keywords.Districtid" ng-options="option.districtid1 as option.name for option in district" class="form-control address_input">
+                                <option value="">Chọn Tỉnh/Thành trước</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select id="street_id" name="ward_id" ng-model="keywords.Wardid" ng-options="option.wardid1 as option.name for option in ward" class="form-control address_input" size="1">
+                                <option value="">Chọn Quận/huyện trước</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select id="street_id" name="ward_id" ng-model="keywords.CategoryID" ng-options="option.CategoryID as option.Name for option in categoryinfo" class="form-control address_input" size="1">
+                                <option value="">Chọn Loại Phòng</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="group-price pull-left" style="width: 100%;">
+                        <div class="group-title">Chọn khoảng giá</div>
+                        <rzslider rz-slider-model="slider.minValue"
+                                  rz-slider-high="slider.maxValue"
+                                  rz-slider-options="slider.options"></rzslider>
+                        <div class="extra-controls">
+                            <div class="form-group input-price">
+                                <div class="price-from">
+                                    <div class="input-group">
+                                        <input type="text" name="price_from" ng-model="slider.minValue" class="inp js-from form-control">
+                                        <span class="input-group-addon">Triệu</span>
+                                    </div>
+                                </div>
+                                <span class="input-price-title">Đến</span>
+                                <div class="price-to">
+                                    <div class="input-group">
+                                        <input type="text" name="price_to" ng-model="slider.maxValue" class="inp js-to form-control">
+                                        <span class="input-group-addon">Triệu</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group submit">
+                        <button type="submit" ng-click="search()" class="btn btn-slide-search"><span class="fa fa-search"></span>Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 sidebar-article-label">
                 <div class="pull-left">
-                    <a href="javascript:void(0);"><h3><span>Kết quả lọc và tìm kiếm </span><i class="fa fa-angle-right"></i></h3></a>
+                    <a href="http://phongtot.vn/bai-viet"><h3><span>bài viết</span> mới</h3></a>
                 </div>
                 <div class="pull-right">
-                    <form id="order_form" class="form-inline form-oder-category" method="post" action="http://phongtot.vn/order">
-                        <input type="hidden">
-                        <div class="form-group">
-                            <a class="btn btn-select btn-select-light btn-oder-price">
-                                <input type="hidden" class="btn-select-input" id="price" name="price" value="null">
-                                <span class="btn-select-value">Sắp xếp giá</span>
-                                <span class="btn-select-arrow fa fa-angle-down"></span>
-                                <ul>
-                                    <li class="get_price">Giá tăng dần</li>
-                                    <li class="get_price">Giá giảm dần</li>
-                                </ul>
-                            </a>
-                        </div>
-                        <div class="form-group">
-                            <a class="btn btn-select btn-select-light btn-oder-time">
-                                <input type="hidden" class="btn-select-input" id="time" name="time" value="">
-                                <span class="btn-select-value">Sắp xếp thời gian</span>
-                                <span class="btn-select-arrow fa fa-angle-down"></span>
-                                <ul>
-                                    <li class="get_time">Cũ nhất</li>
-                                    <li class="get_time">Mới nhất</li>
-                                </ul>
-                            </a>
-                        </div>
-                    </form>
+                    <a href="http://phongtot.vn/bai-viet"></a><h3>
+                        <a href="http://phongtot.vn/bai-viet">Xem thêm <i class="fa fa-angle-right"></i></a>
+                    </h3>
                 </div>
                 <div class="clearfix"></div>
                 <hr>
             </div>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('.get_price').on('click', function (e) {
-                        var i = $(this).text(); price.value = i; time.value = '';
-                        $('#order_form').submit();
-                    }); $('.get_time').on('click', function (e) {
-                        var i = $(this).text(); price.value = '';
-                        time.value = i; $('#order_form').submit();
-                    });
-                    $('body').on('click', '.fill-target',
-                        function () {
-                            window.location.href = $(this).find('a').attr('href');
-                        });
-                });
-            </script>
-            <div class="room-list">
-                <div class="room-item">
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-56-ngo-175-xuan-thuy">Cho thuê phòng trọ số 56, Ngõ 175 Xuân Thủy</a>
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo_cover-573eddf84424b.jpg" alt="" pagespeed_url_hash="1469250980" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Ngôi nhà 46m² tuyệt đẹp có chi phí hoàn thiện 480 triệu đồng chàng trai 8x xây tặng vợ</h2>
                             </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-56-ngo-175-xuan-thuy">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-56-ngo-175-xuan-thuy-thumb-vtjyz.jpg" alt="" pagespeed_url_hash="2383871492" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-56-ngo-175-xuan-thuy-vtjyz.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 56, Ng&otilde; 175 Xu&acirc;n Thủy">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 56, Ngõ 175
-                                        Xuân Thủy - Dịch Vọng Hậu - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>30m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            5 ngày trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,000,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                    <span>Mình có phòng 2 triệu ở ngõ 175 Xuân Thuỷ, phòng khép kín, nhà tập thể. Giờ giấc đi lại thoải mái. P......</span>
-                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-56-ngo-175-xuan-thuy">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-56-ngo-175-xuan-thuy" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
                         </div>
                     </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-45-ngo-175-xuan-thuy">Cho thuê phòng trọ số 45, Ngõ 175 Xuân Thủy</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-45-ngo-175-xuan-thuy">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-45-ngo-175-xuan-thuy-thumb-iu636.jpg" alt="" pagespeed_url_hash="1420829492" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-45-ngo-175-xuan-thuy-iu636.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 45, Ng&otilde; 175 Xu&acirc;n Thủy">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 45, Ngõ 175
-                                        Xuân Thủy - Dịch Vọng Hậu - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>18m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            5 ngày trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,000,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Mình cần nhượng lại phòng nếu có thể chuyển đến ở luôn trong ngày mai 
-                                phòng ở ngõ 175 xuân thuỷ cầ......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-45-ngo-175-xuan-thuy">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-45-ngo-175-xuan-thuy" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/tim-nu-o-ghep-so-34-ngo-255-cau-giay">Tìm nữ ở ghép số 34, Ngõ 255 Cầu Giấy</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/tim-nu-o-ghep-so-34-ngo-255-cau-giay">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/tim-nu-o-ghep-so-34-ngo-255-cau-giay-thumb-vlkpb.jpg" alt="" pagespeed_url_hash="695944909" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/tim-nu-o-ghep-so-34-ngo-255-cau-giay-wfb7p.jpg" alt="T&igrave;m nữ ở gh&eacute;p số 34, Ng&otilde; 255 Cầu Giấy">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/tim-nu-o-ghep-so-34-ngo-255-cau-giay-rnvlx.jpg" alt="T&igrave;m nữ ở gh&eacute;p số 34, Ng&otilde; 255 Cầu Giấy">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/tim-nu-o-ghep-so-34-ngo-255-cau-giay-n2jrk.jpg" alt="T&igrave;m nữ ở gh&eacute;p số 34, Ng&otilde; 255 Cầu Giấy">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/tim-nu-o-ghep-so-34-ngo-255-cau-giay-vlkpb.jpg" alt="T&igrave;m nữ ở gh&eacute;p số 34, Ng&otilde; 255 Cầu Giấy">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/tim-nu-o-ghep-so-34-ngo-255-cau-giay-4auu3.jpg" alt="T&igrave;m nữ ở gh&eacute;p số 34, Ng&otilde; 255 Cầu Giấy">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 34, Ngõ 255 Cầu Giấy
-                                        Cầu Giấy - Dịch Vọng Hậu - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>20m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            6 ngày trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,300,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>CHÍNH CHỦ. Phòng 20m2 giá chỉ từ 2.3 triệu cách ĐH GTVT 5p đi xe máy !
-                                * Phòng tầng 3 ngay gần mạn......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/tim-nu-o-ghep-so-34-ngo-255-cau-giay">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/tim-nu-o-ghep-so-34-ngo-255-cau-giay" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/tim-nu-o-ghep-so-5-ngo-105-ho-tung-mau">Tìm nữ ở ghép số 5, Ngõ 105 Hồ Tùng Mậu</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/tim-nu-o-ghep-so-5-ngo-105-ho-tung-mau">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/tim-nu-o-ghep-so-5-ngo-105-ho-tung-mau-thumb-c0g73.jpg" alt="" pagespeed_url_hash="3146299780" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/tim-nu-o-ghep-so-5-ngo-105-ho-tung-mau-c0g73.jpg" alt="T&igrave;m nữ ở gh&eacute;p số 5, Ng&otilde; 105 Hồ T&ugrave;ng Mậu">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 5, Ngõ 105
-                                        Hồ Tùng Mậu - Mai Dịch - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>25m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            6 ngày trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,500,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Tìm Nữ ở ghép.
-                                Hiện tại phòng đã có 2 người nên cần tìm thêm 1 người nữa để share tiền phòng.
-                                Ưu t......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/tim-nu-o-ghep-so-5-ngo-105-ho-tung-mau">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/tim-nu-o-ghep-so-5-ngo-105-ho-tung-mau" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngo-150-hoa-bang">Cho thuê phòng trọ số 6, Ngõ 150 Hoa Bằng</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngo-150-hoa-bang">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-hoa-bang-thumb-1m5xv.jpg" alt="" pagespeed_url_hash="868708010" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-hoa-bang-1m5xv.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 6, Ng&otilde; 150 Hoa Bằng">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 6, Ngõ 150
-                                        Hoa Bằng - Yên Hoà - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>20m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            6 ngày trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,500,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>CHO THUÊ TRỌ GẤP!!!
-                                Hiện nhà mình còn trống 1 phòng (đến ở đầu tháng 10)
-                                Địa chỉ: số 6, ngõ 150 Ho......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngo-150-hoa-bang">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngo-150-hoa-bang" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngo-150-yen-hoa">Cho thuê phòng trọ số 6, Ngõ 150 Yên Hòa </a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngo-150-yen-hoa">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-yen-hoa-thumb-y8pkb.jpg" alt="" pagespeed_url_hash="4057629161" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-yen-hoa-y8pkb.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 6, Ng&otilde; 150 Y&ecirc;n H&ograve;a ">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-yen-hoa-8nkp0.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 6, Ng&otilde; 150 Y&ecirc;n H&ograve;a ">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-yen-hoa-lfzgo.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 6, Ng&otilde; 150 Y&ecirc;n H&ograve;a ">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-yen-hoa-w3cof.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 6, Ng&otilde; 150 Y&ecirc;n H&ograve;a ">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-yen-hoa-wxk3i.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 6, Ng&otilde; 150 Y&ecirc;n H&ograve;a ">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-yen-hoa-4au99.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 6, Ng&otilde; 150 Y&ecirc;n H&ograve;a ">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngo-150-yen-hoa-srrrj.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 6, Ng&otilde; 150 Y&ecirc;n H&ograve;a ">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 6, Ngõ 150
-                                        Yên Hòa - Yên Hoà - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>25m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            6 ngày trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,500,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Hanoi, Vietnam
-
-                                Mạng: 100k/phòng
-                                Điện tính giá cố định tùy theo thiết bị điện sử dụng
-                                Liên hệ 01......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngo-150-yen-hoa">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngo-150-yen-hoa" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-40-ngo-165-cau-giay">Cho thuê phòng trọ số 40, Ngõ 165 Cầu Giấy</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-40-ngo-165-cau-giay">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-40-ngo-165-cau-giay-thumb-2jbtc.jpg" alt="" pagespeed_url_hash="647614119" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-40-ngo-165-cau-giay-vl3rp.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 40, Ng&otilde; 165 Cầu Giấy">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-40-ngo-165-cau-giay-2jbtc.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 40, Ng&otilde; 165 Cầu Giấy">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-40-ngo-165-cau-giay-qgabw.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 40, Ng&otilde; 165 Cầu Giấy">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-40-ngo-165-cau-giay-2u6ay.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 40, Ng&otilde; 165 Cầu Giấy">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-40-ngo-165-cau-giay-wvbq7.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 40, Ng&otilde; 165 Cầu Giấy">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 40, Ngõ 165 Cầu Giấy
-                                        Cầu Giấy - Dịch Vọng Hậu - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>30m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            6 ngày trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,700,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                    <span>Nhà mình có 1 phòng trọ 30m2 có cả gác xếp, nhà sạch đẹp thoáng mát, phòng vệ sinh khép kín, phù hợp......</span>
-                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-40-ngo-165-cau-giay">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-40-ngo-165-cau-giay" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngach-28-ngo-260-cau-giay">Cho thuê phòng trọ số 6, Ngách 28, Ngõ 260 Cầu Giấy</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngach-28-ngo-260-cau-giay">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngach-28-ngo-260-cau-giay-thumb-vemvn.jpg" alt="" pagespeed_url_hash="1362025403" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-6-ngach-28-ngo-260-cau-giay-vemvn.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 6, Ng&aacute;ch 28, Ng&otilde; 260 Cầu Giấy">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 6, Ngách 28, Ngõ 260
-                                        Cầu Giấy - Dịch Vọng Hậu - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>30m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            6 ngày trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,500,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                    <span>Cần cho thuê phòng DT 35m2, DT: 30m2 tầng 3 và tầng 1, có nóng lạnh , tiền điện, nước tính theo giá......</span>
-                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngach-28-ngo-260-cau-giay">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-6-ngach-28-ngo-260-cau-giay" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-4-ngo-110-tran-duy-hung">Cho thuê phòng trọ số 4, Ngõ 110 Trần Duy Hưng</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-4-ngo-110-tran-duy-hung">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-4-ngo-110-tran-duy-hung-thumb-xvmvm.jpg" alt="" pagespeed_url_hash="124554363" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-4-ngo-110-tran-duy-hung-xvmvm.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 4, Ng&otilde; 110 Trần Duy Hưng">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 4, Ngõ 110
-                                        Trần Duy Hưng - Trung Hoà - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>30m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            6 ngày trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>4,100,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Chính chủ cho thuê căn hộ mới xây 100% tại đường Trần Duy Hưng – Trung Hòa, 30m2 – chỉ 4,1 tr/th
-                                Ch......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-4-ngo-110-tran-duy-hung">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-4-ngo-110-tran-duy-hung" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij">Cho thuê phòng trọ số 5, Ngõ 255 Quan Hoa</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij-thumb-m2vn2.jpg" alt="" pagespeed_url_hash="4090053188" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij-35lea.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 5, Ng&otilde; 255 Quan Hoa">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij-m2vn2.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 5, Ng&otilde; 255 Quan Hoa">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij-6et2u.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 5, Ng&otilde; 255 Quan Hoa">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij-jqxld.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 5, Ng&otilde; 255 Quan Hoa">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij-xqkot.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 5, Ng&otilde; 255 Quan Hoa">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 5, Ngõ 255
-                                        Quan Hoa - Quan Hoa - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>25m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,500,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Cho thuê phòng trọ ở quan hoa, cầu giấy
-                                Cho thuê phòng tầng 1, nhà 5 tầng, rộng 25m, khép kín
-                                Có g......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-1475064011nnqij" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-gan-fivinmart-le-duc-tho">Cho thuê phòng trọ gần Fivinmart Lê Đức Thọ</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-gan-fivinmart-le-duc-tho">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-gan-fivinmart-le-duc-tho-thumb-ae9cv.jpg" alt="" pagespeed_url_hash="2446998086" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-gan-fivinmart-le-duc-tho-xgmyc.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ gần Fivinmart L&ecirc; Đức Thọ">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-gan-fivinmart-le-duc-tho-ae9cv.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ gần Fivinmart L&ecirc; Đức Thọ">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Gần Fivinmart
-                                        Lê Đức Thọ - Mai Dịch - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>20m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,200,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                    <span>Em muốn nhượng lại 1 phòng chung cư mini 20 m2 vệ sinh khép kín các Fivimart Lê Đức Thọ khoảng 50m. ......</span>
-                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-gan-fivinmart-le-duc-tho">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-gan-fivinmart-le-duc-tho" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-21-ngo-89-le-duc-tho-1475057251myfkt">Cho thuê phòng trọ số 21, Ngõ 89 Lê Đức Thọ</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-21-ngo-89-le-duc-tho-1475057251myfkt">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-21-ngo-89-le-duc-tho-1475057251myfkt-thumb-rr21k.jpg" alt="" pagespeed_url_hash="3702937393" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 21, Ngõ 89
-                                        Lê Đức Thọ - Mai Dịch - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>26m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,500,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                    <span>Tôi có phòng khép kín số nhà 21 ngõ 89 đường Lê Đức Thọ cần cho thuê. Căn hộ phù hợp cho sinh viên,......</span>
-                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-21-ngo-89-le-duc-tho-1475057251myfkt">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-21-ngo-89-le-duc-tho-1475057251myfkt" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-3-ngo-208-tran-cung">Cho thuê phòng trọ số 3, Ngõ 208 Trần Cung</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-3-ngo-208-tran-cung">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-3-ngo-208-tran-cung-thumb-2bp3h.jpg" alt="" pagespeed_url_hash="924656419" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-3-ngo-208-tran-cung-vn2dt.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 3, Ng&otilde; 208 Trần Cung">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-3-ngo-208-tran-cung-4gapt.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 3, Ng&otilde; 208 Trần Cung">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-3-ngo-208-tran-cung-avilu.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 3, Ng&otilde; 208 Trần Cung">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-3-ngo-208-tran-cung-vhmrc.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 3, Ng&otilde; 208 Trần Cung">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-3-ngo-208-tran-cung-ezcr6.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 3, Ng&otilde; 208 Trần Cung">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-3-ngo-208-tran-cung-2bp3h.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 3, Ng&otilde; 208 Trần Cung">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 13, Ngõ 208
-                                        Trần Cung - Nghĩa Tân - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>20m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,200,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                    <span>Nhà mình còn trống 3 phòng , bao đẹp , trần cao , thoáng mát , rộng rãi , ở được 2-4 người/ phòng. P......</span>
-                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-3-ngo-208-tran-cung">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-3-ngo-208-tran-cung" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-24-ngo-175-xuan-thuy">Cho thuê phòng trọ số 24, Ngõ 175 Xuân Thủy</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-24-ngo-175-xuan-thuy">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-24-ngo-175-xuan-thuy-thumb-stgeb.jpg" alt="" pagespeed_url_hash="3764548255" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-24-ngo-175-xuan-thuy-stgeb.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 24, Ng&otilde; 175 Xu&acirc;n Thủy">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 24, Ngõ 175
-                                        Xuân Thủy - Dịch Vọng Hậu - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>20m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,600,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Còn 1 phòng 20m2 cho thuê , nhà chính chủ , ở luôn vào cuối tháng 
-                                Nước 30k/ng , mạng 30k/ng , điện......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-24-ngo-175-xuan-thuy">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-24-ngo-175-xuan-thuy" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham">Cho thuê phòng trọ số 4, Ngách 12, Ngõ 165 Dương Quảng Hàm</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham-thumb-9bzes.jpg" alt="" pagespeed_url_hash="3348402760" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham-9bzes.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 4, Ng&aacute;ch 12, Ng&otilde; 165 Dương Quảng H&agrave;m">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham-jbom7.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 4, Ng&aacute;ch 12, Ng&otilde; 165 Dương Quảng H&agrave;m">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham-2whep.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 4, Ng&aacute;ch 12, Ng&otilde; 165 Dương Quảng H&agrave;m">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham-7xe9u.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 4, Ng&aacute;ch 12, Ng&otilde; 165 Dương Quảng H&agrave;m">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham-eizzh.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 4, Ng&aacute;ch 12, Ng&otilde; 165 Dương Quảng H&agrave;m">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 4, Ngách 12, Ngõ 165
-                                        Dương Quảng Hàm - Quan Hoa - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>25m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,500,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Nhượng phòng chung cư mi ni tầng 2 khép kín. Có thang máy. 
-                                Địa chỉ Sn 4 ngách 12 ngõ 165 Dương Quả......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-4-ngach-12-ngo-165-duong-quang-ham" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-28-ngo-43-doan-ke-thien">Cho thuê phòng trọ số 28, Ngõ 43 Doãn Kế Thiện</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-28-ngo-43-doan-ke-thien">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-28-ngo-43-doan-ke-thien-thumb-wlu8h.jpg" alt="" pagespeed_url_hash="441036837" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-28-ngo-43-doan-ke-thien-wktnn.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 28, Ng&otilde; 43 Do&atilde;n Kế Thiện">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-28-ngo-43-doan-ke-thien-wlu8h.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 28, Ng&otilde; 43 Do&atilde;n Kế Thiện">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-28-ngo-43-doan-ke-thien-0petd.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 28, Ng&otilde; 43 Do&atilde;n Kế Thiện">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 28, Ngõ 43
-                                        Trần Bình - Mai Dịch - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>25m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,600,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Còn 1 phòng 25m, ai có như cầu thì đặt luôn nhé
-                                địa chỉ: SN 28 - Ngõ 43 Doãn Kế Thiện - Mai Dịch -......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-28-ngo-43-doan-ke-thien">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-28-ngo-43-doan-ke-thien" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-14-ngach-6635-ngo-66-ho-tung-mau">Cho thuê phòng trọ số 14, Ngách 66/35, Ngõ 66 Hồ Tùng Mậu</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-14-ngach-6635-ngo-66-ho-tung-mau">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-14-ngach-6635-ngo-66-ho-tung-mau-thumb-84seu.jpg" alt="" pagespeed_url_hash="2009177687" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-14-ngach-6635-ngo-66-ho-tung-mau-29xup.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 14, Ng&aacute;ch 66/35, Ng&otilde; 66 Hồ T&ugrave;ng Mậu">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-14-ngach-6635-ngo-66-ho-tung-mau-84seu.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 14, Ng&aacute;ch 66/35, Ng&otilde; 66 Hồ T&ugrave;ng Mậu">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-14-ngach-6635-ngo-66-ho-tung-mau-rtqtq.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 14, Ng&aacute;ch 66/35, Ng&otilde; 66 Hồ T&ugrave;ng Mậu">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-14-ngach-6635-ngo-66-ho-tung-mau-5nxg2.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 14, Ng&aacute;ch 66/35, Ng&otilde; 66 Hồ T&ugrave;ng Mậu">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 14, Ngách 66/35, Ngõ 66
-                                        Hồ Tùng Mậu - Mai Dịch - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>35m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>3,000,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Chính chủ cho thuê nhà khép kín
-                                Các bậc phụ huynh và các bạn tân sinh viên có nhu cầu hãy gọi chủ n......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-14-ngach-6635-ngo-66-ho-tung-mau">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-14-ngach-6635-ngo-66-ho-tung-mau" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-5-ngo-255-quan-hoa">Cho thuê phòng trọ số 5, Ngõ 255 Quan Hoa</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-5-ngo-255-quan-hoa">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-thumb-domyq.jpg" alt="" pagespeed_url_hash="3428328831" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-xf0jf.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 5, Ng&otilde; 255 Quan Hoa">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-a71zu.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 5, Ng&otilde; 255 Quan Hoa">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-cl7qe.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 5, Ng&otilde; 255 Quan Hoa">
-                                    </div> -->
-                                    <!-- <div class="col-md-4 thumbnail">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-5-ngo-255-quan-hoa-domyq.jpg" alt="Cho thu&ecirc; ph&ograve;ng trọ số 5, Ng&otilde; 255 Quan Hoa">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 5, Ngõ 255
-                                        Quan Hoa - Quan Hoa - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>25m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,500,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                                    <span>Cho thuê phòng trọ ở quan hoa, cầu giấy
-                                Cho thuê phòng tầng 1, nhà 5 tầng, rộng 25m, khép kín
-                                Có g......</span>
-                                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-5-ngo-255-quan-hoa">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-5-ngo-255-quan-hoa" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-27-ngo-94-ho-tung-mau-1474873730jgr9k">Cho thuê phòng trọ số 27, Ngõ 94 Hồ Tùng Mậu</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-27-ngo-94-ho-tung-mau-1474873730jgr9k">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-so-27-ngo-94-ho-tung-mau-1474873730jgr9k-thumb-xkfv4.jpg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        Số 27, Ngõ 94
-                                        Hồ Tùng Mậu - Mai Dịch - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>15m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,000,000 Đ/tháng</a>
-                                </div>
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-phong-tro-so-27-ngo-94-ho-tung-mau-1474873730jgr9k">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/cho-thue-phong-tro-so-27-ngo-94-ho-tung-mau-1474873730jgr9k" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="room-item">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="block-room-item-title">
-                                <a href="http://phongtot.vn/phong-tro-nha-tro/nhuong-lai-phong-cho-thue">Nhượng lại phòng cho thuê</a>
-                            </div>
-                            <div class="col-md-3 room-item-thumbnail">
-                                <div class="row">
-                                    <a class="col-md-12 thumbnail room-item-main-img" href="http://phongtot.vn/phong-tro-nha-tro/nhuong-lai-phong-cho-thue">
-                                        <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/nhuong-lai-phong-cho-thue-thumb-6m67t.jpg" alt="" pagespeed_url_hash="1794901836" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-9 room-item-i">
-                                <div class="block-room-item-address">
-                                    <span>Địa chỉ: </span>
-                                    <a>
-                                        nhà 1c, ngõ 3, nguyễn khánh toàn (ngõ đối diện thế giới di động đường nguyễn khánh toàn)
-                                        Nguyễn Khánh Toàn - Quan Hoa - Cầu Giấy - Hà Nội
-                                    </a>
-                                </div>
-                                <div class="block-room-item-info">
-                                    <div class="pull-left">
-                                        <span>Diện tích: </span><a>20m2</a>
-                                    </div>
-                                    <div class="pull-right item-info-date">
-                                        <a>
-                                            1 tuần trước
-                                        </a>
-                                    </div>
-                                    <div class="item-info-vs">
-                                        <span>Vệ sinh: </span><a>Khép kín</a>
-                                    </div>
-                                </div>
-                                <div class="block-room-item-price">
-                                    <span>Giá cả: </span><a>2,200,000 Đ/tháng</a>
-                                </div>
-                                <!-- <div class="block-room-item-des">
-                                    <span>Phòng sạch sẽ, mới xây, chung chủ nhưng giờ giấc đi lại thoải mái, chủ nhà bán đồ tạp hóa , buổi sán......</span>
-                                </div> -->
-                                <div class="block-room-item-btn">
-                                    <a class="btn btn-room-detail" href="http://phongtot.vn/phong-tro-nha-tro/nhuong-lai-phong-cho-thue">Xem chi tiết</a>
-                                    <a class="btn btn-room-save" _url="http://phongtot.vn/luu-tin-ajax/phong-tro-nha-tro/nhuong-lai-phong-cho-thue" href="javascript:void(0);">Lưu tin</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('.btn-room-save').on('click', function (e) {
-                        var i = $(this); var div = i.parent();
-                        $.ajax({
-                            url: i.attr('_url'),
-                            type: 'GET',
-                            dataType: 'json',
-                            success: function (result) {
-                                i.remove(); div.append(result);
-                                setTimeout(function () {
-                                    $('.flash-mesage').remove();
-                                }, 1000);
-                            }
-                        });
-                    });
-                });</script>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pull-right">
-                        <ul class="pagination">
-                            <li>
-                                <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=1" rel="prev">«</a>
-                            </li>
-                            <li class="active">
-                                <span>1</span>
-                            </li>
-                            <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">2</a></li>
-                            <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">3</a></li>
-                            <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=4">4</a></li>
-                            <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=5">5</a></li>
-                            <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=6">6</a></li>
-                            <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=7">7</a></li>
-                            <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=8">8</a></li>
-                            <li class="disabled"><span>...</span></li>
-                            <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=28">28</a></li>
-                            <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=29">29</a></li>
-                            <li>
-                                <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3" rel="next">»</a>
-                            </li>
-                        </ul>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu_cover-573dcbc3ac6e2.jpg" alt="" pagespeed_url_hash="2616505349" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Ý tưởng kinh doanh nhà trọ, ngồi không mỗi tháng kiếm trăm triệu?</h2>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/nhung-dieu-can-biet-khi-tim-phong-tro_cover-5714ad734268d.jpg" alt="" pagespeed_url_hash="1795872361" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Những điều cần biết khi tìm phòng trọ</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/thiet-ke-can-ho-‪‬173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong_cover-57018c103e17a.jpg" alt="">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Thiết kế căn hộ ‪‬173m2 cực đẹp với chi phí chỉ 17 triệu đồng</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien_cover-57018a97e544c.jpg" alt="" pagespeed_url_hash="2806860473" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Phạm Hương mặc giản dị giao lưu cùng sinh viên</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/vi-sao-chon-nganh-hot-van-that-nghiep_cover-57017e8c0162e.jpg" alt="" pagespeed_url_hash="133360725" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Vì sao chọn ngành 'hot' vẫn thất nghiệp?</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
 </div>
-<div class="col-md-3 sidebar">
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-12 sidebar-article-label">
-            <div class="pull-left">
-                <a href="http://phongtot.vn/bai-viet"><h3><span>bài viết</span> mới</h3></a>
-            </div>
-            <div class="pull-right">
-                <a href="http://phongtot.vn/bai-viet"></a><h3>
-                    <a href="http://phongtot.vn/bai-viet">Xem thêm <i class="fa fa-angle-right"></i></a>
-                </h3>
-            </div>
-            <div class="clearfix"></div>
-            <hr>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo_cover-573eddf84424b.jpg" alt="" pagespeed_url_hash="1469250980" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Ngôi nhà 46m² tuyệt đẹp có chi phí hoàn thiện 480 triệu đồng chàng trai 8x xây tặng vợ</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu_cover-573dcbc3ac6e2.jpg" alt="" pagespeed_url_hash="2616505349" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Ý tưởng kinh doanh nhà trọ, ngồi không mỗi tháng kiếm trăm triệu?</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/nhung-dieu-can-biet-khi-tim-phong-tro_cover-5714ad734268d.jpg" alt="" pagespeed_url_hash="1795872361" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Những điều cần biết khi tìm phòng trọ</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/thiet-ke-can-ho-‪‬173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong_cover-57018c103e17a.jpg" alt="">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Thiết kế căn hộ ‪‬173m2 cực đẹp với chi phí chỉ 17 triệu đồng</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien_cover-57018a97e544c.jpg" alt="" pagespeed_url_hash="2806860473" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Phạm Hương mặc giản dị giao lưu cùng sinh viên</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/vi-sao-chon-nganh-hot-van-that-nghiep_cover-57017e8c0162e.jpg" alt="" pagespeed_url_hash="133360725" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Vì sao chọn ngành 'hot' vẫn thất nghiệp?</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
-

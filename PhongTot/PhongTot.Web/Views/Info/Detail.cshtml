@@ -2,6 +2,7 @@
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_LayoutDetail.cshtml";
 }
+
 <script type="text/javascript">
     $(document).ready(function () {
         var sync1 = $("#sync1");
@@ -182,8 +183,8 @@
                                 <div class="clearfix"></div>
                                 <hr>
                             </div>
-                            <div class="dis-content">
-                                {{infoDetail.Content}}
+                            <div class="dis-content" ng-bind-html="infoDetail.Content">
+                                @*{{}}*@
                             </div>
                         </div>
                     </div>

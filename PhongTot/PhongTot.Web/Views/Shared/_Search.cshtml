@@ -71,7 +71,6 @@
             <div class="clearfix"></div>
             <div class="group-btn-submit">
                 <button type="submit" ng-click="search()" class="btn btn-slide-search"><span class="fa fa-search"></span>Tìm kiếm</button>
-                <button type="submit" class="btn btn-advance-search">Tìm Nâng Cao</button>
             </div>
         </div>
     </div>
@@ -79,89 +78,73 @@
 <div class="slider slider-small hidden-md hidden-lg">
     <div class="pt_container">
         <div ng-controller="SearchInfoController" class="col-xs-12 col-sm-12 search-bar">
-            <form class="form" action="http://phongtot.vn/tim-kiem" method="GET">
-                <div class="group-arena">
-                    <div class="group-title">Chọn khu vực</div>
-                    <input class="ip-room-where" type="text" placeholder="Bạn muốn tìm phòng ở đâu ?">
-                    <a class="btn btn-select btn-select-light btn-select-city">
-                        <input type="hidden" class="btn-select-input" id="province" name="province" value="">
-                        <span class="btn-select-value">Thành Phố</span>
-                        <span class="btn-select-arrow fa fa-angle-down"></span>
-                        <ul>
-                            <li class="province" value="1">Hà Nội</li>
-                            <li class="province" value="31">Hải Phòng</li>
-                            <li class="province" value="48">Đà Nẵng</li>
-                            <li class="province" value="79">Hồ Chí Minh</li>
-                            <li class="province" value="92">Cần Thơ</li>
-                        </ul>
-                    </a>
-                    <a class="btn btn-select btn-select-light btn-select-city">
-                        <input type="hidden" class="btn-select-input" name="district" value="">
-                        <span class="btn-select-value">Quận</span>
-                        <span class="btn-select-arrow fa fa-angle-down"></span>
-                        <ul id="district"></ul>
-                    </a>
-                </div>
-                <div class="clearfix"></div>
-                <div class="group-type">
-                    <div class="group-title">Chọn loại phòng</div>
-                    <div class="radio radio-danger">
-                        <ul class="type-list-item">
-                            <li>
-                                <input type="radio" name="type[]" id="1" value="1">
-                                <label for="1">Phòng trọ, nhà trọ</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="type[]" id="2" value="2">
-                                <label for="2">Nhà nguyên căn</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="type[]" id="3" value="3">
-                                <label for="3">Nhà mặt phố</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="type[]" id="4" value="4">
-                                <label for="4">Văn phòng</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="type[]" id="6" value="6">
-                                <label for="6">Chung cư, căn hộ</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="type[]" id="7" value="7">
-                                <label for="7">Mặt bằng, cửa hàng</label>
-                            </li>
-                        </ul>
+            <div class="group-arena">
+                <div class="group-title">Chọn khu vực</div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select class="form-control address_input" name="province_id" ng-change="getAlDistrictByProvince(keywords.Provinceid)" ng-model="keywords.Provinceid" ng-options="option.provinceid as option.name for option in province">
+                                <option value="">Chọn Tỉnh Thành</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select name="district_id" ng-change="getAlWardByDistrict(keywords.Districtid)" ng-model="keywords.Districtid" ng-options="option.districtid1 as option.name for option in district" class="form-control address_input">
+                                <option value="">Chọn Tỉnh/Thành trước</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select id="street_id" name="ward_id" ng-model="keywords.Wardid" ng-options="option.wardid1 as option.name for option in ward" class="form-control address_input" size="1">
+                                <option value="">Chọn Quận/huyện trước</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="clearfix"></div>
-                <div class="group-price">
-                    <div class="group-title">Chọn khoảng giá</div>
-                    <div class="extra-controls">
-                        <div class="form-group input-price">
-                            <div class="price-from">
-                                <div class="input-group">
-                                    <input type="text" name="price_from" class="inp js-from form-control">
-                                    <span class="input-group-addon">Triệu</span>
-                                </div>
+            </div>
+            <div class="group-type">
+                <div class="group-title">Chọn loại phòng</div>
+                <div class="radio radio-danger">
+                    <ul class="type-list-item">
+                        <li ng-repeat="items in categoryinfo">
+                            <input type="radio" ng-model="keywords.CategoryID" name="SearchCategoryID" id="SearchCategoryID-{{items.ID}}" value="{{items.ID}}">
+                            <label for="{{items.ID}}">{{items.Name}}</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="group-price" style="width: 350px;">
+                <div class="group-title">Chọn khoảng giá</div>
+                <rzslider rz-slider-model="slider.minValue"
+                          rz-slider-high="slider.maxValue"
+                          rz-slider-options="slider.options"></rzslider>
+                <div class="extra-controls">
+                    <div class="form-group input-price">
+                        <div class="price-from">
+                            <div class="input-group">
+                                <input type="text" name="price_from" ng-model="slider.minValue" class="inp js-from form-control">
+                                <span class="input-group-addon">Triệu</span>
                             </div>
-                            <span class="input-price-title">Đến</span>
-                            <div class="price-to">
-                                <div class="input-group">
-                                    <input type="text" name="price_to" class="inp js-to form-control">
-                                    <span class="input-group-addon">Triệu</span>
-                                </div>
+                        </div>
+                        <span class="input-price-title">Đến</span>
+                        <div class="price-to">
+                            <div class="input-group">
+                                <input type="text" name="price_to" ng-model="slider.maxValue" class="inp js-to form-control">
+                                <span class="input-group-addon">Triệu</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="clearfix"></div>
-                <div class="group-btn-submit">
-                    <button type="submit" class="btn btn-slide-search"><span class="fa fa-search"></span>Tìm kiếm</button>
-                    <button type="submit" class="btn btn-advance-search hidden-xs">Tìm Nâng Cao</button>
-                </div>
-            </form>
+            </div>
+            <div class="clearfix"></div>
+            <div class="group-btn-submit">
+                <button type="submit" ng-click="search()" class="btn btn-slide-search"><span class="fa fa-search"></span>Tìm kiếm</button>
+            </div>
         </div>
     </div>
 </div>

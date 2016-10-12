@@ -2,7 +2,7 @@
     app.controller('SearchInfoController', SearchInfoController);
 
     SearchInfoController.$inject = ['apiService', '$scope', 'notificationService', 'commonService', '$window'];
-
+  
     function SearchInfoController(apiService, $scope, notificationService, commonService, $window) {
 
         $scope.slider = {
@@ -23,8 +23,8 @@
             var config = {
                 params: {
                     CategoryID: $scope.keywords.CategoryID,
-                    PriceFrom: $scope.slider.minValue,
-                    PriceTo: $scope.slider.maxValue,
+                    //PriceFrom: $scope.slider.minValue,
+                    //PriceTo: $scope.slider.maxValue,
                     Wardid: $scope.keywords.Wardid,
                     Districtid: $scope.keywords.Districtid,
                     Provinceid: $scope.keywords.Provinceid
@@ -35,7 +35,7 @@
             apiService.get('http://localhost:33029/api/info/search', config, function (result) {
                 $scope.Info = result.data;
                 console.log($scope.Info);
-                $window.location.href = '/Info/Search';
+                //$window.location.href = '/Info/Search?CategoryID=' + $scope.keywords.CategoryID + '&PriceFrom=' + $scope.slider.minValue +  '&PriceTo=' + $scope.slider.maxValue + '&Wardid=' + $scope.keywords.Wardid + '&Districtid=' + $scope.keywords.Districtid + '&Provinceid=' + $scope.keywords.Provinceid;
             }, function () {
                 notificationService.displayError('Lỗi');
             });

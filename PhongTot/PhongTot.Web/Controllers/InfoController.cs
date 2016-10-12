@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhongTot.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +18,7 @@ namespace PhongTot.Web.Controllers
         {
             return View();
         }
-        public ActionResult Search()
+        public ActionResult Search(InfoSearchModel filterParams)
         {
             return View();
         }
