@@ -255,7 +255,6 @@
     <Content Include="app\controllers\InfoController\infoController.js" />
     <Content Include="app\controllers\InfoController\infoDetailController.js" />
     <Content Include="app\controllers\InfoController\SearchInfoController.js" />
-    <Content Include="app\directives\owlCarouselDirective.js" />
     <Content Include="app\services\apiService.js" />
     <Content Include="app\services\fileUploadService.js" />
     <Content Include="bower_components\angular-file-upload\angular-file-upload.js" />
@@ -641,6 +640,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\directives\" />
     <Folder Include="App_Data\" />
     <Folder Include="bower_components\checklist-model\test\" />
     <Folder Include="Scripts\" />
