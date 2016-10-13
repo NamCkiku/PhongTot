@@ -11,6 +11,7 @@
     "angular-file-upload": "~2.3.4",
     "angularjs-slider": "~5.5.1",
     "checklist-model": "~0.10.0",
-    "angular-sanitize": "~1.5.8"
+    "angular-sanitize": "~1.5.8",
+    "ng-timeago": "~0.0.2"
   }
 }
