@@ -428,6 +428,8 @@
     <Content Include="bower_components\jquery\src\var\support.js" />
     <Content Include="bower_components\jquery\src\var\toString.js" />
     <Content Include="bower_components\jquery\src\wrap.js" />
+    <Content Include="bower_components\ng-timeago\LICENSE.txt" />
+    <Content Include="bower_components\ng-timeago\ngtimeago.js" />
     <Content Include="bower_components\ngdropzone\demo\component.html" />
     <Content Include="bower_components\ngdropzone\demo\main.html" />
     <Content Include="bower_components\ngdropzone\demo\server-mock.html" />
@@ -957,6 +959,11 @@
     <Content Include="bower_components\angular-sanitize\LICENSE.md" />
     <Content Include="bower_components\angular-sanitize\package.json" />
     <Content Include="bower_components\angular-sanitize\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower_components\ng-timeago\.bower.json" />
+    <Content Include="bower_components\ng-timeago\bower.json" />
+    <Content Include="bower_components\ng-timeago\README.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
