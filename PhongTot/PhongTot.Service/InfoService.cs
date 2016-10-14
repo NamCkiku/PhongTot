@@ -22,6 +22,8 @@ namespace PhongTot.Service
         IEnumerable<Info> GetAll();
         IEnumerable<Info> Search(InfoSearchModel filterParams);
 
+        IEnumerable<Info> GetListInfoByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
+
         Info GetById(int id);
 
         void SaveChanges();
@@ -143,6 +145,33 @@ namespace PhongTot.Service
             var result = query.ToList();
 
             return result;
+        }
+
+
+
+        public IEnumerable<Info> GetListInfoByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow)
+        {
+            var query = _inforRepository.GetMulti(x => x.Status && x.CategoryID == categoryId, new string[] { "CategoryInfo", "Province", "OtherInfo", "Districtid1", "Wardid1" });
+
+            switch (sort)
+            {
+                case "viewcount":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "province":
+                    query = query.OrderByDescending(x => x.Province.name);
+                    break;
+                case "price":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreateDate);
+                    break;
+            }
+
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
     }
 }

@@ -1,0 +1,311 @@
+﻿@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+<div class="">
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12 room-main-content">
+                <div class="pt-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="http://phongtot.vn">Trang chủ</a></li>
+                        <li class="active">Tìm kiếm</li>
+                    </ol>
+                </div>
+                <div class="room-list-category">
+                    <div class="pull-left">
+                        <a href="javascript:void(0);"><h3><span>Kết quả lọc và tìm kiếm </span><i class="fa fa-angle-right"></i></h3></a>
+                    </div>
+                    <div class="pull-right">
+                        <form id="order_form" class="form-inline form-oder-category" method="post" action="http://phongtot.vn/order">
+                            <input type="hidden">
+                            <div class="form-group">
+                                <a class="btn btn-select btn-select-light btn-oder-price">
+                                    <input type="hidden" class="btn-select-input" id="price" name="price" value="null">
+                                    <span class="btn-select-value">Sắp xếp giá</span>
+                                    <span class="btn-select-arrow fa fa-angle-down"></span>
+                                    <ul>
+                                        <li class="get_price">Giá tăng dần</li>
+                                        <li class="get_price">Giá giảm dần</li>
+                                    </ul>
+                                </a>
+                            </div>
+                            <div class="form-group">
+                                <a class="btn btn-select btn-select-light btn-oder-time">
+                                    <input type="hidden" class="btn-select-input" id="time" name="time" value="">
+                                    <span class="btn-select-value">Sắp xếp thời gian</span>
+                                    <span class="btn-select-arrow fa fa-angle-down"></span>
+                                    <ul>
+                                        <li class="get_time">Cũ nhất</li>
+                                        <li class="get_time">Mới nhất</li>
+                                    </ul>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </div>
+                <div class="room-list" ng-controller="InfoCategoryController">
+                    <div class="room-item" ng-repeat="items in infos">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="block-room-item-title">
+                                    <a href="/Info/Detail/{{items.ID}}">{{items.Name}}</a>
+                                </div>
+                                <div class="col-md-3 room-item-thumbnail">
+                                    <div class="row">
+                                        <a class="col-md-12 thumbnail room-item-main-img" href="/Info/Detail/{{items.ID}}">
+                                            <img class="img-reponsive" src="http://localhost:33029/Content/images/{{items.Image}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 room-item-i">
+                                    <div class="block-room-item-address">
+                                        <span>Địa chỉ: </span>
+                                        <a>
+                                            {{items.Wardid1.name}} - {{items.Districtid1.name}} - {{items.Province.name}}
+                                        </a>
+                                    </div>
+                                    <div class="block-room-item-info">
+                                        <div class="pull-left">
+                                            <span>Diện tích: </span><a>{{items.Acreage}}m2</a>
+                                        </div>
+                                        <div class="pull-right item-info-date">
+                                            <a>
+                                                {{items.CreateDate|timeago}}
+                                            </a>
+                                        </div>
+                                        <div class="item-info-vs">
+                                            <span>Vệ sinh: </span><a>{{items.OtherInfo.ToiletNumber}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="block-room-item-price">
+                                        <span>Giá cả: </span><a>{{items.Price| number}} Đ/tháng</a>
+                                    </div>
+                                    <div class="block-room-item-btn">
+                                        <a class="btn btn-room-detail" href="/Info/Detail/{{items.ID}}">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('.btn-room-save').on('click', function (e) {
+                            var i = $(this); var div = i.parent();
+                            $.ajax({
+                                url: i.attr('_url'),
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (result) {
+                                    i.remove(); div.append(result);
+                                    setTimeout(function () {
+                                        $('.flash-mesage').remove();
+                                    }, 1000);
+                                }
+                            });
+                        });
+                    });</script>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=1" rel="prev">«</a>
+                                </li>
+                                <li class="active">
+                                    <span>1</span>
+                                </li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">2</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">3</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=4">4</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=5">5</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=6">6</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=7">7</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=8">8</a></li>
+                                <li class="disabled"><span>...</span></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=28">28</a></li>
+                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=29">29</a></li>
+                                <li>
+                                    <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3" rel="next">»</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 sidebar">
+        <div class="row">
+            <div class="col-sm-6 col-md-12">
+                <div class="advance-search" ng-controller="SearchInfoController">
+                    <div class="title">
+                        <a id="submit_search" href="javascript:void(0);"><span class="fa fa-search"></span></a>Tìm kiếm nâng cao
+                    </div>
+                    <div class="shr"><hr></div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select class="form-control address_input" name="province_id" ng-change="getAlDistrictByProvince(keywords.Provinceid)" ng-model="keywords.Provinceid" ng-options="option.provinceid as option.name for option in province">
+                                <option value="">Chọn Tỉnh Thành</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select name="district_id" ng-change="getAlWardByDistrict(keywords.Districtid)" ng-model="keywords.Districtid" ng-options="option.districtid1 as option.name for option in district" class="form-control address_input">
+                                <option value="">Chọn Tỉnh/Thành trước</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select id="street_id" name="ward_id" ng-model="keywords.Wardid" ng-options="option.wardid1 as option.name for option in ward" class="form-control address_input" size="1">
+                                <option value="">Chọn Quận/huyện trước</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-select btn-select-light btn-select-city">
+                            <select id="street_id" name="ward_id" ng-model="keywords.CategoryID" ng-options="option.CategoryID as option.Name for option in categoryinfo" class="form-control address_input" size="1">
+                                <option value="">Chọn Loại Phòng</option>
+                            </select>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="group-price pull-left" style="width: 100%;">
+                        <div class="group-title">Chọn khoảng giá</div>
+                        <rzslider rz-slider-model="slider.minValue"
+                                  rz-slider-high="slider.maxValue"
+                                  rz-slider-options="slider.options"></rzslider>
+                        <div class="extra-controls">
+                            <div class="form-group input-price">
+                                <div class="price-from">
+                                    <div class="input-group">
+                                        <input type="text" name="price_from" ng-model="slider.minValue" class="inp js-from form-control">
+                                        <span class="input-group-addon">Triệu</span>
+                                    </div>
+                                </div>
+                                <span class="input-price-title">Đến</span>
+                                <div class="price-to">
+                                    <div class="input-group">
+                                        <input type="text" name="price_to" ng-model="slider.maxValue" class="inp js-to form-control">
+                                        <span class="input-group-addon">Triệu</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group submit">
+                        <button type="submit" ng-click="search()" class="btn btn-slide-search"><span class="fa fa-search"></span>Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 sidebar-article-label">
+                <div class="pull-left">
+                    <a href="http://phongtot.vn/bai-viet"><h3><span>bài viết</span> mới</h3></a>
+                </div>
+                <div class="pull-right">
+                    <a href="http://phongtot.vn/bai-viet"></a><h3>
+                        <a href="http://phongtot.vn/bai-viet">Xem thêm <i class="fa fa-angle-right"></i></a>
+                    </h3>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo_cover-573eddf84424b.jpg" alt="" pagespeed_url_hash="1469250980" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Ngôi nhà 46m² tuyệt đẹp có chi phí hoàn thiện 480 triệu đồng chàng trai 8x xây tặng vợ</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu_cover-573dcbc3ac6e2.jpg" alt="" pagespeed_url_hash="2616505349" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Ý tưởng kinh doanh nhà trọ, ngồi không mỗi tháng kiếm trăm triệu?</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/nhung-dieu-can-biet-khi-tim-phong-tro_cover-5714ad734268d.jpg" alt="" pagespeed_url_hash="1795872361" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Những điều cần biết khi tìm phòng trọ</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/thiet-ke-can-ho-‪‬173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong_cover-57018c103e17a.jpg" alt="">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Thiết kế căn hộ ‪‬173m2 cực đẹp với chi phí chỉ 17 triệu đồng</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien_cover-57018a97e544c.jpg" alt="" pagespeed_url_hash="2806860473" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Phạm Hương mặc giản dị giao lưu cùng sinh viên</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-12 sidebar-article-new">
+                <a href="http://phongtot.vn/bai-viet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/vi-sao-chon-nganh-hot-van-that-nghiep_cover-57017e8c0162e.jpg" alt="" pagespeed_url_hash="133360725" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        </div>
+                        <div class="col-md-7 no-padding-left">
+                            <div class="sidebar-article-title">
+                                <h2>Vì sao chọn ngành 'hot' vẫn thất nghiệp?</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
