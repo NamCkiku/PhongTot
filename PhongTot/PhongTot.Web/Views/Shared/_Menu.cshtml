@@ -1,5 +1,5 @@
 ﻿
-<div id="header_nav" class="header-nav">
+<div id="header_nav" class="header-nav" ng-controller="menuController">
     <nav class="navbar">
         <div class="container">
             <div class="row block-navbar">
@@ -12,20 +12,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href=""><span class="fa fa-home"></span></a>
+                        <a class="navbar-brand" href="/Home/Index/"><span class="fa fa-home"></span></a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="">Phòng trọ</a></li>
-                            <li><a href="">Nhà nguyên căn</a></li>
-                            <li><a href="">Nhà mặt phố</a></li>
-                            <li><a href="">Văn phòng</a></li>
-                            <li><a href="">Chung cư, Căn hộ</a></li>
-                            <li><a href="">Mặt bằng</a></li>
-                            <li><a href="">Ở ghép</a></li>
-                            <li><a href="">Bài viết</a></li>
+                            <li ng-repeat="item in categoryinfo"><a href="/Home/Category/{{item.ID}}">{{item.Name}}</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div>

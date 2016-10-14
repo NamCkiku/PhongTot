@@ -90,7 +90,26 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
-
+        [Route("getinfobycategory")]
+        [HttpGet]
+        public HttpResponseMessage GetInfoByCategory(HttpRequestMessage request, int id, int page = 1, string sort = "", int pageSize = 20)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                int totalRow = 0;
+                var model = _infoService.GetListInfoByCategoryIdPaging(id, page, pageSize, sort, out totalRow);
+                totalRow = model.Count();
+                var paginationSet = new PaginationSet<Info>()
+                {
+                    Items = model,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return response;
+            });
+        }
 
         [Route("add")]
         [HttpPost]

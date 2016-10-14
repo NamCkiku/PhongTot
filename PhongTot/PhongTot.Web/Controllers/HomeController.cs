@@ -34,6 +34,10 @@ namespace PhongTot.Web.Controllers
             //}
             return View();
         }
+        public ActionResult Category(int id)
+        {
+            return View();
+        }
         public PartialViewResult _Header()
         {
             return PartialView();
