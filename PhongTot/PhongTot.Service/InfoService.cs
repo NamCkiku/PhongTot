@@ -103,7 +103,7 @@ namespace PhongTot.Service
         }
         public IEnumerable<Info> Search(InfoSearchModel filterParams)
         {
-            var query = _inforRepository.GetAll(new string[] { "CategoryInfo", "Province", "OtherInfo", "Districtid1", "Wardid1" });
+            var query = _inforRepository.GetAll();
             if(filterParams == null)
             {
                 return query.ToList();
@@ -151,7 +151,7 @@ namespace PhongTot.Service
 
         public IEnumerable<Info> GetListInfoByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow)
         {
-            var query = _inforRepository.GetMulti(x => x.Status && x.CategoryID == categoryId, new string[] { "CategoryInfo", "Province", "OtherInfo", "Districtid1", "Wardid1" });
+            var query = _inforRepository.GetMulti(x => x.Status && x.CategoryID == categoryId);
 
             switch (sort)
             {

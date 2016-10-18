@@ -23,20 +23,20 @@
             var config = {
                 params: {
                     id: getID(),
-                    page: 1,                   
-                    sort: "price",
+                    page: page,
+                    sort: "",
                     pageSize: 20
                 }
             }
-            apiService.get('http://localhost:33029/api/info/getinfobycategory' , config, null, function (result) {
+            apiService.get('http://localhost:33029/api/info/getinfobycategory' , config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('Không có bản ghi nào được tìm thấy.');
                 }
-                scope.infos = result.data.Items;
+                $scope.infos = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
-                console.log(scope.infos);
+                console.log($scope.infos);
             }, function () {
                 notificationService.displayError('Load product failed.');
             });
