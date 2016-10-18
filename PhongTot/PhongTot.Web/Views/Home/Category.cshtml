@@ -92,47 +92,26 @@
                         </div>
                     </div>
                 </div>
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('.btn-room-save').on('click', function (e) {
-                            var i = $(this); var div = i.parent();
-                            $.ajax({
-                                url: i.attr('_url'),
-                                type: 'GET',
-                                dataType: 'json',
-                                success: function (result) {
-                                    i.remove(); div.append(result);
-                                    setTimeout(function () {
-                                        $('.flash-mesage').remove();
-                                    }, 1000);
-                                }
-                            });
-                        });
-                    });</script>
+                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="GetInfoByCategory(page)"></pager-directive>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="pull-right">
-                            <ul class="pagination">
+                            
+                            @*<ul class="pagination">
                                 <li>
-                                    <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=1" rel="prev">«</a>
+                                    <a href="" rel="prev">«</a>
                                 </li>
                                 <li class="active">
                                     <span>1</span>
                                 </li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">2</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">3</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=4">4</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=5">5</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=6">6</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=7">7</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=8">8</a></li>
-                                <li class="disabled"><span>...</span></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=28">28</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=29">29</a></li>
+                                <li><a href="">2</a></li>
+                                <li><a href="">3</a></li>
+                                <li><a href="">4</a></li>
+                                <li><a href="">5</a></li>
                                 <li>
-                                    <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3" rel="next">»</a>
+                                    <a href="" rel="next">»</a>
                                 </li>
-                            </ul>
+                            </ul>*@
                         </div>
                     </div>
                 </div>

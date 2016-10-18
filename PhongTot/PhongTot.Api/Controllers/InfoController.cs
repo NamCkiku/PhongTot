@@ -98,7 +98,6 @@ namespace PhongTot.Api.Controllers
             {
                 int totalRow = 0;
                 var model = _infoService.GetListInfoByCategoryIdPaging(id, page, pageSize, sort, out totalRow);
-                totalRow = model.Count();
                 var paginationSet = new PaginationSet<Info>()
                 {
                     Items = model,
