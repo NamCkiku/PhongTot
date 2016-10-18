@@ -18,6 +18,10 @@
                 return id;
             }
         }
+        $scope.sort = function (keyname) {
+            $scope.sortKey = keyname;
+            GetInfoByCategory();
+        }
         $scope.GetInfoByCategory = GetInfoByCategory;
         function GetInfoByCategory(page) {
             page = page || 0;
@@ -25,10 +29,11 @@
                 params: {
                     id: getID(),
                     page: page,
-                    sort: "",
-                    pageSize: 5
+                    sort: $scope.sortKey,
+                    pageSize: 10
                 }
             }
+            $scope.infos = null;
             apiService.get('http://localhost:33029/api/info/getinfobycategory' , config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('Không có bản ghi nào được tìm thấy.');

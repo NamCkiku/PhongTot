@@ -92,7 +92,7 @@ namespace PhongTot.Api.Controllers
         }
         [Route("getinfobycategory")]
         [HttpGet]
-        public HttpResponseMessage GetInfoByCategory(HttpRequestMessage request, int id, int page = 1, string sort = "", int pageSize = 20)
+        public HttpResponseMessage GetInfoByCategory(HttpRequestMessage request, int id, int page = 0, string sort = "", int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
