@@ -52,6 +52,7 @@ namespace PhongTot.Service
                 Name = info.Name,
                 Alias = info.Alias,
                 Phone = info.Phone,
+                Address = info.Address,
                 CategoryID = info.CategoryID,
                 Image = info.Image,
                 MoreImages = info.MoreImages,
