@@ -172,7 +172,7 @@ namespace PhongTot.Service
 
             totalRow = query.Count();
 
-            return query.Skip((page - 1) * pageSize).Take(pageSize);
+            return query.Skip(page * pageSize).Take(pageSize);
         }
     }
 }

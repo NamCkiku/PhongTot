@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_LayoutDetail.cshtml";
 }
 <div class="">
-    <div class="col-md-9">
+    <div class="col-md-9" ng-controller="InfoCategoryController">
         <div class="row">
             <div class="col-md-12 room-main-content">
                 <div class="pt-breadcrumb">
@@ -21,16 +21,16 @@
                             <input type="hidden">
                             <div class="form-group">
                                 <a class="btn btn-select btn-select-light btn-oder-price">
-                                    <input type="hidden" class="btn-select-input" id="price" name="price" value="null">
-                                    <span class="btn-select-value">Sắp xếp giá</span>
+                                    <span class="btn-select-value">Sắp xếp</span>
                                     <span class="btn-select-arrow fa fa-angle-down"></span>
                                     <ul>
-                                        <li class="get_price">Giá tăng dần</li>
-                                        <li class="get_price">Giá giảm dần</li>
+                                        <li ng-click="sort('price')" class="get_price">Theo Giá</li>
+                                        <li ng-click="sort('')" class="get_price">Mới Nhất</li>
+                                        <li ng-click="sort('viewcount')" class="get_price">Xem Nhiều Nhất</li>
                                     </ul>
                                 </a>
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <a class="btn btn-select btn-select-light btn-oder-time">
                                     <input type="hidden" class="btn-select-input" id="time" name="time" value="">
                                     <span class="btn-select-value">Sắp xếp thời gian</span>
@@ -40,13 +40,13 @@
                                         <li class="get_time">Mới nhất</li>
                                     </ul>
                                 </a>
-                            </div>
+                            </div>*@
                         </form>
                     </div>
                     <div class="clearfix"></div>
                     <hr>
                 </div>
-                <div class="room-list" ng-controller="InfoCategoryController">
+                <div class="room-list">
                     <div class="room-item" ng-repeat="items in infos">
                         <div class="row">
                             <div class="col-md-12">
