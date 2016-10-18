@@ -3,7 +3,7 @@ namespace PhongTot.Entities.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitalDB : DbMigration
+    public partial class addAddressInfo : DbMigration
     {
         public override void Up()
         {
@@ -36,6 +36,8 @@ namespace PhongTot.Entities.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 256),
                         Alias = c.String(nullable: false, maxLength: 256),
+                        Phone = c.String(nullable: false, maxLength: 20),
+                        Address = c.String(nullable: false, maxLength: 256),
                         CategoryID = c.Int(nullable: false),
                         Image = c.String(nullable: false, maxLength: 256),
                         MoreImages = c.String(storeType: "xml"),
@@ -107,11 +109,13 @@ namespace PhongTot.Entities.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        FloorNumber = c.Int(),
-                        ToiletNumber = c.Int(),
-                        BedroomNumber = c.Int(),
-                        Compass = c.Int(),
-                        Convenient = c.Int(),
+                        FloorNumber = c.String(),
+                        ToiletNumber = c.String(),
+                        BedroomNumber = c.String(),
+                        Compass = c.String(),
+                        ElectricPrice = c.Int(),
+                        WaterPrice = c.Int(),
+                        Convenient = c.String(storeType: "xml"),
                         CategoryOtherInfoID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
@@ -140,6 +144,17 @@ namespace PhongTot.Entities.Migrations
                     })
                 .PrimaryKey(t => t.ID);
             
+            CreateTable(
+                "dbo.Error",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Message = c.String(),
+                        StackTrace = c.String(),
+                        CreatedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
         }
         
         public override void Down()
@@ -160,6 +175,7 @@ namespace PhongTot.Entities.Migrations
             DropIndex("dbo.Info", new[] { "Districtid" });
             DropIndex("dbo.Info", new[] { "Wardid" });
             DropIndex("dbo.Info", new[] { "CategoryID" });
+            DropTable("dbo.Error");
             DropTable("dbo.CategoryOtherInfo");
             DropTable("dbo.OtherInfo");
             DropTable("dbo.Wardid");

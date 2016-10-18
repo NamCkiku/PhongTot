@@ -64,7 +64,7 @@
                                     <div class="block-room-item-address">
                                         <span>Địa chỉ: </span>
                                         <a>
-                                            {{items.Wardid1.name}} - {{items.Districtid1.name}} - {{items.Province.name}}
+                                            {{items.Address}}
                                         </a>
                                     </div>
                                     <div class="block-room-item-info">
@@ -92,11 +92,10 @@
                         </div>
                     </div>
                 </div>
-                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="GetInfoByCategory(page)"></pager-directive>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="pull-right">
-                            
+                            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="GetInfoByCategory(page)"></pager-directive>
                             @*<ul class="pagination">
                                 <li>
                                     <a href="" rel="prev">«</a>

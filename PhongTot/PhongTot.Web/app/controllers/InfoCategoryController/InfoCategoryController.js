@@ -18,6 +18,7 @@
                 return id;
             }
         }
+        $scope.GetInfoByCategory = GetInfoByCategory;
         function GetInfoByCategory(page) {
             page = page || 0;
             var config = {
@@ -25,7 +26,7 @@
                     id: getID(),
                     page: page,
                     sort: "",
-                    pageSize: 20
+                    pageSize: 5
                 }
             }
             apiService.get('http://localhost:33029/api/info/getinfobycategory' , config, function (result) {
@@ -37,6 +38,9 @@
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
                 console.log($scope.infos);
+                console.log($scope.page);
+                console.log($scope.pagesCount);
+                console.log($scope.totalCount);
             }, function () {
                 notificationService.displayError('Load product failed.');
             });

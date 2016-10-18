@@ -22,6 +22,10 @@ namespace PhongTot.Entities.Models
         [StringLength(20)]
         public string Phone { get; set; }
 
+        [Required]
+        [StringLength(256)]
+        public string Address { get; set; }
+
         public int CategoryID { get; set; }
 
         [Required]

@@ -1,8 +1,8 @@
 ﻿/// <reference path="E:\_Study\_SourceCode\_SourseGithub\PhongTot\PhongTot\PhongTot.Web\bower_components/angular/angular.js" />
 (function (app) {
     app.controller('infoController', infoController);
-    infoController.$inject = ['apiService', '$scope', 'commonService', 'notificationService', 'fileUploadService', '$timeout'];
-    function infoController(apiService, $scope, commonService, notificationService, fileUploadService, $timeout) {
+    infoController.$inject = ['apiService', '$scope', 'commonService', 'notificationService', 'fileUploadService', '$timeout', '$window'];
+    function infoController(apiService, $scope, commonService, notificationService, fileUploadService, $timeout, $window) {
         $scope.Info = [];
         $scope.categoryinfo = [];
         $scope.province = [];

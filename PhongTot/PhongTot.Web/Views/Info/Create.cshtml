@@ -39,8 +39,8 @@
                     <div>
                         <input type="text" id="title" name="Name" ng-change="GetSeoTitle()" ng-maxlength="256" required ng-model="infoAdd.Name" class="form-control" value="">
                         <span class="help-block"></span>
-                        <span ng-show="frmAddInfo.Name.$invalid" class="has-error">Phải nhập tên Tiêu Đề</span>
-                        <span ng-show="frmAddInfo.Name.$error.maxlength" class="has-error">Tên Tiêu Đề chỉ được 256 ký tự</span>
+                        @*<span ng-show="frmAddInfo.Name.$invalid" class="has-error">Phải nhập tên Tiêu Đề</span>
+                        <span ng-show="frmAddInfo.Name.$error.maxlength" class="has-error">Tên Tiêu Đề chỉ được 256 ký tự</span>*@
                     </div>
                 </div>
                 <div class="form-group">
@@ -118,6 +118,15 @@
                             <div class="control-label">Số Điện Thoại</div>
                             <div>
                                 <input type="text" name="Phone" required ng-model="infoAdd.Phone" class="form-control address_input" value="">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="control-label">Địa Chỉ Cụ Thể</div>
+                            <div>
+                                <input type="text" name="Phone" required ng-model="infoAdd.Address" class="form-control address_input" value="">
                                 <span class="help-block"></span>
                             </div>
                         </div>
