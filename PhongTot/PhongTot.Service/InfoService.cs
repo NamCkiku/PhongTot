@@ -20,6 +20,7 @@ namespace PhongTot.Service
         Info Delete(int id);
 
         IEnumerable<Info> GetAll();
+        IEnumerable<Info> GetAllPaging(string keyword);
         IEnumerable<Info> Search(InfoSearchModel filterParams);
 
         IEnumerable<Info> GetListInfoByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
@@ -173,6 +174,14 @@ namespace PhongTot.Service
             totalRow = query.Count();
 
             return query.Skip(page * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<Info> GetAllPaging(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+                return _inforRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+            else
+                return _inforRepository.GetAll();
         }
     }
 }

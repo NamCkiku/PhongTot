@@ -199,6 +199,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
     <Compile Include="Areas\Administrator\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\InfoAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
@@ -263,6 +264,12 @@
     <Content Include="app\services\apiService.js" />
     <Content Include="app\services\fileUploadService.js" />
     <Content Include="app\Shared\menuController\menuController.js" />
+    <Content Include="Areas\Administrator\app\app.js" />
+    <Content Include="Areas\Administrator\app\commonService\notificationService.js" />
+    <Content Include="Areas\Administrator\app\controllers\InfoController\infoAdminController.js" />
+    <Content Include="Areas\Administrator\app\directives\pagerDirective.html" />
+    <Content Include="Areas\Administrator\app\directives\pagerDirective.js" />
+    <Content Include="Areas\Administrator\app\services\apiService.js" />
     <Content Include="bower_components\angular-file-upload\angular-file-upload.js" />
     <Content Include="bower_components\angular-sanitize\angular-sanitize.js" />
     <Content Include="bower_components\angular-sanitize\angular-sanitize.min.js" />
@@ -1056,6 +1063,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Administrator\Views\Shared\_SidebarMenuAdmin.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrator\Views\InfoAdmin\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

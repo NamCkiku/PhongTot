@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html ng-app="myAppAdmin" lang="en">
 <head>
     <meta charset="utf-8">
     <title></title>
@@ -12,6 +12,7 @@
     <link href='http://fonts.googleapis.com/css?family=RobotoDraft:300,400,400italic,500,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700' rel='stylesheet' type='text/css'>
     <link type="text/css" href="~/Content/Admin/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">     <!-- Font Awesome -->
+    <link href="~/bower_components/toastr/toastr.css" rel="stylesheet" />
     <link type="text/css" href="~/Content/Admin/css/styles.css" rel="stylesheet">                                     <!-- Core CSS with all styles -->
 </head>
 <body class="infobar-offcanvas">
@@ -36,5 +37,15 @@
     <script type="text/javascript" src="~/Content/Admin/plugins/nanoScroller/js/jquery.nanoscroller.min.js"></script> <!-- nano scroller -->
     <script type="text/javascript" src="~/Content/Admin/js/application.js"></script>
     <!-- End loading site level scripts -->
+    <!-- Angularjs -->
+    <script src="~/bower_components/angular/angular.js"></script>
+    <script src="~/Areas/Administrator/app/app.js"></script>
+    <script src="~/bower_components/toastr/toastr.js"></script>
+    <script src="~/Areas/Administrator/app/commonService/notificationService.js"></script>
+    <script src="~/Areas/Administrator/app/services/apiService.js"></script>
+    <script src="~/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="~/bower_components/ng-timeago/ngtimeago.js"></script>
+    <script src="~/Areas/Administrator/app/directives/pagerDirective.js"></script>
+    <script src="~/Areas/Administrator/app/controllers/InfoController/infoAdminController.js"></script>
 </body>
 </html>
