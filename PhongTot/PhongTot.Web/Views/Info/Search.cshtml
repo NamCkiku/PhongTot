@@ -21,26 +21,26 @@
                             <input type="hidden">
                             <div class="form-group">
                                 <a class="btn btn-select btn-select-light btn-oder-price">
-                                    <input type="hidden" class="btn-select-input" id="price" name="price" value="null">
-                                    <span class="btn-select-value">Sắp xếp giá</span>
+                                    <span class="btn-select-value">Sắp xếp</span>
                                     <span class="btn-select-arrow fa fa-angle-down"></span>
                                     <ul>
-                                        <li class="get_price">Giá tăng dần</li>
-                                        <li class="get_price">Giá giảm dần</li>
+                                        <li ng-click="sort('price')" class="get_price">Theo Giá</li>
+                                        <li ng-click="sort('')" class="get_price">Mới Nhất</li>
+                                        <li ng-click="sort('viewcount')" class="get_price">Xem Nhiều Nhất</li>
                                     </ul>
                                 </a>
                             </div>
-                            <div class="form-group">
-                                <a class="btn btn-select btn-select-light btn-oder-time">
-                                    <input type="hidden" class="btn-select-input" id="time" name="time" value="">
-                                    <span class="btn-select-value">Sắp xếp thời gian</span>
-                                    <span class="btn-select-arrow fa fa-angle-down"></span>
-                                    <ul>
-                                        <li class="get_time">Cũ nhất</li>
-                                        <li class="get_time">Mới nhất</li>
-                                    </ul>
-                                </a>
-                            </div>
+                            @*<div class="form-group">
+                        <a class="btn btn-select btn-select-light btn-oder-time">
+                            <input type="hidden" class="btn-select-input" id="time" name="time" value="">
+                            <span class="btn-select-value">Sắp xếp thời gian</span>
+                            <span class="btn-select-arrow fa fa-angle-down"></span>
+                            <ul>
+                                <li class="get_time">Cũ nhất</li>
+                                <li class="get_time">Mới nhất</li>
+                            </ul>
+                        </a>
+                    </div>*@
                         </form>
                     </div>
                     <div class="clearfix"></div>
@@ -64,7 +64,7 @@
                                     <div class="block-room-item-address">
                                         <span>Địa chỉ: </span>
                                         <a>
-                                            {{items.Wardid1.name}} - {{items.Districtid1.name}} - {{items.Province.name}}
+                                            {{items.Address}}
                                         </a>
                                     </div>
                                     <div class="block-room-item-info">
@@ -92,47 +92,10 @@
                         </div>
                     </div>
                 </div>
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('.btn-room-save').on('click', function (e) {
-                            var i = $(this); var div = i.parent();
-                            $.ajax({
-                                url: i.attr('_url'),
-                                type: 'GET',
-                                dataType: 'json',
-                                success: function (result) {
-                                    i.remove(); div.append(result);
-                                    setTimeout(function () {
-                                        $('.flash-mesage').remove();
-                                    }, 1000);
-                                }
-                            });
-                        });
-                    });</script>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="pull-right">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=1" rel="prev">«</a>
-                                </li>
-                                <li class="active">
-                                    <span>1</span>
-                                </li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">2</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3">3</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=4">4</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=5">5</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=6">6</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=7">7</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=8">8</a></li>
-                                <li class="disabled"><span>...</span></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=28">28</a></li>
-                                <li><a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=29">29</a></li>
-                                <li>
-                                    <a href="http://phongtot.vn/tim-kiem?k=&amp;province=1&amp;district=5&amp;type%5B0%5D=1&amp;price_from=2&amp;price_to=50&amp;page=3" rel="next">»</a>
-                                </li>
-                            </ul>
+                            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="ResultSearch(page)"></pager-directive>
                         </div>
                     </div>
                 </div>

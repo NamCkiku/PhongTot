@@ -36,7 +36,7 @@ namespace PhongTot.Api.Controllers
         {
             return CreateHttpResponse(request, () =>
             {
-                var listWard = _wardService.GetAllByDistrict(id);
+                var listWard = _wardService.GetAllByDistrict(id).OrderBy(x => x.name);
 
                 //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
 

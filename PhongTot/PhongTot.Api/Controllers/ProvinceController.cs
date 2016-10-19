@@ -22,7 +22,7 @@ namespace PhongTot.Api.Controllers
         {
             return CreateHttpResponse(request, () =>
             {
-                var listInfo = _provinceService.GetAll();
+                var listInfo = _provinceService.GetAll().OrderBy(x=>x.name);
 
                 //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
 
