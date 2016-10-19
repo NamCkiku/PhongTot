@@ -58,7 +58,7 @@
             },
             acceptedFiles: 'image/jpeg, images/jpg, image/png',
             addRemoveLinks: true,
-            autoProcessQueue: false,
+            //autoProcessQueue: false,
         };
         //Handle events for dropzone
         //Visit http://www.dropzonejs.com/#events for more events
@@ -162,8 +162,9 @@
                 if (infoImage) {
                     fileUploadService.uploadImage(infoImage, $scope.infoAdd.ID);
                 }
-                $scope.dzMethods.processQueue();
+                //$scope.dzMethods.processQueue();
                 notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
+                $window.location.href = '/Home/Index/';
             }, function (error) {
                 notificationService.displayError('Thêm mới không thành công.');
             });
