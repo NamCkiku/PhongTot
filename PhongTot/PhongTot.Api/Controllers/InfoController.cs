@@ -71,22 +71,37 @@ namespace PhongTot.Api.Controllers
 
         [Route("search")]
         [HttpGet]
-        public HttpResponseMessage Search(HttpRequestMessage request, [FromUri]InfoSearchModel filterParams)
+        public HttpResponseMessage Search(HttpRequestMessage request, [FromUri]InfoSearchModel filterParams, int page, string sort = "", int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
-                //int totalRow = 0;
+                int totalRow = 0;
                 var searchResult = _infoService.Search(filterParams);
-                //totalRow = searchResult.Count();
-                //var query = searchResult.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
-                //var paginationSet = new PaginationSet<Info>()
-                //{
-                //    Items = query,
-                //    Page = page,
-                //    TotalCount = totalRow,
-                //    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
-                //};
-                var response = request.CreateResponse(HttpStatusCode.OK, searchResult);
+                switch (sort)
+                {
+                    case "viewcount":
+                        searchResult = searchResult.OrderByDescending(x => x.ViewCount);
+                        break;
+                    case "province":
+                        searchResult = searchResult.OrderByDescending(x => x.Province.name);
+                        break;
+                    case "price":
+                        searchResult = searchResult.OrderBy(x => x.Price);
+                        break;
+                    default:
+                        searchResult = searchResult.OrderByDescending(x => x.CreateDate);
+                        break;
+                }
+                totalRow = searchResult.Count();
+                var query = searchResult.Skip(page * pageSize).Take(pageSize);
+                var paginationSet = new PaginationSet<Info>()
+                {
+                    Items = query,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return response;
             });
         }

@@ -22,7 +22,7 @@ namespace PhongTot.Api.Controllers
         {
             return CreateHttpResponse(request, () =>
             {
-                var listDistrict = _districtService.GetAll();
+                var listDistrict = _districtService.GetAll().OrderBy(x => x.name);
 
                 //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
 
@@ -36,7 +36,7 @@ namespace PhongTot.Api.Controllers
         {
             return CreateHttpResponse(request, () =>
             {
-                var listDistrict = _districtService.GetAllByProvince(id);
+                var listDistrict = _districtService.GetAllByProvince(id).OrderBy(x => x.name);
 
                 //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
 
