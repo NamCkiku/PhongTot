@@ -38,7 +38,28 @@ namespace PhongTot.Api.Controllers
             });
         }
 
+        [Route("getallpaging")]
+        public HttpResponseMessage GetAllPaging(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                int totalRow = 0;
+                var model = _infoService.GetAllPaging(keyword);
 
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
+
+                var paginationSet = new PaginationSet<Info>()
+                {
+                    Items = query,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return response;
+            });
+        }
 
 
 
