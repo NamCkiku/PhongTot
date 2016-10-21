@@ -62,6 +62,8 @@ namespace PhongTot.Service
                 Provinceid = info.Provinceid,
                 Acreage = info.Acreage,
                 Price = info.Price,
+                Lat=info.Lat,
+                Lng=info.Lng,
                 Description = info.Description,
                 Content = info.Content,
                 CreateDate = DateTime.Now,

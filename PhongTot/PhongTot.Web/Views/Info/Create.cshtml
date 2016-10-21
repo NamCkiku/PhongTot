@@ -40,7 +40,7 @@
                         <input type="text" id="title" name="Name" ng-change="GetSeoTitle()" ng-maxlength="256" required ng-model="infoAdd.Name" class="form-control" value="">
                         <span class="help-block"></span>
                         @*<span ng-show="frmAddInfo.Name.$invalid" class="has-error">Phải nhập tên Tiêu Đề</span>
-                        <span ng-show="frmAddInfo.Name.$error.maxlength" class="has-error">Tên Tiêu Đề chỉ được 256 ký tự</span>*@
+                            <span ng-show="frmAddInfo.Name.$error.maxlength" class="has-error">Tên Tiêu Đề chỉ được 256 ký tự</span>*@
                     </div>
                 </div>
                 <div class="form-group">
@@ -67,7 +67,7 @@
                         <div>
                             <div class="control-label">Diện tích</div>
                             <div class="input-group">
-                                <input type="number"  name="Acreage" ng-model="infoAdd.Acreage" class="form-control" placeholder="nhập số, viết liền">
+                                <input type="number" name="Acreage" ng-model="infoAdd.Acreage" class="form-control" placeholder="nhập số, viết liền">
                                 <span class="input-group-addon">M<sup>2</sup></span>
                                 <span class="help-block"></span>
                             </div>
@@ -313,7 +313,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
@@ -327,113 +326,34 @@
                 </div>
             </div>
         </div>
-        @*<div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <div style="height:300px">
-                            <div id="map"></div>
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    
+                    <fieldset class="gllpLatlonPicker">
+                        <input type="hidden" class="gllpSearchField" value="">
+                        <input type="hidden" class="gllpSearchButton btn-success" value="Tìm vị trí">
+                        <!-- <br/><br/> -->
+                        <div class="gllpMap">Google Maps</div>
+                        <!-- <br/>
+                        lat/lon: -->
+                        <input type="hidden" id="Lat" name="location[N]" ng-model="infoAdd.Lat" class="gllpLatitude"  value="{{infoAdd.Lat}}" />
+                        <!-- / -->
+                        <input type="hidden" id="Lng" name="location[E]" ng-model="infoAdd.Lng" class="gllpLongitude" value="{{infoAdd.Lng}}" />
+                        <!-- zoom: --> <input type="hidden" class="gllpZoom" value="15" />
+                        <input type="hidden" class="gllpUpdateButton" value="update map">
+                    </fieldset>
                 </div>
-            </div>*@
-
-        <button type="submit" ng-disabled="frmAddInfo.$invalid" class="btn btn-success pull-right">Đăng Tin</button>
-
-
-
+            </div>
+        </div>
+        <div class="col-md-12 submit-btn-room">
+            <button type="submit"  class="btn btn-send-room" ng-disabled="frmAddInfo.$invalid"><span class="fa fa-send"></span>Đăng tin</button>
+        </div>
     </div>
 
 </form>
-@*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXrrJftyVPxGsVrvtCB3QzO9SQO5RvkaU&libraries=places&callback=initAutocomplete"
-    async defer></script>*@
-@*<script>
-            function initAutocomplete() {
-
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    //10.826058, 106.643504
-                    center: { lat: 20.9873645, lng: 105.9753225 },
-                    zoom: 13,
-                    mapTypeId: 'roadmap'
-
-                });
-
-                //geocoder text address
-                var geocoder = new google.maps.Geocoder();
-                var address = document.getElementById('pac-input').value;
-                if (address == "") {
-                    address = $("#city option:selected").text();
-                }
-                if (geocoder) {
-                    geocoder.geocode({ 'address': address }, function (results, status) {
-                        if (status === 'OK') {
-                            map.setCenter(results[0].geometry.location);
-                            var marker = new google.maps.Marker({
-                                map: map,
-                                position: results[0].geometry.location
-                            });
-                        } else {
-                            alert('Nhập vào địa chỉ liên hệ ');
-                        }
-                    });
-                }
-
-
-
-                // Create the search box and link it to the UI element.
-                var input = document.getElementById('pac-input');
-                var searchBox = new google.maps.places.SearchBox(input);
-                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-                // Bias the SearchBox results towards current map's viewport.
-                map.addListener('bounds_changed', function () {
-                    searchBox.setBounds(map.getBounds());
-                });
-
-                var markers = [];
-                // Listen for the event fired when the user selects a prediction and retrieve
-                // more details for that place.
-                searchBox.addListener('places_changed', function () {
-
-
-                    var places = searchBox.getPlaces();
-
-                    if (places.length == 0) {
-                        return;
-                    }
-
-                    // Clear out the old markers.
-                    markers.forEach(function (marker) {
-                        marker.setMap(null);
-                    });
-                    markers = [];
-
-
-                    // For each place, get the icon, name and location.
-                    var bounds = new google.maps.LatLngBounds();
-                    places.forEach(function (place) {
-                        if (!place.geometry) {
-                            console.log("Returned place contains no geometry");
-                            return;
-                        }
-
-
-                        // Create a marker for each place.
-                        markers.push(new google.maps.Marker({
-                            map: map,
-                            //icon: icon,
-                            title: place.name,
-                            position: place.geometry.location
-                        }));
-
-                        if (place.geometry.viewport) {
-                            // Only geocodes have viewport.
-                            bounds.union(place.geometry.viewport);
-                        } else {
-                            bounds.extend(place.geometry.location);
-                        }
-                    });
-                    map.fitBounds(bounds);
-                });
-            }
-
-    </script>*@
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVprSsYgH9JhgdlCD7N3gcMxo50Pm-8lU">
+</script>
+<link href="~/bower_components/jquery-latitude-longitude-picker-gmaps/css/jquery-gmaps-latlon-picker.css" rel="stylesheet" />
+<script src="~/bower_components/jquery-latitude-longitude-picker-gmaps/js/jquery-gmaps-latlon-picker.js"></script>
