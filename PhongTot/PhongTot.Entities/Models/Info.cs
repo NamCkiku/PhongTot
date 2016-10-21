@@ -44,6 +44,9 @@ namespace PhongTot.Entities.Models
         public double? Acreage { get; set; }
 
         public decimal Price { get; set; }
+        public double? Lat { set; get; }
+
+        public double? Lng { set; get; }
 
         public int? OtherInfoID { get; set; }
 

@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201610180235510_addAddressInfo.Designer.cs">
       <DependentUpon>201610180235510_addAddressInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610210905078_AddLatLng.cs" />
+    <Compile Include="Migrations\201610210905078_AddLatLng.Designer.cs">
+      <DependentUpon>201610210905078_AddLatLng.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryOtherInfo.cs" />
@@ -89,6 +93,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610180235510_addAddressInfo.resx">
       <DependentUpon>201610180235510_addAddressInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610210905078_AddLatLng.resx">
+      <DependentUpon>201610210905078_AddLatLng.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

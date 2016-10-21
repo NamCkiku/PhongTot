@@ -2151,4 +2151,34 @@ input[type="radio"] .styled:checked + label::after {
 }
 .advance-search .submit .btn-slide-search span {
     margin-right: 10px;
-}       
+}
+.submit-btn-room {
+    text-align: center;
+}
+.submit-btn-room .btn-send-room {
+    margin-top: 30px;
+    background: #3c6;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    margin-right: 0px;
+    font-size: 18px;
+    border-radius: 0px;
+    font-weight: 600;
+    text-transform: capitalize;
+}     
+.submit-btn-room .btn-send-room:hover{
+    background-color:#ff0046;
+}
+.submit-btn-room .btn-send-room span {
+    margin-right: 10px;
+}
+.submit-list-type ul li:hover {
+    list-style: none;
+    padding-bottom: 10px;
+    border-left: 3px solid #ff0046;
+    padding-top: -10px;
+}
+.submit-list-type ul li:hover label {
+    color: #ff0046;
+}

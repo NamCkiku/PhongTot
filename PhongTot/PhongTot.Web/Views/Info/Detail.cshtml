@@ -111,8 +111,27 @@
                                 <hr>
                             </div>
                             <div class="map-content">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29801.052157029844!2d105.97532248326952!3d20.987364474101955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135a5e665be9d8d%3A0x16f860d10de914aa!2zdHQuIE5oxrAgUXXhu7NuaCwgVsSDbiBMw6JtLCBIxrBuZyBZw6puLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1475633411509" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                <div style="height:400px;width:100%;" id="map"></div>
                             </div>
+                            <input type="hidden" id="hidLat" value="{{infoDetail.Lat}}" />
+                            <input type="hidden" id="hidLng" value="{{infoDetail.Lng}}" />
+                            <script>
+                                setTimeout(function initMap() {
+                                    var uluru = { lat: parseFloat($('#hidLat').val()), lng: parseFloat($('#hidLng').val()) };
+                                    console.log(uluru);
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom: 15,
+                                        center: uluru
+                                    });
+                                    var marker = new google.maps.Marker({
+                                        position: uluru,
+                                        map: map
+                                    });
+                                },1000);
+                            </script>
+                            <script async defer
+                                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVprSsYgH9JhgdlCD7N3gcMxo50Pm-8lU&callback=initMap">
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -120,6 +139,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-md-3 sidebar">
     <div class="row">
         <div class="col-sm-6 col-md-12">

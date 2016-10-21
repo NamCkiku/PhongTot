@@ -1,8 +1,8 @@
 ﻿/// <reference path="E:\_Study\_SourceCode\_SourseGithub\PhongTot\PhongTot\PhongTot.Web\bower_components/angular/angular.js" />
 (function (app) {
     app.controller('infoController', infoController);
-    infoController.$inject = ['apiService', '$scope', 'commonService', 'notificationService', 'fileUploadService', '$timeout', '$window'];
-    function infoController(apiService, $scope, commonService, notificationService, fileUploadService, $timeout, $window) {
+    infoController.$inject = ['apiService', '$scope', 'commonService', 'notificationService', 'fileUploadService', '$timeout', '$window', '$document'];
+    function infoController(apiService, $scope, commonService, notificationService, fileUploadService, $timeout, $window, $document) {
         $scope.Info = [];
         $scope.categoryinfo = [];
         $scope.province = [];
@@ -22,11 +22,18 @@
             'Tivi'
         ];
 
-
-
+        $(document).bind("location_changed", function (event, object) {
+            updateLatLng($(this));
+        });
+        function updateLatLng(object) {
+            $scope.infoAdd.Lat = $(object).find('.gllpLatitude').val();
+            $scope.infoAdd.Lng = $(object).find('.gllpLongitude').val();
+        }
         $scope.infoAdd = {
             CreateDate: new Date(),
             Status: false,
+            Lat: 21.0029317912212212,
+            Lng:105.820226663232323,
             OtherInfo: {
                 Convenient:[]
             },
@@ -155,6 +162,8 @@
         function createInfo() {
             $scope.infoAdd.OtherInfo.Convenient = JSON.stringify($scope.infoAdd.OtherInfo.Convenient)
             $scope.infoAdd.MoreImages = JSON.stringify($scope.infoAdd.MoreImages)
+            $scope.infoAdd.Lat = $scope.infoAdd.Lat
+            $scope.infoAdd.Lng = $scope.infoAdd.Lng
             console.log($scope.infoAdd)
             debugger;
             apiService.post('http://localhost:33029/api/info/add', $scope.infoAdd, function (result) {
