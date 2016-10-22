@@ -20,9 +20,9 @@ namespace PhongTot.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Client/Plugins/bootstrap/css/bootstrap.css",
                       "~/Content/Client/Plugins/font-awesome-4.5.0/css/font-awesome.css",
-                      "~/ Content/Client/Plugins/bootstrap-social-gh-pages/bootstrap-social.css",
-                      "~/Content/Client/Plugins/owl-carousel/owl.carousel.css",
-                      "~/Content/Client/css/Style.css"));
+                      "~/Content/Client/css/Style.css",
+                      "~/Content/Client/Plugins/owl-carousel/owl.carousel.css,",
+                      "~/bower_components/toastr/toastr.css"));
         }
     }
 }
