@@ -338,9 +338,6 @@
     <Content Include="bower_components\jasny-file-input\dist\fileinput.min.css" />
     <Content Include="bower_components\jasny-file-input\dist\fileinput.min.js" />
     <Content Include="bower_components\jasny-file-input\Gulpfile.js" />
-    <Content Include="Content\Client\Plugins\jquery-latitude-longitude-picker-gmaps\css\demo.css" />
-    <Content Include="Content\Client\Plugins\jquery-latitude-longitude-picker-gmaps\css\jquery-gmaps-latlon-picker.css" />
-    <Content Include="Content\Client\Plugins\jquery-latitude-longitude-picker-gmaps\js\jquery-gmaps-latlon-picker.js" />
     <Content Include="bower_components\jquery\AUTHORS.txt" />
     <Content Include="bower_components\jquery\dist\jquery.js" />
     <Content Include="bower_components\jquery\dist\jquery.min.js" />
@@ -607,16 +604,6 @@
     <Content Include="Content\Client\img\tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
     <Content Include="Content\Client\js\jquery-1.10.2.min.js" />
     <Content Include="Content\Client\js\jquery-1.8.3.min.js" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\.gitignore" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\css\bootstrap.css" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\css\docs.css" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\css\font-awesome.css" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\img\bootstrap-social.png" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\js\docs.js" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\js\jquery.js" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\bootstrap-social.css" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\index.html" />
     <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\Client\Plugins\bootstrap\css\bootstrap.css" />
@@ -629,6 +616,10 @@
     <Content Include="Content\Client\Plugins\font-awesome-4.5.0\css\font-awesome.min.css" />
     <Content Include="Content\Client\Plugins\font-awesome-4.5.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Client\Plugins\font-awesome-4.5.0\HELP-US-OUT.txt" />
+    <Content Include="Content\Client\Plugins\jquery-latitude-longitude-picker-gmaps\css\demo.css" />
+    <Content Include="Content\Client\Plugins\jquery-latitude-longitude-picker-gmaps\css\jquery-gmaps-latlon-picker.css" />
+    <Content Include="Content\Client\Plugins\jquery-latitude-longitude-picker-gmaps\js\jquery-2.1.1.min.js" />
+    <Content Include="Content\Client\Plugins\jquery-latitude-longitude-picker-gmaps\js\jquery-gmaps-latlon-picker.js" />
     <Content Include="Content\Client\Plugins\owl-carousel\owl.carousel.css" />
     <Content Include="Content\Client\Plugins\owl-carousel\owl.carousel.min.js" />
     <Content Include="favicon.ico" />
@@ -760,20 +751,6 @@
     <EmbeddedResource Include="Migrations\201609210905377_addForUser.resx">
       <DependentUpon>201609210905377_addForUser.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\.editorconfig" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\assets\fonts\FontAwesome.otf" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\bootstrap-social.less" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\bootstrap-social.scss" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\bower.json" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\LICENSE" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\package.json" />
-    <Content Include="Content\Client\Plugins\bootstrap-social-gh-pages\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Menu.cshtml" />
