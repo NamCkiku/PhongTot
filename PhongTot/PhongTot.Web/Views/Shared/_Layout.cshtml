@@ -2,7 +2,7 @@
 
 <html ng-app="myApp">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+    <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/Content/js")
@@ -29,6 +29,8 @@
     <script src="~/bower_components/checklist-model/checklist-model.js"></script>
     <script src="~/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="~/bower_components/ng-timeago/ngtimeago.js"></script>
+    <script src="~/Content/Client/Plugins/owl-carousel/owl.carousel.min.js"></script>
+    
 </head>
 <body>
     @{Html.RenderPartial("_Header", "Home");}

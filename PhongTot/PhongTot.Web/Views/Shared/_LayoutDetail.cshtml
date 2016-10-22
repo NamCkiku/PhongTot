@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    <link href="~/Content/Client/Plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
     @Scripts.Render("~/Content/js")
     @Scripts.Render("~/Content/angular")
     <script src="~/bower_components/angular-file-upload/angular-file-upload.js"></script>
@@ -29,6 +30,30 @@
     <script src="~/bower_components/checklist-model/checklist-model.js"></script>
     <script src="~/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="~/bower_components/ng-timeago/ngtimeago.js"></script>
+    <script src="~/Content/Client/Plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script>
+        $(document).on('click', '.btn-select', function (e) {
+            e.preventDefault();
+            var ul = $(this).find("ul");
+            if ($(this).hasClass("active")) {
+                if (ul.find("li").is(e.target)) {
+                    var target = $(e.target);
+                    target.addClass("selected").siblings().removeClass("selected");
+                    var value = target.val(); var html = target.html();
+                    $(this).find(".btn-select-input").val(value);
+                    $(this).find(".btn-select-value").html(html);
+                }
+                ul.hide();
+                $(this).removeClass("active");
+            }
+            else {
+                $('.btn-select').not(this).each(function () {
+                    $(this).removeClass("active").find("ul").hide();
+                });
+                ul.slideDown(300); $(this).addClass("active");
+            }
+        });
+    </script>
 </head>
 <body>
     @{Html.RenderPartial("_Header", "Home");}

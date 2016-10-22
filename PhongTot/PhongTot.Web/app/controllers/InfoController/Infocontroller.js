@@ -4,6 +4,7 @@
     infoController.$inject = ['apiService', '$scope', 'commonService', 'notificationService', 'fileUploadService', '$timeout', '$window', '$document'];
     function infoController(apiService, $scope, commonService, notificationService, fileUploadService, $timeout, $window, $document) {
         $scope.Info = [];
+        $scope.InfoCategory = [];
         $scope.categoryinfo = [];
         $scope.province = [];
         $scope.district = [];
@@ -150,7 +151,14 @@
                 notificationService.displayError('Lỗi');
             });
         }
-
+        getAllInfoByCategory();
+        function getAllInfoByCategory() {
+            apiService.get('http://localhost:33029/api/categoryinfo/getinfobycategory', null, function (result) {
+                $scope.InfoCategory = result.data;
+            }, function () {
+                notificationService.displayError('Lỗi');
+            });
+        }
 
         var infoImage = null;
         $scope.prepareFiles = prepareFiles;
