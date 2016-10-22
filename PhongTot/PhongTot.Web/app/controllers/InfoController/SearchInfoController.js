@@ -44,7 +44,7 @@
         }();
         $scope.keywords = [];
         function search(keywords) {
-            var  params = {
+            var params = {
                 CategoryID: $scope.keywords.CategoryID,
                 PriceFrom: $scope.slider.minValue,
                 PriceTo: $scope.slider.maxValue,
@@ -53,11 +53,9 @@
                 Provinceid: $scope.keywords.Provinceid
             };
             var queryString = [];
-            for (var key in params)
-            {
-                if (params[key] !== undefined)
-                {
-                    queryString.push(key+'='+params[key]);
+            for (var key in params) {
+                if (params[key] !== undefined) {
+                    queryString.push(key + '=' + params[key]);
                 }
             }
             $window.location.href = '/Info/Search?' + queryString.join('&');
@@ -73,8 +71,8 @@
             var config = {
                 params: {
                     CategoryID: QueryString.CategoryID,
-                    //PriceFrom: $scope.slider.minValue,
-                    //PriceTo: $scope.slider.maxValue,
+                    PriceFrom: QueryString.PriceFrom * 1000000,
+                    PriceTo: QueryString.PriceTo * 1000000,
                     Wardid: QueryString.Wardid,
                     Districtid: QueryString.Districtid,
                     Provinceid: QueryString.Provinceid,
