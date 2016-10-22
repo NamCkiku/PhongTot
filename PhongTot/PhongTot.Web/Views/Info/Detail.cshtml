@@ -21,7 +21,7 @@
                         <div class="col-md-8 left-info no-padding-right">
                             <div class="address">
                                 <span class="btn info-label">Địa chỉ</span>
-                                <a class="" href="">{{infoDetail.Wardid1.name}}</a>, <a class="" href="">{{infoDetail.Districtid1.name}}</a>, <a class="" href="">{{infoDetail.Province.name}}</a>
+                                <a class="" href="">{{infoDetail.Address}}</a>
                             </div>
                             <div class="size">
                                 <span class="btn info-label">Diện tích</span>
@@ -118,7 +118,6 @@
                             <script>
                                 setTimeout(function initMap() {
                                     var uluru = { lat: parseFloat($('#hidLat').val()), lng: parseFloat($('#hidLng').val()) };
-                                    console.log(uluru);
                                     var map = new google.maps.Map(document.getElementById('map'), {
                                         zoom: 15,
                                         center: uluru

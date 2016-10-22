@@ -32,7 +32,20 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
+        [Route("getinfobycategory")]
+        public HttpResponseMessage GetInfoByCategory(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var listInfo = _categoryInfoService.GetInfoByCategory(4);
 
+                //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listInfo);
+
+                return response;
+            });
+        }
         [Route("add")]
         public HttpResponseMessage Post(HttpRequestMessage request, CategoryInfo categoryinfo)
         {

@@ -20,6 +20,7 @@ namespace PhongTot.Service
         IEnumerable<CategoryInfo> GetAll();
 
         CategoryInfo GetById(int id);
+        IEnumerable<CategoryInfo> GetInfoByCategory(int top);
 
         void SaveChanges();
     }
@@ -51,6 +52,14 @@ namespace PhongTot.Service
         public CategoryInfo GetById(int id)
         {
             return _categoryInfoRepository.GetSingleById(id);
+        }
+
+        public IEnumerable<CategoryInfo> GetInfoByCategory(int top)
+        {
+            var model = _categoryInfoRepository.GetAll(new string[] { "Infoes" });
+            var query= model.Where(x => x.Infoes.Count >= 2 && x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+            return query;
+                
         }
 
         public void SaveChanges()

@@ -6,34 +6,25 @@
 <div class="col-md-9">
     <div class="row">
         <div class="col-md-12 room-main-content">
-            <div class="tabbable-panel">
+            <div class="tabbable-panel" ng-controller="infoController">
                 <div class="tabbable-line">
                     <div class="menu-tab">
                         <div class="menu-tab-title"><a href=""><span>Tin</span> Mới nhất <i class="fa fa-angle-right"></i></a></div>
                         <div class="menu-tab-title-right">
                             <ul class="nav nav-tabs ">
                                 <li class="active">
-                                    <a href="#tab_type_1" data-toggle="tab">Tất cả</a>
+                                    <a href="#tab_type" data-toggle="tab">Tất cả</a>
                                 </li>
-                                <li class="">
-                                    <a href="#tab_type_2" data-toggle="tab">Phòng trọ, nhà trọ</a>
-                                </li>
-                                <li class="">
-                                    <a href="#tab_type_3" data-toggle="tab">Nhà nguyên căn</a>
-                                </li>
-                                <li class="">
-                                    <a href="#tab_type_4" data-toggle="tab">Văn phòng</a>
-                                </li>
-                                <li class="">
-                                    <a href="#tab_type_5" data-toggle="tab">Chung cư, căn hộ</a>
+                                <li class="" ng-repeat="item in InfoCategory">
+                                    <a href="#tab_type_{{item.ID}}" data-toggle="tab">{{item.Name}}</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="tab-content" ng-controller="infoController">
-                        <div class="tab-pane active" id="tab_type_1">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_type">
                             <div class="thumbnail-list">
-                                <div class="row block-item" >
+                                <div class="row block-item">
                                     <div class="col-sm-6 col-md-4 thumbnail-item" ng-repeat="items in Info">
                                         <div class="thumbnail">
                                             <a href="/Info/Detail/{{items.ID}}" title="{{items.Name}}">
@@ -65,308 +56,35 @@
                                             </div> -->
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane " id="tab_type_2">
+                        <div class="tab-pane " ng-repeat="category in InfoCategory" id="tab_type_{{category.ID}}">
                             <div class="thumbnail-list">
                                 <div class="row block-item">
-                                    
-                                        @*<div class="col-sm-6 col-md-4 thumbnail-item">
-                                            <div class="thumbnail">
-                                                <a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-nha-tro-quan-4-gia-32-trieu-thang" title="CHO THUÊ NHÀ TRỌ QUẬN 4 GIÁ 3.2 TRIỆU THÁNG">
-                                                    <img src="http://localhost:33029/Content/images/@item.Image" alt="" class="cover img-reponsive" pagespeed_url_hash="2653604726" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                                </a>
-                                                <div class="room-item-price">
-                                                    <a href="">@item.Price Đ/tháng</a>
-                                                </div>
-                                                <div class="caption">
-                                                    <div class="title">
-                                                        <h2><a href="http://phongtot.vn/phong-tro-nha-tro/cho-thue-nha-tro-quan-4-gia-32-trieu-thang">CHO THUÊ NHÀ TRỌ QUẬN 4 GIÁ 3.2 TRIỆU THÁNG</a></h2>
-                                                    </div>
-                                                    <div class="extra">
-                                                        <div class="pull-left">
-                                                            <a href="#"><span class="fa fa-map-marker"></span>4</a>
-                                                        </div>
-                                                        <div class="pull-right">
-                                                            <a href=""><span class="fa fa-info"></span>@item.Acreage m<sup>2</sup></a>
-                                                        </div>
-                                                        <div class="type">
-                                                            <a href=""><span class="fa fa-home"></span>Phòng trọ, nhà trọ</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>*@
-                                        
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane " id="tab_type_3">
-                            <div class="thumbnail-list">
-                                <div class="row block-item">
-                                    <div class="col-sm-6 col-md-4 thumbnail-item">
+
+                                    <div class="col-sm-6 col-md-4 thumbnail-item" ng-repeat="items in category.Infoes | limitTo:9">
                                         <div class="thumbnail">
-                                            <a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-so-10-ngo-14-duong-bia-ba-la-khe-ha-dong" title="Cho thuê nhà số 10, Ngõ 14, Đường bia bà La Khê, Hà Đông">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-nha-so-10-ngo-14-duong-bia-ba-la-khe-ha-dong-thumb-wicsr.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="3506707009" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                            <a href="/Info/Detail/{{items.ID}}" title="{{items.Name}}">
+                                                <img class="cover img-reponsive" src="http://localhost:33029/Content/images/{{items.Image}}" />
                                             </a>
                                             <div class="room-item-price">
-                                                <a href="">2,800,000 Đ/tháng</a>
+                                                <a href="">{{items.Price| number}} Đ/tháng</a>
                                             </div>
                                             <div class="caption">
                                                 <div class="title">
-                                                    <h2><a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-so-10-ngo-14-duong-bia-ba-la-khe-ha-dong">Cho thuê nhà số 10, Ngõ 14, Đường bia bà La Khê, Hà Đông</a></h2>
+                                                    <h2><a href="">{{items.Name}}</a></h2>
                                                 </div>
                                                 <div class="extra">
                                                     <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Hà Đông</a>
+                                                        <a href="#"><span class="fa fa-map-marker"></span>{{items.Province.name}}</a>
                                                     </div>
                                                     <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>60 m<sup>2</sup></a>
+                                                        <a href=""><span class="fa fa-info"></span>{{items.Acreage}} m<sup>2</sup></a>
                                                     </div>
                                                     <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Nhà nguyên căn</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/nha-nguyen-can/cho-thue-can-nha-pho-hong-mai" title="Cho thuê căn nhà phố Hồng Mai">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-can-nha-pho-hong-mai-thumb-inpm1.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="2626348065" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">8,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/nha-nguyen-can/cho-thue-can-nha-pho-hong-mai">Cho thuê căn nhà phố Hồng Mai</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Hai Bà Trưng</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>43 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Nhà nguyên căn</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-cap-4-so-19-nguyen-trai" title="Cho thuê nhà cấp 4 số 19 Nguyễn Trãi">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-nha-cap-4-so-19-nguyen-trai-thumb-zhidz.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="2949262325" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">2,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-cap-4-so-19-nguyen-trai">Cho thuê nhà cấp 4 số 19 Nguyễn Trãi</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Thanh Xuân</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>17 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Nhà nguyên căn</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-xom-3-phu-do" title="Cho thuê nhà riêng xóm 3 Phú Đô">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-nha-rieng-xom-3-phu-do-thumb-kahxb.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="2757891929" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">6,500,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-xom-3-phu-do">Cho thuê nhà riêng xóm 3 Phú Đô</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Từ Liêm</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>45 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Nhà nguyên căn</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-ngo-87-hoang-quoc-viet" title="Cho thuê nhà riêng ngõ 87 Hoàng Quốc Việt">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-nha-rieng-ngo-87-hoang-quoc-viet-thumb-oycvq.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="1085404115" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">15,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-ngo-87-hoang-quoc-viet">Cho thuê nhà riêng ngõ 87 Hoàng Quốc Việt</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Cầu Giấy</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>54 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Nhà nguyên căn</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-so-17-ngach-6635-ngo-66-ho-tung-mau" title="Cho thuê nhà riêng số 17, Ngách 66/35, Ngõ 66 Hồ Tùng Mậu">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-nha-rieng-so-17-ngach-6635-ngo-66-ho-tung-mau-thumb-nm7qu.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="1798778660" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">10,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-so-17-ngach-6635-ngo-66-ho-tung-mau">Cho thuê nhà riêng số 17, Ngách 66/35, Ngõ 66 Hồ Tùng Mậu</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Cầu Giấy</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>100 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Nhà nguyên căn</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-so-45a-ngo-214-nguyen-xien" title="Cho thuê nhà riêng số 45A, Ngõ 214 Nguyễn Xiển">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-nha-rieng-so-45a-ngo-214-nguyen-xien-thumb-inksx.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="3365590952" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">5,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-so-45a-ngo-214-nguyen-xien">Cho thuê nhà riêng số 45A, Ngõ 214 Nguyễn Xiển</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Thanh Xuân</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>50 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Nhà nguyên căn</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-so-20-ngo-19215934-le-trong-tan" title="Cho thuê nhà riêng số 20, Ngõ 192/159/34 Lê Trọng Tấn">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-nha-rieng-so-20-ngo-19215934-le-trong-tan-thumb-xds32.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="3209649677" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">5,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-rieng-so-20-ngo-19215934-le-trong-tan">Cho thuê nhà riêng số 20, Ngõ 192/159/34 Lê Trọng Tấn</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Thanh Xuân</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>65 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Nhà nguyên căn</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-cap-4-tai-so-2b-ngach-309-ngo-192-le-trong-tan" title="Cho thuê nhà cấp 4 tại số 2B, Ngách 309, Ngõ 192 Lê Trọng Tấn">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-nha-cap-4-tai-so-2b-ngach-309-ngo-192-le-trong-tan-thumb-lpeim.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="1657498986" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">3,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/nha-nguyen-can/cho-thue-nha-cap-4-tai-so-2b-ngach-309-ngo-192-le-trong-tan">Cho thuê nhà cấp 4 tại số 2B, Ngách 309, Ngõ 192 Lê Trọng Tấn</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Thanh Xuân</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>40 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Nhà nguyên căn</a>
+                                                        <a href=""><span class="fa fa-home"></span>{{category.Name}}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -377,560 +95,7 @@
                                             </div> -->
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane " id="tab_type_4">
-                            <div class="thumbnail-list">
-                                <div class="row block-item">
-                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/van-phong/cho-thue-van-phong-hang-a-tai-117-tran-duy-hung-dien-tich-tu-12m2-den-55m2" title="CHO THUÊ VĂN PHÒNG HẠNG A TẠI 117 TRẦN DUY HƯNG - DIỆN TÍCH TỪ 12M2 ĐẾN 55M2">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-van-phong-hang-a-tai-117-tran-duy-hung-dien-tich-tu-12m2-den-55m2-thumb-lquqc.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="3208254494" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">11,500,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/van-phong/cho-thue-van-phong-hang-a-tai-117-tran-duy-hung-dien-tich-tu-12m2-den-55m2">CHO THUÊ VĂN PHÒNG HẠNG A TẠI 117 TRẦN DUY HƯNG - DIỆN TÍCH TỪ 12M2 ĐẾN 55M2</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Cầu Giấy</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>18 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Văn phòng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/van-phong/cho-thue-van-phong-hang-a-117-tran-duy-hung-dien-tich-12m2-den-55m2" title="Cho thuê văn phòng hạng A - 117 Trần Duy Hưng - Diện tích 12m2 đến 55m2">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-van-phong-hang-a-117-tran-duy-hung-dien-tich-12m2-den-55m2-thumb-otndh.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="895580580" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">6,500,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/van-phong/cho-thue-van-phong-hang-a-117-tran-duy-hung-dien-tich-12m2-den-55m2">Cho thuê văn phòng hạng A - 117 Trần Duy Hưng - Diện tích 12m2 đến 55m2</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Cầu Giấy</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>12 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Văn phòng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/van-phong/cho-thue-van-phong-dai-dien-14721356091ukik" title="Cho thuê văn phòng đại diện">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-van-phong-dai-dien-14721356091ukik-thumb-resized-k6f6v.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="2863563491" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">7,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/van-phong/cho-thue-van-phong-dai-dien-14721356091ukik">Cho thuê văn phòng đại diện</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Đống Đa</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>60 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Văn phòng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/van-phong/cho-thue-van-phong-dai-dien-14715081042po6w" title="CHo thuê văn phòng đại diện">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-van-phong-dai-dien-14715081042po6w-thumb-resized-6jg8o.JPG" alt="" class="cover img-reponsive" pagespeed_url_hash="2068804800" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">7,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/van-phong/cho-thue-van-phong-dai-dien-14715081042po6w">CHo thuê văn phòng đại diện</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Đống Đa</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>60 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Văn phòng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/van-phong/cho-thue-dia-diem-lam-van-phong-dai-dien" title="Cho thuê địa điểm làm văn phòng đại diện">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-dia-diem-lam-van-phong-dai-dien-thumb-resized-da5im.JPG" alt="" class="cover img-reponsive" pagespeed_url_hash="1327026" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">7,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/van-phong/cho-thue-dia-diem-lam-van-phong-dai-dien">Cho thuê địa điểm làm văn phòng đại diện</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Đống Đa</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>60 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Văn phòng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/van-phong/mat-bang-kinh-doanh-vi-tri-depngay-trung-tam-qbinh-thanh" title="Mặt bằng kinh doanh vị trí đẹp,ngay trung tâm Q.Bình Thạnh">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/mat-bang-kinh-doanh-vi-tri-depngay-trung-tam-qbinh-thanh-thumb-resized-ftpeq.JPG" alt="" class="cover img-reponsive" pagespeed_url_hash="3247324447" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">35,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/van-phong/mat-bang-kinh-doanh-vi-tri-depngay-trung-tam-qbinh-thanh">Mặt bằng kinh doanh vị trí đẹp,ngay trung tâm Q.Bình Thạnh</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Bình Thạnh</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>160 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Văn phòng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/van-phong/cho-thue-van-phong-hoac-cho-lam-viec" title="Cho thuê văn phòng hoặc chỗ làm việc">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-van-phong-hoac-cho-lam-viec-thumb-resized-6ljdy.JPG" alt="" class="cover img-reponsive" pagespeed_url_hash="1694562787" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">7,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/van-phong/cho-thue-van-phong-hoac-cho-lam-viec">Cho thuê văn phòng hoặc chỗ làm việc</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Đống Đa</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>35 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Văn phòng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/van-phong/cho-thue-dia-diem-lam-van-phong-kinh-doanh" title="Cho thuê địa điểm làm văn phòng kinh doanh">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-dia-diem-lam-van-phong-kinh-doanh-thumb-resized-mkysx.JPG" alt="" class="cover img-reponsive" pagespeed_url_hash="605251550" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">6,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/van-phong/cho-thue-dia-diem-lam-van-phong-kinh-doanh">Cho thuê địa điểm làm văn phòng kinh doanh</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Đống Đa</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>35 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Văn phòng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/van-phong/cho-thue-van-phong-vi-tri-thuan-loi-tai-binh-thanh" title="CHO THUÊ VĂN PHÒNG VỊ TRÍ THUẬN LỢI TẠI BÌNH THẠNH">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-van-phong-vi-tri-thuan-loi-tai-binh-thanh-thumb-yh9yl.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="2277005441" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">6,500,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/van-phong/cho-thue-van-phong-vi-tri-thuan-loi-tai-binh-thanh">CHO THUÊ VĂN PHÒNG VỊ TRÍ THUẬN LỢI TẠI BÌNH THẠNH</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Bình Thạnh</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>45 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Văn phòng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane " id="tab_type_5">
-                            <div class="thumbnail-list">
-                                <div class="row block-item">
-                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-chung-cu-sdu-so-143-tran-phu" title="Cho thuê chung cư SDU số 143 Trần Phú">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-chung-cu-sdu-so-143-tran-phu-thumb-jvyyw.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="1312887621" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">2,500,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-chung-cu-sdu-so-143-tran-phu">Cho thuê chung cư SDU số 143 Trần Phú</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Hà Đông</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>20 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Chung cư, căn hộ</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-chung-cu-toa-nha-oct2-khu-do-thi-xuan-phuong" title="Cho thuê chung cư tòa nhà OCT2, Khu đô thị Xuân Phương">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-chung-cu-toa-nha-oct2-khu-do-thi-xuan-phuong-thumb-c1dhr.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="4021715017" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">7,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-chung-cu-toa-nha-oct2-khu-do-thi-xuan-phuong">Cho thuê chung cư tòa nhà OCT2, Khu đô thị Xuân Phương</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Từ Liêm</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>107 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Chung cư, căn hộ</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/chung-cu-can-ho/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh" title="Tìm nữ chung cư tòa nhà CT1, Ngõ 62 Trần Bình">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-thumb-2zmir.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="86939790" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">6,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/chung-cu-can-ho/tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh">Tìm nữ chung cư tòa nhà CT1, Ngõ 62 Trần Bình</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Cầu Giấy</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>75 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Chung cư, căn hộ</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-can-ho-so-6a-ngo-180-tran-duy-hung-1474105248zgl8e" title="Cho thuê căn hộ số 6A, Ngõ 180 Trần Duy Hưng">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-can-ho-so-6a-ngo-180-tran-duy-hung-1474105248zgl8e-thumb-aplpb.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="419966855" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">2,600,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-can-ho-so-6a-ngo-180-tran-duy-hung-1474105248zgl8e">Cho thuê căn hộ số 6A, Ngõ 180 Trần Duy Hưng</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Cầu Giấy</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>25 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Chung cư, căn hộ</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-chung-cu-mini-ngo-125-bui-xuong-trach" title="Cho thuê chung cư mini ngõ 125 Bùi Xương Trạch">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-chung-cu-mini-ngo-125-bui-xuong-trach-thumb-o27o1.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="1967125623" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">4,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-chung-cu-mini-ngo-125-bui-xuong-trach">Cho thuê chung cư mini ngõ 125 Bùi Xương Trạch</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Thanh Xuân</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>40 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Chung cư, căn hộ</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-can-ho-p112b-b3-tap-the-co-khi-129-nguyen-trai" title="Cho thuê căn hộ P112B-B3 tập thể Cơ Khí 129 Nguyễn Trãi">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-can-ho-p112b-b3-tap-the-co-khi-129-nguyen-trai-thumb-yr01n.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="3587920519" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">3,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-can-ho-p112b-b3-tap-the-co-khi-129-nguyen-trai">Cho thuê căn hộ P112B-B3 tập thể Cơ Khí 129 Nguyễn Trãi</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Thanh Xuân</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>25 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Chung cư, căn hộ</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-chung-cu-thai-ha" title="Cho thuê chung cư Thái Hà">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-chung-cu-thai-ha-thumb-p1p5j.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="4160599688" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">10,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-chung-cu-thai-ha">Cho thuê chung cư Thái Hà</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Đống Đa</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>110 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Chung cư, căn hộ</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-phong-tro-ngo-389-lac-long-quan" title="Cho thuê phòng trọ ngõ 389 Lạc Long Quân">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-phong-tro-ngo-389-lac-long-quan-thumb-kzgkd.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="1008954024" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">5,600,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-phong-tro-ngo-389-lac-long-quan">Cho thuê phòng trọ ngõ 389 Lạc Long Quân</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Tây Hồ</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>80 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Chung cư, căn hộ</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>                                                    <div class="col-sm-6 col-md-4 thumbnail-item">
-                                        <div class="thumbnail">
-                                            <a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-can-ho-sanh-b-toa-r1-khu-royal-city" title="Cho thuê căn hộ Sảnh B, Tòa R1, Khu Royal City">
-                                                <img src="http://media.phongtot.vn/xc5tx4cj/cho-thue-can-ho-sanh-b-toa-r1-khu-royal-city-thumb-drqme.jpg" alt="" class="cover img-reponsive" pagespeed_url_hash="182413062" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                                            </a>
-                                            <div class="room-item-price">
-                                                <a href="">7,000,000 Đ/tháng</a>
-                                            </div>
-                                            <div class="caption">
-                                                <div class="title">
-                                                    <h2><a href="http://phongtot.vn/chung-cu-can-ho/cho-thue-can-ho-sanh-b-toa-r1-khu-royal-city">Cho thuê căn hộ Sảnh B, Tòa R1, Khu Royal City</a></h2>
-                                                </div>
-                                                <div class="extra">
-                                                    <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>Thanh Xuân</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a href=""><span class="fa fa-info"></span>124 m<sup>2</sup></a>
-                                                    </div>
-                                                    <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>Chung cư, căn hộ</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="overlay">
-                                                <a href="#" title="">
-                                                    <img src="img/play.png">
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -954,20 +119,20 @@
                     <div class="col-md-7 left">
                         <div class="thumbnail thumb-big">
                             <a href="http://phongtot.vn/bai-viet/ngoi-nha-46m%C2%B2-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo">
-                                <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo_cover-573eddf84424b.jpg" alt="ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo" pagespeed_url_hash="1469250980" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo_cover-573eddf84424b.jpg" alt="ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo">
                                 <h2 class="title">Ngôi nhà 46m² tuyệt đẹp có chi phí hoàn thiện 480 triệu đồng chàng trai 8x xây tặng vợ</h2>
                             </a>
                             <div class="des">Ngôi nhà của Nguyễn Hoàng Hiệp tặng cho vợ sắp cưới không chỉ đẹp như nhà Tây mà tổng chi phí xây dựng, thiết kế, trang trí chỉ vỏn vẹn ở con số 480 triệu đồng.</div>
                         </div>
                         <div class="col-md-4 thumbnail thumb-small">
                             <a href="http://phongtot.vn/bai-viet/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu">
-                                <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu_cover-573dcbc3ac6e2.jpg" alt="y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu" pagespeed_url_hash="2616505349" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu_cover-573dcbc3ac6e2.jpg" alt="y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu">
                                 <h2 class="title" href="http://phongtot.vn/bai-viet/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu">Ý tưởng kinh doanh nhà trọ, ngồi không mỗi tháng kiếm trăm triệu?</h2>
                             </a>
                         </div>
                         <div class="col-md-4 thumbnail thumb-small">
                             <a href="http://phongtot.vn/bai-viet/nhung-dieu-can-biet-khi-tim-phong-tro">
-                                <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/nhung-dieu-can-biet-khi-tim-phong-tro_cover-5714ad734268d.jpg" alt="nhung-dieu-can-biet-khi-tim-phong-tro" pagespeed_url_hash="1795872361" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/nhung-dieu-can-biet-khi-tim-phong-tro_cover-5714ad734268d.jpg" alt="nhung-dieu-can-biet-khi-tim-phong-tro">
                                 <h2 class="title" href="http://phongtot.vn/bai-viet/nhung-dieu-can-biet-khi-tim-phong-tro">Những điều cần biết khi tìm phòng trọ</h2>
                             </a>
                         </div>
@@ -982,7 +147,7 @@
                         <div class="row item">
                             <a href="http://phongtot.vn/bai-viet/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien">
                                 <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien_cover-57018a97e544c.jpg" alt="pham-huong-mac-gian-di-giao-luu-cung-sinh-vien" pagespeed_url_hash="2806860473" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien_cover-57018a97e544c.jpg" alt="pham-huong-mac-gian-di-giao-luu-cung-sinh-vien">
                                 </div>
                                 <div class="col-md-8 no-padding-left">
                                     <h2 class="title" href="http://phongtot.vn/bai-viet/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien">Phạm Hương mặc giản dị giao lưu cùng sinh viên</h2>
@@ -992,7 +157,7 @@
                         <div class="row item">
                             <a href="http://phongtot.vn/bai-viet/vi-sao-chon-nganh-hot-van-that-nghiep">
                                 <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/vi-sao-chon-nganh-hot-van-that-nghiep_cover-57017e8c0162e.jpg" alt="vi-sao-chon-nganh-hot-van-that-nghiep" pagespeed_url_hash="133360725" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/vi-sao-chon-nganh-hot-van-that-nghiep_cover-57017e8c0162e.jpg" alt="vi-sao-chon-nganh-hot-van-that-nghiep">
                                 </div>
                                 <div class="col-md-8 no-padding-left">
                                     <h2 class="title" href="http://phongtot.vn/bai-viet/vi-sao-chon-nganh-hot-van-that-nghiep">Vì sao chọn ngành 'hot' vẫn thất nghiệp?</h2>
@@ -1002,7 +167,7 @@
                         <div class="row item">
                             <a href="http://phongtot.vn/bai-viet/sinh-vien-my-chon-nganh-hoc-the-nao">
                                 <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/sinh-vien-my-chon-nganh-hoc-the-nao_cover-57017d118c141.jpg" alt="sinh-vien-my-chon-nganh-hoc-the-nao" pagespeed_url_hash="1227633509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/sinh-vien-my-chon-nganh-hoc-the-nao_cover-57017d118c141.jpg" alt="sinh-vien-my-chon-nganh-hoc-the-nao">
                                 </div>
                                 <div class="col-md-8 no-padding-left">
                                     <h2 class="title" href="http://phongtot.vn/bai-viet/sinh-vien-my-chon-nganh-hoc-the-nao">Sinh viên Mỹ chọn ngành học thế nào?</h2>
@@ -1012,7 +177,7 @@
                         <div class="row item">
                             <a href="http://phongtot.vn/bai-viet/nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay">
                                 <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay_cover-57017a46119c8.jpg" alt="nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay" pagespeed_url_hash="2702072910" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay_cover-57017a46119c8.jpg" alt="nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay">
                                 </div>
                                 <div class="col-md-8 no-padding-left">
                                     <h2 class="title" href="http://phongtot.vn/bai-viet/nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay">Nhà báo bị đánh, sinh viên báo chí có lung lay?</h2>
@@ -1022,7 +187,7 @@
                         <div class="row item">
                             <a href="http://phongtot.vn/bai-viet/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi">
                                 <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi_cover-570178b56d545.jpg" alt="hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi" pagespeed_url_hash="1495611684" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi_cover-570178b56d545.jpg" alt="hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi">
                                 </div>
                                 <div class="col-md-8 no-padding-left">
                                     <h2 class="title" href="http://phongtot.vn/bai-viet/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi">Hơn 100 sinh viên bị dừng học vì chậm đóng học phí</h2>
@@ -1032,7 +197,7 @@
                         <div class="row item">
                             <a href="http://phongtot.vn/bai-viet/sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep">
                                 <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep_cover-56e41d9cd7bcd.png" alt="sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep" pagespeed_url_hash="25026185" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep_cover-56e41d9cd7bcd.png" alt="sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep">
                                 </div>
                                 <div class="col-md-8 no-padding-left">
                                     <h2 class="title" href="http://phongtot.vn/bai-viet/sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep">Sinh viên hào hứng tham gia ngày hội Định hướng nghề nghiệp</h2>
@@ -1048,7 +213,7 @@
 <div class="col-md-3 sidebar">
     <div class="row">
         <div class="col-sm-6 col-md-12 sidebar-ads">
-            <img class="img-responsive" src="http://ngoaingu.net/themes/client/img/ads1.png" alt="" pagespeed_url_hash="3823440975" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+            <img class="img-responsive" src="http://ngoaingu.net/themes/client/img/ads1.png" alt="">
         </div>
     </div>
     <div class="row">
