@@ -71,51 +71,9 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Đăng Nhập</h4>
-            </div>
             <div class="modal-body">
-                <ul class="nav nav-tabs no-margin">
-                    <li id="li_login" class=""><a href="#tab_auth_login" data-toggle="tab" aria-expanded="true">ĐĂNG NHẬP</a></li>
-                    <li id="li_register" class=""><a href="#tab_auth_register" data-toggle="tab" aria-expanded="false">ĐĂNG KÝ</a></li>
-                </ul>
-                <div class="tab-content" style="padding-top: 50px;">
-                    <div class="tab-pane fade in" id="tab_auth_login">
-                        <div class="row">
-                            @{Html.RenderAction("Login", "Account");}
-                        </div>
-                        @*<div class="sto-login-social social-buttons col-lg-6">
-                                <a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
-                                    <span class="fa fa-facebook"></span> Đăng Nhập Với Facebook
-                                </a>
-                            </div>*@
-                    </div>
-                    <div class="tab-pane fade in" id="tab_auth_register">
-                        <div class="row">
-                            @{Html.RenderAction("Register", "Account");}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="line_orn"></div>
-            <div class="modal-footer">
-                <strong>Study Online</strong> Cộng đồng học Online<strong>MIỄN PHÍ</strong>
+                @{Html.RenderAction("Login", "Account");}
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $('body').on('click', '.load_modal_login',
-        function (e) {
-            $('#li_register').removeClass('active');
-            $('#li_login').addClass('active');
-            $('#tab_auth_register').removeClass('in active');
-            $('#tab_auth_login').addClass('in active');
-        });
-    $('body').on('click', '.load_modal_register', function (e) {
-        $('#li_login').removeClass('active'); $('#li_register').addClass('active');
-        $('#tab_auth_login').removeClass('in active');
-        $('#tab_auth_register').addClass('in active');
-    });
-</script>
