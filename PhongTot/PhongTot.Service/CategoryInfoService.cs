@@ -27,10 +27,12 @@ namespace PhongTot.Service
     public class CategoryInfoService : ICategoryInfoService
     {
         private readonly ICategoryInfoRepository _categoryInfoRepository;
+        private readonly IInfoRepository _infoRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public CategoryInfoService(ICategoryInfoRepository categoryInfoRepository, IUnitOfWork unitOfWork)
+        public CategoryInfoService(ICategoryInfoRepository categoryInfoRepository, IInfoRepository infoRepository, IUnitOfWork unitOfWork)
         {
             this._categoryInfoRepository = categoryInfoRepository;
+            this._infoRepository = infoRepository;
             this._unitOfWork = unitOfWork;
         }
 
@@ -56,10 +58,30 @@ namespace PhongTot.Service
 
         public IEnumerable<CategoryInfo> GetInfoByCategory(int top)
         {
-            var model = _categoryInfoRepository.GetAll(new string[] { "Infoes" });
-            var query= model.Where(x => x.Infoes.Count >= 2 && x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
-            return query;
-                
+            var lst = new List<CategoryInfo>();
+            var model = _categoryInfoRepository.GetAll(new string[] { "Infoes" }).Where(x => x.Infoes.Count >= 2 && x.Status).Take(top);
+            if (model != null)
+            {
+                foreach (var category in model)
+                {
+                    CategoryInfo cate = new CategoryInfo();
+                    cate.ID = category.ID;
+                    cate.Name = category.Name;
+                    cate.Alias = category.Alias;
+                    cate.ParentID = category.ParentID;
+                    cate.Image = category.Image;
+                    cate.HomeFlag = category.HomeFlag;
+                    var info = _infoRepository.GetAll(new string[] { "Province" })
+                        .Where(x => x.CategoryID == category.ID).OrderByDescending(x => x.CreateDate).Take(9).ToList();
+                    if (info != null)
+                    {
+                        cate.Infoes = info;
+                    }
+                    lst.Add(cate);
+                }
+            }
+            return lst;
+
         }
 
         public void SaveChanges()
