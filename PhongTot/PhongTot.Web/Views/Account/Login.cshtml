@@ -3,62 +3,59 @@
 @{
     ViewBag.Title = "Log in";
 }
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new {role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal col-lg-8 col-lg-offset-2">
-        @Html.ValidationMessage("CustomError")
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="col-lg-12">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-user"></i>
-                    </span>
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+<div class="login">
+    <div class="content">
+        <!-- BEGIN LOGIN FORM -->
+        <div class="login-form">
+            <h3 class="form-title">Đăng Nhập</h3>
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" ,@class = "boxLogin" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationMessage("CustomError")
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-solid placeholder-no-fix", id = "Email", placeholder = "Nhập Email của bạn....." })
                     @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    @*<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Tên Tài Khoản....." name="Email" />*@
                 </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-12">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-key"></i>
-                    </span>
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-solid placeholder-no-fix", id = "Password", placeholder = "Mật Khẩu....." })
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    @*<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Mật Khẩu....." name="Password" />*@
                 </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-6">
-                <div class="checkbox-inline">
-                    @Html.CheckBoxFor(m => m.RememberMe)
-                    @Html.LabelFor(m => m.RememberMe)
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-lg btn-success uppercase">Đăng Nhập</button>
+
+                    <a href="javascript:;" id="forget-password" class="forget-password">Quên Mật Khâủ?</a>
                 </div>
-            </div>
-            @*<div class="col-lg-6">
-                <p>
-                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                </p>
-            </div>*@
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-8">
-                <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+            }
+            <div class="login-options">
+                <div class="social-icons">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </div>
+                @*<div class="social-icons">
+                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    </div>*@
             </div>
         </div>
     </div>
-    
-}
-@*<div class="sto-login-social social-buttons col-lg-6">
-        <a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
-            <span class="fa fa-facebook"></span> Đăng Nhập Với Facebook
-        </a>
-    </div>*@
-<div class="col-md-4">
-    <section id="socialLoginForm">
-        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-    </section>
 </div>
+<script>
+    $('.boxLogin').on('submit', function (e) {
+        var email = $('#Email');
+        var password = $('#Password')
+        // Check if there is an entered value
+        if (!email.val() && !password.val()) {
+            // Add errors highlight
+            email.closest('.form-control').removeClass('has-success').addClass('alert-danger');
+            password.closest('.form-control').removeClass('has-success').addClass('alert-danger');
+
+            // Stop submission of the form
+            e.preventDefault();
+        } else {
+            // Remove the errors highlight
+            email.closest('.form-group').removeClass('has-error').addClass('has-success');
+        }
+    });
+</script>
