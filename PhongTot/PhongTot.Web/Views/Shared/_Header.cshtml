@@ -40,7 +40,7 @@
                         <div class="header-top-user">
                             <div class="user-login"><a class="load_modal_login" href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a></div>
                             <div class="user-register load_modal_register">
-                                <a href="javascript: void(0);" data-toggle="modal" data-target="#myModal">Tạo tài khoản</a>
+                                <a href="javascript: void(0);" data-toggle="modal" data-target="#myModalRegister">Tạo tài khoản</a>
                             </div>
                         </div>
                     }
@@ -73,6 +73,15 @@
         <div class="modal-content">
             <div class="modal-body">
                 @{Html.RenderAction("Login", "Account");}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @{Html.RenderAction("Register", "Account");}
             </div>
         </div>
     </div>

@@ -12,7 +12,15 @@ namespace PhongTot.Web.Controllers
         // GET: Info
         public ActionResult Create()
         {
-            return View();
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+                
         }
         public ActionResult Detail(int id)
         {

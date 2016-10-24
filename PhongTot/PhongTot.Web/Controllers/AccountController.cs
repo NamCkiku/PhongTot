@@ -76,14 +76,14 @@ namespace PhongTot.Web.Controllers
             var user = _db.AspNetUsers.SingleOrDefault(m => m.Email == model.Email);
             if (user == null)
             {
-                ModelState.AddModelError("CustomError", "Email Khong Ton Tai");
+                ViewBag.Message = "Tài Khoản Không Tồn Tại";
                 return PartialView(model);
             }
             else
             {
                 if (user.EmailConfirmed == false)
                 {
-                    ModelState.AddModelError("CustomError", "TaI Khoan chua duoc xac thuc");
+                    ViewBag.Message = "Tài Khoản chưa được xác thực";
                     return PartialView(model);
                 }
             }
@@ -100,7 +100,7 @@ namespace PhongTot.Web.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ViewBag.Message = "Tài khoản,mật khẩu không chính xác";
                     return PartialView(model);
             }
         }
