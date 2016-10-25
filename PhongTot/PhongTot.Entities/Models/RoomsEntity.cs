@@ -22,6 +22,10 @@ namespace PhongTot.Entities.Models
         public virtual DbSet<Province> Provinces { get; set; }
         public virtual DbSet<Wardid> Wardids { get; set; }
         public virtual DbSet<Error> Errors { get; set; }
+        public DbSet<Post> Posts { set; get; }
+        public DbSet<PostCategory> PostCategories { set; get; }
+        public DbSet<PostTag> PostTags { set; get; }
+        public DbSet<Tag> Tags { set; get; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
