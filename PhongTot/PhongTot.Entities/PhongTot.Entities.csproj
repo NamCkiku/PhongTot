@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201610210905078_AddLatLng.Designer.cs">
       <DependentUpon>201610210905078_AddLatLng.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610250339494_addPost.cs" />
+    <Compile Include="Migrations\201610250339494_addPost.Designer.cs">
+      <DependentUpon>201610250339494_addPost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryOtherInfo.cs" />
@@ -74,8 +78,12 @@
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Info.cs" />
     <Compile Include="Models\OtherInfo.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostCategory.cs" />
+    <Compile Include="Models\PostTag.cs" />
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\RoomsEntity.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Wardid.cs" />
     <Compile Include="ModelView\InfoSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610210905078_AddLatLng.resx">
       <DependentUpon>201610210905078_AddLatLng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610250339494_addPost.resx">
+      <DependentUpon>201610250339494_addPost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
