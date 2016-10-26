@@ -34,7 +34,13 @@
             <li><a href="#"><span class="pull-left">Statement</span> <i class="pull-right fa fa-list-alt"></i></a></li>
             <li><a href="#"><span class="pull-left">Withdrawals</span> <i class="pull-right fa fa-dollar"></i></a></li>
             <li class="divider"></li>
-            <li><a href="#"><span class="pull-left">Sign Out</span> <i class="pull-right fa fa-sign-out"></i></a></li>
+            <li></li>
+            <li>
+                @using (Html.BeginForm("LogOff", "AccountAdmin", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    <a href="javascript:document.getElementById('logoutForm').submit()"><span style="padding-left:17px;" class="pull-left">Đăng xuất</span> <i style="padding-right:17px;" class="pull-right fa fa-sign-out"></i></a>
+                }
+            </li>
         </ul>
     </li>
     <li class="toolbar-icon-bg hidden-xs" id="trigger-fullscreen">
