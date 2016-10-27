@@ -63,6 +63,8 @@
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\InfoRepository.cs" />
     <Compile Include="Repositories\OtherInfoRepository.cs" />
+    <Compile Include="Repositories\PostCategoryRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\ProvinceRepository.cs" />
     <Compile Include="Repositories\WardidRepository.cs" />
   </ItemGroup>
