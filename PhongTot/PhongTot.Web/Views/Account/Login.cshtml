@@ -9,7 +9,7 @@
         <!-- BEGIN LOGIN FORM -->
         <div class="login-form">
             <h3 class="form-title">Đăng Nhập</h3>
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @class = "boxLogin" }))
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @class = "boxLogin", @id = "frmLogin" }))
             {
                 <div class="alert alert-danger hidden" id="alert">
                     <button type="button" class="close" data-close="alert"></button>
@@ -41,7 +41,10 @@
                 </div>
                 @*<div class="alert-danger" id="login_error"></div>*@
                 <div class="form-actions">
-                    <button type="submit" onclick="return fosp_login();" class="btn btn-lg btn-success uppercase">Đăng Nhập</button>
+                    <button id="btnLogin" type="submit" class="btn btn-lg btn-success uppercase">
+                        Đăng Nhập
+                        <i id="ispinner" style="display:none;" class="fa fa-spinner"></i>
+                    </button>
 
                     <a href="javascript:;" id="forget-password" class="forget-password">Quên Mật Khâủ?</a>
                 </div>
@@ -57,6 +60,8 @@
         </div>
     </div>
 </div>
+<script src="~/Content/Client/js/jquery.validate.js"></script>
+<script src="~/Content/Client/js/jquery.validate.unobtrusive.js"></script>
 <script type="text/javascript">
     //fix đường dẫn khi login bằng facebook
     if (window.location.hash == '#_=_') {
@@ -66,40 +71,12 @@
     }
 
 
-    function fosp_login() {
-
-        jQuery('#login_error').html('');
-        jQuery('input[type="text"], input[type="password"]').removeClass('validation-failed');
-        email = jQuery('#Email').val();
-        pass = jQuery('#Password').val();
-        if (email == '') {
-            jQuery('#Email').addClass('alert-danger');
-            jQuery('#alert').removeClass('hidden');
-            jQuery('#login_error').html('Vui lòng nhập địa chỉ email.');
-            jQuery('#Email').focus();
-            return false;
+    $('#frmLogin').submit(function () {
+        $('#btnLogin').attr('disabled', 'disabled');
+        $('#ispinner').show();
+        if (!$(this).valid()) {
+            $('#btnLogin').removeAttr('disabled');
+            $('#ispinner').hide();
         }
-        email_pattern = /^[a-zA-Z0-9_.-]+@@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{0,4}$/;
-        if (!email.match(email_pattern)) {
-            jQuery('#Email').addClass('validation-failed');
-            jQuery('#login_error').html('Địa chỉ email không hợp lệ.');
-            jQuery('#Email').focus();
-            return false;
-        }
-
-        if (pass == '') {
-            jQuery('#Password').addClass('validation-failed');
-            jQuery('#login_error').html('Vui lòng nhập mật khẩu đăng nhập.');
-            jQuery('#Password').focus();
-            return false;
-        }
-
-
-        if (jQuery('#login_error').html() != '') {
-            return false;
-        } else {
-            return true;
-        }
-
-    }
+    });
 </script>

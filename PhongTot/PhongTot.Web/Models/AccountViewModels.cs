@@ -49,12 +49,13 @@ namespace PhongTot.Web.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Bạn vui lòng nhập tên email")]
         [Display(Name = "Email")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Bạn phải nhập đúng định dạng email của bạn")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn vui lòng nhập mật khẩu")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -66,32 +67,36 @@ namespace PhongTot.Web.Models
     public class RegisterViewModel
     {
         public string Name { get; set; }
-        [Required]
-        [EmailAddress]
+
+        [Required(ErrorMessage = "Bạn vui lòng nhập tên email")]
         [Display(Name = "Email")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Bạn phải nhập đúng định dạng email của bạn")]
+        [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Bạn vui lòng nhập mật khẩu")]
+        [StringLength(100, ErrorMessage = "Mật khẩu {0} phải có ít nhất {2} kí tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Bạn vui lòng nhập mật khẩu xác thực")]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu xác thực không phù hợp.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn vui lòng nhập họ và tên đầy đủ")]
         [MaxLength(256, ErrorMessage = "Họ tên không được vượt quá 256 ký tự")]
         [Display(Name = "Họ tên")]
         public string FullName { get; set; }
 
+        [Required(ErrorMessage = "Bạn vui lòng nhập địa chỉ của bạn")]
         [MaxLength(256, ErrorMessage = "Họ tên không được vượt quá 256 ký tự")]
         [Display(Name = "Địa chỉ")]
         public string Address { get; set; }
 
-        public string Avater { get; set; }
+        public string Avatar { get; set; }
         public DateTime? BirthDay { set; get; }
     }
 
