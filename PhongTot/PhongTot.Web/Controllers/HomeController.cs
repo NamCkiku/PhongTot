@@ -26,6 +26,9 @@ namespace PhongTot.Web.Controllers
         }
         public PartialViewResult _Header()
         {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            ViewBag.Avatar = currentUser.Avater;
             return PartialView();
         }
     }
