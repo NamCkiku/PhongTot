@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201610250339494_addPost.Designer.cs">
       <DependentUpon>201610250339494_addPost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610270455081_addCreateDatePost.cs" />
+    <Compile Include="Migrations\201610270455081_addCreateDatePost.Designer.cs">
+      <DependentUpon>201610270455081_addCreateDatePost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryOtherInfo.cs" />
@@ -107,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610250339494_addPost.resx">
       <DependentUpon>201610250339494_addPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610270455081_addCreateDatePost.resx">
+      <DependentUpon>201610270455081_addCreateDatePost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
