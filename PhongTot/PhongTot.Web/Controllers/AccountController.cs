@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PhongTot.Web.Models;
+using System.IO;
 
 namespace PhongTot.Web.Controllers
 {
@@ -163,12 +164,44 @@ namespace PhongTot.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            if (Request.Files != null && Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                if (file != null && file.ContentLength > 0)
+                {
+                }
+
+                var fileName = GetDateName() + "_" + Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Client/img/"), fileName);
+                var a = file.ContentType;
+                var b = file.ContentLength;
+
+                if ((a.Equals("image/jpeg") || a.Equals("image/jpg") || a.Equals("image/png")) && b < 4194304)
+                {
+                    file.SaveAs(path);
+                }
+                else
+                {
+                    ViewBag.Message = "Kieu file(.png, .jpg,jpeg) va nho hon 4MB";
+                    return View("ViewRegister", model);
+                }
+                var filepathToSave = "/Content/Client/img/" + fileName;
+                model.Avatar = filepathToSave.ToString();
+            }
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FullName = model.FullName, Address = model.Address };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FullName = model.FullName,
+                    Address = model.Address,
+                    BirthDay = model.BirthDay,
+                    Avater = model.Avatar
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, "Member");
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -454,6 +487,10 @@ namespace PhongTot.Web.Controllers
             {
                 ModelState.AddModelError("", error);
             }
+        }
+        private static string GetDateName()
+        {
+            return DateTime.Now.ToString("yyyyMMddhhmmssms");
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

@@ -8,7 +8,7 @@
         <!-- BEGIN LOGIN FORM -->
         <div class="login-form">
             <h3 class="form-title">Đăng Kí</h3>
-            @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @class = "boxRegister" }))
+            @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @id = "boxRegister", enctype = "multipart/form-data" }))
             {
                 <div class="alert alert-danger hidden" id="alertRegister">
                     <button type="button" class="close" data-close="alert"></button>
@@ -44,8 +44,36 @@
                     @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
                     @*<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Mật Khẩu....." name="Password" />*@
                 </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.BirthDay, new { @class = "form-control form-control-solid placeholder-no-fix", id = "BirthDay", placeholder = "Ngày sinh....." })
+                    @Html.ValidationMessageFor(m => m.BirthDay, "", new { @class = "text-danger" })
+                    @*<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Mật Khẩu....." name="Password" />*@
+                </div>
+                <div class="form-group">
+                    <div>
+                        <div class="control-label">Ảnh Đại Diện</div>
+                        <div class="no-padding-left">
+                            <div class="fileinput fileinput-new" data-provides="fileinput" style="width: 100%;">
+                                <div class="fileinput-new thumbnail" style="width: 100%; height: 150px;">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="width: 100%; height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-primary btn-file">
+                                        <span class="fileinput-new">Chọn Ảnh</span>
+                                        <span class="fileinput-exists">Thay Đổi</span>
+                                        <input type="file" name="Avatar" id="Avatar">
+                                    </span>
+                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-actions">
-                    <button type="submit" onclick="return fosp_register();" class="btn btn-lg btn-success uppercase">Đăng kí tài khoản</button>
+                    <button type="submit" onclick="checkfile();" id="btnRegister" class="btn btn-lg btn-success uppercase">
+                        Đăng kí tài khoản
+                        <i id="ispinner" style="display:none;" class="fa fa-spinner"></i>
+                    </button>
 
                     <a href="javascript:;" id="forget-password" class="forget-password">Quên Mật Khâủ?</a>
                 </div>
@@ -61,69 +89,34 @@
         </div>
     </div>
 </div>
+<link href="~/bower_components/jasny-file-input/dist/fileinput.css" rel="stylesheet" />
+<script src="~/bower_components/jasny-file-input/dist/fileinput.js"></script>
+<link href="~/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+<script src="~/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
 <script>
-    function fosp_register() {
-
-        jQuery('#register_error').html('');
-        jQuery('input[type="text"], input[type="password"]').removeClass('validation-failed');
-        email = jQuery('#EmailRegister').val();
-        pass = jQuery('#PasswordRegister').val();
-        configpassword = jQuery('#ConfirmPasswordRegister').val();
-        address = jQuery('#AddressRegister').val();
-        fullName = jQuery('#FullNameRegister').val();
-        if (email == '') {
-            jQuery('#EmailRegister').addClass('alert-danger');
-            jQuery('#alertRegister').removeClass('hidden');
-            jQuery('#register_error').html('Vui lòng nhập địa chỉ email.');
-            jQuery('#EmailRegister').focus();
+    
+    $('#boxRegister').submit(function () {
+        $('#btnRegister').attr('disabled', 'disabled');
+        $('#ispinner').show();
+        if (!$(this).valid()) {
+            $('#btnRegister').removeAttr('disabled');
+            $('#ispinner').hide();
+        }
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#BirthDay').datepicker({
+            format: 'dd/mm/yyyy',
+            language: 'vn',
+            
+        });
+    });
+    function checkfile() {
+        var f = document.getElementById("Avatar").value;
+        if (f == "" || f == null) {
+            alert("Ban chua chon anh");
             return false;
         }
-        email_pattern_register = /^[a-zA-Z0-9_.-]+@@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{0,4}$/;
-        if (!email.match(email_pattern_register)) {
-            jQuery('#EmailRegister').addClass('validation-failed');
-            jQuery('#register_error').html('Địa chỉ email không hợp lệ.');
-            jQuery('#EmailRegister').focus();
-            return false;
-        }
-
-        if (pass == '') {
-            jQuery('#PasswordRegister').addClass('validation-failed');
-            jQuery('#register_error').html('Vui lòng nhập mật khẩu.');
-            jQuery('#PasswordRegister').focus();
-            return false;
-        }
-        var p = jQuery('#PasswordRegister').val();
-        var rp = jQuery('#PasswordRegister').val();
-        if (p.length < 6 || p.length > 32) {
-            jQuery('#register_error').html('Vui lòng nhập mật khẩu có độ dài từ 6-32 ký tự.');
-            jQuery('#PasswordRegister').addClass('validation-failed');
-            jQuery('#PasswordRegister').focus();
-            return false;
-        }
-        if (configpassword == '') {
-            jQuery('#ConfirmPasswordRegister').addClass('validation-failed');
-            jQuery('#register_error').html('Mật khẩu xác thực không đúng');
-            jQuery('#ConfirmPasswordRegister').focus();
-            return false;
-        }
-        if (address == '') {
-            jQuery('#AddressRegister').addClass('validation-failed');
-            jQuery('#register_error').html('Vui lòng nhập địa chỉ');
-            jQuery('#AddressRegister').focus();
-            return false;
-        }
-        if (fullName == '') {
-            jQuery('#FullNameRegister').addClass('validation-failed');
-            jQuery('#register_error').html('Vui lòng nhập họ và tên');
-            jQuery('#FullNameRegister').focus();
-            return false;
-        }
-
-        if (jQuery('#register_error').html() != '') {
-            return false;
-        } else {
-            return true;
-        }
-
     }
 </script>

@@ -30,11 +30,18 @@ namespace PhongTot.Entities.Models
         [MaxLength(256)]
         public string Image { set; get; }
 
+        [Column(TypeName = "xml")]
+        public string MoreImages { get; set; }
+
         [MaxLength(500)]
         public string Description { set; get; }
 
         public string Content { set; get; }
 
+        public DateTime? CreateDate { get; set; }
+
+        public DateTime? ExpireDate { get; set; }
+        public bool Status { get; set; }
         public bool? HomeFlag { set; get; }
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
