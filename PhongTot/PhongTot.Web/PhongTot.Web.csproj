@@ -208,6 +208,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -263,6 +264,7 @@
     <Content Include="app\controllers\InfoController\infoController.js" />
     <Content Include="app\controllers\InfoController\infoDetailController.js" />
     <Content Include="app\controllers\InfoController\SearchInfoController.js" />
+    <Content Include="app\controllers\PostController\postController.js" />
     <Content Include="app\directives\pagerDirective.html" />
     <Content Include="app\directives\pagerDirective.js" />
     <Content Include="app\services\apiService.js" />
@@ -887,6 +889,7 @@
     <Folder Include="bower_components\checklist-model\test\" />
     <Folder Include="Scripts\" />
     <Folder Include="Views\Application\" />
+    <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
