@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="home-article">
+            <div class="home-article" ng-controller="postController">
                 <div class="row">
                     <div class="col-md-12 home-article-label">
                         <div class="pull-left">
@@ -107,90 +107,28 @@
                         <hr>
                     </div>
                     <div class="col-md-7 left">
-                        <div class="thumbnail thumb-big">
-                            <a href="http://phongtot.vn/bai-viet/ngoi-nha-46m%C2%B2-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo">
-                                <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo_cover-573eddf84424b.jpg" alt="ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo">
-                                <h2 class="title">Ngôi nhà 46m² tuyệt đẹp có chi phí hoàn thiện 480 triệu đồng chàng trai 8x xây tặng vợ</h2>
+                        <div class="thumbnail thumb-big" ng-repeat="items in Post | limitTo:1">
+                            <a href="#">
+                                <img class="img-responsive" src="http://localhost:33029/Content/images/{{items.Image}}" alt="">
+                                <h2 class="title">{{items.Name}}</h2>
                             </a>
-                            <div class="des">Ngôi nhà của Nguyễn Hoàng Hiệp tặng cho vợ sắp cưới không chỉ đẹp như nhà Tây mà tổng chi phí xây dựng, thiết kế, trang trí chỉ vỏn vẹn ở con số 480 triệu đồng.</div>
+                            <div class="des">{{items.Description}}</div>
                         </div>
-                        <div class="col-md-4 thumbnail thumb-small">
-                            <a href="http://phongtot.vn/bai-viet/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu">
-                                <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu_cover-573dcbc3ac6e2.jpg" alt="y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu">
-                                <h2 class="title" href="http://phongtot.vn/bai-viet/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu">Ý tưởng kinh doanh nhà trọ, ngồi không mỗi tháng kiếm trăm triệu?</h2>
-                            </a>
-                        </div>
-                        <div class="col-md-4 thumbnail thumb-small">
-                            <a href="http://phongtot.vn/bai-viet/nhung-dieu-can-biet-khi-tim-phong-tro">
-                                <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/nhung-dieu-can-biet-khi-tim-phong-tro_cover-5714ad734268d.jpg" alt="nhung-dieu-can-biet-khi-tim-phong-tro">
-                                <h2 class="title" href="http://phongtot.vn/bai-viet/nhung-dieu-can-biet-khi-tim-phong-tro">Những điều cần biết khi tìm phòng trọ</h2>
-                            </a>
-                        </div>
-                        <div class="col-md-4 thumbnail thumb-small">
-                            <a href="http://phongtot.vn/bai-viet/thiet-ke-can-ho-%E2%80%AA%E2%80%AC173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong">
-                                <img class="img-reponsive" src="http://media.phongtot.vn/xc5tx4cj/thiet-ke-can-ho-‪‬173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong_cover-57018c103e17a.jpg" alt="thiet-ke-can-ho-‪‬173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong">
-                                <h2 class="title" href="http://phongtot.vn/bai-viet/thiet-ke-can-ho-%E2%80%AA%E2%80%AC173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong">Thiết kế căn hộ ‪‬173m2 cực đẹp với chi phí chỉ 17 triệu đồng</h2>
+                        <div class="col-md-4 thumbnail thumb-small" ng-repeat="items in Post | limitTo:3">
+                            <a href="#">
+                                <img class="img-reponsive" src="http://localhost:33029/Content/images/{{items.Image}}" alt="">
+                                <h2 class="title" href="#">{{items.Name}}</h2>
                             </a>
                         </div>
                     </div>
                     <div class="col-md-5 right">
-                        <div class="row item">
-                            <a href="http://phongtot.vn/bai-viet/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien">
+                        <div class="row item" ng-repeat="items in Post">
+                            <a href="#">
                                 <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien_cover-57018a97e544c.jpg" alt="pham-huong-mac-gian-di-giao-luu-cung-sinh-vien">
+                                    <img class="img-responsive" src="http://localhost:33029/Content/images/{{items.Image}}">
                                 </div>
                                 <div class="col-md-8 no-padding-left">
-                                    <h2 class="title" href="http://phongtot.vn/bai-viet/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien">Phạm Hương mặc giản dị giao lưu cùng sinh viên</h2>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="row item">
-                            <a href="http://phongtot.vn/bai-viet/vi-sao-chon-nganh-hot-van-that-nghiep">
-                                <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/vi-sao-chon-nganh-hot-van-that-nghiep_cover-57017e8c0162e.jpg" alt="vi-sao-chon-nganh-hot-van-that-nghiep">
-                                </div>
-                                <div class="col-md-8 no-padding-left">
-                                    <h2 class="title" href="http://phongtot.vn/bai-viet/vi-sao-chon-nganh-hot-van-that-nghiep">Vì sao chọn ngành 'hot' vẫn thất nghiệp?</h2>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="row item">
-                            <a href="http://phongtot.vn/bai-viet/sinh-vien-my-chon-nganh-hoc-the-nao">
-                                <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/sinh-vien-my-chon-nganh-hoc-the-nao_cover-57017d118c141.jpg" alt="sinh-vien-my-chon-nganh-hoc-the-nao">
-                                </div>
-                                <div class="col-md-8 no-padding-left">
-                                    <h2 class="title" href="http://phongtot.vn/bai-viet/sinh-vien-my-chon-nganh-hoc-the-nao">Sinh viên Mỹ chọn ngành học thế nào?</h2>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="row item">
-                            <a href="http://phongtot.vn/bai-viet/nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay">
-                                <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay_cover-57017a46119c8.jpg" alt="nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay">
-                                </div>
-                                <div class="col-md-8 no-padding-left">
-                                    <h2 class="title" href="http://phongtot.vn/bai-viet/nha-bao-bi-danh-sinh-vien-bao-chi-co-lung-lay">Nhà báo bị đánh, sinh viên báo chí có lung lay?</h2>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="row item">
-                            <a href="http://phongtot.vn/bai-viet/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi">
-                                <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi_cover-570178b56d545.jpg" alt="hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi">
-                                </div>
-                                <div class="col-md-8 no-padding-left">
-                                    <h2 class="title" href="http://phongtot.vn/bai-viet/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi">Hơn 100 sinh viên bị dừng học vì chậm đóng học phí</h2>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="row item">
-                            <a href="http://phongtot.vn/bai-viet/sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep">
-                                <div class="col-md-4 no-padding-vertical">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep_cover-56e41d9cd7bcd.png" alt="sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep">
-                                </div>
-                                <div class="col-md-8 no-padding-left">
-                                    <h2 class="title" href="http://phongtot.vn/bai-viet/sinh-vien-hao-hung-tham-gia-ngay-hoi-dinh-huong-nghe-nghiep">Sinh viên hào hứng tham gia ngày hội Định hướng nghề nghiệp</h2>
+                                    <h2 class="title" href="#">{{items.Name}}</h2>
                                 </div>
                             </a>
                         </div>
