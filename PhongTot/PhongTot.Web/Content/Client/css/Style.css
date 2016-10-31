@@ -40,7 +40,7 @@ a {
 
         .header-top .pull-right img {
             height: 50px;
-            width:50px;
+            width: 50px;
             border-radius: 50%;
         }
 
@@ -119,6 +119,35 @@ a {
         color: #FFF;
         background-color: #33cc66;
     }
+
+
+
+.new-post {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+}
+
+    .new-post .new-inner {
+        text-align: center;
+    }
+
+        .new-post .new-inner a {
+            display: block;
+            font-size: 24px;
+            font-weight: 700;
+            background-color: #33cc66;
+            color: #fff;
+            width: 56px;
+            height: 56px;
+            line-height: 56px;
+            border-radius: 100%;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px #33cc66 solid;
+            box-shadow: 0 6px 12px rgba(0,0,0,.1);
+        }
 
 /*====================*/
 

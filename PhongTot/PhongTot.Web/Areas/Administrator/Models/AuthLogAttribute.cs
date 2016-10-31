@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace PhongTot.Web.Areas.Administrator.Models
 {
@@ -52,6 +53,11 @@ namespace PhongTot.Web.Areas.Administrator.Models
                 var result = vr;
 
                 filterContext.Result = result;
+            }
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(new
+                   RouteValueDictionary(new { controller = "AccountAdmin", action = "Login", Area = "Administrator" }));
             }
         }
     }
