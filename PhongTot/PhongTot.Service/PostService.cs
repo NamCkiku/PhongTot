@@ -18,6 +18,7 @@ namespace PhongTot.Service
         Post Delete(int id);
 
         IEnumerable<Post> GetAll();
+       
         IEnumerable<Post> GetAllPaging(string keyword);
         //IEnumerable<Post> Search(PostSearchModel filterParams);
 
@@ -94,5 +95,7 @@ namespace PhongTot.Service
         {
             _postRepository.Update(post);
         }
+
+        
     }
 }
