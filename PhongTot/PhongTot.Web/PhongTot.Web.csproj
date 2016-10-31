@@ -80,6 +80,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -88,6 +92,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -197,11 +209,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
     <Compile Include="Areas\Administrator\Controllers\AccountAdminController.cs" />
     <Compile Include="Areas\Administrator\Controllers\BaseController.cs" />
     <Compile Include="Areas\Administrator\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Administrator\Controllers\InfoAdminController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\PostAdminController.cs" />
     <Compile Include="Areas\Administrator\Controllers\RoleController.cs" />
     <Compile Include="Areas\Administrator\Models\AuthLogAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -273,6 +287,7 @@
     <Content Include="Areas\Administrator\app\app.js" />
     <Content Include="Areas\Administrator\app\commonService\notificationService.js" />
     <Content Include="Areas\Administrator\app\controllers\InfoController\infoAdminController.js" />
+    <Content Include="Areas\Administrator\app\controllers\PostController\postAdminController.js" />
     <Content Include="Areas\Administrator\app\directives\pagerDirective.html" />
     <Content Include="Areas\Administrator\app\directives\pagerDirective.js" />
     <Content Include="Areas\Administrator\app\services\apiService.js" />
@@ -1321,6 +1336,9 @@
     <Content Include="bower_components\bootstrap-datepicker\package.json" />
     <Content Include="bower_components\bootstrap-datepicker\README.md" />
     <Content Include="bower_components\bootstrap-datepicker\tests\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrator\Views\PostAdmin\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
