@@ -108,14 +108,14 @@
                     </div>
                     <div class="col-md-7 left">
                         <div class="thumbnail thumb-big" ng-repeat="items in Post | limitTo:1">
-                            <a href="#">
+                            <a href="/Post/Detail/{{items.ID}}">
                                 <img class="img-responsive" src="http://localhost:33029/Content/images/{{items.Image}}" alt="">
                                 <h2 class="title">{{items.Name}}</h2>
                             </a>
                             <div class="des">{{items.Description}}</div>
                         </div>
                         <div class="col-md-4 thumbnail thumb-small" ng-repeat="items in Post | limitTo:3">
-                            <a href="#">
+                            <a href="/Post/Detail/{{items.ID}}">
                                 <img class="img-reponsive" src="http://localhost:33029/Content/images/{{items.Image}}" alt="">
                                 <h2 class="title" href="#">{{items.Name}}</h2>
                             </a>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="col-md-5 right">
                         <div class="row item" ng-repeat="items in Post">
-                            <a href="#">
+                            <a href="/Post/Detail/{{items.ID}}">
                                 <div class="col-md-4 no-padding-vertical">
                                     <img class="img-responsive" src="http://localhost:33029/Content/images/{{items.Image}}">
                                 </div>

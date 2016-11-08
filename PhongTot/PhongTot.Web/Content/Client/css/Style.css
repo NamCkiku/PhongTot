@@ -2350,3 +2350,93 @@ Bootstrap Alerts
     .submit-list-type ul li:hover label {
         color: #ff0046;
     }
+
+
+
+
+
+
+
+/*//.............................Post details........................//*/
+.post-detail {
+    margin-top: -15px;
+}
+
+    .post-detail .post-title {
+        margin-bottom: 15px;
+    }
+
+        .post-detail .post-title a {
+            text-decoration: none;
+            color: #2e3339;
+        }
+
+            .post-detail .post-title a h1 {
+                font-size: 20px;
+                font-weight: 600;
+                text-decoration: none;
+            }
+
+.post-hr hr {
+    border-color: #3c6;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.post-detail .post-content {
+    text-align: justify;
+    font-size: 15px;
+    font-family: 'Arial';
+}
+.post-detail .post-tag {
+    padding-top: 20px;
+    font-size: 14px;
+}
+.post-detail .post-tag span {
+    color: #337ab7;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.post-detail .post-social-end {
+    height: 45px;
+    border-top: 1px dotted #2e3339;
+    border-bottom: 1px dotted #2e3339;
+    margin-top: 20px;
+    padding-top: 5px;
+}
+
+.post-detail .post-comment, .post-detail .post-item-same-category {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+.post-detail .post-comment hr {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-top: 1px solid #3c6;
+}
+.post-detail .same-category-item {
+    margin-bottom: 30px;
+}
+.post-detail .same-category-item .post-item-a {
+    position: relative;
+    display: block;
+}
+.post-detail .same-category-item .same-category-item-title {
+    position: absolute;
+    bottom: -10px;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    text-transform: capitalize;
+    width: 100%;
+    padding: 5px 5px;
+    font-size: 14px;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    line-height: 1.42857143;
+}
+.post-detail .same-category-item .same-category-item-title:hover{
+    background-color: #33cc66;
+}
+
+/*//.............................End Post details........................//*/

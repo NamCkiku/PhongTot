@@ -279,6 +279,7 @@
     <Content Include="app\controllers\InfoController\infoDetailController.js" />
     <Content Include="app\controllers\InfoController\SearchInfoController.js" />
     <Content Include="app\controllers\PostController\postController.js" />
+    <Content Include="app\controllers\PostController\postDetailController.js" />
     <Content Include="app\directives\pagerDirective.html" />
     <Content Include="app\directives\pagerDirective.js" />
     <Content Include="app\services\apiService.js" />
@@ -904,7 +905,6 @@
     <Folder Include="bower_components\checklist-model\test\" />
     <Folder Include="Scripts\" />
     <Folder Include="Views\Application\" />
-    <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1339,6 +1339,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Administrator\Views\PostAdmin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Post\Detail.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

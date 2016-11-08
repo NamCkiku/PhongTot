@@ -1,0 +1,257 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+
+
+<div class="col-md-9" ng-controller="postDetailController">
+    <div class="row">
+        <div class="col-md-12 room-main-content">
+            <div class="pt-breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="http://phongtot.vn">Trang chủ</a></li>
+                    <li><a href="http://phongtot.vn/bai-viet">{{postDetail.PostCategory.Name}}</a></li>
+                    <li class="active">{{postDetail.Name}}</li>
+                </ol>
+            </div>
+
+            <div class="post-detail">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="post-title">
+                            <a href="javascript:void()"><h1>{{postDetail.Name}}</h1></a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="post-hr"><hr></div>
+                        <div class="post-content" ng-bind-html="postDetail.Content">
+
+                        </div>
+                        <div class="post-tag">
+                            <span>Từ khóa: </span>
+                            <a href="#" title=""></a>
+                            <a href="#" title=""></a>
+                            <a href="#" title=""></a>
+                        </div>
+                        <div class="post-social-end">
+                            <div class="pull-left"><img class="img-responsive" src="http://phongtot.vn/themes/client/img/like_share_footer.png" alt="ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- End Block Social -->
+                        <div class="post-comment">
+                            <div class="post-container-comment-title pull-left"><span>Bình luận</span></div>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="fb-comments fb_iframe_widget" data-href="http://phongtot.vn/bai-viet/ngoi-nha-46m%C2%B2-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo" data-width="898" data-numposts="10" fb-xfbml-state="rendered">
+                                <span style="height: 173px; width: 898px;">
+                                </span>
+                            </div>
+                        </div>
+                        <!-- End Block Comment -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="post-item-same-category">
+                                    <div class="post-container-same-category-title pull-left"><span>Bài viết khác</span></div>
+                                    <div class="post-container-same-category-more pull-right"><a href="http://phongtot.vn/bai-viet">Xem tất cả <i class="fa fa-angle-right"></i></a></div>
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <!-- End article same category -->
+                            <div class="col-md-4 same-category-item">
+                                <a href="http://phongtot.vn/bai-viet/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi" class="post-item-a">
+                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi_cover-570178b56d545.jpg">
+                                    <h2 class="same-category-item-title">Hơn 100 sinh viên bị dừng học vì chậm đóng học phí</h2>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-3 sidebar">
+    <div class="row">
+        <div class="col-sm-6 col-md-12">
+            <div class="advance-search" ng-controller="SearchInfoController">
+                <div class="title">
+                    <a id="submit_search" href="javascript:void(0);"><span class="fa fa-search"></span></a>Tìm kiếm nâng cao
+                </div>
+                <div class="shr"><hr></div>
+                <div class="form-group">
+                    <div class="btn btn-select btn-select-light btn-select-city">
+                        <select class="form-control address_input" name="province_id" ng-change="getAlDistrictByProvince(keywords.Provinceid)" ng-model="keywords.Provinceid" ng-options="option.provinceid as option.name for option in province">
+                            <option value="">Chọn Tỉnh Thành</option>
+                        </select>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="btn btn-select btn-select-light btn-select-city">
+                        <select name="district_id" ng-change="getAlWardByDistrict(keywords.Districtid)" ng-model="keywords.Districtid" ng-options="option.districtid1 as option.name for option in district" class="form-control address_input">
+                            <option value="">Chọn Tỉnh/Thành trước</option>
+                        </select>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="btn btn-select btn-select-light btn-select-city">
+                        <select id="street_id" name="ward_id" ng-model="keywords.Wardid" ng-options="option.wardid1 as option.name for option in ward" class="form-control address_input" size="1">
+                            <option value="">Chọn Quận/huyện trước</option>
+                        </select>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="btn btn-select btn-select-light btn-select-city">
+                        <select id="street_id" name="ward_id" ng-model="keywords.CategoryID" ng-options="option.CategoryID as option.Name for option in categoryinfo" class="form-control address_input" size="1">
+                            <option value="">Chọn Loại Phòng</option>
+                        </select>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="group-price pull-left" style="width: 100%;">
+                    <div class="group-title">Chọn khoảng giá</div>
+                    <rzslider rz-slider-model="slider.minValue"
+                              rz-slider-high="slider.maxValue"
+                              rz-slider-options="slider.options"></rzslider>
+                    <div class="extra-controls">
+                        <div class="form-group input-price">
+                            <div class="price-from">
+                                <div class="input-group">
+                                    <input type="text" name="price_from" ng-model="slider.minValue" class="inp js-from form-control">
+                                    <span class="input-group-addon">Triệu</span>
+                                </div>
+                            </div>
+                            <span class="input-price-title">Đến</span>
+                            <div class="price-to">
+                                <div class="input-group">
+                                    <input type="text" name="price_to" ng-model="slider.maxValue" class="inp js-to form-control">
+                                    <span class="input-group-addon">Triệu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group submit">
+                    <button type="submit" ng-click="search()" class="btn btn-slide-search"><span class="fa fa-search"></span>Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-12 sidebar-ads">
+            <img class="img-responsive" src="http://ngoaingu.net/themes/client/img/ads1.png" alt="" pagespeed_url_hash="3823440975" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        </div>
+    </div>
+
+    <div class="row">
+        <div style="margin-bottom: 30px;" class="col-sm-6 col-md-12 sidebar-ads">
+            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ads-3-min.png" alt="" pagespeed_url_hash="2304746762" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-ads">
+            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ads-4-min.png" alt="" pagespeed_url_hash="2725309099" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 sidebar-article-label">
+            <div class="pull-left">
+                <a href="http://phongtot.vn/bai-viet"><h3><span>bài viết</span> mới</h3></a>
+            </div>
+            <div class="pull-right">
+                <a href="http://phongtot.vn/bai-viet"></a><h3>
+                    <a href="http://phongtot.vn/bai-viet">Xem thêm <i class="fa fa-angle-right"></i></a>
+                </h3>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo_cover-573eddf84424b.jpg" alt="" pagespeed_url_hash="1469250980" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Ngôi nhà 46m² tuyệt đẹp có chi phí hoàn thiện 480 triệu đồng chàng trai 8x xây tặng vợ</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu_cover-573dcbc3ac6e2.jpg" alt="" pagespeed_url_hash="2616505349" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Ý tưởng kinh doanh nhà trọ, ngồi không mỗi tháng kiếm trăm triệu?</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/nhung-dieu-can-biet-khi-tim-phong-tro_cover-5714ad734268d.jpg" alt="" pagespeed_url_hash="1795872361" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Những điều cần biết khi tìm phòng trọ</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/thiet-ke-can-ho-‪‬173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong_cover-57018c103e17a.jpg" alt="">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Thiết kế căn hộ ‪‬173m2 cực đẹp với chi phí chỉ 17 triệu đồng</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien_cover-57018a97e544c.jpg" alt="" pagespeed_url_hash="2806860473" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Phạm Hương mặc giản dị giao lưu cùng sinh viên</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-12 sidebar-article-new">
+            <a href="http://phongtot.vn/bai-viet">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/vi-sao-chon-nganh-hot-van-that-nghiep_cover-57017e8c0162e.jpg" alt="" pagespeed_url_hash="133360725" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                    </div>
+                    <div class="col-md-7 no-padding-left">
+                        <div class="sidebar-article-title">
+                            <h2>Vì sao chọn ngành 'hot' vẫn thất nghiệp?</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
