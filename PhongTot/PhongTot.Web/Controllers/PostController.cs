@@ -9,7 +9,7 @@ namespace PhongTot.Web.Controllers
     public class PostController : Controller
     {
         // GET: Post
-        public ActionResult Detail()
+        public ActionResult Detail(int id)
         {
             return View();
         }
