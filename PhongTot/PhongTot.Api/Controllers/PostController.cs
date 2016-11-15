@@ -32,6 +32,20 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
+        [Route("reatedpost")]
+        public HttpResponseMessage GetReatedPost(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var listPost = _postService.GetReatedPost(id, 6).OrderByDescending(x => x.CreateDate).Take(6);
+
+                //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPost);
+
+                return response;
+            });
+        }
 
         [Route("getallpaging")]
         public HttpResponseMessage GetAllPaging(HttpRequestMessage request, string keyword, int page, int pageSize = 20)

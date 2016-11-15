@@ -58,10 +58,10 @@
                                 </div>
                             </div>
                             <!-- End article same category -->
-                            <div class="col-md-4 same-category-item">
-                                <a href="http://phongtot.vn/bai-viet/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi" class="post-item-a">
-                                    <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/hon-100-sinh-vien-bi-dung-hoc-vi-cham-dong-hoc-phi_cover-570178b56d545.jpg">
-                                    <h2 class="same-category-item-title">Hơn 100 sinh viên bị dừng học vì chậm đóng học phí</h2>
+                            <div class="col-md-4 same-category-item" ng-repeat="item in postReated">
+                                <a href="/Post/Detail/{{items.ID}}" class="post-item-a">
+                                    <img class="img-responsive" src="http://localhost:33029/Content/images/{{items.Image}}">
+                                    <h2 class="same-category-item-title">{{item.Name}}</h2>
                                 </a>
                             </div>
                         </div>

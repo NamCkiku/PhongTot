@@ -18,7 +18,7 @@
                 params: {
                     keyword: $scope.keyword,
                     page: page,
-                    pageSize: 1
+                    pageSize: 20
                 }
             }
             apiService.get('http://localhost:33029/api/post/getallpaging', config, function (result) {

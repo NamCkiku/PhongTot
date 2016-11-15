@@ -22,7 +22,18 @@
                 notificationService.displayError('Lỗi');
             });
         }
+
+        function getReatedPost() {
+            var id = getID();
+            apiService.get('http://localhost:33029/api/post/reatedpost/', id, function (result) {
+                $scope.postReated = result.data;
+            }, function () {
+                notificationService.displayError('Lỗi');
+            });
+        }
+
         getPostDetail();
+        getReatedPost();
     }
 
 })(angular.module('myApp'));

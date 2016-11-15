@@ -288,6 +288,7 @@
     <Content Include="Areas\Administrator\app\app.js" />
     <Content Include="Areas\Administrator\app\commonService\notificationService.js" />
     <Content Include="Areas\Administrator\app\controllers\InfoController\infoAdminController.js" />
+    <Content Include="Areas\Administrator\app\controllers\PostController\postAdminAddController.js" />
     <Content Include="Areas\Administrator\app\controllers\PostController\postAdminController.js" />
     <Content Include="Areas\Administrator\app\directives\pagerDirective.html" />
     <Content Include="Areas\Administrator\app\directives\pagerDirective.js" />
@@ -1342,6 +1343,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Post\Detail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrator\Views\PostAdmin\Add.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
