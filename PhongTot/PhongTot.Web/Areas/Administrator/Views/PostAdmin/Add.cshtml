@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="page-content" style="min-height:1300px">
+    <h3 class="page-title">
+        Thêm mới bài viết
+    </h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box blue" id="form_wizard_1">
+
+                <div class="portlet-body form" ng-controller="postAdminAddController">
+                    <form action="#" class="form-horizontal" novalidate="novalidate" name="frmAddPost" role="form" ng-submit="AddPost()">
+                        <div class="form-wizard">
+                            <div class="form-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab1">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                Tên bài viết <span class="required" aria-required="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="name" ng-model="post.Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                Tiêu đề SEO <span class="required" aria-required="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="alias" ng-model="post.Alias">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                Tên danh mục <span class="required" aria-required="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <select name="categoryId" class="form-control" ng-model="post.CategoryID" ng-options="option.ID as option.Name for option in postCategories">
+                                                    <option value="">Chọn danh mục</option>
+                                                </select>
+                                                <input name="categoryId" type="hidden" ng-model="post.CategoryID" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                Hình Ảnh <span class="required" aria-required="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                Mô tả <span class="required" aria-required="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="description" ng-model="post.Description">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                Nội dung <span class="required" aria-required="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="content" ng-model="post.Content">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                Thêm Ảnh <span class="required" aria-required="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" name="moreimages" ng-model="post.MoreImages">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                Kích hoạt <span class="required" aria-required="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input type="checkbox" name="status" ng-model="post.Status" ng-checked="post.Status">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">
+                                                Hiển thị trang chủ <span class="required" aria-required="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input type="checkbox" name="homeFlag" ng-model="post.HomeFlag" ng-checked="post.HomeFlag">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button class="btn btn-success" type="submit" ng-disabled="frmAddPost.$invalid">Lưu</button>
+                                        <button class="btn btn-default"> Hủy</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

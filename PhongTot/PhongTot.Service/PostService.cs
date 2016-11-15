@@ -22,6 +22,7 @@ namespace PhongTot.Service
         //IEnumerable<Post> Search(PostSearchModel filterParams);
 
         IEnumerable<Post> GetListPostByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<Post> GetReatedPost(int id, int top);
 
         Post GetById(int id);
 
@@ -83,6 +84,11 @@ namespace PhongTot.Service
             totalRow = query.Count();
 
             return query.Skip(page * pageSize).Take(pageSize);
+        }
+        public IEnumerable<Post> GetReatedPost(int id, int top)
+        {
+            var post = _postRepository.GetSingleById(id);
+            return _postRepository.GetMulti(x => x.Status == true && x.ID != id && x.CategoryID == post.CategoryID).OrderByDescending(x => x.CreateDate).Take(top);
         }
 
         public void SaveChanges()
