@@ -2,4 +2,5 @@
 var app;
 (function () {
     app = angular.module("myApp", ['ui.tinymce', 'ngSanitize', 'thatisuday.dropzone', 'angularFileUpload', 'rzModule', 'checklist-model', 'ngtimeago']);
+
 })();

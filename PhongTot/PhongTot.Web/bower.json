@@ -12,6 +12,7 @@
     "checklist-model": "~0.10.0",
     "angular-sanitize": "~1.5.8",
     "ng-timeago": "~0.0.2",
-    "bootstrap-datepicker": "~1.6.4"
+    "bootstrap-datepicker": "~1.6.4",
+    "angular-ui-router": "~0.3.1"
   }
 }

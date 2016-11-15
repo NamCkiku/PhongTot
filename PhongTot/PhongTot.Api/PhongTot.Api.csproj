@@ -206,6 +206,7 @@
     <Compile Include="Controllers\DistrictController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
+    <Compile Include="Controllers\PostCategoryController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProvinceController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />

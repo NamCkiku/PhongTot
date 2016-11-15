@@ -1,4 +1,5 @@
 ﻿using PhongTot.Api.Infrastructure.Core;
+using PhongTot.Api.Models.ViewModel;
 using PhongTot.Entities.Models;
 using PhongTot.Service;
 using System;
@@ -7,6 +8,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using PhongTot.Api.Infrastructure.Extensions;
+using AutoMapper;
 
 namespace PhongTot.Api.Controllers
 {
@@ -34,6 +37,7 @@ namespace PhongTot.Api.Controllers
         }
 
         [Route("getallpaging")]
+        [HttpGet]
         public HttpResponseMessage GetAllPaging(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
@@ -55,7 +59,30 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
-
+        [Route("create")]
+        [HttpPost]
+        public HttpResponseMessage Create(HttpRequestMessage request,PostViewModel postVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if(!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var newPost = new Post();
+                    newPost.UpdatePost(postVm);
+                    _postService.Add(newPost);
+                    _postService.SaveChanges();
+                    var responseData = Mapper.Map<Post, PostViewModel>(newPost);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                    
+                }
+                return response;
+            });
+        }
 
 
         [Route("getbyid/{id:int}")]

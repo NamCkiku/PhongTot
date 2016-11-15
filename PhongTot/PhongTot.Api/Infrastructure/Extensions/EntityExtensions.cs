@@ -24,5 +24,33 @@ namespace PhongTot.Api.Infrastructure.Extensions
             info.Status = infoVm.Status;
 
         }
+        public static void UpdatePost(this Post post, PostViewModel postVm)
+        {
+            post.ID = postVm.ID;
+            post.Name = postVm.Name;
+            post.Alias = postVm.Alias;
+            post.Description = postVm.Description;
+            post.Alias = postVm.Alias;
+            post.Image = postVm.Image;
+            post.MoreImages = postVm.MoreImages;
+            post.CreateDate = postVm.CreateDate;
+            post.Status = postVm.Status;
+            post.HomeFlag = postVm.HomeFlag;
+            post.HotFlag = post.HomeFlag;
+            post.ViewCount = postVm.ViewCount;
+            post.Content = postVm.Content;
+            post.ExpireDate = postVm.ExpireDate;
+        }
+        public static void UpdatePostCategory(this PostCategory postcategory, PostCategoryViewModel postcategoryVm)
+        {
+            postcategory.ID = postcategoryVm.ID;
+            postcategory.Name = postcategoryVm.Name;
+            postcategory.Alias = postcategoryVm.Alias;
+            postcategory.Description = postcategoryVm.Description;
+            postcategory.Alias = postcategoryVm.Alias;
+            postcategory.Image = postcategoryVm.Image;
+            postcategory.HomeFlag = postcategoryVm.HomeFlag;
+            postcategory.ParentID = postcategoryVm.ParentID;
+        }
     }
 }

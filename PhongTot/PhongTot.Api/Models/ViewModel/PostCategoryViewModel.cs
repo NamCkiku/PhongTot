@@ -23,6 +23,6 @@ namespace PhongTot.Api.Models.ViewModel
 
         public bool? HomeFlag { set; get; }
 
-        public virtual ICollection<Post> Posts { set; get; }
+        public virtual ICollection<PostViewModel> Posts { set; get; }
     }
 }
