@@ -12,8 +12,8 @@
                         <div class="menu-tab-title"><a href=""><span>Tin</span> Mới nhất <i class="fa fa-angle-right"></i></a></div>
                         <div class="menu-tab-title-right">
                             <ul class="nav nav-tabs ">
-                                <li class="active">
-                                    <a href="#tab_type" data-toggle="tab">Tất cả</a>
+                                <li  role="presentation" class="active">
+                                    <a href="#tab_type" data-toggle="tab" aria-controls="home" role="tab">Tất cả</a>
                                 </li>
                                 <li class="" ng-repeat="item in InfoCategory">
                                     <a href="#tab_type_{{item.ID}}" data-toggle="tab">{{item.Name}}</a>
@@ -39,13 +39,13 @@
                                                 </div>
                                                 <div class="extra">
                                                     <div class="pull-left">
-                                                        <a href="#"><span class="fa fa-map-marker"></span>{{items.Province.name}}</a>
+                                                        <a href="#"><span class="fa fa-map-marker"></span>{{items.ProvinceName}}</a>
                                                     </div>
                                                     <div class="pull-right">
                                                         <a href=""><span class="fa fa-info"></span>{{items.Acreage}} m<sup>2</sup></a>
                                                     </div>
                                                     <div class="type">
-                                                        <a href=""><span class="fa fa-home"></span>{{items.CategoryInfo.Name}}</a>
+                                                        <a href=""><span class="fa fa-home"></span>{{items.CategoryName}}</a>
                                                     </div>
                                                 </div>
                                             </div>

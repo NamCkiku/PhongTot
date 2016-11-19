@@ -90,6 +90,7 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Wardid.cs" />
     <Compile Include="ModelView\InfoSearchModel.cs" />
+    <Compile Include="ModelView\InfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

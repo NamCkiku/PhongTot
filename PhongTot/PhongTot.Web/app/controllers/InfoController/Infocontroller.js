@@ -145,7 +145,7 @@
         }
 
         function getAllInfo() {
-            apiService.get('http://localhost:33029/api/info/getall', null, function (result) {
+            apiService.get('http://localhost:33029/api/info/getallinfojoin', null, function (result) {
                 $scope.Info = result.data;
             }, function () {
                 notificationService.displayError('Lỗi');
