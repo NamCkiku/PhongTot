@@ -5,6 +5,7 @@
     apiService.$inject = ['$http', '$location', 'notificationService'];
 
     function apiService($http, notificationService) {
+        var serviceBase = 'http://localhost:33029/';
         return {
             get: get,
             post: post,
@@ -12,7 +13,7 @@
             del: del
         }
         function del(url, data, success, failure) {
-            $http.delete(url, data).then(function (result) {
+            $http.delete(serviceBase + url, data).then(function (result) {
                 success(result);
             }, function (error) {
                 console.log(error.status)
@@ -26,7 +27,7 @@
             });
         }
         function post(url, data, success, failure) {
-            $http.post(url, data).then(function (result) {
+            $http.post(serviceBase + url, data).then(function (result) {
                 success(result);
             }, function (error) {
                 console.log(error.status)
@@ -40,7 +41,7 @@
             });
         }
         function put(url, data, success, failure) {
-            $http.put(url, data).then(function (result) {
+            $http.put(serviceBase + url, data).then(function (result) {
                 success(result);
             }, function (error) {
                 console.log(error.status)
@@ -54,7 +55,7 @@
             });
         }
         function get(url, params, success, failure) {
-            $http.get(url, params).then(function (result) {
+            $http.get(serviceBase + url, params).then(function (result) {
                 success(result);
             }, function (error) {
                 failure(error);

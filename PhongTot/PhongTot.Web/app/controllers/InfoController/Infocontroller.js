@@ -98,7 +98,7 @@
         }
 
         function getAllCategoryInfo() {
-            apiService.get('http://localhost:33029/api/categoryinfo/getall', null, function (result) {
+            apiService.get('api/categoryinfo/getall', null, function (result) {
                 $scope.categoryinfo = result.data;
             }, function () {
                 notificationService.displayError('Lỗi');
@@ -106,7 +106,7 @@
         }
 
         function getAllProvinceInfo() {
-            apiService.get('http://localhost:33029/api/province/getall', null, function (result) {
+            apiService.get('api/province/getall', null, function (result) {
                 $scope.province = result.data;
             }, function () {
                 notificationService.displayError('Lỗi');
@@ -121,7 +121,7 @@
                     id: id
                 }
             }
-            apiService.get('http://localhost:33029/api/district/getallbyprovince/' + config.params.id, null, function (result) {
+            apiService.get('api/district/getallbyprovince/' + config.params.id, null, function (result) {
                 $scope.district = result.data;
             }, function () {
                 console.log(config);
@@ -136,7 +136,7 @@
                     id: id
                 }
             }
-            apiService.get('http://localhost:33029/api/ward/getallbydistrict/' + config.params.id, null, function (result) {
+            apiService.get('api/ward/getallbydistrict/' + config.params.id, null, function (result) {
                 $scope.ward = result.data;
             }, function () {
                 console.log(config);
@@ -145,7 +145,7 @@
         }
 
         function getAllInfo() {
-            apiService.get('http://localhost:33029/api/info/getallinfojoin', null, function (result) {
+            apiService.get('api/info/getallinfojoin', null, function (result) {
                 $scope.Info = result.data;
             }, function () {
                 notificationService.displayError('Lỗi');
@@ -153,7 +153,7 @@
         }
         getAllInfoByCategory();
         function getAllInfoByCategory() {
-            apiService.get('http://localhost:33029/api/categoryinfo/getinfobycategory', null, function (result) {
+            apiService.get('api/categoryinfo/getinfobycategory', null, function (result) {
                 $scope.InfoCategory = result.data;
             }, function () {
                 notificationService.displayError('Lỗi');
@@ -174,7 +174,7 @@
             $scope.infoAdd.Lng = $scope.infoAdd.Lng
             console.log($scope.infoAdd)
             debugger;
-            apiService.post('http://localhost:33029/api/info/add', $scope.infoAdd, function (result) {
+            apiService.post('api/info/add', $scope.infoAdd, function (result) {
                 $scope.infoAdd = result.data;
                 if (infoImage) {
                     fileUploadService.uploadImage(infoImage, $scope.infoAdd.ID);

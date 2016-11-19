@@ -13,7 +13,7 @@
         $scope.AddPost = AddPost;
 
         function AddPost() {
-            apiService.post('http://localhost:33029/api/post/create', $scope.post,
+            apiService.post('api/post/create', $scope.post,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + 'đã được thêm mới.');
                 }, function (error) {
@@ -22,7 +22,7 @@
                 });
         }
         function loadPostCategory() {
-            apiService.get('http://localhost:33029/api/postcategory/getall', null, function (result) {
+            apiService.get('api/postcategory/getall', null, function (result) {
                 $scope.postCategories = result.data;
             }, function () {
                 console.log('Cannot get list parent');

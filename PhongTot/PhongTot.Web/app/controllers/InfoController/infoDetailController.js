@@ -86,7 +86,7 @@
         }
         function GetInfoDetail() {
             var id = getID();
-            apiService.get('http://localhost:33029/api/info/getbyid/' + id, null, function (result) {
+            apiService.get('api/info/getbyid/' + id, null, function (result) {
                 $scope.infoDetail = result.data;
                 $scope.moreImages = JSON.parse($scope.infoDetail.MoreImages);
                 $scope.Convenient = JSON.parse($scope.infoDetail.OtherInfo.Convenient);
