@@ -7,7 +7,7 @@
 
 
         function getAllPost() {
-            apiService.get('http://localhost:33029/api/post/getall', null, function (result) {
+            apiService.get('api/post/getall', null, function (result) {
                 $scope.Post = result.data;
             }, function () {
                 notificationService.displayError('Lỗi');

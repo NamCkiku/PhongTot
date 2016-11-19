@@ -81,7 +81,7 @@
                     sort: $scope.sortKey
                 }
             }
-            apiService.get('http://localhost:33029/api/info/search', config, function (result) {
+            apiService.get('api/info/search', config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('Không có bản ghi nào được tìm thấy.');
                 }
@@ -94,7 +94,7 @@
             });
         }
         function getAllCategoryInfo() {
-            apiService.get('http://localhost:33029/api/categoryinfo/getall', null, function (result) {
+            apiService.get('api/categoryinfo/getall', null, function (result) {
                 $scope.categoryinfo = result.data;
             }, function () {
                 notificationService.displayError('Load product failed.');
@@ -102,7 +102,7 @@
         }
 
         function getAllProvinceInfo() {
-            apiService.get('http://localhost:33029/api/province/getall', null, function (result) {
+            apiService.get('api/province/getall', null, function (result) {
                 $scope.province = result.data;
             }, function () {
                 notificationService.displayError('Lỗi');
@@ -117,7 +117,7 @@
                     id: id
                 }
             }
-            apiService.get('http://localhost:33029/api/district/getallbyprovince/' + config.params.id, null, function (result) {
+            apiService.get('api/district/getallbyprovince/' + config.params.id, null, function (result) {
                 $scope.district = result.data;
             }, function () {
                 console.log(config);
@@ -132,7 +132,7 @@
                     id: id
                 }
             }
-            apiService.get('http://localhost:33029/api/ward/getallbydistrict/' + config.params.id, null, function (result) {
+            apiService.get('api/ward/getallbydistrict/' + config.params.id, null, function (result) {
                 $scope.ward = result.data;
             }, function () {
                 console.log(config);

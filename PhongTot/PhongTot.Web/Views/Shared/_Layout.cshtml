@@ -32,7 +32,38 @@
     <script src="~/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="~/bower_components/ng-timeago/ngtimeago.js"></script>
     <script src="~/Content/Client/Plugins/owl-carousel/owl.carousel.min.js"></script>
-    
+    <script>
+        $(window).load(function () {
+            //preloader
+            $(".preloaderimg").fadeOut();
+            $(".preloader").delay(300).fadeOut("slow").delay(300, function () {
+                $(this).remove();
+            });
+        });
+    </script>
+    <style>
+        /*page preloader*/
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ffffff;
+            z-index: 13000;
+            height: 100%;
+        }
+
+        .preloader_image {
+            width: 125px;
+            height: 125px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            background: url(../Content/Client/img/logoload.png) no-repeat 50% 50% transparent;
+            margin: -40px 0 0 -40px;
+        }
+    </style>
 </head>
 <body>
     @{Html.RenderPartial("_Header", "Home");}
@@ -50,6 +81,9 @@
     </div>
     <!-- Start footer -->
     @RenderPage("_Footer.cshtml")
+    <div class="preloader">
+        <div class="preloader_image"></div>
+    </div>
     @RenderSection("scripts", required: false)
 </body>
 </html>

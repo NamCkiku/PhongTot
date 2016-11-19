@@ -7,7 +7,7 @@
         $scope.category = "";
       
         function getAllCategoryInfo() {
-            apiService.get('http://localhost:33029/api/categoryinfo/getall', null, function (result) {
+            apiService.get('api/categoryinfo/getall', null, function (result) {
                 $scope.categoryinfo = result.data;
             }, function () {
                 notificationService.displayError('Lỗi');

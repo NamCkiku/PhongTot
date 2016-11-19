@@ -832,6 +832,7 @@
     <Content Include="Content\Client\css\Style.css" />
     <Content Include="Content\Client\img\city.jpg" />
     <Content Include="Content\Client\img\logo.png" />
+    <Content Include="Content\Client\img\logoload.png" />
     <Content Include="Content\Client\img\tim-nu-chung-cu-toa-nha-ct1-ngo-62-tran-binh-2kv8x.jpg" />
     <Content Include="Content\Client\js\jquery-1.10.2.min.js" />
     <Content Include="Content\Client\js\jquery-1.8.3.min.js" />

@@ -21,7 +21,7 @@
                     pageSize: 10
                 }
             }
-            apiService.get('http://localhost:33029/api/info/getallpaging', config, function (result) {
+            apiService.get('api/info/getallpaging', config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('Không có bản ghi nào được tìm thấy.');
                 }
