@@ -22,6 +22,16 @@
                         <div class="post-title">
                             <a href="javascript:void()"><h1>{{postDetail.Name}}</h1></a>
                         </div>
+                        <div class="social-facebook">
+                            <div class="pull-left">
+                                <div class="fb-share-button" data-href="http://localhost:32963//Post/{{infoDetail.ID}}" d data-layout="button" data-size="small" data-mobile-iframe="true">
+                                    <div class="fb-like" data-href="http://localhost:32963/Info/Post/{{infoDetail.ID}}" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="javascript:void();"><span>Lượt xem : </span>16</a>
+                            </div>
+                        </div>
                         <div class="clearfix"></div>
                         <div class="post-hr"><hr></div>
                         <div class="post-content" ng-bind-html="postDetail.Content">
@@ -42,10 +52,7 @@
                             <div class="post-container-comment-title pull-left"><span>Bình luận</span></div>
                             <div class="clearfix"></div>
                             <hr>
-                            <div class="fb-comments fb_iframe_widget" data-href="http://phongtot.vn/bai-viet/ngoi-nha-46m%C2%B2-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo" data-width="898" data-numposts="10" fb-xfbml-state="rendered">
-                                <span style="height: 173px; width: 898px;">
-                                </span>
-                            </div>
+                            <div class="fb-comments" data-href="http://localhost:32963/Info/Detail/&#123;&#123;infoDetail.ID&#125;&#125;" data-width="100%" data-numposts="5"></div>
                         </div>
                         <!-- End Block Comment -->
                         <div class="row">

@@ -23,12 +23,27 @@ namespace PhongTot.Api.Controllers
         {
             this._infoService = infoService;
         }
+        [Route("getallinfojoin")]
+        public HttpResponseMessage GetAllListInfoJoin(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var listInfo = _infoService.GetAllListInfoJoin().OrderByDescending(x => x.CreateDate).Take(9);
+
+                //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listInfo);
+
+                return response;
+            });
+        }
+
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
-                var listInfo = _infoService.GetAll().OrderByDescending(x => x.CreateDate).Take(9);
+                var listInfo = _infoService.GetAllListInfoJoin().OrderByDescending(x => x.CreateDate).Take(9);
 
                 //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
 

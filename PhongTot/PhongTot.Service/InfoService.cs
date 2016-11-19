@@ -18,8 +18,9 @@ namespace PhongTot.Service
         void Update(Info info);
 
         Info Delete(int id);
-
         IEnumerable<Info> GetAll();
+
+        IEnumerable<InfoViewModel> GetAllListInfoJoin();
         IEnumerable<Info> GetAllPaging(string keyword);
         IEnumerable<Info> Search(InfoSearchModel filterParams);
 
@@ -86,9 +87,13 @@ namespace PhongTot.Service
             return _inforRepository.Delete(id);
         }
 
+        public IEnumerable<InfoViewModel> GetAllListInfoJoin()
+        {
+            return _inforRepository.GetAllListInfoJoin();
+        }
         public IEnumerable<Info> GetAll()
         {
-            return _inforRepository.GetAll(new string[] { "CategoryInfo", "Province" });
+            return _inforRepository.GetAll();
         }
 
         public Info GetById(int id)
