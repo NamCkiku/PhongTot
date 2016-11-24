@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Api", "PhongTot.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Tests", "PhongTot.Tests\PhongTot.Tests.csproj", "{D7301970-A115-41FA-9BE7-277FE95265D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhongTot.Administrator", "PhongTot.Administrator\PhongTot.Administrator.csproj", "{9557DAC8-9ECF-4A28-917F-4F0F841142C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{D7301970-A115-41FA-9BE7-277FE95265D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7301970-A115-41FA-9BE7-277FE95265D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7301970-A115-41FA-9BE7-277FE95265D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9557DAC8-9ECF-4A28-917F-4F0F841142C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9557DAC8-9ECF-4A28-917F-4F0F841142C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9557DAC8-9ECF-4A28-917F-4F0F841142C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9557DAC8-9ECF-4A28-917F-4F0F841142C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

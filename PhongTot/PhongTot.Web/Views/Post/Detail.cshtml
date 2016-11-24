@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="pull-right">
-                                <a href="javascript:void();"><span>Lượt xem : </span>16</a>
+                                <a href="javascript:void();"><span>Lượt xem : </span>{{postDetail.ViewCount}}</a>
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -44,7 +44,14 @@
                             <a href="#" title=""></a>
                         </div>
                         <div class="post-social-end">
-                            <div class="pull-left"><img class="img-responsive" src="http://phongtot.vn/themes/client/img/like_share_footer.png" alt="ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo"></div>
+                            <div class="pull-left">
+                                <img class="img-responsive" src="http://phongtot.vn/themes/client/img/like_share_footer.png" alt="">
+                            </div>
+                            <div class="pull-right">
+                                <div class="fb-share-button" data-href="http://localhost:32963//Post/{{infoDetail.ID}}" d data-layout="button" data-size="small" data-mobile-iframe="true">
+                                    <div class="fb-like" data-href="http://localhost:32963/Info/Post/{{infoDetail.ID}}" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
                         <!-- End Block Social -->
@@ -65,9 +72,9 @@
                                 </div>
                             </div>
                             <!-- End article same category -->
-                            <div class="col-md-4 same-category-item" ng-repeat="item in postReated">
-                                <a href="/Post/Detail/{{items.ID}}" class="post-item-a">
-                                    <img class="img-responsive" src="http://localhost:33029/Content/images/{{items.Image}}">
+                            <div class="col-md-4 same-category-item" ng-repeat="item in postReated | limitTo:6">
+                                <a href="/Post/Detail/{{item.ID}}" class="post-item-a">
+                                    <img class="img-responsive" src="http://localhost:33029/Content/images/{{item.Image}}">
                                     <h2 class="same-category-item-title">{{item.Name}}</h2>
                                 </a>
                             </div>
@@ -79,7 +86,7 @@
     </div>
 </div>
 
-<div class="col-md-3 sidebar">
+<div class="col-md-3 sidebar"  ng-controller="postDetailController">
     <div class="row">
         <div class="col-sm-6 col-md-12">
             <div class="advance-search" ng-controller="SearchInfoController">
@@ -150,111 +157,41 @@
     </div>
     <div class="row">
         <div class="col-sm-6 col-md-12 sidebar-ads">
-            <img class="img-responsive" src="http://ngoaingu.net/themes/client/img/ads1.png" alt="" pagespeed_url_hash="3823440975" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+            <img class="img-responsive" src="http://ngoaingu.net/themes/client/img/ads1.png" alt="">
         </div>
     </div>
 
-    <div class="row">
+    @*<div class="row">
         <div style="margin-bottom: 30px;" class="col-sm-6 col-md-12 sidebar-ads">
-            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ads-3-min.png" alt="" pagespeed_url_hash="2304746762" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ads-3-min.png" alt="">
         </div>
         <div class="col-sm-6 col-md-12 sidebar-ads">
-            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ads-4-min.png" alt="" pagespeed_url_hash="2725309099" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+            <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ads-4-min.png" alt="">
         </div>
-    </div>
+    </div>*@
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 sidebar-article-label">
             <div class="pull-left">
-                <a href="http://phongtot.vn/bai-viet"><h3><span>bài viết</span> mới</h3></a>
+                <a href=""><h3><span>bài viết</span> mới</h3></a>
             </div>
             <div class="pull-right">
-                <a href="http://phongtot.vn/bai-viet"></a><h3>
-                    <a href="http://phongtot.vn/bai-viet">Xem thêm <i class="fa fa-angle-right"></i></a>
+                <a href=""></a><h3>
+                    <a href="">Xem thêm <i class="fa fa-angle-right"></i></a>
                 </h3>
             </div>
             <div class="clearfix"></div>
             <hr>
         </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
+        <div class="col-sm-6 col-md-12 sidebar-article-new" ng-repeat="item in Post | limitTo:6">
+            <a href="/Post/Detail/{{item.ID}}">
                 <div class="row">
                     <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/ngoi-nha-46m²-tuyet-dep-co-chi-phi-hoan-thien-480-trieu-dong-chang-trai-8x-xay-tang-vo_cover-573eddf84424b.jpg" alt="" pagespeed_url_hash="1469250980" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                        <img class="img-responsive" ng-src="http://localhost:33029/Content/images/{{item.Image}}" alt="">
                     </div>
                     <div class="col-md-7 no-padding-left">
                         <div class="sidebar-article-title">
-                            <h2>Ngôi nhà 46m² tuyệt đẹp có chi phí hoàn thiện 480 triệu đồng chàng trai 8x xây tặng vợ</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/y-tuong-kinh-doanh-nha-tro-ngoi-khong-moi-thang-kiem-tram-trieu_cover-573dcbc3ac6e2.jpg" alt="" pagespeed_url_hash="2616505349" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Ý tưởng kinh doanh nhà trọ, ngồi không mỗi tháng kiếm trăm triệu?</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/nhung-dieu-can-biet-khi-tim-phong-tro_cover-5714ad734268d.jpg" alt="" pagespeed_url_hash="1795872361" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Những điều cần biết khi tìm phòng trọ</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/thiet-ke-can-ho-‪‬173m2-cuc-dep-voi-chi-phi-chi-17-trieu-dong_cover-57018c103e17a.jpg" alt="">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Thiết kế căn hộ ‪‬173m2 cực đẹp với chi phí chỉ 17 triệu đồng</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/pham-huong-mac-gian-di-giao-luu-cung-sinh-vien_cover-57018a97e544c.jpg" alt="" pagespeed_url_hash="2806860473" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Phạm Hương mặc giản dị giao lưu cùng sinh viên</h2>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-md-12 sidebar-article-new">
-            <a href="http://phongtot.vn/bai-viet">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img class="img-responsive" src="http://media.phongtot.vn/xc5tx4cj/vi-sao-chon-nganh-hot-van-that-nghiep_cover-57017e8c0162e.jpg" alt="" pagespeed_url_hash="133360725" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </div>
-                    <div class="col-md-7 no-padding-left">
-                        <div class="sidebar-article-title">
-                            <h2>Vì sao chọn ngành 'hot' vẫn thất nghiệp?</h2>
+                            <h2>{{item.Name}}</h2>
                         </div>
                     </div>
                 </div>
