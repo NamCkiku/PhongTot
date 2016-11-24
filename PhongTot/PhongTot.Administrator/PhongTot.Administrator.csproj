@@ -128,11 +128,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\info\Info.module.js" />
     <Content Include="app\components\info\InfoListController.js" />
     <Content Include="app\components\info\InfoListView.html" />
+    <Content Include="app\shared\commonService\notificationService.js" />
+    <Content Include="app\shared\directives\pagerDirective.html" />
+    <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\modules\app.common.js" />
+    <Content Include="app\shared\services\apiService.js" />
     <Content Include="bower_components\angular-ui-router\release\angular-ui-router.js" />
     <Content Include="bower_components\angular-ui-router\release\angular-ui-router.min.js" />
     <Content Include="bower_components\angular-ui-router\src\common.js" />
@@ -219,11 +224,9 @@
   <ItemGroup>
     <Folder Include="app\components\account\" />
     <Folder Include="app\components\categoryInfo\" />
-    <Folder Include="app\shared\directives\" />
     <Folder Include="app\shared\filters\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
-    <Folder Include="app\shared\services\" />
     <Folder Include="app\shared\views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
