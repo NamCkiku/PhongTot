@@ -1,0 +1,9 @@
+{
+	"name": "asp.net",
+	"private": true,
+  "dependencies": {
+    "angular": "~1.5.8",
+    "angular-ui-router": "~0.3.2",
+    "toastr": "~2.1.3"
+  }
+}
