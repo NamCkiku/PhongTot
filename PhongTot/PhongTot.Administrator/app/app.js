@@ -1,6 +1,6 @@
 ﻿/// <reference path="E:\_Study\_SourceCode\_SourseGithub\PhongTot\PhongTot\PhongTot.Administrator\bower_components/angular/angular.js" />
 (function () {
-    angular.module('myApp', ['ui.router']).config(config);
+    angular.module('myApp', ['ui.router', 'blockUI']).config(config);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider

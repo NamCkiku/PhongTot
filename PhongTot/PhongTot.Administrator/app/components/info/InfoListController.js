@@ -1,8 +1,8 @@
 ﻿/// <reference path="E:\_Study\_SourceCode\_SourseGithub\PhongTot\PhongTot\PhongTot.Web\bower_components/angular/angular.js" />
 (function (app) {
     app.controller('InfoListController', InfoListController);
-    InfoListController.$inject = ['apiService', '$scope', 'notificationService', '$timeout', '$window'];
-    function InfoListController(apiService, $scope, notificationService, $timeout, $window) {
+    InfoListController.$inject = ['apiService', '$scope', 'notificationService', '$timeout', '$window', 'blockUI'];
+    function InfoListController(apiService, $scope, notificationService, $timeout, $window, blockUI) {
         $scope.Info = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -13,6 +13,8 @@
         }
         $scope.getAllInfo = getAllInfo;
         function getAllInfo(page) {
+            var myBlockUI = blockUI.instances.get('myBlockUI');
+            myBlockUI.start();
             page = page || 0;
             var config = {
                 params: {
@@ -29,6 +31,10 @@
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
+                $timeout(function (result) {
+                    // Stop the block after some async operation.
+                    myBlockUI.stop();
+                }, 100);
             }, function () {
                 console.log('Load product failed.');
             });
