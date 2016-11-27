@@ -42,8 +42,8 @@ namespace PhongTot.Entities.Models
 
         public DateTime? ExpireDate { get; set; }
         public bool Status { get; set; }
-        public bool? HomeFlag { set; get; }
-        public bool? HotFlag { set; get; }
+        public bool HomeFlag { set; get; }
+        public bool HotFlag { set; get; }
         public int? ViewCount { set; get; }
 
         [ForeignKey("CategoryID")]

@@ -1,5 +1,7 @@
 ﻿namespace PhongTot.Entities.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System;
     using System.Collections.Generic;
@@ -16,7 +18,7 @@
 
         protected override void Seed(PhongTot.Entities.Models.RoomsEntity context)
         {
-            CreatePostSample(context);
+            CreateUser(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -30,21 +32,33 @@
             //    );
             //
         }
-        private void CreatePostSample(PhongTot.Entities.Models.RoomsEntity context)
+        private void CreateUser(RoomsEntity context)
         {
-            if(context.Posts.Count()==0)
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new RoomsEntity()));
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new RoomsEntity()));
+
+            var user = new ApplicationUser()
             {
-                List<Post> listPost = new List<Post>()
-            {
-                new Post() {Name="Nhà đẹp khỏi bàn",Alias="nha-dep-khoi-ban",CategoryID=1,Status=true },
-                new Post() {Name="Nhà xấu đừng xem",Alias="nha-xau-dung-xem",CategoryID=1,Status=true },
-                new Post() {Name="Nhà cũng bình thường thôi",Alias="nha-cung-binh-thuong-thoi",CategoryID=2,Status=true },
-                new Post() {Name="Nhà tạm được",Alias="nha-tam-duoc",CategoryID=2,Status=true },
+                UserName = "admin",
+                Email = "tranhoangnam11373@gmail.com",
+                EmailConfirmed = true,
+                BirthDay = DateTime.Now,
+                FullName = "Trần Hoàng Nam"
+
             };
-                context.Posts.AddRange(listPost);
-                context.SaveChanges();
+
+            manager.Create(user, "admin123");
+
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
             }
-           
+
+            var adminUser = manager.FindByEmail("tranhoangnam11373@gmail.com");
+
+            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace PhongTot.Api.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/post")]
     public class PostController : ApiControllerBase
     {
@@ -47,6 +48,7 @@ namespace PhongTot.Api.Controllers
             });
         }
 
+        [Authorize]
         [Route("getallpaging")]
         public HttpResponseMessage GetAllPaging(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {

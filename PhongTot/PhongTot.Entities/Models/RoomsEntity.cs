@@ -4,8 +4,9 @@ namespace PhongTot.Entities.Models
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-    public partial class RoomsEntity : DbContext
+    public partial class RoomsEntity : IdentityDbContext<ApplicationUser>
     {
         public RoomsEntity()
             : base("name=RoomsEntity")
@@ -26,6 +27,10 @@ namespace PhongTot.Entities.Models
         public DbSet<PostCategory> PostCategories { set; get; }
         public DbSet<PostTag> PostTags { set; get; }
         public DbSet<Tag> Tags { set; get; }
+        public static RoomsEntity Create()
+        {
+            return new RoomsEntity();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -49,6 +54,9 @@ namespace PhongTot.Entities.Models
                 .HasMany(e => e.Infoes)
                 .WithOptional(e => e.Wardid1)
                 .HasForeignKey(e => e.Wardid);
+
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }

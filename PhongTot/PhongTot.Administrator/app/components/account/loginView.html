@@ -10,14 +10,14 @@
                     <div class="panel-heading"><h2>Đăng Nhập</h2></div>
                     <div class="clearfix"></div>
                     <div class="panel-body">
-                        <form action="" class="form-horizontal" id="validate-form">
+                        <form action="" class="form-horizontal" ng-submit="loginSubmit()" id="validate-form">
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="Email Username">
+                                        <input type="text" class="form-control" ng-model="loginData.userName" placeholder="Email Username">
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-key"></i>
                                         </span>
-                                        <input type="password" class="form-control" placeholder="Password">
+                                        <input type="password" ng-model="loginData.password" class="form-control" placeholder="Password">
                                     </div>
                                 </div>
                             </div>
@@ -44,12 +44,9 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="panel-footer">
-                                <a href="#" class="btn btn-block btn-primary">Đăng Nhập</a>
+                                <button type="submit" class="btn btn-block btn-primary">Đăng Nhập</button>
                             </div>
-
                         </form>
                     </div>
                 </div>

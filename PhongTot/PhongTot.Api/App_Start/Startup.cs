@@ -12,16 +12,20 @@ using PhongTot.Repository.Repositories;
 using PhongTot.Service;
 using System.Web.Mvc;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using System.Web;
+using Microsoft.Owin.Security.DataProtection;
 
 [assembly: OwinStartup(typeof(PhongTot.Api.App_Start.Startup))]
 
 namespace PhongTot.Api.App_Start
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             ConfigAutofac(app);
+            ConfigureAuth(app);
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
         }
         private void ConfigAutofac(IAppBuilder app)
@@ -37,11 +41,11 @@ namespace PhongTot.Api.App_Start
             builder.RegisterType<RoomsEntity>().AsSelf().InstancePerRequest();
 
             //Asp.net Identity
-            //builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
-            //builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
-            //builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
-            //builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
-            //builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             // Repositories
             builder.RegisterAssemblyTypes(typeof(InfoRepository).Assembly)
