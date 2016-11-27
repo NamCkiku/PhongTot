@@ -98,7 +98,7 @@ namespace PhongTot.Api.Controllers
                 else
                 {
                     var newCourse = _postService.Add(post);
-
+                    _postService.SaveChanges();
                     response = request.CreateResponse(HttpStatusCode.Created, newCourse);
                 }
                 return response;
@@ -120,7 +120,6 @@ namespace PhongTot.Api.Controllers
                 {
                     _postService.Update(post);
                     _postService.SaveChanges();
-
                     response = request.CreateResponse(HttpStatusCode.OK);
 
 
@@ -143,7 +142,6 @@ namespace PhongTot.Api.Controllers
                 {
                     _postService.Delete(id);
                     _postService.SaveChanges();
-
                     response = request.CreateResponse(HttpStatusCode.OK);
 
                 }
