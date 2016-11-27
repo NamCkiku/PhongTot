@@ -4,24 +4,38 @@
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider
-        .state('home', {
-            url: "/admin",
-            templateUrl: "/app/components/home/homeView.html",
-            controller: "homeController"
+            .state('base', {
+                url: '',
+                templateUrl: '/app/shared/views/baseView.html',
+                abstract: true
+            })
+            .state('home', {
+                url: "/admin",
+                parent: 'base',
+                templateUrl: "/app/components/home/homeView.html",
+                controller: "homeController"
 
-        }).state('infos', {
-            url: "/infos",
-            templateUrl: "/app/components/info/InfoListView.html",
-            controller: "InfoListController"
-        }).state('post', {
-            url: "/post",
-            templateUrl: "/app/components/post/PostListView.html",
-            controller: "postListController",
-        }).state('addpost', {
-            url: "/addpost",
-            templateUrl: "/app/components/post/PostAddView.html",
-            controller: "postAddController",
-        });
+            }).state('login', {
+                url: "/login",
+                templateUrl: "/app/components/account/loginView.html",
+                controller: "loginController"
+            })
+            .state('infos', {
+                url: "/infos",
+                parent: 'base',
+                templateUrl: "/app/components/info/InfoListView.html",
+                controller: "InfoListController"
+            }).state('post', {
+                url: "/post",
+                parent: 'base',
+                templateUrl: "/app/components/post/PostListView.html",
+                controller: "postListController",
+            }).state('addpost', {
+                url: "/addpost",
+                parent: 'base',
+                templateUrl: "/app/components/post/PostAddView.html",
+                controller: "postAddController",
+            });
         $urlRouterProvider.otherwise('/admin');
     }
 })();
