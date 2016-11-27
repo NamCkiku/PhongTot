@@ -1,5 +1,4 @@
 ﻿<section class="content" ng-controller="InfoListController">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom box-primary">
@@ -13,7 +12,30 @@
                         <li><a class="btn label-warning" data-toggle="modal" data-target="#addNewItem">+ Add new item</a></li>
                     </ul>
                     <div class="box-header with-border title-page-button">
-                        <h3 class="box-title title-heading">Danh Sách Phòng</h3>
+                        <div class="col-lg-12">
+                            <div class="col-lg-2">
+                                <label class="control-label">Từ khóa</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label">Ngày bắt đầu</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label">Ngày kết thúc</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label">Trạng thái</label>
+                                <select class="form-control">
+                                    <option value="AK">Alaska</option>
+                                    <option value="HI">Hawaii</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3" style="padding-top:25px;">
+                                <button type="button" class="btn btn-primary">Tìm Kiếm</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="details-content">
                         <div class="col-xs-12">

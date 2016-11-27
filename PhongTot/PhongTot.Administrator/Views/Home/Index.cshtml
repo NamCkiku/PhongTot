@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="~/Content/css/styleInventory.css">
     <link href="~/bower_components/toastr/toastr.css" rel="stylesheet" />
+    <link href="~/bower_components/angular-block-ui/dist/angular-block-ui.css" rel="stylesheet" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -30,14 +31,14 @@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <a href="javascript:void(0)" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
                         <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-envelope-o"></i>
                                 <span class="label label-success">4</span>
                             </a>
@@ -226,12 +227,12 @@
                 <ul class="sidebar-menu">
                     <!--- <li class="header">DASHBOARD</li> -->
                     <li class="treeview">
-                        <a href="#">
+                        <a href="javascript:void(0)">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="javascript:void(0)">
                             <i class="fa fa-file-text-o"></i> <span>Request</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -403,6 +404,7 @@
         <script src="~/app/shared/services/apiService.js"></script>
         <script src="~/app/shared/commonService/notificationService.js"></script>
         <script src="~/app/shared/directives/pagerDirective.js"></script>
+        <script src="~/bower_components/angular-block-ui/dist/angular-block-ui.js"></script>
         <script src="~/app/components/info/InfoListController.js"></script>
         <script src="~/app/components/home/homeController.js"></script>
     </div>
