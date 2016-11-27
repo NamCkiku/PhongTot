@@ -210,14 +210,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
-    <Compile Include="Areas\Administrator\Controllers\AccountAdminController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\BaseController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\HomeAdminController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\InfoAdminController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\PostAdminController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\RoleController.cs" />
-    <Compile Include="Areas\Administrator\Models\AuthLogAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
@@ -285,14 +277,6 @@
     <Content Include="app\services\apiService.js" />
     <Content Include="app\services\fileUploadService.js" />
     <Content Include="app\Shared\menuController\menuController.js" />
-    <Content Include="Areas\Administrator\app\app.js" />
-    <Content Include="Areas\Administrator\app\commonService\notificationService.js" />
-    <Content Include="Areas\Administrator\app\controllers\InfoController\infoAdminController.js" />
-    <Content Include="Areas\Administrator\app\controllers\PostController\postAdminAddController.js" />
-    <Content Include="Areas\Administrator\app\controllers\PostController\postAdminController.js" />
-    <Content Include="Areas\Administrator\app\directives\pagerDirective.html" />
-    <Content Include="Areas\Administrator\app\directives\pagerDirective.js" />
-    <Content Include="Areas\Administrator\app\services\apiService.js" />
     <Content Include="bower_components\angular-file-upload\angular-file-upload.js" />
     <Content Include="bower_components\angular-sanitize\angular-sanitize.js" />
     <Content Include="bower_components\angular-sanitize\angular-sanitize.min.js" />
@@ -810,25 +794,6 @@
     <Content Include="bower_components\toastr\toastr.js" />
     <Content Include="bower_components\toastr\toastr.min.css" />
     <Content Include="bower_components\toastr\toastr.min.js" />
-    <Content Include="Content\Admin\css\styles-blessed1.css" />
-    <Content Include="Content\Admin\css\styles-blessed2.css" />
-    <Content Include="Content\Admin\css\styles-blessed3.css" />
-    <Content Include="Content\Admin\css\styles.css" />
-    <Content Include="Content\Admin\fonts\font-awesome\css\font-awesome.css" />
-    <Content Include="Content\Admin\fonts\font-awesome\css\font-awesome.min.css" />
-    <Content Include="Content\Admin\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\Admin\fonts\glyphicons\css\glyphicons.css" />
-    <Content Include="Content\Admin\fonts\glyphicons\css\glyphicons.min.css" />
-    <Content Include="Content\Admin\fonts\glyphicons\font\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\Admin\js\application.js" />
-    <Content Include="Content\Admin\js\bootstrap.min.js" />
-    <Content Include="Content\Admin\js\enquire.min.js" />
-    <Content Include="Content\Admin\js\jquery-1.10.2.min.js" />
-    <Content Include="Content\Admin\plugins\nanoScroller\css\main.css" />
-    <Content Include="Content\Admin\plugins\nanoScroller\css\nanoscroller.css" />
-    <Content Include="Content\Admin\plugins\nanoScroller\js\jquery.nanoscroller.js" />
-    <Content Include="Content\Admin\plugins\nanoScroller\js\jquery.nanoscroller.min.js" />
-    <Content Include="Content\Admin\plugins\nanoScroller\js\overthrow.min.js" />
     <Content Include="Content\Client\css\Style.css" />
     <Content Include="Content\Client\img\city.jpg" />
     <Content Include="Content\Client\img\logo.png" />
@@ -903,7 +868,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administrator\Views\Base\" />
     <Folder Include="bower_components\checklist-model\test\" />
     <Folder Include="Scripts\" />
     <Folder Include="Views\Application\" />
@@ -1216,87 +1180,6 @@
     <Content Include="Views\Home\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Administrator\Views\web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\Shared\_LayoutAdmin.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Admin\fonts\.DS_Store" />
-    <Content Include="Content\Admin\fonts\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\Admin\fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\Admin\fonts\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\Admin\fonts\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\bordered-pulled.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\core.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\extras.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\fixed-width.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\font-awesome.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\icons.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\larger.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\list.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\mixins.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\path.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\rotated-flipped.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\spinning.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\stacked.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\less\variables.less" />
-    <Content Include="Content\Admin\fonts\font-awesome\README.md" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\font-awesome.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_bordered-pulled.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_core.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_extras.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_fixed-width.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_icons.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_larger.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_list.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_mixins.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_path.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_rotated-flipped.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_spinning.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_stacked.scss" />
-    <Content Include="Content\Admin\fonts\font-awesome\scss\_variables.scss" />
-    <Content Include="Content\Admin\fonts\glyphicons\font\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\Admin\fonts\glyphicons\font\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\Admin\fonts\glyphicons\font\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\HomeAdmin\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Admin\plugins\nanoScroller\css\nanoscroller.less" />
-    <Content Include="Content\Admin\plugins\nanoScroller\css\nanoscroller.scss" />
-    <Content Include="Content\Admin\plugins\nanoScroller\js\jquery.nanoscroller.js.map" />
-    <Content Include="Content\Admin\plugins\nanoScroller\js\jquery.nanoscroller.min.js.map" />
-    <Content Include="Content\Admin\plugins\nanoScroller\js\jquery.nanoscroller.min.map" />
-    <Content Include="Content\Admin\plugins\nanoScroller\LICENSE-MIT" />
-    <Content Include="Content\Admin\plugins\nanoScroller\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\Shared\_HeaderAdmin.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\Shared\_SidebarMenuAdmin.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\InfoAdmin\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\AccountAdmin\Login.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\Role\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\Role\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\Role\RegisterRole.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\Shared\AuthorizeFailed.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="bower_components\bootstrap-datepicker\.bower.json" />
     <Content Include="bower_components\bootstrap-datepicker\.editorconfig" />
     <Content Include="bower_components\bootstrap-datepicker\.npmignore" />
@@ -1340,13 +1223,7 @@
     <Content Include="bower_components\bootstrap-datepicker\tests\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Administrator\Views\PostAdmin\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Post\Detail.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrator\Views\PostAdmin\Add.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
