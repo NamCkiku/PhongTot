@@ -3405,6 +3405,8 @@
     <Content Include="Content\Plugins\datepicker\locales\bootstrap-datepicker.vi.js" />
     <Content Include="Content\Plugins\datepicker\locales\bootstrap-datepicker.zh-CN.js" />
     <Content Include="Content\Plugins\datepicker\locales\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="Content\Plugins\html5-form-validation\jquery.validation.js" />
+    <Content Include="Content\Plugins\html5-form-validation\jquery.validation.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
