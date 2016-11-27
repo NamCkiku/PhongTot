@@ -55,9 +55,9 @@
                                             <tr class="text-center" ng-repeat="items in Info">
                                                 <td><img width="30" height="30" src="http://localhost:33029/Content/images/{{items.Image}}" /></td>
                                                 <td>{{items.Name}}</td>
-                                                <td>{{items.CreateDate}}</td>
+                                                <td>{{items.CreateDate |date: 'dd/MM/yyyy'}}</td>
                                                 <td>
-                                                    <span class="label label-info">{{items.Status}}</span>
+                                                    <span class="label label-info">{{items.Status |statusFilter}}</span>
                                                 </td>
                                                 <td>
                                                     <a href="/Info/Detail/{{items.ID}}" class="btn btn-default btn-xs btn-label"><i class="fa fa-search"></i> Xem</a>
