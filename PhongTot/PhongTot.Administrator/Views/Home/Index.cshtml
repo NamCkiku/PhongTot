@@ -16,7 +16,10 @@
 
     <link rel="stylesheet" href="~/Content/css/styleInventory.css">
     <link href="~/bower_components/toastr/toastr.css" rel="stylesheet" />
+    <link href="~/Content/Plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <link href="~/bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" />
     <link href="~/bower_components/angular-block-ui/dist/angular-block-ui.css" rel="stylesheet" />
+    <link href="~/bower_components/ng-tags-input/ng-tags-input.css" rel="stylesheet" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -233,153 +236,32 @@
                     </li>
                     <li class="treeview">
                         <a href="javascript:void(0)">
-                            <i class="fa fa-file-text-o"></i> <span>Request</span>
+                            <i class="fa fa-file-text-o"></i> <span>Phong Tot</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a ui-sref="home"> Order</a></li>
-                            <li><a  ui-sref="infos"> Travel</a></li>
-                            <li><a href="#"> Expense</a></li>
+                            <li><a ui-sref="home"> Trang Chủ</a></li>
+                            <li><a  ui-sref="infos"> Phòng Tốt</a></li>
 
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="javascript:void(0)">
                             <i class="fa fa-check-circle-o"></i>
-                            <span>Approval</span>
-                            <i class="count-menu">69</i>
+                            <span>Tin Tức</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#">Order</a></li>
-                            <li><a href="#">Travel</a></li>
+                            <li><a ui-sref="addpost">Thêm Tin Tức</a></li>
+                            <li><a ui-sref="post">Tin Tức</a></li>
                             <li><a href="#">Expense</a></li>
 
 
                         </ul>
-                    </li>
-
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>Procure</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#">Procurement</a></li>
-                            <li><a href="#">P.O.History</a></li>
-                            <li><a href="#">Vendors</a></li>
-                            <li><a href="#">Product Catalog</a></li>
-
-                        </ul>
-                    </li>
-
-
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-truck"></i>
-                            <span>Receive</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#">Purchase Order Reicive</a></li>
-
-                        </ul>
-                    </li>
-
-
-
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-cube"></i>
-                            <span>Inventory</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"> Sales Quotation</a></li>
-                            <li><a href="#">Sales Order</a></li>
-                            <li><a href="#"> Delivery Note</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-dollar"></i>
-                            <span>Payment</span>
-                            <i class="count-menu">69</i>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"> Payment processing</a></li>
-                            <li><a href="#"> Payee Management</a></li>
-                            <li><a href="#"> Paymentlog</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-sliders"></i> <span>Manage</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"> Budget Control</a></li>
-                            <li><a href="#"> Accounts</a></li>
-                            <li><a href="#"> Approval Routing</a></li>
-
-                        </ul>
-                    </li>
-
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-line-chart"></i> <span>Reports</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"> Account Group Report</a></li>
-                            <li><a href="#"> Account Leger Report</a></li>
-                            <li><a href="#">Day Book</a></li>
-                            <li><a href="#"> Cash/Bank Book</a></li>
-                            <li><a href="#">Outstranding Report</a></li>
-                            <li><a href="#">Ageing Report</a></li>
-                            <li><a href="#">Stock Report</a></li>
-                            <li><a href="#">Damaged Stock Report</a></li>
-                            <li><a href="#">Short Expiry Report</a></li>
-                            <li><a href="#">Price List Report</a></li>
-                            <li><a href="#">Damaged Stock Report</a></li>
-                            <li><a href="#">Short Expiry Report</a></li>
-                            <li><a href="#">Price List Report</a></li>
-                            <li><a href="#">SCheque Report</a></li>
-                            <li><a href="#">Product Vs Batch Report</a></li>
-                            <li><a href="#">C/o Report</a></li>
-                            <li><a href="#">C/o Report</a></li>
-                            <li><a href="#">Product Profit Report</a></li>
-                            <li><a href="#">Product Statistics Report</a></li>
-                            <li><a href="#">Free Sale Report</a></li>
-                            <li><a href="#">Sales Report</a></li>
-                            <li><a href="#">Purchase Report</a></li>
-                            <li><a href="#">Service Report</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-cog"></i> <span>Settings</span>
-                        </a>
                     </li>
 
                     <!-- /.sidebar -->
@@ -391,9 +273,10 @@
         <script src="~/Content/js/jquery-2.2.3.min.js"></script>
         <script src="~/Content/js/bootstrap.min.js"></script>
         <script src="~/Content/js/app.min.js"></script>
+        <script src="~/Content/Plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="~/bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
         <script src="~/bower_components/toastr/toastr.js"></script>
-
-
+        <script src="~/bower_components/ckeditor/ckeditor.js"></script>
 
 
 
@@ -402,10 +285,17 @@
         <script src="~/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="~/app/app.js"></script>
         <script src="~/app/shared/services/apiService.js"></script>
+        <script src="~/app/shared/services/commonService.js"></script>
         <script src="~/app/shared/commonService/notificationService.js"></script>
         <script src="~/app/shared/directives/pagerDirective.js"></script>
+        <script src="~/app/shared/filters/statusFilter.js"></script>
+        <script src="~/bower_components/ng-ckeditor/ng-ckeditor.js"></script>
+        <script src="~/bower_components/ng-tags-input/ng-tags-input.js"></script>
+        <script src="~/bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
         <script src="~/bower_components/angular-block-ui/dist/angular-block-ui.js"></script>
         <script src="~/app/components/info/InfoListController.js"></script>
+        <script src="~/app/components/post/postListController.js"></script>
+        <script src="~/app/components/post/postAddController.js"></script>
         <script src="~/app/components/home/homeController.js"></script>
     </div>
 </body>
