@@ -10,7 +10,6 @@ using System.Web.Http;
 
 namespace PhongTot.Api.Controllers
 {
-    [Authorize]
     [RoutePrefix("api/post")]
     public class PostController : ApiControllerBase
     {
@@ -86,6 +85,7 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
+        [Authorize]
         [Route("add")]
         [HttpPost]
         public HttpResponseMessage Post(HttpRequestMessage request, Post post)
@@ -106,7 +106,7 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
-
+        [Authorize]
         [Route("update")]
         [HttpPut]
         public HttpResponseMessage Put(HttpRequestMessage request, Post post)
@@ -129,6 +129,7 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
+        [Authorize]
         [Route("delete")]
         [HttpDelete]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)

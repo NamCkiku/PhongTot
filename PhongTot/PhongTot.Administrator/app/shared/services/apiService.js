@@ -4,7 +4,7 @@
 
     apiService.$inject = ['$http', '$location', 'notificationService', 'authenticationService'];
 
-    function apiService($http, notificationService, authenticationService) {
+    function apiService($http, $location, notificationService, authenticationService) {
         var serviceBase = 'http://localhost:33029/';
         return {
             get: get,
