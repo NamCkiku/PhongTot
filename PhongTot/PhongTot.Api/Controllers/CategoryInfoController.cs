@@ -32,6 +32,19 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _categoryInfoService.GetById(id);
+                var response = request.CreateResponse(HttpStatusCode.OK, model);
+
+                return response;
+            });
+        }
+
         [Route("getinfobycategory")]
         public HttpResponseMessage GetInfoByCategory(HttpRequestMessage request)
         {
@@ -73,7 +86,7 @@ namespace PhongTot.Api.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
@@ -95,7 +108,7 @@ namespace PhongTot.Api.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
