@@ -132,6 +132,7 @@
     <Content Include="app\components\account\loginView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
+    <Content Include="app\components\home\rootController.js" />
     <Content Include="app\components\info\Info.module.js" />
     <Content Include="app\components\info\InfoListController.js" />
     <Content Include="app\components\info\InfoListView.html" />

@@ -38,7 +38,7 @@
                 templateUrl: "/app/components/post/PostAddView.html",
                 controller: "postAddController",
             });
-        $urlRouterProvider.otherwise('/admin');
+        $urlRouterProvider.otherwise('/login');
     }
     function configAuthentication($httpProvider) {
         $httpProvider.interceptors.push(function ($q, $location) {

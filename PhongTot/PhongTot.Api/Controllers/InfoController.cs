@@ -52,7 +52,7 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
-
+        [Authorize]
         [Route("getallpaging")]
         public HttpResponseMessage GetAllPaging(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
@@ -181,7 +181,7 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
-
+        [Authorize]
         [Route("update")]
         [HttpPut]
         public HttpResponseMessage Put(HttpRequestMessage request, Info info)
@@ -205,6 +205,7 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
+        [Authorize]
         [Route("delete")]
         [HttpDelete]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)

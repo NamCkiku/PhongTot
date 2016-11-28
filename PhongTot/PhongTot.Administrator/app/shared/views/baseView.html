@@ -1,11 +1,11 @@
-﻿<div class="wrapper">
+﻿<div class="wrapper" ng-controller="rootController">
     <header class="main-header">
         <!-- Logo -->
         <a href="index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>E-</b>Leisure</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>E-Leisure</b></span>
+            <span class="logo-lg"><b>Phòng Tốt</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -138,17 +138,16 @@
                     </li>
 
                     <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="~/Content/images/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Mr.Glenn</span>
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/Content/images/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{authentication.userName}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="~/Content/images/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="/Content/images/user2-160x160.jpg" class="img-circle" alt="User Image">
                                 <p>
-                                    Mr.Glenn - Web Designer
-                                    <small>Member since Nov. 2016</small>
+                                    {{authentication.userName}}
                                 </p>
                             </li>
 
@@ -162,7 +161,7 @@
                             <a href="#" class="btn btn-default btn-flat">Setting</a>
                         </div>
                         <div class="pull-right">
-                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            <button type="button" ng-click="logOut()" class="btn btn-default btn-flat">Sign out</button>
                         </div>
                     </li>
                 </ul>
