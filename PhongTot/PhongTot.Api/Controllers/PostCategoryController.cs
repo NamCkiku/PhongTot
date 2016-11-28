@@ -32,6 +32,19 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _postCategoryService.GetById(id);
+                var response = request.CreateResponse(HttpStatusCode.OK, model);
+
+                return response;
+            });
+        }
+
         [Route("add")]
         public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postcategory)
         {

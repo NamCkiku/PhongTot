@@ -37,6 +37,11 @@
                 parent: 'base',
                 templateUrl: "/app/components/categoryInfo/categoryInfoAddView.html",
                 controller: "categoryInfoAddController",
+            }).state('categoryInfoEdit', {
+                url: "/categoryInfoEdit/:id",
+                parent: 'base',
+                templateUrl: "/app/components/categoryInfo/categoryInfoEditView.html",
+                controller: "categoryInfoEditController",
             }).state('post', {
                 url: "/post",
                 parent: 'base',

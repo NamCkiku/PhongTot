@@ -132,6 +132,8 @@
     <Content Include="app\components\account\loginView.html" />
     <Content Include="app\components\categoryInfo\categoryInfoAddController.js" />
     <Content Include="app\components\categoryInfo\categoryInfoAddView.html" />
+    <Content Include="app\components\categoryInfo\categoryInfoEditController.js" />
+    <Content Include="app\components\categoryInfo\categoryInfoEditView.html" />
     <Content Include="app\components\categoryInfo\categoryInfoListController.js" />
     <Content Include="app\components\categoryInfo\categoryInfoListView.html" />
     <Content Include="app\components\home\homeController.js" />

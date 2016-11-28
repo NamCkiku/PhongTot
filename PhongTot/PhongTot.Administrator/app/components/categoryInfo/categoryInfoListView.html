@@ -1,15 +1,15 @@
-﻿<section class="content" ng-controller="InfoListController">
+﻿<section class="content">
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom box-primary">
                 <div class="box-header with-border breadcrumb-page">
-                    <h3 class="box-title title-heading"><i class="fa fa-file-text-o"></i><span> Thông Tin Phòng Trọ </span> ❯ Danh Sách Phòng</h3>
+                    <h3 class="box-title title-heading"><i class="fa fa-file-text-o"></i><span> Thông Tin Phòng Trọ </span> ❯ Danh Sách Loại Phòng</h3>
 
                 </div>
                 <div class="order-content">
 
                     <ul class="add-request ">
-                        <li><a class="btn label-warning"  ui-sref="categoryInfoAdd">+ Add new item</a></li>
+                        <li><a class="btn label-warning" ui-sref="categoryInfoAdd">+ Thêm Mới</a></li>
                     </ul>
                     <div class="box-header with-border title-page-button">
                         <div class="col-lg-12">
@@ -44,6 +44,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
+                                                <td class="text-center"><input name="all" type="checkbox" ng-click="selectAll()" /></td>
                                                 <th class="text-center">ID</th>
                                                 <th class="text-center">Tiêu Đề</th>
                                                 <th class="text-center">Ngày Đăng</th>
@@ -53,6 +54,7 @@
                                         </thead>
                                         <tbody>
                                             <tr class="text-center" ng-repeat="items in categoryInfo">
+                                                <td><input type="checkbox" ng-model="items.checked" name="all" /></td>
                                                 <td>{{items.ID}}</td>
                                                 <td>{{items.Name}}</td>
                                                 <td>{{items.CreatedDate |date: 'dd/MM/yyyy'}}</td>
@@ -60,7 +62,8 @@
                                                     <span class="label label-info">{{items.Status |statusFilter}}</span>
                                                 </td>
                                                 <td>
-                                                    <a href="/Info/Detail/{{items.ID}}" class="btn btn-default btn-xs btn-label"><i class="fa fa-search"></i> Xem</a>
+                                                    <button class="btn btn-sm btn-success" ui-sref="categoryInfoEdit({id:items.ID})"><i class="fa fa-pencil"></i></button>
+                                                    <button class="btn  btn-sm btn-danger" ng-click="deleteProduct(items.ID)"><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -87,17 +90,3 @@
         </div>
     </div>
 </section>
-<div class="modal fade bs-example-modal-lg" id="addNewItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header panel-primary">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-
-
-            </div>
-        </div>
-    </div>
-</div>
