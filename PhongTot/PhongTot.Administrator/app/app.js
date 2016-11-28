@@ -27,6 +27,16 @@
                 parent: 'base',
                 templateUrl: "/app/components/info/InfoListView.html",
                 controller: "InfoListController"
+            }).state('categoryInfo', {
+                url: "/categoryInfo",
+                parent: 'base',
+                templateUrl: "/app/components/categoryInfo/categoryInfoListView.html",
+                controller: "categoryInfoListController",
+            }).state('categoryInfoAdd', {
+                url: "/categoryInfoAdd",
+                parent: 'base',
+                templateUrl: "/app/components/categoryInfo/categoryInfoAddView.html",
+                controller: "categoryInfoAddController",
             }).state('post', {
                 url: "/post",
                 parent: 'base',
