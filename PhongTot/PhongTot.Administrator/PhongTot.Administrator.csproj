@@ -130,6 +130,10 @@
     <Content Include="app\app.js" />
     <Content Include="app\components\account\loginController.js" />
     <Content Include="app\components\account\loginView.html" />
+    <Content Include="app\components\categoryInfo\categoryInfoAddController.js" />
+    <Content Include="app\components\categoryInfo\categoryInfoAddView.html" />
+    <Content Include="app\components\categoryInfo\categoryInfoListController.js" />
+    <Content Include="app\components\categoryInfo\categoryInfoListView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\home\rootController.js" />
@@ -3427,7 +3431,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\categoryInfo\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />

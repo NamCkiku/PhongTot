@@ -1,0 +1,103 @@
+﻿<section class="content" ng-controller="InfoListController">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom box-primary">
+                <div class="box-header with-border breadcrumb-page">
+                    <h3 class="box-title title-heading"><i class="fa fa-file-text-o"></i><span> Thông Tin Phòng Trọ </span> ❯ Danh Sách Phòng</h3>
+
+                </div>
+                <div class="order-content">
+
+                    <ul class="add-request ">
+                        <li><a class="btn label-warning"  ui-sref="categoryInfoAdd">+ Add new item</a></li>
+                    </ul>
+                    <div class="box-header with-border title-page-button">
+                        <div class="col-lg-12">
+                            <div class="col-lg-2">
+                                <label class="control-label">Từ khóa</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label">Ngày bắt đầu</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label">Ngày kết thúc</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-lg-2">
+                                <label class="control-label">Trạng thái</label>
+                                <select class="form-control">
+                                    <option value="AK">Alaska</option>
+                                    <option value="HI">Hawaii</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3" style="padding-top:25px;">
+                                <button type="button" class="btn btn-primary">Tìm Kiếm</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details-content">
+                        <div class="col-xs-12">
+                            <div class="order-details order-items-list">
+                                <div class="table-responsive  table-hover">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Tiêu Đề</th>
+                                                <th class="text-center">Ngày Đăng</th>
+                                                <th class="text-center">Trạng Thái</th>
+                                                <th class="text-center">Chức Năng</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-center" ng-repeat="items in categoryInfo">
+                                                <td>{{items.ID}}</td>
+                                                <td>{{items.Name}}</td>
+                                                <td>{{items.CreatedDate |date: 'dd/MM/yyyy'}}</td>
+                                                <td>
+                                                    <span class="label label-info">{{items.Status |statusFilter}}</span>
+                                                </td>
+                                                <td>
+                                                    <a href="/Info/Detail/{{items.ID}}" class="btn btn-default btn-xs btn-label"><i class="fa fa-search"></i> Xem</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="no-data center" ng-show="categoryInfo==null">
+                                        <img src="/Content/images/no-data.png">
+                                        <p>Không có bản ghi nào được tìm thấy</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</div>
+                                    </div>
+                                    <!--<pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getAllInfo(page)"></pager-directive>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade bs-example-modal-lg" id="addNewItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header panel-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+
+
+            </div>
+        </div>
+    </div>
+</div>
