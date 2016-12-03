@@ -1,4 +1,5 @@
 ﻿using PhongTot.Entities.Models;
+using PhongTot.Entities.ModelView;
 using PhongTot.Repository.Infrastructure;
 using PhongTot.Repository.Repositories;
 using System;
@@ -18,6 +19,8 @@ namespace PhongTot.Service
         CategoryInfo Delete(int id);
 
         IEnumerable<CategoryInfo> GetAll();
+
+        IEnumerable<CategoryInfo> GetAllPaging(SearchViewModel filterParams, int page, int pageSize, out int totalRow);
 
         CategoryInfo GetById(int id);
         IEnumerable<CategoryInfo> GetInfoByCategory(int top);
@@ -49,6 +52,20 @@ namespace PhongTot.Service
         public IEnumerable<CategoryInfo> GetAll()
         {
             return _categoryInfoRepository.GetAll();
+        }
+
+        public IEnumerable<CategoryInfo> GetAllPaging(SearchViewModel filterParams, int page, int pageSize, out int totalRow)
+        {
+            DateTime st = filterParams.StartDate == null ? DateTime.MinValue : filterParams.StartDate.Value.Date;
+            DateTime et = filterParams.EndDate == null ? DateTime.MaxValue : filterParams.EndDate.Value.Date.AddDays(1);
+            var query = _categoryInfoRepository.GetMulti(x => x.Status == filterParams.Status
+            && (x.Name.Contains(filterParams.Keywords) || x.Description.Contains(filterParams.Keywords) || filterParams.Keywords == null || filterParams.Keywords == "")
+            && ((filterParams.StartDate == null || x.CreatedDate >= st || x.CreatedDate == null))
+            && ((filterParams.EndDate == null || x.CreatedDate < et || x.CreatedDate == null))
+            );
+            totalRow = query.Count();
+
+            return query.Skip(page * pageSize).Take(pageSize);
         }
 
         public CategoryInfo GetById(int id)

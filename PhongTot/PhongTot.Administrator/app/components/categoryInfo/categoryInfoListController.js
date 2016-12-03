@@ -4,14 +4,38 @@
     categoryInfoListController.$inject = ['apiService', '$scope', 'notificationService', '$timeout', '$window', 'blockUI'];
     function categoryInfoListController(apiService, $scope, notificationService, $timeout, $window, blockUI) {
         $scope.categoryInfo = [];
-        function getAllCategoryInfo() {
+        $scope.filter = {
+            Keywords: "",
+            StartDate: "",
+            EndDate: "",
+            Status: true
+        }
+        $scope.Search = Search;
+        function Search() {
+            getAllCategoryInfo();
+        }
+        function getAllCategoryInfo(page) {
             var myBlockUI = blockUI.instances.get('myBlockUI');
             myBlockUI.start();
-            apiService.get('api/categoryinfo/getall', null, function (result) {
+            page = page || 0;
+            var config = {
+                params: {
+                    Keywords: $scope.filter.Keywords,
+                    StartDate: $scope.filter.StartDate,
+                    EndDate: $scope.filter.EndDate,
+                    Status: $scope.filter.Status,
+                    page: page,
+                    pageSize: 10
+                }
+            }
+            apiService.get('api/categoryinfo/getallpaging', config, function (result) {
                 if (result.data == 0) {
                     notificationService.displayWarning('Không có bản ghi nào được tìm thấy.');
                 }
-                $scope.categoryInfo = result.data;
+                $scope.categoryInfo = result.data.Items;
+                $scope.page = result.data.Page;
+                $scope.pagesCount = result.data.TotalPages;
+                $scope.totalCount = result.data.TotalCount;
                 $timeout(function (result) {
                     // Stop the block after some async operation.
                     myBlockUI.stop();
