@@ -21,7 +21,7 @@ namespace PhongTot.Service
         IEnumerable<Info> GetAll();
 
         IEnumerable<InfoViewModel> GetAllListInfoJoin();
-        IEnumerable<Info> GetAllPaging(string keyword);
+        IEnumerable<Info> GetAllPaging(SearchViewModel filterParams, int page, int pageSize, out int totalRow);
         IEnumerable<Info> Search(InfoSearchModel filterParams);
 
         IEnumerable<Info> GetListInfoByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
@@ -183,12 +183,18 @@ namespace PhongTot.Service
             return query.Skip(page * pageSize).Take(pageSize);
         }
 
-        public IEnumerable<Info> GetAllPaging(string keyword)
+        public IEnumerable<Info> GetAllPaging(SearchViewModel filterParams, int page, int pageSize, out int totalRow)
         {
-            if (!string.IsNullOrEmpty(keyword))
-                return _inforRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
-            else
-                return _inforRepository.GetAll();
+            DateTime st = filterParams.StartDate == null ? DateTime.MinValue : filterParams.StartDate.Value.Date;
+            DateTime et = filterParams.EndDate == null ? DateTime.MaxValue : filterParams.EndDate.Value.Date.AddDays(1);
+            var query = _inforRepository.GetMulti(x => x.Status == filterParams.Status
+            && (x.Name.Contains(filterParams.Keywords) || x.Description.Contains(filterParams.Keywords) || filterParams.Keywords == null || filterParams.Keywords == "")
+            && ((filterParams.StartDate == null || x.CreateDate >= st || x.CreateDate == null))
+            && ((filterParams.EndDate == null || x.CreateDate < et || x.CreateDate == null))
+            );
+            totalRow = query.Count();
+
+            return query.Skip(page * pageSize).Take(pageSize);
         }
     }
 }

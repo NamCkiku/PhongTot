@@ -7,8 +7,14 @@
         $scope.page = 0;
         $scope.pagesCount = 0;
         $scope.keyword = '';
-        $scope.search = search;
-        function search() {
+        $scope.filter = {
+            Keywords: "",
+            StartDate: "",
+            EndDate: "",
+            Status: true
+        }
+        $scope.Search = Search;
+        function Search() {
             getAllInfo();
         }
         $scope.getAllInfo = getAllInfo;
@@ -18,7 +24,10 @@
             page = page || 0;
             var config = {
                 params: {
-                    keyword: $scope.keyword,
+                    Keywords: $scope.filter.Keywords,
+                    StartDate: $scope.filter.StartDate,
+                    EndDate: $scope.filter.EndDate,
+                    Status: $scope.filter.Status,
                     page: page,
                     pageSize: 10
                 }
