@@ -54,15 +54,14 @@ namespace PhongTot.Api.Controllers
         }
         [Authorize]
         [Route("getallpaging")]
-        public HttpResponseMessage GetAllPaging(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
+        [HttpGet]
+        public HttpResponseMessage GetAllPaging(HttpRequestMessage request, [FromUri]SearchViewModel filterParams, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _infoService.GetAllPaging(keyword);
-
-                totalRow = model.Count();
-                var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
+                var model = _infoService.GetAllPaging(filterParams, page, pageSize, out totalRow);
+                var query = model.OrderByDescending(x => x.CreateDate);
 
                 var paginationSet = new PaginationSet<Info>()
                 {

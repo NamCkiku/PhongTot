@@ -57,9 +57,7 @@ namespace PhongTot.Api.Controllers
             {
                 int totalRow = 0;
                 var model = _postService.GetAllPaging(filterParams, page, pageSize, out totalRow);
-
-                totalRow = model.Count();
-                var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
+                var query = model.OrderByDescending(x => x.CreateDate);
 
                 var paginationSet = new PaginationSet<Post>()
                 {

@@ -42,9 +42,7 @@ namespace PhongTot.Api.Controllers
             {
                 int totalRow = 0;
                 var model = _categoryInfoService.GetAllPaging(filterParams,page,pageSize, out totalRow);
-
-                totalRow = model.Count();
-                var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                var query = model.OrderByDescending(x => x.CreatedDate);
 
                 var paginationSet = new PaginationSet<CategoryInfo>()
                 {
