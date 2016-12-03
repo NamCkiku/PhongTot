@@ -34,6 +34,8 @@ namespace PhongTot.Entities.Models
         public string Image { set; get; }
 
         public bool? HomeFlag { set; get; }
+        public bool Status { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
         public virtual ICollection<Post> Posts { set; get; }
     }

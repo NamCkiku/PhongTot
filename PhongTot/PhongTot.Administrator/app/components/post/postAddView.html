@@ -1,4 +1,4 @@
-﻿<section class="content" ng-controller="postAddController">
+﻿<section class="content">
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">
@@ -54,11 +54,11 @@
                                     <div class="input-group">
                                         <input type="text"
                                                name="Image"
-                                                ng-model="post.Image"
+                                               ng-model="post.Image"
                                                required
                                                ng-maxlength="256"
-                                                class="form-control">
-                                        
+                                               class="form-control">
+
                                         <div class="input-group-btn">
                                             <button type="button" class="btn btn-primary">Chọn Ảnh</button>
                                         </div>
@@ -77,7 +77,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Mô Tả Ngắn</label>(<span style="color:#FF0000">*</span>)
-                                        <textarea ng-model="post.Description" 
+                                        <textarea ng-model="post.Description"
                                                   required
                                                   ng-maxlength="500"
                                                   name="Description"
@@ -138,3 +138,7 @@
         </div>
     </div>
 </section>
+<script>
+    $('.datepicker').datepicker({
+    });
+</script>

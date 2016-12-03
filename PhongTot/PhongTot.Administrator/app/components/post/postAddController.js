@@ -6,21 +6,13 @@
     function postAddController(apiService, $scope, notificationService, commonService, $state) {
         $scope.postCategories = [];
         $scope.post = {
-            Status: true
+            Status: true,
+            CreateDate:new Date()
         }
         $scope.ckeditorOptions = {
             languague: 'vi',
             height: '200px'
         }
-
-        $('#frmAddPost').validate({
-            submit: {
-                settings: {
-                    inputContainer: '.form-group',
-                    errorListClass: 'form-tooltip-error'
-                }
-            }
-        });
 
         $scope.GetSeoTitle = GetSeoTitle;
 
