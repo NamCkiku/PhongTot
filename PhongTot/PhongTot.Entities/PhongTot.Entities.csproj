@@ -83,6 +83,10 @@
     <Compile Include="Migrations\201611271554086_changlekey.Designer.cs">
       <DependentUpon>201611271554086_changlekey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612030056455_updatetablecategoryInfo.cs" />
+    <Compile Include="Migrations\201612030056455_updatetablecategoryInfo.Designer.cs">
+      <DependentUpon>201612030056455_updatetablecategoryInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
@@ -131,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611271554086_changlekey.resx">
       <DependentUpon>201611271554086_changlekey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612030056455_updatetablecategoryInfo.resx">
+      <DependentUpon>201612030056455_updatetablecategoryInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

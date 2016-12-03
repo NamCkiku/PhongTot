@@ -1,5 +1,6 @@
 ﻿using PhongTot.Api.Infrastructure.Core;
 using PhongTot.Entities.Models;
+using PhongTot.Entities.ModelView;
 using PhongTot.Service;
 using System;
 using System.Collections.Generic;
@@ -49,12 +50,13 @@ namespace PhongTot.Api.Controllers
 
         [Authorize]
         [Route("getallpaging")]
-        public HttpResponseMessage GetAllPaging(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
+        [HttpGet]
+        public HttpResponseMessage GetAllPaging(HttpRequestMessage request, [FromUri]SearchViewModel filterParams, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _postService.GetAllPaging(keyword);
+                var model = _postService.GetAllPaging(filterParams, page, pageSize, out totalRow);
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);

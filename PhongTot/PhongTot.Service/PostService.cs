@@ -1,4 +1,5 @@
 ﻿using PhongTot.Entities.Models;
+using PhongTot.Entities.ModelView;
 using PhongTot.Repository.Infrastructure;
 using PhongTot.Repository.Repositories;
 using System;
@@ -18,7 +19,7 @@ namespace PhongTot.Service
         Post Delete(int id);
 
         IEnumerable<Post> GetAll();
-        IEnumerable<Post> GetAllPaging(string keyword);
+        IEnumerable<Post> GetAllPaging(SearchViewModel filterParams, int page, int pageSize, out int totalRow);
         //IEnumerable<Post> Search(PostSearchModel filterParams);
 
         IEnumerable<Post> GetListPostByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
@@ -54,12 +55,18 @@ namespace PhongTot.Service
             return _postRepository.GetAll();
         }
 
-        public IEnumerable<Post> GetAllPaging(string keyword)
+        public IEnumerable<Post> GetAllPaging(SearchViewModel filterParams, int page, int pageSize, out int totalRow)
         {
-            if (!string.IsNullOrEmpty(keyword))
-                return _postRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
-            else
-                return _postRepository.GetAll();
+            DateTime st = filterParams.StartDate == null ? DateTime.MinValue : filterParams.StartDate.Value.Date;
+            DateTime et = filterParams.EndDate == null ? DateTime.MaxValue : filterParams.EndDate.Value.Date.AddDays(1);
+            var query = _postRepository.GetMulti(x => x.Status == filterParams.Status
+            && (x.Name.Contains(filterParams.Keywords) || x.Description.Contains(filterParams.Keywords) || filterParams.Keywords == null || filterParams.Keywords == "")
+            && ((filterParams.StartDate == null || x.CreateDate >= st || x.CreateDate == null))
+            && ((filterParams.EndDate == null || x.CreateDate < et || x.CreateDate == null))
+            );
+            totalRow = query.Count();
+
+            return query.Skip(page * pageSize).Take(pageSize);
         }
 
         public Post GetById(int id)

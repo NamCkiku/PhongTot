@@ -1,5 +1,6 @@
 ﻿using PhongTot.Api.Infrastructure.Core;
 using PhongTot.Entities.Models;
+using PhongTot.Entities.ModelView;
 using PhongTot.Service;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,30 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
+        [Authorize]
+        [Route("getallpaging")]
+        [HttpGet]
+        public HttpResponseMessage GetAllPaging(HttpRequestMessage request, [FromUri]SearchViewModel filterParams, int page, int pageSize = 20)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                int totalRow = 0;
+                var model = _postCategoryService.GetAllPaging(filterParams, page, pageSize, out totalRow);
+
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+
+                var paginationSet = new PaginationSet<PostCategory>()
+                {
+                    Items = query,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return response;
+            });
+        }
         [Route("getbyid/{id:int}")]
         [HttpGet]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
@@ -51,7 +76,7 @@ namespace PhongTot.Api.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }

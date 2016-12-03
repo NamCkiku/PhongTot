@@ -22,12 +22,15 @@
                 templateUrl: "/app/components/account/loginView.html",
                 controller: "loginController"
             })
+            //Info
             .state('infos', {
                 url: "/infos",
                 parent: 'base',
                 templateUrl: "/app/components/info/InfoListView.html",
                 controller: "InfoListController"
-            }).state('categoryInfo', {
+            })
+            //CategoryInfo
+            .state('categoryInfo', {
                 url: "/categoryInfo",
                 parent: 'base',
                 templateUrl: "/app/components/categoryInfo/categoryInfoListView.html",
@@ -42,7 +45,10 @@
                 parent: 'base',
                 templateUrl: "/app/components/categoryInfo/categoryInfoEditView.html",
                 controller: "categoryInfoEditController",
-            }).state('post', {
+            })
+
+            //Post
+            .state('post', {
                 url: "/post",
                 parent: 'base',
                 templateUrl: "/app/components/post/PostListView.html",
@@ -52,7 +58,24 @@
                 parent: 'base',
                 templateUrl: "/app/components/post/PostAddView.html",
                 controller: "postAddController",
-            });
+            })
+            //PostCategory
+            .state('postcategory', {
+                url: "/postcategory",
+                parent: 'base',
+                templateUrl: "/app/components/postCategory/PostCategoryListView.html",
+                controller: "postCategoryListController",
+            })
+            .state('postcategoryadd', {
+                url: "/postcategoryadd",
+                parent: 'base',
+                templateUrl: "/app/components/postCategory/postCategoryAddView.html",
+                controller: "postCategoryAddController",
+            })
+
+
+
+        ;
         $urlRouterProvider.otherwise('/login');
     }
     function configAuthentication($httpProvider) {
