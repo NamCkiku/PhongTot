@@ -15,25 +15,24 @@
                         <div class="col-lg-12">
                             <div class="col-lg-2">
                                 <label class="control-label">Từ khóa</label>
-                                <input type="text" class="form-control">
+                                <input ng-model="filter.Keywords" type="text" class="form-control">
                             </div>
                             <div class="col-lg-2">
                                 <label class="control-label">Ngày bắt đầu</label>
-                                <input type="date" class="form-control">
+                                <input ng-model="filter.StartDate" type="date" class="form-control">
                             </div>
                             <div class="col-lg-2">
                                 <label class="control-label">Ngày kết thúc</label>
-                                <input type="date" class="form-control">
+                                <input ng-model="filter.StartDate" type="date" class="form-control">
                             </div>
                             <div class="col-lg-2">
                                 <label class="control-label">Trạng thái</label>
-                                <select class="form-control">
-                                    <option value="AK">Alaska</option>
-                                    <option value="HI">Hawaii</option>
-                                </select>
+                                <input bs-switch
+                                       ng-model="filter.Status"
+                                       type="checkbox">
                             </div>
                             <div class="col-lg-3" style="padding-top:25px;">
-                                <button type="button" class="btn btn-primary">Tìm Kiếm</button>
+                                <button type="button" ng-click="Search()" class="btn btn-primary">Tìm Kiếm</button>
                             </div>
                         </div>
                     </div>
@@ -68,7 +67,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="no-data center" ng-show="categoryInfo==null">
+                                    <div class="no-data center" ng-show="totalCount==0">
                                         <img src="/Content/images/no-data.png">
                                         <p>Không có bản ghi nào được tìm thấy</p>
                                     </div>
@@ -80,7 +79,7 @@
                                     <div class="col-sm-6">
                                         <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</div>
                                     </div>
-                                    <!--<pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getAllInfo(page)"></pager-directive>-->
+                                    <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getAllCategoryInfo(page)"></pager-directive>
                                 </div>
                             </div>
                         </div>
