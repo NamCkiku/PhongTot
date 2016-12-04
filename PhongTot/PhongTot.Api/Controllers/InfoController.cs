@@ -1,9 +1,13 @@
-﻿using PhongTot.Api.Infrastructure.Core;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using PhongTot.Api.Infrastructure.Core;
+using PhongTot.Common;
 using PhongTot.Entities.Models;
 using PhongTot.Entities.ModelView;
 using PhongTot.Service;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -175,11 +179,13 @@ namespace PhongTot.Api.Controllers
                     var status = _infoService.ChangeStatus(id);
                     if (status == true)
                     {
-
+                        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new RoomsEntity()));
+                        var currentUser = manager.FindById(User.Identity.GetUserId());
+                        var email = currentUser.Email;
+                        Email.SendMail(email, "Phòng Tốt", "Chúc mừng bạn đã đăng tin thành công");
                     }
                     else
                     {
-                        _infoService.SaveChanges();
                     }
 
                     response = request.CreateResponse(HttpStatusCode.Created, status);

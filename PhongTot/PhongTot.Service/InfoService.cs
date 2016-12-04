@@ -202,6 +202,7 @@ namespace PhongTot.Service
         {
             var info = _inforRepository.GetSingleById(id);
             info.Status = !info.Status;
+            _unitOfWork.Commit();
             return info.Status;
         }
     }
