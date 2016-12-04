@@ -140,9 +140,9 @@
         </div>
         <div class="col-md-12 col-sm-12 margin-top-30 margin-bottom-20 center">
             <button ng-hide="infoDetail.Status==true" class="btn btn-danger  margin-left-5"><i class="fa fa-trash" aria-hidden="true" style="padding-right:10px"></i>Xóa Bài</button>
-            <button ng-show="infoDetail.Status==false" class="btn btn-success  margin-left-5">
+            <button ng-show="infoDetail.Status==false" ng-click="ChangeStatus();" class="btn btn-success  margin-left-5">
             <i class="fa fa-paper-plane" aria-hidden="true" style="padding-right:10px"></i>Duyệt Bài</button>
-            <button ng-show="infoDetail.Status==true" class="btn btn-success  margin-left-5">
+            <button ng-show="infoDetail.Status==true" ng-click="ChangeStatus();" class="btn btn-success  margin-left-5">
                 <i class="fa fa-paper-plane" aria-hidden="true" style="padding-right:10px"></i>Hủy Duyệt Bài
             </button>
         </div>
