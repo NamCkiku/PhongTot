@@ -1,6 +1,6 @@
 {
-	"name": "asp.net",
-	"private": true,
+  "name": "asp.net",
+  "private": true,
   "dependencies": {
     "angular": "~1.5.8",
     "angular-ui-router": "~0.3.2",
@@ -9,6 +9,7 @@
     "ckeditor": "~4.6.0",
     "ng-ckeditor": "~0.2.1",
     "ng-tags-input": "~3.1.1",
-    "angular-bootstrap-switch": "~0.5.1"
+    "angular-bootstrap-switch": "~0.5.1",
+    "angular-sanitize": "~1.5.9"
   }
 }
