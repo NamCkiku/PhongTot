@@ -159,7 +159,34 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
+        [Route("changestatus/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage ChangeStatus(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var status = _infoService.ChangeStatus(id);
+                    if (status == true)
+                    {
 
+                    }
+                    else
+                    {
+                        _infoService.SaveChanges();
+                    }
+
+                    response = request.CreateResponse(HttpStatusCode.Created, status);
+                }
+                return response;
+            });
+        }
         [Route("add")]
         [HttpPost]
         public HttpResponseMessage Post(HttpRequestMessage request, Info info)

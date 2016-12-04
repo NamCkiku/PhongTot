@@ -27,6 +27,7 @@ namespace PhongTot.Service
         IEnumerable<Info> GetListInfoByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
 
         Info GetById(int id);
+        bool ChangeStatus(int id);
 
         void SaveChanges();
     }
@@ -195,6 +196,13 @@ namespace PhongTot.Service
             totalRow = query.Count();
 
             return query.Skip(page * pageSize).Take(pageSize);
+        }
+
+        public bool ChangeStatus(int id)
+        {
+            var info = _inforRepository.GetSingleById(id);
+            info.Status = !info.Status;
+            return info.Status;
         }
     }
 }

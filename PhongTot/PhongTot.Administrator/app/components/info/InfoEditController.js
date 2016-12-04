@@ -27,6 +27,15 @@
                 notificationService.displayError('Lỗi');
             });
         }
+        $scope.ChangeStatus = ChangeStatus;
+        function ChangeStatus() {
+            apiService.get('api/info/changestatus/' + $stateParams.id, null, function (result) {
+                notificationService.displaySuccess('Chúc mừng bạn đã duyệt thành công');
+                $state.go('infos');
+            }, function () {
+                notificationService.displayError('Lỗi');
+            });
+        }
         GetInfoDetail();
     }
 })(angular.module('myApp'));
