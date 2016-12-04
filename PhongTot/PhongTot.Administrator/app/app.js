@@ -29,6 +29,12 @@
                 templateUrl: "/app/components/info/InfoListView.html",
                 controller: "InfoListController"
             })
+            .state('infoedit', {
+                url: "/infoedit/:id",
+                parent: 'base',
+                templateUrl: "/app/components/info/InfoEditView.html",
+                controller: "InfoEditController"
+            })
             //CategoryInfo
             .state('categoryInfo', {
                 url: "/categoryInfo",

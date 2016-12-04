@@ -140,6 +140,8 @@
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\home\rootController.js" />
     <Content Include="app\components\info\Info.module.js" />
+    <Content Include="app\components\info\InfoEditController.js" />
+    <Content Include="app\components\info\InfoEditView.html" />
     <Content Include="app\components\info\InfoListController.js" />
     <Content Include="app\components\info\InfoListView.html" />
     <Content Include="app\components\postCategory\postCategoryAddController.js" />
@@ -3425,6 +3427,8 @@
     <Content Include="Content\Plugins\datepicker\locales\bootstrap-datepicker.zh-TW.js" />
     <Content Include="Content\Plugins\html5-form-validation\jquery.validation.js" />
     <Content Include="Content\Plugins\html5-form-validation\jquery.validation.min.js" />
+    <Content Include="Content\Plugins\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\Plugins\owl-carousel\owl.carousel.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

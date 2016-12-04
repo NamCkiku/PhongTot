@@ -1,0 +1,143 @@
+﻿<div class="box-header with-border breadcrumb-page">
+    <h3 class="box-title title-heading"><span> Payment Log </span> ❯</h3>
+</div>
+<div class="row">
+    <div class="order-content col-md-offset-1 col-md-10 col-sm-12 col-sm-offset-0 col-xs-12 margin-bottom-20">
+        <div class="box-header with-border">
+            <div class="center padding-bottom-15">
+                <img src="http://localhost:33029/Content/images/{{infoDetail.Image}}" width="150" height="150" />
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 main-info">
+                <h4 class="text-center padding-bottom-20">{{infoDetail.Name}}</h4>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="address">
+                            <span class="btn info-label">Địa chỉ</span>
+                            <span class="">{{infoDetail.Address}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Điện Thoại</span>
+                            <span class="">{{infoDetail.Phone}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Gía tiền</span>
+                            <span class="">{{infoDetail.Price| number}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Người đăng</span>
+                            <span class="">{{infoDetail.Acreage}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Diện tích</span>
+                            <span class="">{{infoDetail.Acreage}}m<sub>2</sub></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Loại Phòng</span>
+                            <span class="">{{infoDetail.CategoryInfo.Name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Vệ sinh</span>
+                            <span class="">{{infoDetail.ToiletNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Tầng</span>
+                            <span class="">{{infoDetail.FloorNumber}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Số Người ở</span>
+                            <span class="">{{infoDetail.Acreage}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Gía điện</span>
+                            <span class="">{{infoDetail.OtherInfo.ElectricPrice | number}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Gía nước</span>
+                            <span class="">{{infoDetail.OtherInfo.WaterPrice | number}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="address">
+                            <span class="btn info-label">Hướng nhà</span>
+                            <span class="">{{infoDetail.OtherInfo.Compass}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="address">
+                            <span class="btn info-label">Tiện ích</span>
+                            <span ng-repeat="item in Convenient">{{item}},</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="details-content row">
+            <div class="col-xs-12">
+                <div class="mid-item">
+                    <div class="room-detail-img">
+                        <div id="sync1" class="owl-carousel">
+                            <div class="item" ng-repeat="img in moreImages">
+                                <img class="img-responsive" ng-src="http://localhost:33029/Content/images/{{img}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="dis-content">Cần Gấp Nam sinh viên or NV văn phòng ở ghép mặc dinh 500k/tháng và vào sẽ đóng tiền cọc 500k tiền này sẽ giữ đến khi các bạn rời đi mới trả lại. và lúc nào rời đi báo trc 1 tuần 10 ngày .&nbsp;<br><br>Phòng 2tr mới 2 người tối da 4 người . dù có người nào dọn đi thi tiên phòng các bạn đóng vẫn 500k minh sẽ chịu tiền còn lại và tuyển người mới vào bởi mih muốn tìm người ở lâu dài để khỏi mất công đăng tin và cũng có lợi cho ng vào ở .&nbsp;<br><br>Phòng có gác lửng đúc bê tông, gạch men, WC, chổ nấu ăn , chổ để xe,thoáng, sạch sẽ, giờ giấc tự do, yên tĩnh . Ngay Đường Số 1, Thống Nhất, Gò Vấp gần trường DH Hồng Bàng vài trăm mét .Bạn nào cần thi liên hệ mình 01208559533 . ( Google map cho dể tìm nhé mặt tiền ko nằm trong hẻm ) . Mình Tên Đăng sn 91 .</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="map-content">
+                    <div style="height:400px;width:100%;" id="map"></div>
+                </div>
+                <input type="hidden" id="hidLat" value="{{infoDetail.Lat}}" />
+                <input type="hidden" id="hidLng" value="{{infoDetail.Lng}}" />
+                <script>
+                    setTimeout(function initMap() {
+                        var uluru = { lat: parseFloat($('#hidLat').val()), lng: parseFloat($('#hidLng').val()) };
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 15,
+                            center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map
+                        });
+                    }, 1000);
+                </script>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVprSsYgH9JhgdlCD7N3gcMxo50Pm-8lU&callback=initMap">
+                </script>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 margin-top-30 margin-bottom-20 center">
+            <button class="btn btn-danger  margin-left-5"><i class="fa fa-trash" aria-hidden="true" style="padding-right:10px"></i>Xóa Bài</button>
+            <a ui-sref="infos" class="btn btn-info  margin-left-5"><i class="fa fa-reply-all" aria-hidden="true" style="padding-right:10px"></i>Quay lại</a>
+            <button class="btn btn-success  margin-left-5"><i class="fa fa-paper-plane" aria-hidden="true" style="padding-right:10px"></i>Duyệt Bài</button>
+        </div>
+    </div>
+</div>
