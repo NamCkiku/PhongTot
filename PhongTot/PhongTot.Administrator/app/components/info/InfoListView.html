@@ -69,7 +69,8 @@
                                                     <span class="label label-info">{{items.Status |statusFilter}}</span>
                                                 </td>
                                                 <td>
-                                                    <a href="/Info/Detail/{{items.ID}}" class="btn btn-default btn-xs btn-label"><i class="fa fa-search"></i> Xem</a>
+                                                    <button class="btn btn-sm btn-success" ui-sref="infoedit({id:items.ID})"><i class="fa fa-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-danger" ng-click="Delete(items.ID)"><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
