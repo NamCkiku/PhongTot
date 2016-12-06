@@ -78,8 +78,13 @@
                 templateUrl: "/app/components/postCategory/postCategoryAddView.html",
                 controller: "postCategoryAddController",
             })
-
-
+            //SystemsParameter
+            .state('setting', {
+                url: "/setting",
+                parent: 'base',
+                templateUrl: "/app/components/SystemParameter/systemParameterListView.html",
+                controller: "systemParameterListController",
+            })
 
         ;
         $urlRouterProvider.otherwise('/login');

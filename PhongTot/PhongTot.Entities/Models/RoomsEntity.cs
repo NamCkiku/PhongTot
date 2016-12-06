@@ -27,6 +27,8 @@ namespace PhongTot.Entities.Models
         public DbSet<PostCategory> PostCategories { set; get; }
         public DbSet<PostTag> PostTags { set; get; }
         public DbSet<Tag> Tags { set; get; }
+        public DbSet<SysPara> SysParas { set; get; }
+        
         public static RoomsEntity Create()
         {
             return new RoomsEntity();

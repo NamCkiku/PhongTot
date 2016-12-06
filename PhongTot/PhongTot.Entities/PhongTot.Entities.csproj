@@ -87,6 +87,10 @@
     <Compile Include="Migrations\201612030056455_updatetablecategoryInfo.Designer.cs">
       <DependentUpon>201612030056455_updatetablecategoryInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612061256120_addsyspara.cs" />
+    <Compile Include="Migrations\201612061256120_addsyspara.Designer.cs">
+      <DependentUpon>201612061256120_addsyspara.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
@@ -100,6 +104,7 @@
     <Compile Include="Models\PostTag.cs" />
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\RoomsEntity.cs" />
+    <Compile Include="Models\SysPara.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Wardid.cs" />
     <Compile Include="ModelView\InfoSearchModel.cs" />
@@ -138,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612030056455_updatetablecategoryInfo.resx">
       <DependentUpon>201612030056455_updatetablecategoryInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612061256120_addsyspara.resx">
+      <DependentUpon>201612061256120_addsyspara.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

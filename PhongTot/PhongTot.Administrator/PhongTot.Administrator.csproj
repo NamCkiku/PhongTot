@@ -152,6 +152,8 @@
     <Content Include="app\components\post\postAddView.html" />
     <Content Include="app\components\post\postListController.js" />
     <Content Include="app\components\post\PostListView.html" />
+    <Content Include="app\components\SystemParameter\systemParameterListController.js" />
+    <Content Include="app\components\SystemParameter\systemParameterListView.html" />
     <Content Include="app\shared\commonService\notificationService.js" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
