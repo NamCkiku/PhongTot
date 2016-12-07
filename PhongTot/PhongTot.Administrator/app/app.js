@@ -105,6 +105,12 @@
                 templateUrl: "/app/components/membershipProfile/membershipProfileEditView.html",
                 controller: "membershipProfileEditController",
             })
+            .state('membershipadd', {
+                url: "/membershipadd",
+                parent: 'base',
+                templateUrl: "/app/components/membershipProfile/membershipProfileAddView.html",
+                controller: "membershipProfileAddController",
+            })
             .state('membershipview', {
                 url: "/membershipview/:id",
                 parent: 'base',

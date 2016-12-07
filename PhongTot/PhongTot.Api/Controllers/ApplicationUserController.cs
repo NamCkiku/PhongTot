@@ -99,33 +99,34 @@ namespace PhongTot.Api.Controllers
             {
                 var newAppUser = new ApplicationUser();
                 newAppUser.UpdateUser(applicationUserViewModel);
+                newAppUser.CreatedBy = User.Identity.Name;
                 try
                 {
                     newAppUser.Id = Guid.NewGuid().ToString();
-                    var result = await _userManager.CreateAsync(newAppUser, applicationUserViewModel.Password);
+                    var result = await _userManager.CreateAsync(newAppUser,newAppUser.PasswordHash);
                     if (result.Succeeded)
                     {
-                        var listAppUserGroup = new List<ApplicationUserGroup>();
-                        foreach (var group in applicationUserViewModel.Groups)
-                        {
-                            listAppUserGroup.Add(new ApplicationUserGroup()
-                            {
-                                GroupId = group.ID,
-                                UserId = newAppUser.Id
-                            });
-                            //add role to user
-                            var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
-                            foreach (var role in listRole)
-                            {
-                                await _userManager.RemoveFromRoleAsync(newAppUser.Id, role.Name);
-                                await _userManager.AddToRoleAsync(newAppUser.Id, role.Name);
-                            }
-                        }
-                        _appGroupService.AddUserToGroups(listAppUserGroup, newAppUser.Id);
-                        _appGroupService.SaveChanges();
+                        //var listAppUserGroup = new List<ApplicationUserGroup>();
+                        //foreach (var group in applicationUserViewModel.Groups)
+                        //{
+                        //    listAppUserGroup.Add(new ApplicationUserGroup()
+                        //    {
+                        //        GroupId = group.ID,
+                        //        UserId = newAppUser.Id
+                        //    });
+                        //    //add role to user
+                        //    var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
+                        //    foreach (var role in listRole)
+                        //    {
+                        //        await _userManager.RemoveFromRoleAsync(newAppUser.Id, role.Name);
+                        //        await _userManager.AddToRoleAsync(newAppUser.Id, role.Name);
+                        //    }
+                        //}
+                        //_appGroupService.AddUserToGroups(listAppUserGroup, newAppUser.Id);
+                        //_appGroupService.SaveChanges();
 
 
-                        return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
+                        return request.CreateResponse(HttpStatusCode.OK, result);
 
                     }
                     else
@@ -160,25 +161,25 @@ namespace PhongTot.Api.Controllers
                     var result = await _userManager.UpdateAsync(appUser);
                     if (result.Succeeded)
                     {
-                        var listAppUserGroup = new List<ApplicationUserGroup>();
-                        foreach (var group in applicationUserViewModel.Groups)
-                        {
-                            listAppUserGroup.Add(new ApplicationUserGroup()
-                            {
-                                GroupId = group.ID,
-                                UserId = applicationUserViewModel.Id
-                            });
-                            //add role to user
-                            var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
-                            foreach (var role in listRole)
-                            {
-                                await _userManager.RemoveFromRoleAsync(appUser.Id, role.Name);
-                                await _userManager.AddToRoleAsync(appUser.Id, role.Name);
-                            }
-                        }
-                        _appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
-                        _appGroupService.SaveChanges();
-                        return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
+                        //var listAppUserGroup = new List<ApplicationUserGroup>();
+                        //foreach (var group in applicationUserViewModel.Groups)
+                        //{
+                        //    listAppUserGroup.Add(new ApplicationUserGroup()
+                        //    {
+                        //        GroupId = group.ID,
+                        //        UserId = applicationUserViewModel.Id
+                        //    });
+                        //    //add role to user
+                        //    var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
+                        //    foreach (var role in listRole)
+                        //    {
+                        //        await _userManager.RemoveFromRoleAsync(appUser.Id, role.Name);
+                        //        await _userManager.AddToRoleAsync(appUser.Id, role.Name);
+                        //    }
+                        //}
+                        //_appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
+                        //_appGroupService.SaveChanges();
+                        return request.CreateResponse(HttpStatusCode.OK, result);
 
                     }
                     else

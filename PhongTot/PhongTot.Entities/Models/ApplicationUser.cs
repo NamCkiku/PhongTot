@@ -19,7 +19,10 @@ namespace PhongTot.Entities.Models
         public string Address { set; get; }
 
         public DateTime? BirthDay { set; get; }
-
+        public DateTime? CreatedDate { set; get; }
+        public string CreatedBy { set; get; }
+        public string Country { set; get; }
+        public string Skill { set; get; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

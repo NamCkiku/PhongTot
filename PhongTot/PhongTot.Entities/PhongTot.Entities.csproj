@@ -99,6 +99,10 @@
     <Compile Include="Migrations\201612070807149_addgroupUser.Designer.cs">
       <DependentUpon>201612070807149_addgroupUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612071455584_addcolmUser.cs" />
+    <Compile Include="Migrations\201612071455584_addcolmUser.Designer.cs">
+      <DependentUpon>201612071455584_addcolmUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -164,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612070807149_addgroupUser.resx">
       <DependentUpon>201612070807149_addgroupUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612071455584_addcolmUser.resx">
+      <DependentUpon>201612071455584_addcolmUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

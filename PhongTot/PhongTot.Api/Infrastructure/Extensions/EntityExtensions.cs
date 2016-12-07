@@ -46,8 +46,15 @@ namespace PhongTot.Api.Infrastructure.Extensions
             appUser.FullName = appUserViewModel.FullName;
             appUser.BirthDay = appUserViewModel.BirthDay;
             appUser.Email = appUserViewModel.Email;
+            appUser.PasswordHash = appUserViewModel.Password;
             appUser.UserName = appUserViewModel.UserName;
+            appUser.EmailConfirmed = appUserViewModel.EmailConfirmed;
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
+            appUser.CreatedBy = appUserViewModel.CreatedBy;
+            appUser.CreatedDate = appUserViewModel.CreatedDate;
+            appUser.Skill = appUserViewModel.Skill;
+            appUser.Country = appUserViewModel.Country;
+            appUser.Address = appUserViewModel.Address;
         }
     }
 }
