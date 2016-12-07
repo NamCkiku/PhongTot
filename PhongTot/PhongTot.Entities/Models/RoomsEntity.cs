@@ -28,7 +28,11 @@ namespace PhongTot.Entities.Models
         public DbSet<PostTag> PostTags { set; get; }
         public DbSet<Tag> Tags { set; get; }
         public DbSet<SysPara> SysParas { set; get; }
-        
+        public DbSet<ApplicationGroup> ApplicationGroups { set; get; }
+        public DbSet<ApplicationRole> ApplicationRoles { set; get; }
+        public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
+        public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
+
         public static RoomsEntity Create()
         {
             return new RoomsEntity();
@@ -57,8 +61,10 @@ namespace PhongTot.Entities.Models
                 .WithOptional(e => e.Wardid1)
                 .HasForeignKey(e => e.Wardid);
 
-            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
-            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId }).ToTable("ApplicationUserRoles");
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
+            modelBuilder.Entity<IdentityRole>().ToTable("ApplicationRoles");
+            modelBuilder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
         }
     }
 }

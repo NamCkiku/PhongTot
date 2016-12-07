@@ -91,8 +91,20 @@
     <Compile Include="Migrations\201612061256120_addsyspara.Designer.cs">
       <DependentUpon>201612061256120_addsyspara.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612070800510_renametableidentity.cs" />
+    <Compile Include="Migrations\201612070800510_renametableidentity.Designer.cs">
+      <DependentUpon>201612070800510_renametableidentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612070807149_addgroupUser.cs" />
+    <Compile Include="Migrations\201612070807149_addgroupUser.Designer.cs">
+      <DependentUpon>201612070807149_addgroupUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplicationGroup.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
+    <Compile Include="Models\ApplicationRoleGroup.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\ApplicationUserGroup.cs" />
     <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryOtherInfo.cs" />
     <Compile Include="Models\Districtid.cs" />
@@ -146,6 +158,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612061256120_addsyspara.resx">
       <DependentUpon>201612061256120_addsyspara.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612070800510_renametableidentity.resx">
+      <DependentUpon>201612070800510_renametableidentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612070807149_addgroupUser.resx">
+      <DependentUpon>201612070807149_addgroupUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

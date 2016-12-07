@@ -130,6 +130,12 @@
     <Content Include="app\app.js" />
     <Content Include="app\components\account\loginController.js" />
     <Content Include="app\components\account\loginView.html" />
+    <Content Include="app\components\application_groups\applicationGroupAddController.js" />
+    <Content Include="app\components\application_groups\applicationGroupAddView.html" />
+    <Content Include="app\components\application_groups\applicationGroupEditController.js" />
+    <Content Include="app\components\application_groups\applicationGroupEditView.html" />
+    <Content Include="app\components\application_groups\applicationGroupListController.js" />
+    <Content Include="app\components\application_groups\applicationGroupListView.html" />
     <Content Include="app\components\categoryInfo\categoryInfoAddController.js" />
     <Content Include="app\components\categoryInfo\categoryInfoAddView.html" />
     <Content Include="app\components\categoryInfo\categoryInfoEditController.js" />
@@ -144,6 +150,10 @@
     <Content Include="app\components\info\InfoEditView.html" />
     <Content Include="app\components\info\InfoListController.js" />
     <Content Include="app\components\info\InfoListView.html" />
+    <Content Include="app\components\membershipProfile\membershipProfileEditController.js" />
+    <Content Include="app\components\membershipProfile\membershipProfileEditView.html" />
+    <Content Include="app\components\membershipProfile\membershipProfileListController.js" />
+    <Content Include="app\components\membershipProfile\membershipProfileListView.html" />
     <Content Include="app\components\postCategory\postCategoryAddController.js" />
     <Content Include="app\components\postCategory\postCategoryAddView.html" />
     <Content Include="app\components\postCategory\postCategoryListController.js" />
@@ -157,6 +167,7 @@
     <Content Include="app\components\SystemParameter\systemParameterListController.js" />
     <Content Include="app\components\SystemParameter\systemParameterListView.html" />
     <Content Include="app\shared\commonService\notificationService.js" />
+    <Content Include="app\shared\directives\asDateDirective.js" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\statusFilter.js" />

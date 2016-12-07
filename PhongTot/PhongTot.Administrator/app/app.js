@@ -85,13 +85,46 @@
                 templateUrl: "/app/components/SystemParameter/systemParameterListView.html",
                 controller: "systemParameterListController",
             })
-        .state('settingedit', {
-            url: "/settingedit",
-            parent: 'base',
-            templateUrl: "/app/components/SystemParameter/systemParameterEditView.html",
-            controller: "systemParameterEditController",
-        })
+            .state('settingedit', {
+                url: "/settingedit",
+                parent: 'base',
+                templateUrl: "/app/components/SystemParameter/systemParameterEditView.html",
+                controller: "systemParameterEditController",
+            })
 
+            //SystemsParameter
+            .state('membership', {
+                url: "/membership",
+                parent: 'base',
+                templateUrl: "/app/components/membershipProfile/membershipProfileListView.html",
+                controller: "membershipProfileListController",
+            })
+            .state('membershipeidt', {
+                url: "/membershipeidt/:id",
+                parent: 'base',
+                templateUrl: "/app/components/membershipProfile/membershipProfileEditView.html",
+                controller: "membershipProfileEditController",
+            })
+
+
+            .state('application-groups', {
+                url: "/application-groups",
+                templateUrl: "/app/components/application_groups/applicationGroupListView.html",
+                parent: 'base',
+                controller: "applicationGroupListController"
+            })
+            .state('add-application-group', {
+                url: "/add-application-group",
+                parent: 'base',
+                templateUrl: "/app/components/application_groups/applicationGroupAddView.html",
+                controller: "applicationGroupAddController"
+            })
+            .state('edit-application-group', {
+                url: "/edit-application-group/:id",
+                templateUrl: "/app/components/application_groups/applicationGroupEditView.html",
+                controller: "applicationGroupEditController",
+                parent: 'base',
+            });
         ;
         $urlRouterProvider.otherwise('/login');
     }
