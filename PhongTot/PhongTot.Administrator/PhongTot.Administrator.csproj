@@ -154,6 +154,8 @@
     <Content Include="app\components\membershipProfile\membershipProfileEditView.html" />
     <Content Include="app\components\membershipProfile\membershipProfileListController.js" />
     <Content Include="app\components\membershipProfile\membershipProfileListView.html" />
+    <Content Include="app\components\membershipProfile\membershipProfileView.html" />
+    <Content Include="app\components\membershipProfile\membershipProfileViewController.js" />
     <Content Include="app\components\postCategory\postCategoryAddController.js" />
     <Content Include="app\components\postCategory\postCategoryAddView.html" />
     <Content Include="app\components\postCategory\postCategoryListController.js" />
