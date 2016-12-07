@@ -10,6 +10,7 @@
     "ng-ckeditor": "~0.2.1",
     "ng-tags-input": "~3.1.1",
     "angular-bootstrap-switch": "~0.5.1",
-    "angular-sanitize": "~1.5.9"
+    "angular-sanitize": "~1.5.9",
+    "angular-kendo": "~1.0.3"
   }
 }
