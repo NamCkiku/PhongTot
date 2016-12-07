@@ -85,6 +85,12 @@
                 templateUrl: "/app/components/SystemParameter/systemParameterListView.html",
                 controller: "systemParameterListController",
             })
+        .state('settingedit', {
+            url: "/settingedit",
+            parent: 'base',
+            templateUrl: "/app/components/SystemParameter/systemParameterEditView.html",
+            controller: "systemParameterEditController",
+        })
 
         ;
         $urlRouterProvider.otherwise('/login');

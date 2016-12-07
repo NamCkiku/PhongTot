@@ -74,6 +74,7 @@
     <Compile Include="Repositories\PostCategoryRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\ProvinceRepository.cs" />
+    <Compile Include="Repositories\SysParaRepository.cs" />
     <Compile Include="Repositories\WardidRepository.cs" />
   </ItemGroup>
   <ItemGroup>

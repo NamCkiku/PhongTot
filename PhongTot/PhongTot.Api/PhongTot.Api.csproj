@@ -236,6 +236,7 @@
     <Compile Include="Controllers\PostCategoryController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProvinceController.cs" />
+    <Compile Include="Controllers\SysParaController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
     <Compile Include="Controllers\WardController.cs" />
     <Compile Include="Global.asax.cs">

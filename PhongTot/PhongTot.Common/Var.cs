@@ -15,5 +15,6 @@ namespace PhongTot.Common
         public const String RwMailManager = "RwMailManager";
         public const String RwMailEndcoding = "RwMailEndcoding";
         public const String RwMailEnableSSL = "RwMailEnableSSL";
+        public const String RwSearchFilter = "RwSearchFilter";
     }
 }
