@@ -150,6 +150,8 @@
     <Content Include="app\components\info\InfoEditView.html" />
     <Content Include="app\components\info\InfoListController.js" />
     <Content Include="app\components\info\InfoListView.html" />
+    <Content Include="app\components\membershipProfile\membershipProfileAddController.js" />
+    <Content Include="app\components\membershipProfile\membershipProfileAddView.html" />
     <Content Include="app\components\membershipProfile\membershipProfileEditController.js" />
     <Content Include="app\components\membershipProfile\membershipProfileEditView.html" />
     <Content Include="app\components\membershipProfile\membershipProfileListController.js" />
