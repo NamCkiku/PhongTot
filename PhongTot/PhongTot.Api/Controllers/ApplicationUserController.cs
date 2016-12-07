@@ -92,7 +92,7 @@ namespace PhongTot.Api.Controllers
 
         [HttpPost]
         [Route("add")]
-        [Authorize(Roles = "AddUser")]
+        [Authorize]
         public async Task<HttpResponseMessage> Create(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
@@ -148,7 +148,7 @@ namespace PhongTot.Api.Controllers
 
         [HttpPut]
         [Route("update")]
-        [Authorize(Roles = "UpdateUser")]
+        [Authorize]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
