@@ -3,27 +3,18 @@
 </div>
 <div class="order-content">
     <ul class="add-request ">
-        <li><a ui-sref="settingedit" class="btn label-warning">Cài đặt</a></li>
+        <li><button ng-click="SaveData();" class="btn label-primary">Lưu</button></li>
     </ul>
     <div class="details-content form-horizontal" style="padding: 30px;">
         <div class="panel-group">
             <div class="panel panel-default advanced-setting">
                 <div class="panel-body">
-                    <!--<div class="form-group" ng-repeat="items in syspara">
-                        <div class="col-md-3">
-                            <div class="label-wrapper"><span class="control-label">{{items.Field}}</span></div>
-                        </div>
-                        <div class="col-md-9">
-                            <span class="control-label">{{items.Value}}</span>
-                        </div>
-                    </div>-->
                     <div class="form-group">
                         <div class="col-md-3">
                             <div class="label-wrapper"><span class="control-label">Hiển thị tìm kiếm nâng cao</span></div>
                         </div>
                         <div class="col-md-9">
-                            <input id="chkshowsearch"
-                                   disabled="disabled"
+                            <input id="chkshowsearch" name="ShowSearch"
                                    type="checkbox">
                         </div>
                     </div>
