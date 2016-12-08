@@ -3,9 +3,9 @@
 
     app.controller('applicationGroupEditController', applicationGroupEditController);
 
-    applicationGroupEditController.$inject = ['$scope', 'apiService', 'notificationService', '$location', '$stateParams'];
+    applicationGroupEditController.$inject = ['$scope', 'apiService', 'notificationService', '$state', '$stateParams'];
 
-    function applicationGroupEditController($scope, apiService, notificationService, $location, $stateParams) {
+    function applicationGroupEditController($scope, apiService, notificationService, $state, $stateParams) {
         $scope.group = {}
 
 
@@ -27,7 +27,7 @@
         function addSuccessed() {
             notificationService.displaySuccess($scope.group.Name + ' đã được cập nhật thành công.');
 
-            $location.url('application_groups');
+            $state.go('application-groups');
         }
         function addFailed(response) {
             notificationService.displayError(response.data.Message);

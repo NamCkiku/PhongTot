@@ -1,5 +1,8 @@
-﻿using PhongTot.Api.App_Start;
+﻿using AutoMapper;
+using PhongTot.Api.App_Start;
 using PhongTot.Api.Infrastructure.Core;
+using PhongTot.Api.Infrastructure.Extensions;
+using PhongTot.Api.Models.ViewModel;
 using PhongTot.Common.Exceptions;
 using PhongTot.Entities.Models;
 using PhongTot.Service;
@@ -69,118 +72,121 @@ namespace PhongTot.Api.Controllers
                 return response;
             });
         }
-        //[Route("detail/{id:int}")]
-        //[HttpGet]
-        //public HttpResponseMessage Details(HttpRequestMessage request, int id)
-        //{
-        //    if (id == 0)
-        //    {
-        //        return request.CreateErrorResponse(HttpStatusCode.BadRequest, nameof(id) + " is required.");
-        //    }
-        //    ApplicationGroup appGroup = _appGroupService.GetDetail(id);
-        //    if (appGroup == null)
-        //    {
-        //        return request.CreateErrorResponse(HttpStatusCode.NoContent, "No group");
-        //    }
-        //    var listRole = _appRoleService.GetListRoleByGroupId(appGroup.ID);
-        //    appGroup.Roles = listRole;
-        //    return request.CreateResponse(HttpStatusCode.OK, appGroup);
-        //}
+        [Route("detail/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage Details(HttpRequestMessage request, int id)
+        {
+            if (id == 0)
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, nameof(id) + " is required.");
+            }
+            ApplicationGroup appGroup = _appGroupService.GetDetail(id);
+            Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
+            var appGroupViewModel = Mapper.Map<ApplicationGroup, ApplicationGroupViewModel>(appGroup);
+            if (appGroup == null)
+            {
+                return request.CreateErrorResponse(HttpStatusCode.NoContent, "No group");
+            }
+            var listRole = _appRoleService.GetListRoleByGroupId(appGroupViewModel.ID);
+            Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
+            appGroupViewModel.Roles = Mapper.Map<IEnumerable<ApplicationRole>, IEnumerable<ApplicationRoleViewModel>>(listRole);
+            return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);
+        }
 
-        //[HttpPost]
-        //[Route("add")]
-        //public HttpResponseMessage Create(HttpRequestMessage request, ApplicationGroup appGroupViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var newAppGroup = new ApplicationGroup();
-        //        newAppGroup.Name = appGroupViewModel.Name;
-        //        try
-        //        {
-        //            var appGroup = _appGroupService.Add(newAppGroup);
-        //            _appGroupService.SaveChanges();
+        [HttpPost]
+        [Route("add")]
+        public HttpResponseMessage Create(HttpRequestMessage request, ApplicationGroupViewModel appGroupViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var newAppGroup = new ApplicationGroup();
+                newAppGroup.Name = appGroupViewModel.Name;
+                try
+                {
+                    var appGroup = _appGroupService.Add(newAppGroup);
+                    _appGroupService.SaveChanges();
 
-        //            //save group
-        //            var listRoleGroup = new List<ApplicationRoleGroup>();
-        //            foreach (var role in appGroupViewModel.Roles)
-        //            {
-        //                listRoleGroup.Add(new ApplicationRoleGroup()
-        //                {
-        //                    GroupId = appGroup.ID,
-        //                    RoleId = role.Id
-        //                });
-        //            }
-        //            _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
-        //            _appRoleService.Save();
-
-
-        //            return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);
+                    //save group
+                    var listRoleGroup = new List<ApplicationRoleGroup>();
+                    foreach (var role in appGroupViewModel.Roles)
+                    {
+                        listRoleGroup.Add(new ApplicationRoleGroup()
+                        {
+                            GroupId = appGroup.ID,
+                            RoleId = role.Id
+                        });
+                    }
+                    _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
+                    _appRoleService.Save();
 
 
-        //        }
-        //        catch (NameDuplicatedException dex)
-        //        {
-        //            return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
-        //        }
+                    return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);
 
-        //    }
-        //    else
-        //    {
-        //        return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-        //    }
-        //}
 
-        //[HttpPut]
-        //[Route("update")]
-        //public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationGroup appGroupViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var appGroup = _appGroupService.GetDetail(appGroupViewModel.ID);
-        //        try
-        //        {
-        //            appGroup.UpdateApplicationGroup(appGroupViewModel);
-        //            _appGroupService.Update(appGroup);
-        //            //_appGroupService.Save();
+                }
+                catch (NameDuplicatedException dex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                }
 
-        //            //save group
-        //            var listRoleGroup = new List<ApplicationRoleGroup>();
-        //            foreach (var role in appGroupViewModel.Roles)
-        //            {
-        //                listRoleGroup.Add(new ApplicationRoleGroup()
-        //                {
-        //                    GroupId = appGroup.ID,
-        //                    RoleId = role.Id
-        //                });
-        //            }
-        //            _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
-        //            _appRoleService.Save();
+            }
+            else
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+        }
 
-        //            //add role to user
-        //            var listRole = _appRoleService.GetListRoleByGroupId(appGroup.ID);
-        //            var listUserInGroup = _appGroupService.GetListUserByGroupId(appGroup.ID);
-        //            foreach (var user in listUserInGroup)
-        //            {
-        //                var listRoleName = listRole.Select(x => x.Name).ToArray();
-        //                foreach (var roleName in listRoleName)
-        //                {
-        //                    await _userManager.RemoveFromRoleAsync(user.Id, roleName);
-        //                    await _userManager.AddToRoleAsync(user.Id, roleName);
-        //                }
-        //            }
-        //            return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);
-        //        }
-        //        catch (NameDuplicatedException dex)
-        //        {
-        //            return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
-        //        }
+        [HttpPut]
+        [Route("update")]
+        public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationGroupViewModel appGroupViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var appGroup = _appGroupService.GetDetail(appGroupViewModel.ID);
+                try
+                {
+                    appGroup.UpdateApplicationGroup(appGroupViewModel);
+                    _appGroupService.Update(appGroup);
+                    //_appGroupService.Save();
 
-        //    }
-        //    else
-        //    {
-        //        return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-        //    }
-        //}
+                    //save group
+                    var listRoleGroup = new List<ApplicationRoleGroup>();
+                    foreach (var role in appGroupViewModel.Roles)
+                    {
+                        listRoleGroup.Add(new ApplicationRoleGroup()
+                        {
+                            GroupId = appGroup.ID,
+                            RoleId = role.Id
+                        });
+                    }
+                    _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
+                    _appRoleService.Save();
+
+                    //add role to user
+                    var listRole = _appRoleService.GetListRoleByGroupId(appGroup.ID);
+                    var listUserInGroup = _appGroupService.GetListUserByGroupId(appGroup.ID);
+                    foreach (var user in listUserInGroup)
+                    {
+                        var listRoleName = listRole.Select(x => x.Name).ToArray();
+                        foreach (var roleName in listRoleName)
+                        {
+                            await _userManager.RemoveFromRoleAsync(user.Id, roleName);
+                            await _userManager.AddToRoleAsync(user.Id, roleName);
+                        }
+                    }
+                    return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);
+                }
+                catch (NameDuplicatedException dex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                }
+
+            }
+            else
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+        }
 
         [HttpDelete]
         [Route("delete")]

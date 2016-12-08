@@ -6,9 +6,7 @@
     membershipProfileEditController.$inject = ['$scope', 'apiService', 'notificationService', '$state', '$stateParams'];
 
     function membershipProfileEditController($scope, apiService, notificationService, $state, $stateParams) {
-        $scope.account = {
-            Groups:[]
-        }
+        $scope.account = {}
 
 
         $scope.updateAccount = updateAccount;
