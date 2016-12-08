@@ -20,6 +20,11 @@ namespace PhongTot.Api.Mappings
             Mapper.CreateMap<Province, ProvinceViewModel>();
             Mapper.CreateMap<Wardid, WardidViewModel>();
             Mapper.CreateMap<Post, PostViewModel>();
+
+
+            Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
+            Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
+            Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
         }
     }
 }

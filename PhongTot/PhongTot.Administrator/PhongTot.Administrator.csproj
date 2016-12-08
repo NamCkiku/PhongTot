@@ -381,6 +381,8 @@
     <Content Include="bower_components\bootstrap\js\tooltip.js" />
     <Content Include="bower_components\bootstrap\js\transition.js" />
     <Content Include="bower_components\bootstrap\package.js" />
+    <Content Include="bower_components\checklist-model\checklist-model.js" />
+    <Content Include="bower_components\checklist-model\LICENSE.txt" />
     <Content Include="bower_components\ckeditor\adapters\jquery.js" />
     <Content Include="bower_components\ckeditor\ckeditor.js" />
     <Content Include="bower_components\ckeditor\config.js" />
@@ -4741,6 +4743,7 @@
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />
+    <Folder Include="bower_components\checklist-model\test\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
@@ -5298,6 +5301,11 @@
     <Content Include="bower_components\angular-kendo\nuget\AngularJS.KendoUI.nuspec" />
     <Content Include="bower_components\angular-kendo\package.json" />
     <Content Include="bower_components\angular-kendo\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower_components\checklist-model\.bower.json" />
+    <Content Include="bower_components\checklist-model\bower.json" />
+    <Content Include="bower_components\checklist-model\readme.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
