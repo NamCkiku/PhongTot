@@ -3,10 +3,12 @@
 
     app.controller('membershipProfileEditController', membershipProfileEditController);
 
-    membershipProfileEditController.$inject = ['$scope', 'apiService', 'notificationService', '$location', '$stateParams'];
+    membershipProfileEditController.$inject = ['$scope', 'apiService', 'notificationService', '$state', '$stateParams'];
 
-    function membershipProfileEditController($scope, apiService, notificationService, $location, $stateParams) {
-        $scope.account = {}
+    function membershipProfileEditController($scope, apiService, notificationService, $state, $stateParams) {
+        $scope.account = {
+            Groups:[]
+        }
 
 
         $scope.updateAccount = updateAccount;
@@ -17,7 +19,7 @@
         function loadDetail() {
             apiService.get('/api/applicationUser/detail/' + $stateParams.id, null,
             function (result) {
-                $scope.account = result.data.Result;
+                $scope.account = result.data;
                 console.log($scope.account)
             },
             function (result) {
@@ -27,8 +29,7 @@
 
         function addSuccessed() {
             notificationService.displaySuccess($scope.account.FullName + ' đã được cập nhật thành công.');
-
-            $location.url('application_users');
+            $state.go('membership');
         }
         function addFailed(response) {
             notificationService.displayError(response.data.Message);
