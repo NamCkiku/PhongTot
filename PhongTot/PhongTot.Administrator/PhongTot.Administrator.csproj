@@ -136,6 +136,12 @@
     <Content Include="app\components\application_groups\applicationGroupEditView.html" />
     <Content Include="app\components\application_groups\applicationGroupListController.js" />
     <Content Include="app\components\application_groups\applicationGroupListView.html" />
+    <Content Include="app\components\application_roles\applicationRoleAddController.js" />
+    <Content Include="app\components\application_roles\applicationRoleAddView.html" />
+    <Content Include="app\components\application_roles\applicationRoleEditController.js" />
+    <Content Include="app\components\application_roles\applicationRoleEditView.html" />
+    <Content Include="app\components\application_roles\applicationRoleListController.js" />
+    <Content Include="app\components\application_roles\applicationRoleListView.html" />
     <Content Include="app\components\categoryInfo\categoryInfoAddController.js" />
     <Content Include="app\components\categoryInfo\categoryInfoAddView.html" />
     <Content Include="app\components\categoryInfo\categoryInfoEditController.js" />

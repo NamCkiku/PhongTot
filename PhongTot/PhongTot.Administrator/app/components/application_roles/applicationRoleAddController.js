@@ -1,31 +1,31 @@
 ﻿(function (app) {
     'use strict';
 
-    app.controller('applicationGroupAddController', applicationGroupAddController);
+    app.controller('applicationRoleAddController', applicationRoleAddController);
 
-    applicationGroupAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService'];
+    applicationRoleAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService'];
 
-    function applicationGroupAddController($scope, apiService, notificationService, $state, commonService) {
-        $scope.group = {
-            ID: 0,
-            Roles: []
+    function applicationRoleAddController($scope, apiService, notificationService, $state, commonService) {
+        $scope.role = {
+            Id: 0
         }
 
-        $scope.addAppGroup = addApplicationGroup;
+        $scope.addAppRole = addAppRole;
 
-        function addApplicationGroup() {
-            apiService.post('/api/applicationGroup/add', $scope.group, addSuccessed, addFailed);
+        function addAppRole() {
+            apiService.post('/api/applicationRole/add', $scope.role, addSuccessed, addFailed);
         }
 
         function addSuccessed() {
-            notificationService.displaySuccess($scope.group.Name + ' đã được thêm mới.');
+            notificationService.displaySuccess($scope.role.Name + ' đã được thêm mới.');
 
-            $state.go('application-groups');
+            $state.go('application_roles');
         }
         function addFailed(response) {
             notificationService.displayError(response.data.Message);
             notificationService.displayErrorValidation(response);
         }
+
         function loadRoles() {
             apiService.get('/api/applicationRole/getlistall',
                 null,
@@ -38,6 +38,5 @@
         }
 
         loadRoles();
-
     }
 })(angular.module('myApp'));

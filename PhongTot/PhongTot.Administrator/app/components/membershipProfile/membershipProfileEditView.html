@@ -26,44 +26,103 @@
                     Hồ sơ bản thân
                 </div>
                 <form ng-submit="updateAccount()" class="form-horizontal" id="frmUpdateAccount" style="padding-top:30px" role="form">
-                    <div class="form-group" ng-class="{ 'has-error' : frmUpdateAccount.name.$invalid && !frmUpdateAccount.name.$pristine }">
+                    <div class="form-group">
                         <label class="col-lg-3 control-label">Họ và tên</label>
                         <div class="col-lg-8">
-                            <input type="text" name="name" class="form-control"
-                                   required reqired-message="Họ tên bắt buộc." ng-model="account.FullName">
+                            <input type="text"
+                                   required
+                                   ng-maxlength="100"
+                                   ng-model="account.FullName"
+                                   class="form-control"
+                                   name="FullName" />
+                            <span ng-show="frmUpdateAccount.FullName.$invalid" class="error">Phải nhập họ và tên</span>
+                            <span ng-show="frmUpdateAccount.FullName.$error.maxlength" class="error ">Họ và tên chỉ được 100 ký tự</span>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="{ 'has-error' : frmUpdateAccount.userName.$invalid && !frmUpdateAccount.userName.$pristine }">
-                        <label class="col-lg-3 control-label">Tài khoản</label>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Tên tài khoản</label>
                         <div class="col-lg-8">
-                            <input type="text" name="userName" class="form-control"
-                                   required reqired-message="Tài khoản bắt buộc." ng-model="account.UserName">
+                            <input type="text"
+                                   required
+                                   ng-maxlength="100"
+                                   disabled="disabled"
+                                   ng-model="account.UserName"
+                                   class="form-control"
+                                   name="Username" />
+                            <span ng-show="frmUpdateAccount.UserName.$invalid" class="error">Phải nhập tên tài khoản</span>
+                            <span ng-show="frmUpdateAccount.UserName.$error.maxlength" class="error ">Tên tài khoản chỉ được 100 ký tự</span>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="{ 'has-error' : frmUpdateAccount.email.$invalid && !frmUpdateAccount.email.$pristine }">
+                    <div class="form-group">
                         <label class="col-lg-3 control-label">Email</label>
                         <div class="col-lg-8">
-                            <input type="email" name="email" class="form-control"
-                                   required reqired-message="Email bắt buộc." ng-model="account.Email">
+                            <input type="email"
+                                   required
+                                   disabled="disabled"
+                                   ng-model="account.Email"
+                                   class="form-control"
+                                   name="Email" />
+                            <span class="error" ng-show="frmUpdateAccount.Email.$error.required">
+                                Vui lòng nhập email
+                            </span>
+                            <span class="error" ng-show="frmUpdateAccount.Email.$error.email">
+                                Không phải là email
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Điện thoại</label>
                         <div class="col-lg-8">
-                            <input type="text" name="password" class="form-control"
-                                   ng-model="account.PhoneNumber">
+                            <input type="text"
+                                   required
+                                   ng-maxlength="13"
+                                   ng-model="account.PhoneNumber"
+                                   class="form-control"
+                                   name="PhoneNumber" />
+                            <span ng-show="frmUpdateAccount.PhoneNumber.$invalid" class="error">Vui lòng nhập số điện thoại</span>
+                            <span ng-show="frmUpdateAccount.PhoneNumber.$error.maxlength" class="error ">Số điện thoại chỉ được 13 ký tự</span>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="{ 'has-error' : frmUpdateAccount.birthDate.$invalid && !frmUpdateAccount.birthDate.$pristine }">
+                    <div class="form-group">
                         <label class="col-lg-3 control-label">Ngày sinh</label>
-                        <div class="col-lg-4">
-                            <input type="text" name="birthDate" class="form-control datepicker"
-                                   required reqired-message="Ngày sinh bắt buộc." ng-model="account.BirthDay">
+                        <div class="col-lg-8">
+                            <input type="text" asDate name="birthDate" class="form-control datepicker" ng-model="account.BirthDay">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Địa chỉ</label>
+                        <div class="col-lg-8">
+                            <input type="text"
+                                   required
+                                   ng-maxlength="256"
+                                   ng-model="account.Address"
+                                   class="form-control"
+                                   name="Address" />
+                            <span ng-show="frmUpdateAccount.Address.$invalid" class="error">Vui lòng nhập địa chỉ</span>
+                            <span ng-show="frmUpdateAccount.Address.$error.maxlength" class="error ">Địa chỉ chỉ được 256 ký tự</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Kĩ năng</label>
+                        <div class="col-lg-8">
+                            <input type="text"
+                                   ng-model="account.Skill"
+                                   class="form-control"
+                                   name="Skill" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Quốc gia</label>
+                        <div class="col-lg-8">
+                            <input type="text"
+                                   ng-model="account.Country"
+                                   class="form-control"
+                                   name="Country" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-offset-3 col-sm-10">
-                            <label ng-repeat="group in account.Groups">
+                            <label ng-repeat="group in groups">
                                 <input type="checkbox" checklist-model="account.Groups" checklist-value="group"> {{group.Name}}
                             </label>
                         </div>
@@ -73,18 +132,18 @@
                             <button type="submit" ng-disabled="frmUpdateAccount.$invalid" class="btn btn-block btn-primary"><i class="fa fa-plus-square" aria-hidden="true" style="padding-right:10px"></i>Lưu lại</button>
                         </div>
                         <div class="col-lg-3">
-                            <a  ui-sref="membershipview({id:account.Id})" class="btn btn-block btn-info"><i class="fa fa-reply-all" aria-hidden="true" style="padding-right:10px"></i>Quay Lại</a>
+                            <a ui-sref="membershipview({id:account.Id})" class="btn btn-block btn-info"><i class="fa fa-reply-all" aria-hidden="true" style="padding-right:10px"></i>Quay Lại</a>
                         </div>
                     </div>
                 </form>
             </section>
-            
+
         </aside>
     </div>
 
 </section>
 <script>
     $('.datepicker').datepicker({
-        fomat:"dd/MM/yyyy"
+        fomat: "dd/MM/yyyy"
     });
 </script>
