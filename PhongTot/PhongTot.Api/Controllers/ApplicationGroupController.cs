@@ -66,8 +66,9 @@ namespace PhongTot.Api.Controllers
             {
                 HttpResponseMessage response = null;
                 var model = _appGroupService.GetAll();
-
-                response = request.CreateResponse(HttpStatusCode.OK, model);
+                Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
+                IEnumerable<ApplicationGroupViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(model);
+                response = request.CreateResponse(HttpStatusCode.OK, modelVm);
 
                 return response;
             });
