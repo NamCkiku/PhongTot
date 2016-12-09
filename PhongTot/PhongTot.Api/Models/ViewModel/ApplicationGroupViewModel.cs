@@ -11,6 +11,8 @@ namespace PhongTot.Api.Models.ViewModel
 
         public string Name { get; set; }
 
-        public IEnumerable<ApplicationRoleViewModel> Roles { set; get; }
+        public string Description { set; get; }
+
+        public virtual IEnumerable<ApplicationRoleViewModel> Roles { set; get; }
     }
 }
