@@ -8,6 +8,7 @@ namespace PhongTot.Common
 {
     public class Var
     {
+        public const string PostTag = "post";
         public const String RwMailServer = "RwMailServer";
         public const String RwMailAccount = "RwMailAccount";
         public const String RwMailPassword = "RwMailPassword";

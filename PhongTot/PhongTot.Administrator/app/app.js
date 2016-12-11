@@ -65,6 +65,12 @@
                 templateUrl: "/app/components/post/PostAddView.html",
                 controller: "postAddController",
             })
+            .state('eidtpost', {
+                url: "/eidtpost/:id",
+                parent: 'base',
+                templateUrl: "/app/components/post/postEditVew.html",
+                controller: "postEditController",
+            })
             //PostCategory
             .state('postcategory', {
                 url: "/postcategory",

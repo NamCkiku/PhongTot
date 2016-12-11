@@ -37,6 +37,7 @@ namespace PhongTot.Entities.Models
         public string Description { set; get; }
 
         public string Content { set; get; }
+        public string Tags { set; get; }
 
         public DateTime? CreateDate { get; set; }
 

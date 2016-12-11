@@ -71,7 +71,21 @@ namespace PhongTot.Api.Controllers
             });
         }
 
+        [Route("getalllisttag")]
+        [HttpGet]
+        public HttpResponseMessage GetListTagByPostID(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var listtag = _postService.GetListTagByPostId(id);
 
+                //var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listtag);
+
+                return response;
+            });
+        }
 
         [Route("getbyid/{id:int}")]
         [HttpGet]

@@ -172,6 +172,8 @@
     <Content Include="app\components\postCategory\PostCategoryListView.html" />
     <Content Include="app\components\post\postAddController.js" />
     <Content Include="app\components\post\postAddView.html" />
+    <Content Include="app\components\post\postEditController.js" />
+    <Content Include="app\components\post\postEditVew.html" />
     <Content Include="app\components\post\postListController.js" />
     <Content Include="app\components\post\PostListView.html" />
     <Content Include="app\components\SystemParameter\systemParameterEditController.js" />
