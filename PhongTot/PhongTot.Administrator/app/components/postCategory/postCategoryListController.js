@@ -12,7 +12,7 @@
         }
         $scope.Search = Search;
         function Search() {
-            getAllPostCategory();
+            $('#gridPostCategory').data('kendoGrid').dataSource.read();
         }
 
         function getAllPostCategory() {
@@ -69,11 +69,11 @@
                     field: "Status",
                     title: "Trạng thái",
                     width: "150px",
-                    template: "#= Status == true ? '<span class=\"label label-info\">Kích hoạt' : kendo.toString(Status, '<span class=\"label label-info\">Khóa') #"
+                    template: "#= Status == true ? '<span class=\"label label-info\">Kích hoạt' : '<span class=\"label label-info\">Khóa' #"
                 }, {
                     width: "100px",
                     title: "Chức năng",
-                    template: "<span><button type=\"button\" ui-sref=\"categoryInfoEdit({id:#= ID #})\" class=\"btn btn-info btn-sm\"'><i class=\"fa fa-pencil\"></i></button></span>&nbsp;<span><button type=\"button\" ui-sref=\"categoryInfoEdit({id:#= ID #})\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button></span>"
+                    template: "<span><button type=\"button\" ui-sref=\"postcategoryedit({id:#= ID #})\" class=\"btn btn-info btn-sm\"'><i class=\"fa fa-pencil\"></i></button></span>&nbsp;<span><button type=\"button\" ui-sref=\"categoryInfoEdit({id:#= ID #})\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button></span>"
                 }]
             };
         }
