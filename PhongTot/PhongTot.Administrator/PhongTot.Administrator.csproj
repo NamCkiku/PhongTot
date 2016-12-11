@@ -166,6 +166,8 @@
     <Content Include="app\components\membershipProfile\membershipProfileViewController.js" />
     <Content Include="app\components\postCategory\postCategoryAddController.js" />
     <Content Include="app\components\postCategory\postCategoryAddView.html" />
+    <Content Include="app\components\postCategory\PostCategoryEditController.js" />
+    <Content Include="app\components\postCategory\postCategoryEditVew.html" />
     <Content Include="app\components\postCategory\postCategoryListController.js" />
     <Content Include="app\components\postCategory\PostCategoryListView.html" />
     <Content Include="app\components\post\postAddController.js" />

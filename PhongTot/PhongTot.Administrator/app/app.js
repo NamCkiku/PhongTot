@@ -77,6 +77,11 @@
                 parent: 'base',
                 templateUrl: "/app/components/postCategory/postCategoryAddView.html",
                 controller: "postCategoryAddController",
+            }).state('postcategoryedit', {
+                url: "/postcategoryedit/:id",
+                parent: 'base',
+                templateUrl: "/app/components/postCategory/postCategoryEditVew.html",
+                controller: "postCategoryEditController",
             })
             //SystemsParameter
             .state('setting', {

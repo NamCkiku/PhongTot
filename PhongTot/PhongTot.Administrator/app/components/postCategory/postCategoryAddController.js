@@ -5,7 +5,8 @@
 
     function postCategoryAddController(apiService, $scope, notificationService, commonService, $state) {
         $scope.postcategory = {
-            Status: true
+            Status: true,
+            CreatedDate:new Date()
         }
         $scope.lispostCategories = [];
         $scope.GetSeoTitle = GetSeoTitle;
