@@ -53,13 +53,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Cấp</label>(<span style="color:#FF0000">*</span>)
-                                        <select name="categoryId"
-                                                class="form-control"
+                                        <select style="width:100%" kendo-drop-down-list
+                                                name="categoryId"
+                                                k-option-label="'Chọn danh mục'"
+                                                k-data-text-field="'Name'"
+                                                k-data-value-field="'ID'"
                                                 ng-model="postcategory.ParentID"
-                                                ng-options="option.ID as option.Name for option in lispostCategories">
-                                            <option value="">Chọn danh mục</option>
-                                        </select>
-                                        <span ng-show="frmAddPost.categoryId.$invalid" class="error">Phải chọn loại tin</span>
+                                                k-data-source="lispostCategories"
+                                                class=""></select>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

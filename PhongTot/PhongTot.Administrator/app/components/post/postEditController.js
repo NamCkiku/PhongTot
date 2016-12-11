@@ -1,14 +1,14 @@
 ﻿(function (app) {
-    app.controller('postAddController', postAddController);
+    app.controller('postEditController', postEditController);
 
-    postAddController.$inject = ['apiService', '$scope', 'notificationService', 'commonService', '$state'];
+    postEditController.$inject = ['apiService', '$scope', 'notificationService', 'commonService', '$state', '$stateParams'];
 
-    function postAddController(apiService, $scope, notificationService, commonService, $state) {
+    function postEditController(apiService, $scope, notificationService, commonService, $state, $stateParams) {
         $scope.postCategories = [];
         $scope.post = {
             Status: true,
-            HotFlag: false,
-            CreateDate:new Date()
+            HotFlag:false,
+            CreateDate: new Date()
         }
         $scope.ckeditorOptions = {
             languague: 'vi',
@@ -20,12 +20,19 @@
         function GetSeoTitle() {
             $scope.post.Alias = commonService.getSeoTitle($scope.post.Name);
         }
-
-        $scope.AddPost = AddPost;
-        function AddPost() {
-            apiService.post('api/post/add', $scope.post,
+        function LoadPostDetail() {
+            apiService.get('api/post/getbyid/' + $stateParams.id, null, function (result) {
+                $scope.post = result.data;
+                console.log($scope.post);
+            }, function (error) {
+                notificationService.displayError(error.data);
+            });
+        }
+        $scope.EditPost = EditPost;
+        function EditPost() {
+            apiService.put('api/post/update', $scope.post,
                 function (result) {
-                    notificationService.displaySuccess(result.data.Name + 'đã được thêm mới.');
+                    notificationService.displaySuccess("Cập Nhập Thành Công");
                     $state.go('post');
                 }, function (error) {
                     notificationService.displayError('Thêm mới không thành công.');
@@ -39,7 +46,7 @@
                 console.log('Cannot get list parent');
             });
         }
-
+        LoadPostDetail();
         loadPostCategory();
     }
 
