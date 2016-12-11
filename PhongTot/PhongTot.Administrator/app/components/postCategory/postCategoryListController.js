@@ -14,35 +14,68 @@
         function Search() {
             getAllPostCategory();
         }
-        function getAllPostCategory(page) {
-            var myBlockUI = blockUI.instances.get('myBlockUI');
-            myBlockUI.start();
-            page = page || 0;
-            var config = {
-                params: {
-                    Keywords: $scope.filter.Keywords,
-                    StartDate: $scope.filter.StartDate,
-                    EndDate: $scope.filter.EndDate,
-                    Status: $scope.filter.Status,
-                    page: page,
-                    pageSize: 10
-                }
-            }
-            apiService.get('api/postcategory/getallpaging', config, function (result) {
-                if (result.data == 0) {
-                    notificationService.displayWarning('Không có bản ghi nào được tìm thấy.');
-                }
-                $scope.postcategory = result.data.Items;
-                $scope.page = result.data.Page;
-                $scope.pagesCount = result.data.TotalPages;
-                $scope.totalCount = result.data.TotalCount;
-                $timeout(function (result) {
-                    // Stop the block after some async operation.
-                    myBlockUI.stop();
-                }, 100);
-            }, function () {
-                console.log('Load product failed.');
-            });
+
+        function getAllPostCategory() {
+            $scope.mainGridOptions = {
+                toolbar: ["excel"],
+                excel: {
+                    //fileName: "Kendo UI Grid Export.xlsx",
+                    //proxyURL: "//demos.telerik.com/kendo-ui/service/export",
+                    filterable: true
+                },
+                dataSource: new kendo.data.DataSource({
+                    transport: {
+                        read: function (options) {
+                            var config = {
+                                params: {
+                                    Keywords: $scope.filter.Keywords,
+                                    StartDate: $scope.filter.StartDate,
+                                    EndDate: $scope.filter.EndDate,
+                                    Status: $scope.filter.Status,
+                                    page: options.data.skip,
+                                    pageSize: options.data.take
+                                }
+                            }
+                            apiService.get('api/postcategory/getallpaging', config, function (result) {
+                                options.success(result.data);
+                                $scope.totalCount = result.data.TotalCount;
+                            }, function () {
+                                options.error(result.data);
+                            });
+                        }
+                    },
+                    pageSize: 10,
+                    schema: {
+                        data: "Items",
+                        total: "TotalPages"
+                    },
+
+                    serverPaging: true
+                }),
+                sortable: true,
+                pageable: true,
+                columns: [{
+                    field: "ID",
+                    title: "ID",
+                    width: "100px"
+                }, {
+                    field: "Name",
+                    title: "Tiêu đề"
+                }, {
+                    field: "CreatedDate",
+                    title: "Ngày tạo",
+                    template: "#=CreatedDate == null ? '' : kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd/MM/yyyy') #"
+                }, {
+                    field: "Status",
+                    title: "Trạng thái",
+                    width: "150px",
+                    template: "#= Status == true ? '<span class=\"label label-info\">Kích hoạt' : kendo.toString(Status, '<span class=\"label label-info\">Khóa') #"
+                }, {
+                    width: "100px",
+                    title: "Chức năng",
+                    template: "<span><button type=\"button\" ui-sref=\"categoryInfoEdit({id:#= ID #})\" class=\"btn btn-info btn-sm\"'><i class=\"fa fa-pencil\"></i></button></span>&nbsp;<span><button type=\"button\" ui-sref=\"categoryInfoEdit({id:#= ID #})\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button></span>"
+                }]
+            };
         }
         getAllPostCategory();
     }
