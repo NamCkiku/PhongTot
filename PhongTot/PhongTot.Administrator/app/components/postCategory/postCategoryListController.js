@@ -32,8 +32,8 @@
                                     StartDate: $scope.filter.StartDate,
                                     EndDate: $scope.filter.EndDate,
                                     Status: $scope.filter.Status,
-                                    page: options.data.skip,
-                                    pageSize: options.data.take
+                                    page: options.data.page - 1,
+                                    pageSize: options.data.pageSize
                                 }
                             }
                             apiService.get('api/postcategory/getallpaging', config, function (result) {
@@ -47,7 +47,7 @@
                     pageSize: 10,
                     schema: {
                         data: "Items",
-                        total: "TotalPages"
+                        total: "TotalCount"
                     },
 
                     serverPaging: true

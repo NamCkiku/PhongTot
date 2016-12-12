@@ -18,22 +18,18 @@
                                 <input ng-model="filter.Keywords" type="text" class="form-control">
                             </div>
                             <div class="col-lg-3">
-                                <label class="control-label">Ngày bắt đầu</label>
-                                <div class="input-group date">
-                                    <input ng-model="filter.StartDate" type="text" class="form-control datepicker">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                </div>
+                                <p class="control-label">Ngày bắt đầu</p>
+                                <input kendo-date-picker
+                                       style="width: 100%;"
+                                       k-ng-model="filter.StartDate"
+                                       k-format="'dd/MM/yyyy'" />
                             </div>
                             <div class="col-lg-3">
-                                <label class="control-label">Ngày kết thúc</label>
-                                <div class="input-group date">
-                                    <input ng-model="filter.EndDate" type="text" class="form-control datepicker">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                </div>
+                                <p class="control-label">Ngày kết thúc</p>
+                                <input kendo-date-picker
+                                       style="width: 100%;"
+                                       k-ng-model="filter.EndDate"
+                                       k-format="'dd/MM/yyyy'" />
                             </div>
                             <div class="col-lg-2">
                                 <label class="control-label">Trạng thái</label>
@@ -42,64 +38,24 @@
                                        type="checkbox">
                             </div>
                             <div class="col-lg-2" style="padding-top:25px;">
-                                <button type="button" ng-click="Search()" class="btn btn-primary">Tìm Kiếm</button>
+                                <button type="button" ng-click="Search()" class="btn btn-info"><i style="padding-right:10px;" class="fa fa-search"></i>Tìm Kiếm</button>
                             </div>
                         </div>
                     </div>
                     <div class="details-content">
                         <div class="col-xs-12">
-                            <div class="order-details order-items-list">
-                                <div class="table-responsive  table-hover">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <td class="text-center"><input name="all" type="checkbox" ng-click="selectAll()" /></td>
-                                                <th class="text-center">ID</th>
-                                                <th class="text-center">Tiêu Đề</th>
-                                                <th class="text-center">Ngày Đăng</th>
-                                                <th class="text-center">Trạng Thái</th>
-                                                <th class="text-center">Chức Năng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="text-center" ng-repeat="items in categoryInfo">
-                                                <td><input type="checkbox" ng-model="items.checked" name="all" /></td>
-                                                <td>{{items.ID}}</td>
-                                                <td>{{items.Name}}</td>
-                                                <td>{{items.CreatedDate |date: 'dd/MM/yyyy'}}</td>
-                                                <td>
-                                                    <span class="label label-info">{{items.Status |statusFilter}}</span>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-success" ui-sref="categoryInfoEdit({id:items.ID})"><i class="fa fa-pencil"></i></button>
-                                                    <button class="btn  btn-sm btn-danger" ng-click="deleteProduct(items.ID)"><i class="fa fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="no-data center" ng-show="totalCount==0">
-                                        <img src="/Content/images/no-data.png">
-                                        <p>Không có bản ghi nào được tìm thấy</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="panel-footer">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</div>
-                                    </div>
-                                    <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getAllCategoryInfo(page)"></pager-directive>
-                                </div>
+                            <div kendo-grid
+                                 id="gridInfoCategory"
+                                 k-options="mainGridOptions"></div>
+                            <div class="no-data center" ng-show="totalCount==0">
+                                <img src="/Content/images/no-data.png">
+                                <p>Không có bản ghi nào được tìm thấy</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<script>
-    $('.datepicker').datepicker({
-    });
-</script>
