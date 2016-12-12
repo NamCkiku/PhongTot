@@ -53,24 +53,23 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Cấp</label>(<span style="color:#FF0000">*</span>)
-                                        <select name="categoryId"
-                                                class="form-control"
-                                                ng-model="post.ParentID"
-                                                ng-options="option.ID as option.Name for option in lisInfoCategories">
-                                            <option value="">Chọn danh mục</option>
-                                        </select>
-                                        <span ng-show="frmAddPost.categoryId.$invalid" class="error">Phải chọn loại tin</span>
+                                        <select style="width:100%" kendo-drop-down-list
+                                                name="categoryId"
+                                                k-option-label="'Chọn danh mục'"
+                                                k-data-text-field="'Name'"
+                                                k-data-value-field="'ID'"
+                                                ng-model="post.CategoryID"
+                                                k-data-source="lisInfoCategories"
+                                                class=""></select>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Ngày Nhập</label>(<span style="color:#FF0000">*</span>)
-                                        <div class="input-group date">
-                                            <input type="text" ng-model="categoryInfo.CreatedDate" class="form-control pull-right datepicker" id="datepicker">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                        </div>
+                                        <input kendo-date-picker
+                                               style="width: 100%;"
+                                               k-ng-model="categoryInfo.CreatedDate"
+                                               k-format="'dd/MM/yyyy'" />
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
