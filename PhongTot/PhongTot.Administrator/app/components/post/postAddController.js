@@ -8,29 +8,97 @@
         $scope.post = {
             Status: true,
             HotFlag: false,
-            CreateDate:new Date()
+            CreateDate: new Date()
         }
         $scope.ckeditorOptions = {
             languague: 'vi',
             height: '200px'
         }
+        var __appBasePath = 'http://localhost:31223/';
+        $scope.editorOptions = {
+            tools: [
+                    "bold",
+                    "italic",
+                    "underline",
+                    "strikethrough",
+                    "justifyLeft",
+                    "justifyCenter",
+                    "justifyRight",
+                    "justifyFull",
+                    "insertUnorderedList",
+                    "insertOrderedList",
+                    "indent",
+                    "outdent",
+                    "createLink",
+                    "unlink",
+                    "insertImage",
+                    "insertFile",
+                    "subscript",
+                    "superscript",
+                    "createTable",
+                    "addRowAbove",
+                    "addRowBelow",
+                    "addColumnLeft",
+                    "addColumnRight",
+                    "deleteRow",
+                    "deleteColumn",
+                    "viewHtml",
+                    "formatting",
+                    "cleanFormatting",
+                    "fontName",
+                    "fontSize",
+                    "foreColor",
+                    "backColor",
+                    "print"
+            ],
 
+            imageBrowser: {
+                messages: {
+                    dropFilesHere: "Drop files here"
+                },
+
+                transport: {
+                    read: __appBasePath + "ImageBrowser/Read",
+                    destroy: {
+                        url: __appBasePath + "ImageBrowser/Destroy",
+                        type: "POST"
+                    },
+                    create: {
+                        url: __appBasePath + "ImageBrowser/Create",
+                        type: "POST"
+                    },
+                    thumbnailUrl: __appBasePath + "ImageBrowser/Thumbnail",
+                    uploadUrl: __appBasePath + "ImageBrowser/Upload",
+                    imageUrl: __appBasePath + "Content/UserFiles/Images/{0}"
+                }
+            }
+        };
         $scope.GetSeoTitle = GetSeoTitle;
 
         function GetSeoTitle() {
             $scope.post.Alias = commonService.getSeoTitle($scope.post.Name);
         }
-
+        function decodeHtml(text) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = text;
+            return txt.value;
+        }
         $scope.AddPost = AddPost;
         function AddPost() {
-            apiService.post('api/post/add', $scope.post,
-                function (result) {
-                    notificationService.displaySuccess(result.data.Name + 'đã được thêm mới.');
-                    $state.go('post');
-                }, function (error) {
-                    notificationService.displayError('Thêm mới không thành công.');
+            apiService.ValidatorForm("#frmAddPost");
+            var frmAddPost = angular.element(document.querySelector('#frmAddPost'));
+            var formValidation = frmAddPost.data('formValidation').validate();
+            if (formValidation.isValid()) {
+                $scope.post.Content = decodeHtml($scope.post.Content);
+                apiService.post('api/post/add', $scope.post,
+                    function (result) {
+                        notificationService.displaySuccess(result.data.Name + 'đã được thêm mới.');
+                        $state.go('post');
+                    }, function (error) {
+                        notificationService.displayError('Thêm mới không thành công.');
 
-                });
+                    });
+            }
         }
         function loadPostCategory() {
             apiService.get('api/postcategory/getall', null, function (result) {
@@ -42,6 +110,4 @@
 
         loadPostCategory();
     }
-
-
 })(angular.module('myApp'));
