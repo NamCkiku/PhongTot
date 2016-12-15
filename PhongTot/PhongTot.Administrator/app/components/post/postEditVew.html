@@ -103,7 +103,8 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Mô Tả</label>(<span style="color:#FF0000">*</span>)
-                                        <textarea type="text" name="Content" required ng-model="post.Content" ckeditor="ckeditorOptions" class="form-control" />
+                                        <textarea kendo-editor name="Content" ng-model="post.Content" k-options="{{editorOptions}}"></textarea>
+                                        <!--<textarea type="text" name="Content" required ng-model="post.Content" ckeditor="ckeditorOptions" class="form-control" />-->
                                         <span ng-show="frmEditPost.Content.$invalid" class="error">Phải nhập nội dung bài viết</span>
                                     </div>
                                 </div>
