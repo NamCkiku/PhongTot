@@ -195,6 +195,7 @@
     <Content Include="app\shared\services\authData.js" />
     <Content Include="app\shared\services\authenticationService.js" />
     <Content Include="app\shared\services\commonService.js" />
+    <Content Include="app\shared\services\fileUploadService.js" />
     <Content Include="app\shared\services\loginService.js" />
     <Content Include="app\shared\views\baseView.html" />
     <Content Include="bower_components\angular-block-ui\dist\angular-block-ui.css" />
@@ -216,6 +217,7 @@
     <Content Include="bower_components\angular-bootstrap-switch\src\directives\bsSwitch.js" />
     <Content Include="bower_components\angular-bootstrap-switch\test\runner.html" />
     <Content Include="bower_components\angular-bootstrap-switch\test\spec\directives\bsSwitchSpec.js" />
+    <Content Include="bower_components\angular-file-upload\angular-file-upload.js" />
     <Content Include="bower_components\angular-sanitize\angular-sanitize.js" />
     <Content Include="bower_components\angular-sanitize\angular-sanitize.min.js" />
     <Content Include="bower_components\angular-sanitize\index.js" />
@@ -3023,6 +3025,11 @@
     <Content Include="bower_components\ckeditor\skins\moono\images\spinner.gif" />
     <Content Include="bower_components\ckeditor\skins\moono\skin.js" />
     <Content Include="bower_components\ckeditor\styles.js" />
+    <Content Include="bower_components\jasny-file-input\dist\fileinput.css" />
+    <Content Include="bower_components\jasny-file-input\dist\fileinput.js" />
+    <Content Include="bower_components\jasny-file-input\dist\fileinput.min.css" />
+    <Content Include="bower_components\jasny-file-input\dist\fileinput.min.js" />
+    <Content Include="bower_components\jasny-file-input\Gulpfile.js" />
     <Content Include="bower_components\jquery\AUTHORS.txt" />
     <Content Include="bower_components\jquery\dist\jquery.js" />
     <Content Include="bower_components\jquery\dist\jquery.min.js" />
@@ -5416,6 +5423,13 @@
     <Content Include="Content\Plugins\kendo-ui\styles\kendo.silver.mobile.min.css.map" />
     <Content Include="Content\Plugins\kendo-ui\styles\kendo.uniform.min.css.map" />
     <Content Include="Content\Plugins\kendo-ui\styles\kendo.uniform.mobile.min.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower_components\jasny-file-input\.bower.json" />
+    <Content Include="bower_components\jasny-file-input\bower.json" />
+    <Content Include="bower_components\jasny-file-input\less\fileinput.less" />
+    <Content Include="bower_components\jasny-file-input\package.json" />
+    <Content Include="bower_components\jasny-file-input\README.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,14 +1,15 @@
 ﻿(function (app) {
     app.controller('postAddController', postAddController);
 
-    postAddController.$inject = ['apiService', '$scope', 'notificationService', 'commonService', '$state'];
+    postAddController.$inject = ['apiService', '$scope', 'notificationService', 'commonService', '$state', 'fileUploadService'];
 
-    function postAddController(apiService, $scope, notificationService, commonService, $state) {
+    function postAddController(apiService, $scope, notificationService, commonService, $state, fileUploadService) {
         $scope.postCategories = [];
         $scope.post = {
             Status: true,
             HotFlag: false,
-            CreateDate: new Date()
+            CreateDate: new Date(),
+            Image: "adadsadasd",
         }
         $scope.ckeditorOptions = {
             languague: 'vi',
@@ -78,6 +79,11 @@
         function GetSeoTitle() {
             $scope.post.Alias = commonService.getSeoTitle($scope.post.Name);
         }
+        var infoImage = null;
+        $scope.prepareFiles = prepareFiles;
+        function prepareFiles($files) {
+            infoImage = $files;
+        }
         function decodeHtml(text) {
             var txt = document.createElement("textarea");
             txt.innerHTML = text;
@@ -92,6 +98,10 @@
                 $scope.post.Content = decodeHtml($scope.post.Content);
                 apiService.post('api/post/add', $scope.post,
                     function (result) {
+                        $scope.post = result.data;
+                        if (infoImage) {
+                            fileUploadService.uploadImage(infoImage, $scope.post.ID);
+                        }
                         notificationService.displaySuccess(result.data.Name + 'đã được thêm mới.');
                         $state.go('post');
                     }, function (error) {
