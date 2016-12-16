@@ -1,9 +1,9 @@
 ﻿(function (app) {
     app.controller('postEditController', postEditController);
 
-    postEditController.$inject = ['apiService', '$scope', 'notificationService', 'commonService', '$state', '$stateParams'];
+    postEditController.$inject = ['apiService', '$scope', 'notificationService', 'commonService', '$state', '$stateParams', 'fileUploadService'];
 
-    function postEditController(apiService, $scope, notificationService, commonService, $state, $stateParams) {
+    function postEditController(apiService, $scope, notificationService, commonService, $state, $stateParams, fileUploadService) {
         $scope.postCategories = [];
         $scope.post = {
             Status: true,
@@ -91,11 +91,19 @@
             txt.innerHTML = text;
             return txt.value;
         }
+        var infoImage = null;
+        $scope.prepareFiles = prepareFiles;
+        function prepareFiles($files) {
+            infoImage = $files;
+        }
         $scope.EditPost = EditPost;
         function EditPost() {
             $scope.post.Content = decodeHtml($scope.post.Content);
             apiService.put('api/post/update', $scope.post,
                 function (result) {
+                    if (infoImage) {
+                        fileUploadService.uploadImage(infoImage, $scope.post.ID);
+                    }
                     notificationService.displaySuccess("Cập Nhập Thành Công");
                     $state.go('post');
                 }, function (error) {
