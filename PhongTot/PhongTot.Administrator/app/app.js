@@ -1,6 +1,6 @@
 ﻿/// <reference path="E:\_Study\_SourceCode\_SourseGithub\PhongTot\PhongTot\PhongTot.Administrator\bower_components/angular/angular.js" />
 (function () {
-    angular.module('myApp', ['ui.router', 'kendo.directives', 'blockUI', 'ngCkeditor', 'ngTagsInput', 'frapontillo.bootstrap-switch', 'ngSanitize', 'checklist-model', 'angularFileUpload'])
+    angular.module('myApp', ['ui.router', 'kendo.directives', 'blockUI', 'ngCkeditor', 'ngTagsInput', 'frapontillo.bootstrap-switch', 'ngSanitize', 'checklist-model', 'angularFileUpload', 'ui.bootstrap'])
         .config(config)
         .config(configAuthentication);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];

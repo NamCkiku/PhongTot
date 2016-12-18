@@ -3421,6 +3421,13 @@
     <Content Include="Content\js\owl.carousel.min.js" />
     <Content Include="Content\js\pgwslideshow.min.js" />
     <Content Include="Content\js\scrolling-nav.js" />
+    <Content Include="Content\Plugins\Bootstrap\bootstrap-filestyle.js" />
+    <Content Include="Content\Plugins\Bootstrap\bootstrap-filestyle.min.js" />
+    <Content Include="Content\Plugins\Bootstrap\ui-bootstrap-tpls-0.14.3.min.js" />
+    <Content Include="Content\Plugins\Bootstrap\ui-bootstrap-tpls.js" />
+    <Content Include="Content\Plugins\Bootstrap\ui-bootstrap-tpls.min.js" />
+    <Content Include="Content\Plugins\Bootstrap\ui-bootstrap.js" />
+    <Content Include="Content\Plugins\Bootstrap\ui-bootstrap.min.js" />
     <Content Include="Content\Plugins\datepicker\bootstrap-datepicker.js" />
     <Content Include="Content\Plugins\datepicker\datepicker3.css" />
     <Content Include="Content\Plugins\datepicker\locales\bootstrap-datepicker.ar.js" />
