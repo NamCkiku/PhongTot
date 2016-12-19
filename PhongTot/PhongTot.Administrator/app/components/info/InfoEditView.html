@@ -110,7 +110,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="dis-content" ng-bind-html="infoDetail.Content">
-               </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -139,12 +139,35 @@
             </div>
         </div>
         <div class="col-md-12 col-sm-12 margin-top-30 margin-bottom-20 center">
-            <button ng-hide="infoDetail.Status==true" class="btn btn-danger  margin-left-5"><i class="fa fa-trash" aria-hidden="true" style="padding-right:10px"></i>Xóa Bài</button>
+            <button ng-hide="infoDetail.Status==true" ng-click="openDeleteInfo('md',infoDetail.ID);" class="btn btn-danger  margin-left-5"><i class="fa fa-trash" aria-hidden="true" style="padding-right:10px"></i>Xóa Bài</button>
             <button ng-show="infoDetail.Status==false" ng-click="ChangeStatus();" class="btn btn-success  margin-left-5">
-            <i class="fa fa-paper-plane" aria-hidden="true" style="padding-right:10px"></i>Duyệt Bài</button>
+                <i class="fa fa-paper-plane" aria-hidden="true" style="padding-right:10px"></i>Duyệt Bài
+            </button>
             <button ng-show="infoDetail.Status==true" ng-click="ChangeStatus();" class="btn btn-success  margin-left-5">
                 <i class="fa fa-paper-plane" aria-hidden="true" style="padding-right:10px"></i>Hủy Duyệt Bài
             </button>
         </div>
     </div>
 </div>
+<script type="text/ng-template" id="InfoModal.html">
+    <div class="modal-header">
+        <button aria-label="Close" data-dismiss="modal" ng-click="close();" class="close" type="button"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="messageDel">Xóa Tin Tức</h4>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="btn-danger col-md-1 col-lg-1 icon-confirm">
+                    <i class="fa fa-exclamation-triangle fa-2x"></i>
+                </div>
+                <div class="input-field col s2 col m2 col-xs-12 col-sm-10 col-md-10 col-lg-10 confirm">
+                    <br /><label>Bạn có thực sự muốn xóa không ?</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="ok();"><i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-right:10px"></i>Lưu</button>
+        <button class="btn btn-info" ng-click="close();" type="button"><i class="fa fa-reply-all" aria-hidden="true" style="padding-right:10px"></i>Quay Lại</button>
+    </div>
+</script>

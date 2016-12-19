@@ -1,8 +1,8 @@
 ﻿/// <reference path="E:\_Study\_SourceCode\_SourseGithub\PhongTot\PhongTot\PhongTot.Web\bower_components/angular/angular.js" />
 (function (app) {
     app.controller('categoryInfoListController', categoryInfoListController);
-    categoryInfoListController.$inject = ['apiService', '$scope', 'notificationService', '$timeout', '$window', 'blockUI'];
-    function categoryInfoListController(apiService, $scope, notificationService, $timeout, $window, blockUI) {
+    categoryInfoListController.$inject = ['apiService', '$scope', 'notificationService', '$timeout', '$window', 'blockUI', '$modal'];
+    function categoryInfoListController(apiService, $scope, notificationService, $timeout, $window, blockUI, $modal) {
         $scope.categoryInfo = [];
         $scope.filter = {
             Keywords: "",
@@ -70,13 +70,48 @@
                     title: "Trạng thái",
                     width: "150px",
                     template: "#= Status == true ? '<span class=\"label label-info\">Kích hoạt' : '<span class=\"label label-info\">Khóa' #"
-                },{
+                }, {
                     width: "100px",
                     title: "Chức năng",
-                    template: "<span><button type=\"button\" ui-sref=\"categoryInfoEdit({id:#= ID #})\" class=\"btn btn-info btn-sm\"'><i class=\"fa fa-pencil\"></i></button></span>&nbsp;<span><button type=\"button\" ui-sref=\"categoryInfoEdit({id:#= ID #})\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button></span>"
+                    template: "<span><button type=\"button\" ui-sref=\"categoryInfoEdit({id:#= ID #})\" class=\"btn btn-info btn-sm\"'><i class=\"fa fa-pencil\"></i></button></span>&nbsp;<span><button type=\"button\" ng-click=\"openDeleteInfoCategory('md',#= ID #);\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button></span>"
                 }]
             };
         }
         getAllCategoryInfo();
+
+        $scope.openDeleteInfoCategory = openDeleteInfoCategory;
+        function openDeleteInfoCategory(size, id) {
+            $scope.modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'infoCategoryModal.html',
+                backdrop: 'static',
+                windowClass: 'center-modal',
+                scope: $scope,
+                size: size
+            });
+            $scope.ok = function () {
+                var config = {
+                    params: {
+                        id: id
+                    }
+                }
+                apiService.del('api/categoryinfo/delete', config, function () {
+                    $scope.modalInstance.dismiss('cancel');
+                    notificationService.displaySuccess('Xóa thành công');
+                    $('#gridInfoCategory').data('kendoGrid').dataSource.read();
+                }, function () {
+                    notificationService.displayError('Xóa không thành công');
+                })
+            };
+            $scope.close = function () {
+                $scope.modalInstance.dismiss('cancel');
+            };
+            $scope.modalInstance.rendered.then(function (response) {
+            })
+            $scope.modalInstance.result.then(function (response) {
+
+            }, function () {
+            });
+        }
     }
 })(angular.module('myApp'));

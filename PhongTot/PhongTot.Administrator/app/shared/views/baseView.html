@@ -205,35 +205,30 @@
             <ul class="sidebar-menu">
                 <!--- <li class="header">DASHBOARD</li> -->
                 <li class="treeview">
-                    <a href="javascript:void(0)">
+                    <a ui-sref="home">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="treeview">
-                    <a href="javascript:void(0)">
+                    <a ui-sref="infos">
                         <i class="fa fa-file-text-o"></i> <span>Phong Tot</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="home"> Trang Chủ</a></li>
+                    <!--<ul class="treeview-menu">
                         <li><a ui-sref="infos"> Phòng Tốt</a></li>
 
-                    </ul>
+                    </ul>-->
                 </li>
                 <li class="treeview">
-                    <a href="javascript:void(0)">
+                    <a ui-sref="categoryInfo">
                         <i class="fa fa-check-circle-o"></i>
                         <span>Loại Phòng</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="categoryInfoAdd">Thêm Loại Phòng</a></li>
-                        <li><a ui-sref="categoryInfo">Loại Phòng</a></li>
-                    </ul>
                 </li>
                 <li class="treeview">
                     <a href="javascript:void(0)">
@@ -250,43 +245,31 @@
                     </ul>
                 </li>
                 <li class="treeview">
-                    <a href="javascript:void(0)">
+                    <a ui-sref="post">
                         <i class="fa fa-check-circle-o"></i>
                         <span>Tin Tức</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="addpost">Thêm Tin Tức</a></li>
-                        <li><a ui-sref="post">Tin Tức</a></li>
-                    </ul>
                 </li>
                 <li class="treeview">
-                    <a href="javascript:void(0)">
+                    <a ui-sref="postcategory">
                         <i class="fa fa-check-circle-o"></i>
                         <span>Loại Tin Tức</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="postcategoryadd">Thêm Loại Tin Tức</a></li>
-                        <li><a ui-sref="postcategory">Loại Tin Tức</a></li>
-                    </ul>
                 </li>
                 <li class="treeview">
-                    <a href="javascript:void(0)">
+                    <a ui-sref="setting">
                         <i class="fa fa-check-circle-o"></i>
                         <span>Cài đặt</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="setting">Cài đặt chung</a></li>
-                        <li><a ui-sref="setting">Teamplate Email</a></li>
-                    </ul>
                 </li>
                 <!-- /.sidebar -->
     </aside>

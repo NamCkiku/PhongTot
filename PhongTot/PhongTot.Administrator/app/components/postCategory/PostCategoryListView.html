@@ -59,3 +59,25 @@
         </div>
     </div>
 </section>
+<script type="text/ng-template" id="postCategoryModal.html">
+    <div class="modal-header">
+        <button aria-label="Close" data-dismiss="modal" ng-click="close();" class="close" type="button"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="messageDel">Xóa Tin Tức</h4>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="btn-danger col-md-1 col-lg-1 icon-confirm">
+                    <i class="fa fa-exclamation-triangle fa-2x"></i>
+                </div>
+                <div class="input-field col s2 col m2 col-xs-12 col-sm-10 col-md-10 col-lg-10 confirm">
+                    <br /><label>Bạn có thực sự muốn xóa không ?</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="ok();"><i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-right:10px"></i>Lưu</button>
+        <button class="btn btn-info" ng-click="close();" type="button"><i class="fa fa-reply-all" aria-hidden="true" style="padding-right:10px"></i>Quay Lại</button>
+    </div>
+</script>
