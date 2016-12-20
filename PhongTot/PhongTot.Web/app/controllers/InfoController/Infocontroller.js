@@ -34,11 +34,11 @@
             CreateDate: new Date(),
             Status: false,
             Lat: 21.0029317912212212,
-            Lng:105.820226663232323,
+            Lng: 105.820226663232323,
             OtherInfo: {
-                Convenient:[]
+                Convenient: []
             },
-            Image: "adadsadasd",
+            Image: "no.PNG",
 
         };
 
@@ -180,7 +180,7 @@
                     fileUploadService.uploadImage(infoImage, $scope.infoAdd.ID);
                 }
                 //$scope.dzMethods.processQueue();
-                notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
+                notificationService.displaySuccess("Chúc mừng bạn đã đăng tin hành công");
                 $window.location.href = '/Home/Index/';
             }, function (error) {
                 notificationService.displayError('Thêm mới không thành công.');

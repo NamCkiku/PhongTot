@@ -120,7 +120,7 @@ namespace PhongTot.Service
             }
             if (filterParams.CategoryID != null)
             {
-                query = query.Where(p => p.CategoryID >= filterParams.CategoryID);
+                query = query.Where(p => p.CategoryID == filterParams.CategoryID);
             }
             if (filterParams.PriceFrom != null)
             {

@@ -42,8 +42,8 @@
             }
             return query_string;
         }();
-        $scope.keywords = [];
-        function search(keywords) {
+        $scope.keywords = {};
+        function search() {
             var params = {
                 CategoryID: $scope.keywords.CategoryID,
                 PriceFrom: $scope.slider.minValue,
