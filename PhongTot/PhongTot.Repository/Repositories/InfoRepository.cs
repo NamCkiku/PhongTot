@@ -25,9 +25,10 @@ namespace PhongTot.Repository.Repositories
             var query = (from p in DbContext.Infoes
                          join s in DbContext.CategoryInfoes on p.CategoryID equals s.ID
                          join to in DbContext.Provinces on p.Provinceid equals to.provinceid
+                         where p.Status == true
                          select new InfoViewModel
                          {
-                             ID=p.ID,
+                             ID = p.ID,
                              Name = p.Name,
                              Price = p.Price,
                              Acreage = p.Acreage,

@@ -206,6 +206,8 @@ namespace PhongTot.Api.Controllers
                 }
                 else
                 {
+                    info.CreateDate = DateTime.Now;
+                    info.Status = false;
                     var newCourse = _infoService.Add(info);
 
                     response = request.CreateResponse(HttpStatusCode.Created, newCourse);

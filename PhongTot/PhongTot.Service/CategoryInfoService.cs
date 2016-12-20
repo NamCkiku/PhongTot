@@ -76,7 +76,7 @@ namespace PhongTot.Service
         public IEnumerable<CategoryInfo> GetInfoByCategory(int top)
         {
             var lst = new List<CategoryInfo>();
-            var model = _categoryInfoRepository.GetAll(new string[] { "Infoes" }).Where(x => x.Infoes.Count >= 2 && x.Status).Take(top);
+            var model = _categoryInfoRepository.GetAll(new string[] { "Infoes" }).Where(x => x.Infoes.Count >= 2 && x.Status == true).Take(top);
             if (model != null)
             {
                 foreach (var category in model)
@@ -89,7 +89,7 @@ namespace PhongTot.Service
                     cate.Image = category.Image;
                     cate.HomeFlag = category.HomeFlag;
                     var info = _infoRepository.GetAll(new string[] { "Province" })
-                        .Where(x => x.CategoryID == category.ID).OrderByDescending(x => x.CreateDate).Take(9).ToList();
+                        .Where(x => x.CategoryID == category.ID && x.Status == true).OrderByDescending(x => x.CreateDate).Take(9).ToList();
                     if (info != null)
                     {
                         cate.Infoes = info;
