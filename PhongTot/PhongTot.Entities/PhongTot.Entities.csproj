@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201612111219595_đasada.Designer.cs">
       <DependentUpon>201612111219595_đasada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612200851332_addemailtemplate.cs" />
+    <Compile Include="Migrations\201612200851332_addemailtemplate.Designer.cs">
+      <DependentUpon>201612200851332_addemailtemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
@@ -116,6 +120,7 @@
     <Compile Include="Models\CategoryInfo.cs" />
     <Compile Include="Models\CategoryOtherInfo.cs" />
     <Compile Include="Models\Districtid.cs" />
+    <Compile Include="Models\EmailTemplate.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Info.cs" />
     <Compile Include="Models\OtherInfo.cs" />
@@ -178,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612111219595_đasada.resx">
       <DependentUpon>201612111219595_đasada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200851332_addemailtemplate.resx">
+      <DependentUpon>201612200851332_addemailtemplate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

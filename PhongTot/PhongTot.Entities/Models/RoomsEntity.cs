@@ -28,6 +28,7 @@ namespace PhongTot.Entities.Models
         public DbSet<PostTag> PostTags { set; get; }
         public DbSet<Tag> Tags { set; get; }
         public DbSet<SysPara> SysParas { set; get; }
+        public DbSet<EmailTemplate> EmailTemplates { set; get; }
         public DbSet<ApplicationGroup> ApplicationGroups { set; get; }
         public DbSet<ApplicationRole> ApplicationRoles { set; get; }
         public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
