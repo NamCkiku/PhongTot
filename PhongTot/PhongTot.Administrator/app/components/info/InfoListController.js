@@ -9,8 +9,8 @@
         $scope.keyword = '';
         $scope.filter = {
             Keywords: "",
-            StartDate: "",
-            EndDate: "",
+            StartDate: new Date,
+            EndDate: new Date,
             Status: true
         }
         $scope.Search = Search;
