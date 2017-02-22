@@ -72,6 +72,7 @@
     <Compile Include="Repositories\CategoryInfoRepository.cs" />
     <Compile Include="Repositories\CategoryOtherInfoRepository.cs" />
     <Compile Include="Repositories\DistrictidRepository.cs" />
+    <Compile Include="Repositories\EmailTemplateRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\InfoRepository.cs" />
     <Compile Include="Repositories\OtherInfoRepository.cs" />
